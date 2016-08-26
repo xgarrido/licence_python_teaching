@@ -1,0 +1,1883 @@
+#+TITLE:  Python courses of Licence 3 - README
+#+AUTHOR: Xavier Garrido
+
+* Introduction
+
+This repository contains materials for Python lectures given in Licence 3 of
+Fundamental Physics at the University of Paris Sud. It provides slides, courses
+as well as exercices and piece of code to give an introduction of Python
+programming.
+
+* Installation
+
+To fully use this package, you will need to install the proper Pygments style to
+match University of Paris Sud colors. The repository address is
+https://github.com/xgarrido/pygments-styles with the installation
+commands. Without it, compilation will go fine except that you will get fancy
+color for the code blocks.
+
+Given the successful installation of the Pygments style, you will need special
+=orgmode= settings to translate the =org= files into =pdf= documents. All the
+needed code is embedded within this file in the next sections. There is no need
+to detangle this file since emacs will do it when you will use the Makefile in
+the corresponding directories. So, next step will be to do =make= within the
+different directories.
+
+* Orgmode settings
+:PROPERTIES:
+:TANGLE: README.el
+:END:
+** General settings
+*** Timestamp location
+#+BEGIN_SRC emacs-lisp
+  (setq org-publish-timestamp-directory "/tmp/org-timestamps")
+#+END_SRC
+
+** Settings for =org= to =pdf= conversion
+*** Requirements
+#+BEGIN_SRC emacs-lisp
+  (require 'ox-latex)
+  (require 'ox-beamer)
+#+END_SRC
+*** Keep LaTeX logfiles
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-remove-logfiles nil)
+#+END_SRC
+*** Changing toc latex command
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-toc-command "{\\hypersetup{linkcolor=blue}\\tableofcontents}")
+#+END_SRC
+*** Use smart quote when exporting
+#+BEGIN_SRC emacs-lisp
+  (setq org-export-with-smart-quotes t)
+#+END_SRC
+
+*** Place table caption below table
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-table-caption-above nil)
+#+END_SRC
+*** No author
+#+BEGIN_SRC emacs-lisp
+  (setq org-export-with-author nil)
+#+END_SRC
+*** Code blocks
+This activates a number of widely used languages, you are encouraged to activate
+more languages using the customize interface for the =org-babel-load-languages=
+variable, or with an elisp form like the one below.  The customize interface of
+=org-babel-load-languages= contains an up to date list of the currently
+supported languages.
+#+BEGIN_SRC emacs-lisp
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (latex . t)))
+#+END_SRC
+
+You are encouraged to add the following to your personal configuration
+although it is not added by default as a security precaution.
+#+BEGIN_SRC emacs-lisp
+  (setq org-confirm-babel-evaluate nil)
+#+END_SRC
+
+*** =minted= setup
+Code fragments are syntax highlighted using [[https://code.google.com/p/minted/][minted]] LaTeX package
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-listings 'minted)
+  (setq org-latex-minted-options
+        '(;;("frame" "lines")
+          ("fontsize" "\\footnotesize")
+          ("samepage" "")
+          ("mathescape" "")
+          ("xrightmargin" "0.5cm")
+          ("xleftmargin"  "0.5cm")
+          ))
+#+END_SRC
+
+*** Default list of LaTeX packages
+Only include one default package and remove all the crapppy stuff included by
+=org= \rightarrow =latex= translation.
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-latex-packages-alist '("" "org-preamble"))
+#+END_SRC
+
+*** Defining =org-latex-classes=
+
+#+BEGIN_SRC emacs-lisp
+  (unless (boundp 'org-latex-classes)
+    (setq org-latex-classes nil))
+#+END_SRC
+
+**** Beamer template
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-latex-classes
+               '("python-slide"
+                 "\\documentclass[c]{beamer}
+                  [PACKAGES]
+                  \\usepackage[python_teaching]{slide-style}
+                  [NO-DEFAULT-PACKAGES]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+#+END_SRC
+
+We also translate *bold* into beamer =structure= and underline into *bold*.
+#+BEGIN_SRC emacs-lisp
+  (defun python-beamer-bold (contents backend info)
+    (when (eq backend 'beamer)
+      (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\structure" contents)))
+  (defun python-beamer-underline (contents backend info)
+    (when (eq backend 'beamer)
+      (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
+  (add-to-list 'org-export-filter-bold-functions 'python-beamer-bold)
+  (add-to-list 'org-export-filter-underline-functions 'python-beamer-underline)
+#+END_SRC
+
+We add the option =frame= to footnote to make sure the footnote appears at the
+bottom of the frame.
+#+BEGIN_SRC emacs-lisp
+  (defun python-beamer-footnote (contents backend info)
+    (when (eq backend 'beamer)
+      (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\footnote[frame]" contents)))
+  (add-to-list 'org-export-filter-footnote-reference-functions 'python-beamer-footnote)
+#+END_SRC
+
+We also define a new environment for "colored" box
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-beamer-environments-extra
+               '("cbox" "c" "\\begin{cbox}%o(%h)" "\\end{cbox}"))
+#+END_SRC
+
+Since 26/09/2014, it seems that fragment block are not "lowercased" anymore so
+we execute a hook before parsing file to change =CBOX= into =cbox=.
+#+BEGIN_SRC emacs-lisp
+  (defun latex::downcase-begin-filter (contents backend info)
+    (when (org-export-derived-backend-p backend 'latex)
+      (replace-regexp-in-string "\\\\begin{CBOX}"     "\\\\begin{cbox}"
+      (replace-regexp-in-string "\\\\begin{QUESTION}" "\\\\begin{question}"
+      (replace-regexp-in-string "\\\\begin{REMARK}"   "\\\\begin{remark}"
+      (replace-regexp-in-string "\\\\begin{ABSTRACT}" "\\\\begin{abstract}"
+      (replace-regexp-in-string "\\\\begin{PROMPT}"   "\\\\begin{prompt}"
+                              contents)))))))
+  (defun latex::downcase-end-filter (contents backend info)
+    (when (org-export-derived-backend-p backend 'latex)
+      (replace-regexp-in-string "\\\\end{CBOX}"     "\\\\end{cbox}"
+      (replace-regexp-in-string "\\\\end{QUESTION}" "\\\\end{question}"
+      (replace-regexp-in-string "\\\\end{REMARK}"   "\\\\end{remark}"
+      (replace-regexp-in-string "\\\\end{ABSTRACT}" "\\\\end{abstract}"
+      (replace-regexp-in-string "\\\\end{PROMPT}"   "\\\\end{prompt}"
+                              contents)))))))
+  (add-to-list 'org-export-filter-final-output-functions 'latex::downcase-begin-filter)
+  (add-to-list 'org-export-filter-final-output-functions 'latex::downcase-end-filter)
+#+END_SRC
+
+**** Lecture template
+#+BEGIN_SRC emacs-lisp :results none
+  (add-to-list 'org-latex-classes
+               '("python-lecture"
+                 "\\documentclass[10pt,a4paper,twoside]{report}
+                  [PACKAGES]
+                  \\usepackage[python_teaching_lectures]{lecture-style}
+                  [NO-DEFAULT-PACKAGES]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  (add-to-list 'org-latex-classes
+               '("python-lecture-book"
+                 "\\documentclass[10pt,a4paper,twoside]{report}
+                  [PACKAGES]
+                  \\usepackage[python_teaching_lectures,book]{lecture-style}
+                  [NO-DEFAULT-PACKAGES]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+#+END_SRC
+
+Add a new tag =ignoreheading= to skip headline tagged as such.
+#+BEGIN_SRC emacs-lisp
+  (defun python-ignore-headline (contents backend info)
+    (when (and (org-export-derived-backend-p backend 'latex)
+               (string-match "\\`.*ignoreheading.*\n"
+                             (downcase contents)))
+      (replace-match "" nil nil contents)))
+  (add-to-list 'org-export-filter-headline-functions 'python-ignore-headline)
+#+END_SRC
+
+Interpret figures within table environment as figure side-by-side.
+#+BEGIN_SRC emacs-lisp
+  (defun python-multicolumn-figure (contents backend info)
+    (when (and (org-export-derived-backend-p backend 'latex)
+               (string-match "table" contents)
+               (string-match "includegraphics" contents))
+      (replace-regexp-in-string "table" "figure" contents)))
+  (add-to-list 'org-export-filter-table-functions 'python-multicolumn-figure)
+#+END_SRC
+**** Class template
+#+BEGIN_SRC emacs-lisp :results none
+  (add-to-list 'org-latex-classes
+               '("python-class"
+                 "\\documentclass[10pt,a4paper]{report}
+                  [PACKAGES]
+                  \\usepackage[python_teaching_classes]{lecture-style}
+                  [NO-DEFAULT-PACKAGES]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+#+END_SRC
+
+Add a new tag =correction=
+#+BEGIN_SRC emacs-lisp
+  ;; (setq correction-flag nil)
+  (defun python-correction-headline (contents backend info)
+    (when (and (org-export-derived-backend-p backend 'latex)
+               (string-match "\\`.*correction.*\n" (downcase contents)))
+      (concat "\\begin{correction}" (replace-regexp-in-string "\\`.*correction.*\n" "" contents) "\\end{correction}"))
+    )
+  (add-to-list 'org-export-filter-headline-functions 'python-correction-headline)
+#+END_SRC
+
+*** Define dedicated function for export
+#+BEGIN_SRC emacs-lisp
+  (defun python-export-slides ()
+    (progn
+      ;;(setq org-latex-default-class "python-slide")
+      (org-beamer-export-to-pdf)
+      ))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (defun python-export-lectures ()
+    (progn
+      (if (string-equal "lecture_book.org" (buffer-name))
+        (setq org-latex-default-class "python-lecture-book")
+      (setq org-latex-default-class "python-lecture"))
+      (org-latex-export-to-pdf)
+      ))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (defun python-export-classes ()
+    (progn
+      (setq org-latex-default-class "python-class")
+      (org-latex-export-to-pdf)
+      ))
+#+END_SRC
+*** Add =cite= link
+#+BEGIN_SRC emacs-lisp
+  (org-add-link-type "cite" 'ebib
+                     (lambda (path desc format)
+                       (cond
+                        ((eq format 'latex)
+                         (format "\\cite{%s}" path)))))
+#+END_SRC
+
+*** Set LaTeX command
+#+BEGIN_SRC emacs-lisp
+   (defun python-latexmk-cmd (backend)
+     "When exporting from .org with latex, automatically run latex,
+        pdflatex, or xelatex as appropriate, using latexmk."
+     (when (org-export-derived-backend-p backend 'latex)
+       (let ((texcmd)))
+       (setq texcmd "jobname=$(basename %f | sed 's/\.tex//');latexmk -xelatex -shell-escape -quiet %f && mkdir -p latex.d && mv ${jobname}.* latex.d/. && mv latex.d/${jobname}.{org,tex,pdf,fdb_latexmk,aux,toc} .")
+       (setq org-latex-pdf-process (list texcmd))))
+  (org-add-hook 'org-export-before-processing-hook 'python-latexmk-cmd)
+#+END_SRC
+*** LaTeX stylesheets
+**** Org preamble
+:PROPERTIES:
+:TANGLE: org-preamble.sty
+:END:
+
+This section defines =org= preamble and settings for documents exported from
+=.org= to =.tex= files. The basic use is to add =\usepackage{org-preamble}= in
+your LaTeX document.
+
+***** Basics
+#+BEGIN_SRC latex
+  \NeedsTeXFormat{LaTeX2e}
+  \ProvidesPackage{org-preamble}[2013/03/03 v0.01 Bundling of Preamble items for Org to LaTeX export]
+#+END_SRC
+
+***** Style options
+Options can be passed to =org-preamble= style file within =\usepackage[options]=
+call. For the time being, I have only copied/pasted how to declare such options
+but do not use it.
+#+BEGIN_SRC latex :tangle no
+  \RequirePackage{ifthen}
+  \newboolean{@fr} %
+  \setboolean{@fr}{false} %
+  \DeclareOption{fr}{
+    \setboolean{@fr}{true}
+  }
+  \ProcessOptions
+#+END_SRC
+
+***** Packages requirements
+****** AMS packages
+#+BEGIN_SRC latex
+  \RequirePackage{amsmath,amssymb}
+#+END_SRC
+****** Listings package
+[[https://code.google.com/p/minted/][minted]] is a package that facilitates expressive syntax highlighting in LaTeX
+using the powerful Pygments library. The package also provides options to
+customize the highlighted source code output using =fancyvrb=.
+#+BEGIN_SRC latex
+  \RequirePackage[cache]{minted}
+#+END_SRC
+
+****** Unicode typesettings aka XeTeX
+#+BEGIN_SRC latex
+  \RequirePackage{ifxetex}
+  \ifxetex
+  \RequirePackage{fontspec}
+  \RequirePackage{xunicode}
+  %%\else
+  \fi
+#+END_SRC
+
+****** hyperref package
+#+BEGIN_SRC latex
+  \RequirePackage{hyperref}
+#+END_SRC
+****** [[http://www.ctan.org/pkg/pifont][pifont]] package
+#+BEGIN_SRC latex
+  \RequirePackage{pifont}
+#+END_SRC
+****** graphics package
+#+BEGIN_SRC latex
+  \RequirePackage{graphicx}
+  \graphicspath{
+    {./plot/}
+    {./figures/}
+  }
+#+END_SRC
+****** comment package
+#+BEGIN_SRC latex
+  \RequirePackage{comment}
+#+END_SRC
+****** [[http://www.texample.net/tikz/][tikz]] package
+#+BEGIN_SRC latex
+  \RequirePackage{tikz}
+  \usetikzlibrary{positioning,arrows,decorations,backgrounds,patterns,matrix,shapes,fit,calc,shadows,plotmarks,spy,trees}
+#+END_SRC
+
+We use the external library from =tikz= to cache i.e. produce a =pdf= file of
+each =tikzpicture=. =tikz/external= looks if the pdf exist and if not, export it.
+#+BEGIN_SRC latex
+  \input "|mkdir -p latex.d"
+  \input "|mkdir -p /tmp/latex.d"
+#+END_SRC
+
+****** [[http://www.ctan.org/pkg/xspace][xspace]] package
+#+BEGIN_SRC latex
+  \RequirePackage{xspace}
+#+END_SRC
+**** Lectures/class style
+:PROPERTIES:
+:TANGLE: lecture-style.sty
+:END:
+***** General settings
+****** Basics
+#+BEGIN_SRC latex
+  \NeedsTeXFormat{LaTeX2e}
+  \ProvidesPackage{lecture-style}[2013/09/18 v0.01 Custom lecture/course templates]
+#+END_SRC
+****** Package options
+#+BEGIN_SRC latex
+  \RequirePackage{kvoptions}
+  \SetupKeyvalOptions{
+    family=ls,
+    prefix=ls@
+  }
+  \DeclareBoolOption[false]{nologo}
+  \DeclareBoolOption[false]{oldstyle}
+  \DeclareBoolOption[false]{book}
+  \DeclareBoolOption[false]{python_teaching_lectures}
+  \DeclareBoolOption[false]{python_teaching_classes}
+  \ProcessKeyvalOptions*
+#+END_SRC
+****** Parsing options
+Here we parse result of =ProcessKeyvalOptions= done previously in order to set
+different booleans used in the nex section.
+#+BEGIN_SRC latex
+  \RequirePackage{ifthen}
+  \newboolean{has_driver_name}
+  \setboolean{has_driver_name}{false}
+  \ifthenelse{\boolean{ls@python_teaching_lectures}}{
+    \setboolean{has_driver_name}{true}
+  }{}
+  \ifthenelse{\boolean{ls@python_teaching_classes}}{
+    \setboolean{has_driver_name}{true}
+  }{}
+  \ifthenelse{\boolean{has_driver_name}}{
+  }{
+    \PackageWarning{lecture-style}{You do not specify a 'driver' name !}}{
+  }
+#+END_SRC
+****** Package requirements
+******* =hyperref= package
+#+BEGIN_SRC latex
+  \hypersetup{
+    xetex,
+    colorlinks=true,
+    urlcolor=green,
+    filecolor=green,
+    linkcolor=red,
+    plainpages=false,
+    pdfpagelabels,
+    bookmarksnumbered,
+    pagebackref
+  }
+#+END_SRC
+***** Template settings
+Given the =driver= to be used, generic colors, special title inclusion are set
+up. Practically, everything can be done within this section.
+****** Preamble
+#+BEGIN_SRC latex
+  \ifthenelse{\boolean{has_driver_name}}{
+#+END_SRC
+****** Colors
+#+BEGIN_SRC latex
+  \definecolor{red}{RGB}{221,42,43}
+  \definecolor{green}{RGB}{132,184,24}
+  \definecolor{blue}{RGB}{0,72,112}
+  \definecolor{orange}{RGB}{192,128,64}
+  \definecolor{gray}{RGB}{107,108,110}
+#+END_SRC
+****** Fonts
+#+BEGIN_SRC latex
+  \setmonofont[Scale=0.9]{Inconsolata}
+  \RequirePackage{mathpazo}
+
+  \ifthenelse{\boolean{ls@oldstyle}}{
+    \setmainfont
+        [ BoldFont       = texgyrepagella-bold.otf ,
+          ItalicFont     = texgyrepagella-italic.otf ,
+          BoldItalicFont = texgyrepagella-bolditalic.otf ]
+        {texgyrepagella-regular.otf}
+  }{
+    \setsansfont[Mapping=tex-text]{Myriad Pro}
+    \setromanfont[Mapping=tex-text, Numbers=OldStyle]{Minion Pro}
+  }
+#+END_SRC
+****** Minted lexer
+#+BEGIN_SRC latex
+  \usemintedstyle{upsud}
+#+END_SRC
+****** Fancy headings
+#+BEGIN_SRC latex
+  \RequirePackage{fancyhdr}
+  \ifthenelse{\boolean{ls@oldstyle}}{
+    \RequirePackage[Lenny]{fncychap}
+    \ChTitleVar{\Huge\bfseries}
+    \ChNameVar{\fontsize{14}{16}\usefont{OT1}{ptm}{b}{n}\selectfont}
+    \ChNumVar{\fontsize{60}{62}\usefont{OT1}{ptm}{b}{n}\selectfont}
+  }{
+    \RequirePackage[]{fncychap}
+    \ChTitleVar{\Huge\bfseries\sffamily\color{blue}}
+    \ChNameVar{\raggedleft\fontsize{14}{16}\selectfont\sffamily\color{blue}}
+    \ChNumVar{\raggedleft\fontsize{60}{62}\selectfont\sffamily\color{blue}}
+    \ifthenelse{\boolean{ls@python_teaching_classes}}{
+      \ChRuleWidth{0pt}
+      \renewcommand{\DOCH}{%
+        \vspace{-2cm}
+        \raggedleft
+        \CNV\FmN{\@chapapp}\space \CNoV\thechapter
+        \par\nobreak
+        %% \vspace{-3cm}
+      }
+    }{}
+    \ifthenelse{\boolean{ls@python_teaching_lectures}}{
+      \ChRuleWidth{1.5pt}
+    }{}
+  }
+#+END_SRC
+****** Layout
+******* Title tweak
+No title
+#+BEGIN_SRC latex
+  \ifthenelse{\boolean{ls@python_teaching_lectures}}{
+    \ifthenelse{\boolean{ls@book}}{
+      \renewcommand*{\maketitle}{
+        {\color{blue}
+          \begingroup
+          \hbox{
+            \hspace*{0.2\textwidth}
+            \rule{1.5pt}{\textheight}
+            \hspace*{0.05\textwidth}
+            \parbox[b]{0.75\textwidth}{
+              {\noindent\bf\sffamily\Huge\@title}\\
+              \vspace{0.5\textheight}
+              \begin{flushright}
+                \color{gray}\sffamily
+                Xavier Garrido$^a$, Yann Leprince$^b$ \& Matthieu Loumaigne$^c$
+                \\[6mm]
+                $^a$ LAL, IN2P3 \& Université Paris-Sud, France\\
+                $^b$ LNAO, CEA Saclay, France\\
+                $^c$ LAC, Université Paris-Sud, France\\
+              \end{flushright}
+          }}
+          \endgroup
+        }
+        \thispagestyle{empty}
+        \clearemptydoublepage
+      }
+      \g@addto@macro\tableofcontents{\clearemptydoublepage}
+    }{
+      \renewcommand*{\maketitle}{}
+    }
+  }{
+    \renewcommand*{\maketitle}{}
+  }
+#+END_SRC
+******* TOC tweak
+#+BEGIN_SRC latex
+  \renewcommand\@dotsep{10000}
+#+END_SRC
+******* Paragraph indent
+No paragraph indent
+#+BEGIN_SRC latex
+  \ifthenelse{\boolean{ls@python_teaching_classes}}{
+    \setlength{\parindent}{0cm}
+  }{}
+#+END_SRC
+******* Chapter style
+We want chapter with fancy style (see [[Fancy headings]]) but we do not want
+explicit call of =\chapter= command within the =org= document. Thus we use a
+LaTeX hook to automatically add this command at the begin of the document.
+#+BEGIN_SRC latex
+  \ifthenelse{\boolean{ls@python_teaching_classes}}{
+    \renewcommand{\chaptername}{Exercice}
+    \ifthenelse{\boolean{ls@oldstyle}}{
+      \AtBeginDocument{\chapter{}\vspace{-1.5cm}}
+    }{
+      \AtBeginDocument{\chapter{}}
+    }
+  }{}
+  \ifthenelse{\boolean{ls@python_teaching_lectures}}{
+    \ifthenelse{\boolean{ls@book}}{
+      \renewcommand{\chaptername}{Chapitre}
+      \renewcommand{\contentsname}{Tables des matières}
+      \renewcommand{\appendixname}{Annexe}
+      %% \AtBeginDocument{\chapter{\@title}}
+      %% \AtEndDocument{\clearemptydoublepage}
+    }{
+      \renewcommand{\chaptername}{Fiche}
+      \AtBeginDocument{\chapter{\@title}}
+      \AtEndDocument{\clearemptydoublepage}
+    }
+  }{}
+#+END_SRC
+No page number for first chapter pages
+#+BEGIN_SRC latex
+  \let\ps@plain=\ps@empty
+#+END_SRC
+******* Section style
+We change the sections style using =titlesec= package
+#+BEGIN_SRC latex
+  \ifthenelse{\boolean{ls@oldstyle}}{}{
+    \RequirePackage{titlesec}
+    \titleformat*{\section}{\Large\bfseries\sffamily\color{blue}}
+    \titleformat*{\subsection}{\large\bfseries\sffamily\color{blue!75}}
+    \titleformat*{\subsubsection}{\itshape\color{blue!60}}
+  }
+  \ifthenelse{\boolean{ls@book}}{
+    \let\stdchapter\chapter
+    \renewcommand\chapter{\ifnum\c@chapter>0{\clearemptydoublepage}\else\fi\stdchapter}
+  }
+#+END_SRC
+******* Set space line
+#+BEGIN_SRC latex
+  \RequirePackage[onehalfspacing]{setspace}
+  \setstretch{1.02}
+#+END_SRC
+******* Make page wider
+#+BEGIN_SRC latex
+  \RequirePackage{a4wide}
+#+END_SRC
+******* Footnote style
+#+BEGIN_SRC latex
+  \renewcommand{\footnoterule}{\color{gray}%
+    \vskip-\footruleskip\vskip-\footrulewidth%
+    \vspace{10pt}\hrule width\columnwidth height0.0pt \vspace{5pt} \color{gray}}
+  \renewcommand{\thefootnote}{\alph{footnote}}
+  \interfootnotelinepenalty=10000
+#+END_SRC
+******* Header style
+#+BEGIN_SRC latex
+  \renewcommand{\headrulewidth}{1.5pt}
+#+END_SRC
+******* Caption setup
+#+BEGIN_SRC latex
+  \RequirePackage{ccaption}
+  \captionnamefont{\footnotesize\bfseries}
+  \captiontitlefont{\footnotesize}
+  \renewcommand{\fnum@figure}[1]{Figure~\thefigure~-- }
+#+END_SRC
+******* Tweaking geometry
+This has to be set here for obscure reasons (maybe =fncychap= redefines geometry
+layout)
+#+BEGIN_SRC latex
+  \ifthenelse{\boolean{ls@python_teaching_classes}}{
+    \RequirePackage[top=1.0cm, width=16cm]{geometry}
+  }{}
+#+END_SRC
+******* VC status
+#+NAME: vc-status
+#+BEGIN_SRC sh :results output :tangle no
+  if [ -d .git ]; then
+      log=$(LC_MESSAGES=en git --no-pager log -1 HEAD --date=short --pretty=format:"\texttt{git} commit \href{https://github.com/xgarrido/licence_python_teaching/commit/%H}{\color{gray}\texttt{%h}} -- %ad")
+      echo "\renewcommand*{\PrelimText}{\textnormal{\small\color{gray}${log}}}"
+  fi
+#+END_SRC
+#+BEGIN_SRC latex :noweb yes
+  \RequirePackage{prelim2e}
+  <<vc-status()>>
+#+END_SRC
+****** New environment
+******* Remark
+#+BEGIN_SRC latex
+  \newenvironment{remark}
+                 {\begin{quote}\ding{47}\itshape\small}
+                 {\end{quote}}
+#+END_SRC
+******* Prompt
+#+BEGIN_SRC latex
+  \newenvironment{prompt}
+                 {\begin{quote}\color{blue!75}\tt\$\;}
+                 {\end{quote}}
+#+END_SRC
+******* Bibliography
+#+BEGIN_SRC latex
+  \renewenvironment{bibliography}{%
+    \section*{\bibname}% <-- this line was changed from \chapter* to \section*
+    \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+    \list{\@biblabel{\@arabic\c@enumiv}}%
+         {\settowidth\labelwidth{\@biblabel{9}}%
+           \leftmargin\labelwidth
+           \advance\leftmargin\labelsep
+           \@openbib@code
+           \usecounter{enumiv}%
+           \let\p@enumiv\@empty
+           \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+         \sloppy
+         \clubpenalty4000
+         \@clubpenalty \clubpenalty
+         \widowpenalty4000%
+         \sfcode`\.\@m}{%
+    \def\@noitemerr
+        {\@latex@warning{Empty `thebibliography' environment}}%
+        \endlist}
+#+END_SRC
+
+******* Correction
+#+BEGIN_SRC latex
+  \RequirePackage[framemethod=tikz]{mdframed}
+  \renewcommand{\mdf@footnoterule}{\color{gray}%
+    \vskip-\footruleskip\vskip-\footrulewidth%
+    \vspace{10pt}\hrule width\columnwidth height0.0pt \vspace{5pt} \color{gray}}
+  \newmdenv[%
+    singleextra={
+      \fill[blue] (P) rectangle ([xshift=-15pt]P|-O);
+      \node[overlay,anchor=south east,rotate=90,font=\color{white}] at (P) {\sf\textbf{correction}};
+    },
+    firstextra={
+      \fill[blue] (P) rectangle ([xshift=-15pt]P|-O);
+      \node[overlay,anchor=south east,rotate=90,font=\color{white}] at (P) {\sf\textbf{correction}};
+    },
+    secondextra={
+      \fill[blue] (P) rectangle ([xshift=-15pt]P|-O);
+      \node[overlay,anchor=south east,rotate=90,font=\color{white}] at (P) {\sf\textbf{correction}};
+    },
+    backgroundcolor=blue!2,
+    %% roundcorner=5pt,
+    %% hidealllines=true,
+    %% topline=true,
+    linecolor=blue,
+    skipabove=12pt,skipbelow=12pt,
+    innertopmargin=0.4em,%
+    innerbottommargin=0.4em,%
+    innerrightmargin=2.7em,%
+    rightmargin=0.7em,%
+    innerleftmargin=1.7em,%
+    leftmargin=0.7em,%
+  ]{correction}
+#+END_SRC
+****** New command
+#+BEGIN_SRC latex
+  \newcommand{\Cpp}{\mbox{C\vspace{.5em}\protect\raisebox{.2ex}{\footnotesize++~}}}
+  \newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+#+END_SRC
+****** Postamble
+#+BEGIN_SRC latex
+  }{}
+#+END_SRC
+
+**** Beamer style
+:PROPERTIES:
+:TANGLE: slide-style.sty
+:END:
+***** General settings
+****** Basics
+#+BEGIN_SRC latex
+  \NeedsTeXFormat{LaTeX2e}
+  \ProvidesPackage{slide-style}[2013/11/07 v0.01 C++ beamer templates]
+#+END_SRC
+****** Package options
+#+BEGIN_SRC latex
+  \RequirePackage{kvoptions}
+  \SetupKeyvalOptions{
+    family=cb,
+    prefix=cb@
+  }
+  \DeclareBoolOption[false]{nologo}
+  \DeclareBoolOption[false]{notitlelogo}
+  \DeclareBoolOption[false]{noheaderlogo}
+  \DeclareBoolOption[false]{noauthor}
+  \DeclareBoolOption[false]{python_teaching}
+  \ProcessKeyvalOptions*
+#+END_SRC
+****** Parsing options
+Here we parse result of =ProcessKeyvalOptions= done previously in order to set
+different booleans used in the nex section.
+#+BEGIN_SRC latex
+  \RequirePackage{ifthen}
+  \newboolean{has_driver_name}
+  \setboolean{has_driver_name}{false}
+  \ifthenelse{\boolean{cb@python_teaching}}{
+    \setboolean{has_driver_name}{true}
+    \setboolean{cb@nologo}{true}
+    \setboolean{cb@noauthor}{true}
+  }{}
+  \ifthenelse{\boolean{has_driver_name}}{
+  }{
+    \PackageWarning{slide-style}{You do not specify a 'driver' name !}}{
+  }
+  \ifthenelse{\boolean{cb@nologo}}{
+    \setboolean{cb@notitlelogo}{true}
+    \setboolean{cb@noheaderlogo}{true}
+  }{}
+#+END_SRC
+****** Package requirements
+******* =hyperref= package
+#+BEGIN_SRC latex
+  \hypersetup{
+    xetex,
+    colorlinks=true,
+    urlcolor=green,
+    filecolor=green,
+    linkcolor=red,
+    citecolor=green,
+    plainpages=false,
+    pdfpagelabels,
+    bookmarksnumbered,
+    pagebackref
+  }
+#+END_SRC
+******* Sans math
+#+BEGIN_SRC latex
+  \RequirePackage[eulergreek,EULERGREEK]{sansmath}
+  \sansmath
+#+END_SRC
+****** Default themes
+#+BEGIN_SRC latex
+  \usetheme{default}
+  \usecolortheme{whale}
+#+END_SRC
+****** Color definitions
+Since color must be applied in a very last time, we define a bash script to be
+called within =postamble= part of [[Template settings]]
+#+NAME: generate_beamer_colors
+#+BEGIN_SRC latex :results output :tangle no
+  \setbeamercolor{structure}{fg=generic2}
+  \setbeamercolor{alerted text}{fg=generic0}
+  \setbeamercolor{example text}{fg=generic1}
+  \setbeamercolor{block title}{use=structure,fg=structure.bg, bg=structure.fg}
+  \setbeamercolor{block body}{use=structure, fg=structure.fg, bg=structure.bg}
+  \setbeamercolor{frametitle}{use=structure, fg=structure.fg, bg=}
+  \setbeamercolor{example title}{use=example,fg=example.bg, bg=example.fg}
+  \setbeamercolor{example body}{use=example, fg=example.fg, bg=example.bg}
+  \setbeamercolor{itemize item}{fg=generic2}
+  \setbeamercolor{footnote}{fg=generic3}
+  \setbeamercolor{footnote mark}{fg=generic3}
+
+  \setbeamercolor{ruc_upper}{fg=white,bg=red}
+  \setbeamercolor{ruc_lower}{fg=red,bg=white}
+  \setbeamercolor{guc_upper}{fg=white,bg=green}
+  \setbeamercolor{guc_lower}{fg=green,bg=white}
+  \setbeamercolor{buc_upper}{fg=white,bg=blue}
+  \setbeamercolor{buc_lower}{fg=blue,bg=white}
+
+  \setbeamercolor{lruc}{fg=white,bg=red!10}
+  \setbeamercolor{lrtuc}{fg=red,bg=red!10}
+  \setbeamercolor{lguc}{fg=white,bg=green!10}
+  \setbeamercolor{lgtuc}{fg=green,bg=green!10}
+  \setbeamercolor{lbuc}{fg=white,bg=blue!10}
+  \setbeamercolor{lbtuc}{fg=blue,bg=blue!10}
+  \setbeamercolor{louc}{fg=white,bg=orange!10}
+  \setbeamercolor{lotuc}{fg=orange,bg=orange!10}
+  \setbeamercolor{lwuc}{fg=blue,bg=white}
+  \setbeamercolor{hidden}{fg=white,bg=white}
+#+END_SRC
+
+****** Font
+#+BEGIN_SRC latex
+  \setmonofont[Scale=0.9]{Inconsolata}
+  \setbeamerfont{page number in head/foot}{size=\tiny}
+#+END_SRC
+****** Beamer options
+#+BEGIN_SRC latex
+  \DeclareOptionBeamer{shadow}[true]{\def\beamer@themerounded@shadow{#1}}
+  \ExecuteOptionsBeamer{shadow=true}
+  \ProcessOptionsBeamer
+
+  \setbeamercovered{transparent}
+  \setbeamertemplate{blocks}[rounded][shadow=\beamer@themerounded@shadow]
+#+END_SRC
+****** Title page definition
+First, make title frame plain (no page number, not footline...)
+#+BEGIN_SRC latex
+  \def\maketitle{\ifbeamer@inframe\titlepage\else\frame[plain,noframenumbering]{\titlepage}\fi}
+#+END_SRC
+
+Also add a logo if any
+#+BEGIN_SRC latex
+  \ifthenelse{\boolean{cb@notitlelogo}}{}{
+    \titlegraphic{\resizebox{!}{15mm}{\logo}}}
+#+END_SRC
+
+Set =subtitle= font to =\scriptsize=
+#+BEGIN_SRC latex
+  \setbeamerfont{subtitle}{size=\scriptsize,parent=title}
+#+END_SRC
+
+Then define the custom beamer template
+#+BEGIN_SRC latex
+  \newcommand{\insertprefixtitle}{}
+  \defbeamertemplate*{title page}{custom}[1][colsep=-4bp,
+    rounded=true,shadow=\beamer@themerounded@shadow]{
+    \vbox{}
+    \vfill
+    \begin{centering}
+      \begin{beamercolorbox}[sep=8pt,center,#1]{title}
+        \usebeamerfont{title}\insertprefixtitle\inserttitle\par%
+        \ifx\insertsubtitle\@empty%
+        \else%
+        \vskip0.25em%
+               {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\vspace{2ex}\insertsubtitle\par}%
+               \fi%
+      \end{beamercolorbox}%
+      \vskip1em\par
+      \ifthenelse{\boolean{cb@noauthor}}{}{
+        \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+          \usebeamerfont{author}\usebeamercolor[bg]{title}\insertauthor
+        \end{beamercolorbox}
+      }
+      \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+        \usebeamerfont{institute}\usebeamercolor[bg]{title}\insertinstitute
+      \end{beamercolorbox}
+      %%\begin{beamercolorbox}[sep=8pt,center,#1]{date}
+      %%  \usebeamerfont{date}\insertdate
+      %%\end{beamercolorbox}
+      \vskip0.5em{\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+    \end{centering}
+    \vfill
+  }
+#+END_SRC
+
+****** Appendix page definition
+This tweak is used to include =appendix= page with the name style as =title=
+page. First, rename the =appendix= name :
+#+BEGIN_SRC latex
+  \renewcommand{\appendix}{
+    \begin{frame}[plain]{}
+      \partpage
+    \end{frame}
+  }
+#+END_SRC
+
+Then use almost the default part page style but include the command =\appendix=
+in order to keep the total page number unchanged.
+#+BEGIN_SRC latex
+  \defbeamertemplate*{part page}{custom}[1][colsep=-4bp,
+    rounded=true,shadow=\beamer@themerounded@shadow]{
+    \begin{centering}
+      \vskip1em\par
+      \begin{beamercolorbox}[sep=16pt,center,#1]{part title}
+        \usebeamerfont{part title}\appendixname\par
+      \end{beamercolorbox}
+    \end{centering}
+  }
+#+END_SRC
+****** Adding logo to frametitle
+#+BEGIN_SRC latex
+  \RequirePackage[absolute,overlay]{textpos}
+  \ifthenelse{\boolean{cb@noheaderlogo}}{}{
+    \addtobeamertemplate{frametitle}{}{%
+      \begin{textblock}{14}(13.9,0.25)
+        \resizebox{!}{8mm}{\logo}
+      \end{textblock}
+    }
+  }
+#+END_SRC
+****** Colored block environment
+We define a new colored bow environment that can be also used for =orgmode=
+headline. The parameters are the following one :
+- box width,
+- box color,
+- text options such as =\centering= of text size,
+- =x= and =y= positions,
+- box title.
+
+The last parameters, if specified, are used within a =textblock=
+environment, otherwise a =minipage= is defined.
+#+BEGIN_SRC latex
+  \newcommand{\IfNoValueOrEmptyTF}[3]{\IfNoValueTF{#1}{#2}{\if\relax\detokenize{#1}\relax#2\else#3\fi}}
+  \RequirePackage{xparse}
+  \NewDocumentEnvironment{cbox}{o o o o o d()}{
+    \IfNoValueOrEmptyTF{#4}{
+      \begin{center}
+        \begin{minipage}[c]{\IfNoValueOrEmptyTF{#1}{0.9\linewidth}{#1}}}{
+      \begin{textblock}{\IfNoValueOrEmptyTF{#1}{10}{#1}}(#4,#5)}
+    \begin{beamerboxesrounded}[upper=\IfNoValueOrEmptyTF{#2}{lbtuc}{#2}, lower=\IfNoValueOrEmptyTF{#2}{lbtuc}{#2}, shadow=false]
+      {\IfNoValueOrEmptyTF{#3}{}{#3}\IfNoValueOrEmptyTF{#6}{}{#6}}
+      \IfNoValueOrEmptyTF{#3}{}{#3}
+  }{
+    \end{beamerboxesrounded}
+    \IfNoValueOrEmptyTF{#4}{\end{minipage}\end{center}}{\end{textblock}}
+  }
+#+END_SRC
+
+****** Animated prompt environment
+Taken from this [[http://tex.stackexchange.com/questions/37869/beamer-animations-how-to-simulate-terminal-input-and-output][post forum]] on stackexchange. For some obscure reasons, this
+piece of code can not be included into the [[C++ teaching style]].
+#+BEGIN_SRC latex
+  \RequirePackage{animate}
+  \RequirePackage{expl3}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %commands for simulating terminal in/output
+  %\scroll[<line separator string>]{<width as TeX dim>}
+  %                             {<number of lines>}{terminal text line}
+  %\clearbuf  %clears line buffer
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \ExplSyntaxOn
+  \seq_new:N\g_linebuffer_seq
+  \seq_new:N\g_inputline_seq
+  \newcommand\scroll[4][§§]{
+    \color{generic2}
+    \seq_set_split:Nnn\g_inputline_seq{#1}{#4}
+    \seq_map_inline:Nn\g_inputline_seq{
+      \seq_gput_right:Nx\g_linebuffer_seq{##1}
+      \int_compare:nT{\seq_count:N\g_linebuffer_seq>#3}{
+        \seq_gpop_left:NN\g_linebuffer_seq\dummy
+      }
+    }
+    \mbox{\begin{minipage}[t][#3\baselineskip]{#2}
+        \ttfamily
+        \seq_map_inline:Nn\g_linebuffer_seq{\mbox{##1}\\}
+    \end{minipage}}
+  }
+  \newcommand\clearbuf{\seq_gclear:N\g_linebuffer_seq}
+  \ExplSyntaxOff
+#+END_SRC
+****** Footline
+Remove navigation symbols
+#+BEGIN_SRC latex
+  \beamertemplatenavigationsymbolsempty
+#+END_SRC
+
+Add special footline with a slick progress bar
+#+BEGIN_SRC latex :noweb yes
+    \def\progressbar@progressbar{} % the progress bar
+    \newcount\progressbar@tmpcounta% auxiliary counter
+    \newcount\progressbar@tmpcountb% auxiliary counter
+    \newdimen\progressbar@pbht %progressbar height
+    \newdimen\progressbar@pbwd %progressbar width
+    \newdimen\progressbar@tmpdim % auxiliary dimension
+
+    \progressbar@pbwd=\linewidth
+    \progressbar@pbht=1pt
+
+    % the progress bar
+    \def\progressbar@progressbar{%
+      \tikzexternaldisable
+
+      \progressbar@tmpcounta=\insertframenumber
+      \progressbar@tmpcountb=\inserttotalframenumber
+      \progressbar@tmpdim=\progressbar@pbwd
+      \multiply\progressbar@tmpdim by \progressbar@tmpcounta
+      \divide\progressbar@tmpdim by \progressbar@tmpcountb
+
+      \begin{tikzpicture}[very thin]
+        \draw[generic3,line width=\progressbar@pbht] (0pt, 0pt) -- ++ (1.25\progressbar@tmpdim,0pt);
+      \end{tikzpicture}%
+    }
+    \ifthenelse{\boolean{has_driver_name}}{
+      \ifthenelse{\boolean{cb@python_teaching}}{
+        \defbeamertemplate{footline}{cbfootline}{%
+          \usebeamerfont{page number in head/foot}
+          \hspace{1em}\inserttitle\hfill
+          \insertframenumber
+          \kern1em\vskip2pt
+          \color{generic3}% to color the progressbar
+          \hspace*{-\beamer@leftmargin}%
+          \rule{\beamer@leftmargin}{2pt}%
+          \rlap{\rule{\dimexpr
+              \beamer@startpageofframe\dimexpr
+              \beamer@rightmargin+\textwidth\relax/\beamer@endpageofdocument}{1pt}}
+          % next empty line is mandatory!
+
+          \vspace{.0\baselineskip}
+                 {}
+        }
+      }{}
+      \setbeamertemplate{footline}[cbfootline]{}
+      \setbeamercolor{footline}{use=structure, fg=generic3, bg=structure.bg}
+    }{}
+#+END_SRC
+****** Footnote
+Redefine footnote template for beamer
+#+BEGIN_SRC latex
+  \defbeamertemplate*{footnote}{custom}
+                     {
+                       \hfill\parbox{5.5cm}{\raggedleft
+                         \tiny
+                         \parindent 1em\noindent%
+                         \hbox to 1em{\hfil\insertfootnotemark}\insertfootnotetext%
+                       }
+                       \vskip +1pt
+                     }
+#+END_SRC
+
+Use personal footnote symbol starting with dagger and not with asterisk.
+#+BEGIN_SRC latex
+  \def\@fnsymbol#1{\ensuremath{\ifcase#1\or \dagger\or \ddagger\or
+    \mathsection\or \mathparagraph\or \|\or **\or \dagger\dagger
+    \or \ddagger\ddagger \else\@ctrerr\fi}}
+  \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+  \renewcommand{\footnoterule}{}
+#+END_SRC
+
+Reset counter for every beamer frame
+#+BEGIN_SRC latex
+  \RequirePackage{perpage}
+  \MakePerPage{footnote}
+#+END_SRC
+
+If the text within the footnote is very long, LaTeX may split the footnote over
+several pages. You can prevent LaTeX from doing so by increasing the penalty for
+such an operation.
+#+BEGIN_SRC latex
+  \interfootnotelinepenalty=10000
+#+END_SRC
+***** Template settings
+Given the =driver= to be used, generic colors, special title inclusion are set
+up. Practically, everything can be done within this section.
+
+****** Preamble
+#+BEGIN_SRC latex
+  \ifthenelse{\boolean{cb@python_teaching}}{
+#+END_SRC
+****** Changing appendix name
+#+BEGIN_SRC latex
+  \renewcommand{\appendixname}{Annexes}
+#+END_SRC
+****** Colors
+#+BEGIN_SRC latex
+  \definecolor{red}{RGB}{221,42,43}
+  \definecolor{green}{RGB}{132,184,24}
+  \definecolor{blue}{RGB}{0,72,112}
+  \definecolor{orange}{RGB}{192,128,64}
+  \definecolor{gray}{RGB}{107,108,110}
+
+  \colorlet{generic0}{green}
+  \colorlet{generic1}{green}
+  \colorlet{generic2}{blue}
+  \colorlet{generic3}{gray}
+#+END_SRC
+****** Title prefix
+#+BEGIN_SRC latex
+  \newcommand{\Cpp}{\mbox{C\vspace{.5em}\protect\raisebox{.2ex}{\footnotesize++~}}}
+  \renewcommand{\insertprefixtitle}{\textbf{Cours \Cpp}\vskip0.25em\normalsize}
+#+END_SRC
+****** =prompt= environment
+#+BEGIN_SRC latex
+  \newenvironment{prompt}
+                 {\begin{center}\tt\color{blue}\$}
+                 {\end{center}}
+
+#+END_SRC
+****** Minted lexer
+#+BEGIN_SRC latex
+  \usemintedstyle{upsud}
+#+END_SRC
+****** Postamble
+#+BEGIN_SRC latex :noweb yes
+  <<generate_beamer_colors>>
+  }{}
+#+END_SRC
+** Settings for =org= to =html= conversion
+*** Requirements
+#+BEGIN_SRC emacs-lisp
+  (require 'ox-html)
+#+END_SRC
+*** Building html preamble
+#+TBLNAME: lecture_list :results none
+|---+----------------------------+------------------------------------------------------|
+| + | lecture_pointeur           | Pointeurs, références & allocation dynamique         |
+| + | lecture_fonction           | Rappels sur les fonctions                            |
+| + | lecture_specificite_c++    | Les spécificités du C++                              |
+| + | lecture_struct_class       | Structures et classes                                |
+| + | lecture_encapsulation      | Encapsulation des données                            |
+| + | lecture_constructeur       | Notions de constructeur et de destructeur            |
+| + | lecture_amitie             | Fonctions et classes amies                           |
+| + | lecture_surcharge          | Surcharge d'opérateur                                |
+| + | lecture_heritage           | Héritage                                             |
+| + | lecture_template           | Notions de patrons de fonctions et de classes        |
+| + | lecture_librairie_standard | Introduction à la librairie standard STL             |
+| + | annexe_compilation         | Compilation et directives de préprocesseur           |
+| + | annexe_convention_ecriture | Convention d'écriture et organisation des programmes |
+| + | annexe_cout_cin            | Écriture/lecture sur l'entrée/sortie standard        |
+| + | annexe_variable_statique   | Les membres données statiques                        |
+| + | annexe_enum_typedef        | Utilisation de enum et de typedef                    |
+|---+----------------------------+------------------------------------------------------|
+
+#+TBLNAME: td_list :results none
+|---+------------------------+------------------------------------|
+| + | td_pointeur_fonction   | Compilation, pointeur & références |
+| + | td_specificite_c++     | Spécificités du C++                |
+| + | td_classes             | Classes en C++                     |
+| + | td_classe_complexe     | Fraction de nombres complexes      |
+| + | td_nombre_aleatoire    | Constructeur & destructeurs        |
+| + | td_surcharge_operateur | Surcharge d'opérateur              |
+| + | td_polymorphisme       | Polymorphisme & classe abstraite   |
+| + | td_blackjack           | Jeu du blackjack                   |
+|---+------------------------+------------------------------------|
+
+#+TBLNAME: slide_list :results none
+|---+------------------------+---------------------------------------------------------|
+| + | slide_compilation      | Compilation & Directives de préprocesseur               |
+| + | slide_pointeur         | Pointeurs, Références & Allocation Dynamique de Mémoire |
+| + | slide_specificite_c++  | Spécificités du C++ (indépendantes de la POO)           |
+| + | slide_struct_class     | Structures & Classes                                    |
+| + | slide_encapsulation    | Encapsulation des données                               |
+| + | slide_constructeur     | Constructeur & Destructeur de classe                    |
+| + | slide_copie            | Copie d'objets                                          |
+| + | slide_amitie_surcharge | Amitié & Surcharge d'opérateur                          |
+| + | slide_heritage_1       | Héritage (Partie 1)                                     |
+| + | slide_heritage_2       | Héritage (Partie 2)                                     |
+| + | slide_template         | Patrons de fonctions et de classes                      |
+| + | slide_STL              | Introduction à la librairie standard                    |
+|---+------------------------+---------------------------------------------------------|
+
+#+NAME: html-preamble
+#+HEADERS: :var list=""
+#+BEGIN_SRC sh :tangle no :results output
+  hr=true
+  tag=true
+  for f in $list
+  do
+      if [ $f == '+' ]; then
+          if $tag; then preamble+='</a>'; else preamble+='</aa>';fi
+          preamble+='<a href=\"'
+          tag=true
+      elif [ $f == '-' ]; then
+          if $tag; then preamble+='</a>'; else preamble+='</aa>';fi
+          preamble+='<aa>'
+          tag=false
+      elif [[ $f == *lecture_* || $f == *slide_* || $f == *td_* ]]; then
+          if $tag; then preamble+=$f'.html\">';fi
+      elif [[ $f == *annexe_* ]]; then
+          if $hr; then preamble+='\"></a><hr/><a href=\"';fi
+          if $tag; then preamble+=$f'.html\">';fi
+          hr=false
+      else
+          preamble+=$f' '
+      fi
+  done
+  if $tag; then preamble+='</a>';else preamble+='</aa>';fi
+  echo -ne $preamble
+#+END_SRC
+*** Building index page
+:PROPERTIES:
+:TANGLE: index.html
+:END:
+#+BEGIN_SRC html
+  <?xml version="1.0" encoding="utf-8"?>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+            "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+      <title>Cours de C++ du Master 1 Physique Fondamentale, Université Paris Sud</title>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <link rel="stylesheet" href="./doc/stylesheets/styles.css">
+      <link rel="stylesheet" href="./doc/stylesheets/org-pygments.css">
+      <style media="screen" type="text/css">
+        #preamble {
+        text-transform:none;
+        text-align:left;
+        font-size:20px;
+        width:200px;
+        }
+      </style>
+    </head>
+    <body>
+      <div id="preamble" class="status">
+        <a href="./doc/lectures/lecture_pointeur.html">Fiches C++<small>Cours écrits</small></a>
+        <a href="./doc/slides/slide_compilation.html">Transparents C++<small>Présentations orales</small></a>
+        <a href="./doc/td/td_pointeur_fonction.html">Travaux Dirigés<small>Exercices de C++</small></a>
+      </div>
+      <div id="content">
+        <h1 class="title">Cours de C++ du Master 1 Physique Fondamentale, Université Paris Sud</h1><hr/>
+        <p>
+          Ce site regroupe les documents écrits relatifs au cours de C++ du Master
+          1 de Physique Fondamentale de l'Université Paris-Sud. Ce cours contient :
+          <li><a href="./doc/lectures/lecture_pointeur.html">un cours écrit sous forme de fiches</a></li>
+          <li><a href="./doc/slides/slide_compilation.html">les transparents de cours</a></li>
+          <li><a href="./doc/td/td_pointeur_fonction.html">un ensemble d'exercices</a></li>
+        </p>
+
+        <p>
+          Les différents supports sont accessibles <i>via</i> les liens
+          hypertextes situés à la gauche de cette page.
+        </p>
+        <p>
+          Historiquement, ces fiches de cours ont été initialement rédigées par
+          Mathieu Loumaigne, moniteur à l'Université Paris-Sud puis, reprises et
+          enrichies par,
+          successivement, <a href="mailto:xavier.garrido@upsud.fr">Xavier
+          Garrido</a> et Yann Leprince.
+        </p>
+      </div>
+    </body>
+  </html>
+#+END_SRC
+*** Define =org-project=
+#+BEGIN_SRC emacs-lisp :noweb yes
+  (unless (boundp 'org-publish-project-alist)
+    (setq org-publish-project-alist nil))
+
+  (setq org-html-style-default "")
+  (setq org-html-htmlize-output-type 'css)
+
+  (let* ((this-dir (file-name-directory (or load-file-name buffer-file-name))))
+    (add-to-list
+     'org-publish-project-alist
+     `("python-lectures"
+       :base-directory ,(expand-file-name "lectures" this-dir)
+       :recursive t
+       :exclude "README.org"
+       :html-extension "html"
+       :base-extension "org"
+       :publishing-directory ,(expand-file-name "doc/lectures" this-dir)
+       :publishing-function org-html-publish-to-html
+       :section-numbers nil
+       :time-stamp-file nil
+       :html-head "<link rel=\"stylesheet\" href=\"../stylesheets/styles.css\">
+                   <link rel=\"stylesheet\" href=\"../stylesheets/org-pygments.css\">"
+       :html-preamble "<<html-preamble(lecture_list)>>
+                      <hr/>
+                      <a href=\"../../index.html\">Retour menu principal</a>"
+       :html-postamble nil))
+    (add-to-list
+     'org-publish-project-alist
+     `("python-td"
+       :base-directory ,(expand-file-name "td" this-dir)
+       :recursive t
+       :exclude "README.org"
+       :html-extension "html"
+       :base-extension "org"
+       :publishing-directory ,(expand-file-name "doc/td" this-dir)
+       :publishing-function org-html-publish-to-html
+       :section-numbers nil
+       :time-stamp-file nil
+       :html-head "<link rel=\"stylesheet\" href=\"../stylesheets/styles.css\">
+                   <link rel=\"stylesheet\" href=\"../stylesheets/org-pygments.css\">"
+       :html-preamble "<<html-preamble(td_list)>>
+                       <hr/>
+                       <a href=\"../../index.html\">Retour menu principal</a>"
+       :html-postamble nil))
+    (add-to-list
+     'org-publish-project-alist
+     `("python-slides"
+       :base-directory ,(expand-file-name "slides" this-dir)
+       :recursive t
+       :exclude "README.org"
+       :html-extension "html"
+       :base-extension "org"
+       :publishing-directory ,(expand-file-name "doc/slides" this-dir)
+       :publishing-function org-html-publish-to-html
+       :section-numbers nil
+       :time-stamp-file nil
+       :html-head "<link rel=\"stylesheet\" href=\"../stylesheets/styles.css\">
+                   <link rel=\"stylesheet\" href=\"../stylesheets/org-pygments.css\">"
+       :html-preamble "<<html-preamble(slide_list)>>
+                       <hr/>
+                       <a href=\"../../index.html\">Retour menu principal</a>"
+       :html-postamble nil))
+    (add-to-list
+     'org-publish-project-alist
+     `("python-images"
+       :base-directory ,this-dir
+       :base-extension "svg\\|png\\|jpg\\|gif\\|"
+       :publishing-directory ,(expand-file-name "doc" this-dir)
+       :recursive t
+       :exclude "doc/*"
+       :publishing-function org-publish-attachment))
+     )
+#+END_SRC
+*** Markup filters
+#+BEGIN_SRC emacs-lisp
+  (defun html::python-filter-link (contents backend info)
+    (when (eq backend 'html)
+      (replace-regexp-in-string ".pdf" ".html" contents)))
+  (add-to-list 'org-export-filter-link-functions 'html::python-filter-link)
+  (defun html::python-filter-headline (contents backend info)
+    (when (eq backend 'html)
+      (replace-regexp-in-string "</h1>" "</h1><hr/>"
+      (replace-regexp-in-string "class=\"PROMPT\"" "class=\"prompt\""
+      (replace-regexp-in-string "Footnotes:" "Notes :" contents)))))
+  (add-to-list 'org-export-filter-final-output-functions 'html::python-filter-headline)
+  (defun html::python-filter-empty-field (backend)
+    (when (eq backend 'html)
+      (delete-matching-lines "<empty>")))
+  (add-to-list 'org-export-before-parsing-hook 'html::python-filter-empty-field)
+#+END_SRC
+*** Publish =python= project
+#+BEGIN_SRC emacs-lisp
+  (defun org-publish-python ()
+    (progn
+      (org-publish-project "python-lectures" 'force)
+      (org-publish-project "python-td"       'force)
+      (org-publish-project "python-slides"   'force)
+      (org-publish-project "python-images"   'force)))
+#+END_SRC
+
+*** Define a =by-backend= macro to deal with =tikzpicture= inclusion
+#+BEGIN_SRC emacs-lisp
+  (require 'cl)
+  (setq org-babel-latex-htlatex "htlatex")
+  (defmacro by-backend (&rest body)
+    `(case org-export-current-backend ,@body))
+  ;; (defmacro by-backend (&rest body)
+  ;;   `(case (if (boundp 'backend) (org-export-backend-name backend) nil) ,@body))
+#+END_SRC
+*** CSS stylesheets
+**** Main stylesheets
+:PROPERTIES:
+:MKDIRP: yes
+:TANGLE: doc/stylesheets/styles.css
+:END:
+***** Google fonts
+#+BEGIN_SRC css
+  @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+  @import url(https://fonts.googleapis.com/css?family=Inconsolata);
+  @import url(https://fonts.googleapis.com/css?family=Lobster);
+#+END_SRC
+
+***** Main =css= definitions
+#+BEGIN_SRC css
+  body {
+      width:860px;
+      margin:0 auto;
+      padding:50px;
+      font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color:#777777;
+      font-weight:300;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      color:#222222;
+      margin:0 0 20px;
+  }
+
+  p, ul, ol, table, pre, dl {
+      margin:0 0 20px;
+  }
+
+  h1, h2, h3 {
+      line-height:1.1;
+  }
+
+  h1 {
+      /*font-family:Lobster;*/
+      font-size:28px;
+  }
+
+  h2 {
+      color:#393939;
+  }
+
+  h3, h4, h5, h6 {
+      color:#494949;
+  }
+
+  a {
+      color:#3399cc;
+      font-weight:400;
+      text-decoration:none;
+  }
+
+  a:hover {
+      color:#006699;
+  }
+
+  a small {
+      font-size:11px;
+      color:#777777;
+      margin-top:-0.6em;
+      display:block;
+  }
+
+  a:hover small {
+      color:#777777;
+  }
+
+  blockquote, .remark {
+      border-left:1px solid #e5e5e5;
+      margin:0;
+      padding:0 0 0 20px;
+      font-style:italic;
+  }
+
+  code, pre, .prompt {
+      font-family:Inconsolata, Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
+      color:#777777;
+      font-size:12px;
+  }
+
+  code {
+      display:inline-block;
+      white-space:no-wrap;
+      background:#fff;
+      font-size:.8em;
+      line-height:1.5em;
+      border:1px solid #e5e5e5;
+      -webkit-border-radius:0.4em;
+      -moz-border-radius:0.4em;
+      -ms-border-radius:0.4em;
+      -o-border-radius:0.4em;
+      border-radius:0.4em;
+      padding:0 .3em;
+      margin:-1px 0
+  }
+
+  pre {
+      padding:8px 15px;
+      background: #f8f8f8;
+      border-radius:5px;
+      border:1px solid #e5e5e5;
+      overflow-x: auto;
+  }
+
+  .prompt {
+      margin-bottom:15px;
+      padding:8px 15px;
+      background: #777777;
+      color:#e5e5e5;
+      border-radius:5px;
+      border:1px solid #e5e5e5;
+      overflow-x: auto;
+  }
+
+  .prompt p {
+      margin:0;
+  }
+
+  .prompt p:before {
+      content: "$";
+  }
+
+  table {
+      width:80%;
+      border-collapse:collapse;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .table-number {
+      font-weight: bold;
+  }
+
+  th, td {
+      text-align:left;
+      padding:5px 10px;
+      border-bottom:1px solid #e5e5e5;
+  }
+
+  dt {
+      color:#444444;
+      font-weight:700;
+  }
+
+  th {
+      color:#444444;
+  }
+
+  img {
+      max-width:100%;
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
+  }
+
+  .figure {
+      text-align: center;
+  }
+
+  header {
+      width:270px;
+      float:left;
+      position:fixed;
+  }
+
+  header ul {
+      list-style:none;
+      height:40px;
+
+      padding:0;
+
+      background: #eee;
+      background: -moz-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
+      background: -webkit-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
+      background: -o-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
+      background: -ms-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
+      background: linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
+
+      border-radius:5px;
+      border:1px solid #d2d2d2;
+      box-shadow:inset #fff 0 1px 0, inset rgba(0,0,0,0.03) 0 -1px 0;
+      width:270px;
+  }
+
+  header li {
+      width:89px;
+      float:left;
+      border-right:1px solid #d2d2d2;
+      height:40px;
+  }
+
+  header li:first-child a {
+      border-radius:5px 0 0 5px;
+  }
+
+  header li:last-child a {
+      border-radius:0 5px 5px 0;
+  }
+
+  header ul a {
+      line-height:1;
+      font-size:11px;
+      color:#999999;
+      display:block;
+      text-align:center;
+      padding-top:6px;
+      height:34px;
+  }
+
+  header ul a:hover {
+      color:#999999;
+      background: -moz-linear-gradient(top, #fff 0%, #ddd 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#ddd));
+      background: -webkit-linear-gradient(top, #fff 0%,#ddd 100%);
+      background: -o-linear-gradient(top, #fff 0%,#ddd 100%);
+      background: -ms-linear-gradient(top, #fff 0%,#ddd 100%);
+      background: linear-gradient(top, #fff 0%,#ddd 100%);
+  }
+
+  header ul a:active {
+      -webkit-box-shadow: inset 0px 2px 2px 0px #ddd;
+      -moz-box-shadow: inset 0px 2px 2px 0px #ddd;
+      box-shadow: inset 0px 2px 2px 0px #ddd;
+  }
+
+  strong {
+      color:#222222;
+      font-weight:700;
+  }
+
+  header ul li + li {
+      width:88px;
+      border-left:1px solid #fff;
+  }
+
+  header ul li + li + li {
+      border-right:none;
+      width:89px;
+  }
+
+  header ul a strong {
+      font-size:14px;
+      display:block;
+      color:#222222;
+  }
+
+  #content {
+      width:600px;
+      float:right;
+      padding-bottom:50px;
+      /* border:1px solid #e5e5e5; */
+      /* border-width:1px 0;       */
+      /* padding:20px 0;           */
+      /* margin:0 0 20px;          */
+  }
+
+  small {
+      font-size:11px;
+  }
+
+  hr {
+      border:0;
+      background:#e5e5e5;
+      height:1px;
+      margin:0 0 20px;
+  }
+
+  header {
+      width:270px;
+      float:left;
+      position:fixed;
+  }
+
+  header ul {
+      list-style:none;
+      height:40px;
+
+      padding:0;
+
+      background: #eeeeee;
+      background: -moz-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
+      background: -webkit-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
+      background: -o-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
+      background: -ms-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
+      background: linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
+
+      border-radius:5px;
+      border:1px solid #d2d2d2;
+      box-shadow:inset #fff 0 1px 0, inset rgba(0,0,0,0.03) 0 -1px 0;
+      width:270px;
+  }
+
+  header li {
+      width:89px;
+      float:left;
+      border-right:1px solid #d2d2d2;
+      height:40px;
+  }
+
+  header li:first-child a {
+      border-radius:5px 0 0 5px;
+  }
+
+  header li:last-child a {
+      border-radius:0 5px 5px 0;
+  }
+
+  header ul a {
+      line-height:1;
+      font-size:11px;
+      color:#999999;
+      display:block;
+      text-align:center;
+      padding-top:6px;
+      height:34px;
+  }
+
+  header ul a:hover {
+      color:#999999;
+      background: -moz-linear-gradient(top, #fff 0%, #ddd 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#ddd));
+      background: -webkit-linear-gradient(top, #fff 0%,#ddd 100%);
+  }
+
+  #preamble {
+      font-size:0.8em;
+      text-transform:uppercase;
+      float:left;
+      margin-left:0em;
+      width:20em;
+      text-align:right;
+      position:fixed;
+  }
+
+  #preamble hr {
+      margin:0 0 0px;
+  }
+
+  #preamble a {
+      display:block;
+      padding:0.2em 1em;
+      color:#3399cc;
+  }
+
+  #preamble a:hover {
+      background-color:#39c;
+      text-decoration:none;
+      color:#f9f9f9;
+      -webkit-transition:color .2s linear;
+  }
+
+  #preamble aa {
+      display:block;
+      padding:0.2em 1em;
+      color:#999999;
+  }
+
+  #preamble aa:hover {
+      background-color:none;
+      text-decoration:none;
+  }
+
+  .center {
+      text-align : center;
+  }
+
+  .footpara {
+      display: inline;
+  }
+
+  .scrollbar-container {
+      position: absolute;
+      top: 0; bottom: 0; left: 0; right: 0;
+      margin: 20px;
+
+      border: 4px solid rgba(0, 0, 0, 0.2);
+      overflow: auto;
+      background-color: whiteSmoke;
+  }
+
+  .scrollbar-container .inner {
+      height: 2011px;
+      width: 1985px;
+      padding: 1em;
+      background-color: white;
+      font-family: sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+      background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border: solid whiteSmoke 4px;
+      border-radius:15px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  @media print, screen and (max-width: 960px) {
+
+      body {
+          width:auto;
+          margin:0;
+      }
+
+      header, content, footer {
+          float:none;
+          position:static;
+          width:auto;
+      }
+
+      header {
+          padding-right:320px;
+      }
+
+      header a small {
+          display:inline;
+      }
+
+      header ul {
+          position:absolute;
+          right:50px;
+          top:52px;
+      }
+  }
+
+  @media print, screen and (max-width: 720px) {
+      body {
+          word-wrap:break-word;
+      }
+
+      header {
+          padding:0;
+      }
+
+      header ul, header p.view {
+          position:static;
+      }
+
+      pre, code {
+          word-wrap:normal;
+      }
+  }
+
+  @media print, screen and (max-width: 480px) {
+      body {
+          padding:15px;
+      }
+
+      header ul {
+          display:none;
+      }
+  }
+
+  @media print {
+      body {
+          padding:0.4in;
+          font-size:12pt;
+          color:#444;
+      }
+  }
+#+END_SRC
+
+**** Org source code styles
+:PROPERTIES:
+:MKDIRP: yes
+:TANGLE: doc/stylesheets/org-pygments.css
+:END:
+
+#+BEGIN_SRC css
+  .org-preprocessor {
+      color: #84B818;
+  }
+
+  .org-string,
+  .org-type {
+      color: #DEB542;
+  }
+
+  .org-builtin,
+  .org-variable-name,
+  .org-constant,
+  .org-function-name {
+      color: #69B7F0;
+  }
+
+  .org-comment,
+  .org-comment-delimiter,
+  .org-doc {
+      color: #93a1a1;
+  }
+
+  .org-keyword {
+      color: #D33682;
+  }
+
+  pre {
+      color: #777777;
+  }
+#+END_SRC
