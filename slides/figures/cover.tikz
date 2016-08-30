@@ -1,0 +1,855 @@
+\begin{tikzpicture}[y=0.80pt, x=0.80pt, yscale=-1.000000, xscale=1.000000, inner sep=0pt, outer sep=0pt]
+  \definecolor{red}{RGB}{221,42,43}
+  \definecolor{green}{RGB}{132,184,24}
+  \definecolor{blue}{RGB}{0,72,112}
+  \definecolor{orange}{RGB}{192,128,64}
+  \definecolor{gray}{RGB}{107,108,110}
+
+  %% Python
+  \path[draw=white,fill=blue,line join=miter,line cap=butt,miter
+    limit=4.00,line width=4.663pt] (365.3037,537.2679) -- (365.3037,454.3871) --
+    (436.6190,412.9467) -- (507.9343,454.3871) -- (507.9343,537.2679) --
+    (436.6190,578.7083) -- cycle;
+  \begin{scope}[cm={{0.58101,0.0,0.0,0.58477,(268.02538,213.4089)}}]
+    \begin{scope}[cm={{0.93094,0.0,0.0,0.93094,(50.054,93.18509)}},fill=white]
+      \path[color=white,fill=white,nonzero rule,line width=0.800pt]
+        (289.7439,337.9207) .. controls (273.3892,321.5661) and (267.3181,329.6797) ..
+        (267.3181,329.6797) -- (259.9887,337.0456) -- (275.5956,352.6525) --
+        (273.3894,354.8586) -- (251.5835,333.0527) .. controls (251.5835,333.0527) and
+        (242.3050,321.4005) .. (225.8030,337.9025) .. controls (209.3009,354.4046) and
+        (219.0206,362.9538) .. (219.0206,362.9538) -- (224.4720,368.4053) --
+        (232.1296,360.7477) .. controls (232.1296,360.7477) and (240.9702,351.3194) ..
+        (250.2526,360.6018) .. controls (259.5350,369.8842) and (265.7319,376.0811) ..
+        (265.7319,376.0811) .. controls (265.7319,376.0811) and (274.2881,384.9185) ..
+        (282.8338,376.3728) .. controls (291.3795,367.8271) and (296.9639,362.2427) ..
+        (296.9639,362.2427) .. controls (296.9639,362.2427) and (306.8353,355.0122) ..
+        (289.7439,337.9207) -- cycle(276.1972,334.2561) .. controls
+        (277.7500,335.8088) and (277.7500,338.3188) .. (276.1972,339.8716) .. controls
+        (274.6445,341.4244) and (272.1344,341.4244) .. (270.5817,339.8716) .. controls
+        (269.0289,338.3188) and (269.0289,335.8088) .. (270.5817,334.2561) .. controls
+        (272.1344,332.7033) and (274.6445,332.7033) .. (276.1972,334.2561) -- cycle;
+      \path[color=white,fill=white,nonzero rule,line width=0.800pt]
+        (226.1202,402.4733) .. controls (242.4749,418.8281) and (248.5460,410.7144) ..
+        (248.5460,410.7144) -- (255.8755,403.3485) -- (240.2686,387.7416) --
+        (242.4747,385.5355) -- (264.2806,407.3414) .. controls (264.2806,407.3414) and
+        (273.5591,418.9936) .. (290.0611,402.4916) .. controls (306.5632,385.9895) and
+        (296.8436,377.4403) .. (296.8436,377.4403) -- (291.3921,371.9889) --
+        (283.7345,379.6465) .. controls (283.7345,379.6465) and (274.8940,389.0747) ..
+        (265.6115,379.7923) .. controls (256.3291,370.5099) and (250.1323,364.3130) ..
+        (250.1323,364.3130) .. controls (250.1323,364.3130) and (241.5760,355.4756) ..
+        (233.0303,364.0213) .. controls (224.4846,372.5670) and (218.9002,378.1514) ..
+        (218.9002,378.1514) .. controls (218.9002,378.1514) and (209.0289,385.3820) ..
+        (226.1203,402.4734) -- cycle(239.6669,406.1380) .. controls
+        (238.1141,404.5853) and (238.1141,402.0752) .. (239.6669,400.5225) .. controls
+        (241.2196,398.9697) and (243.7297,398.9697) .. (245.2824,400.5225) .. controls
+        (246.8352,402.0752) and (246.8352,404.5853) .. (245.2824,406.1380) .. controls
+        (243.7297,407.6908) and (241.2196,407.6908) .. (239.6669,406.1380) -- cycle;
+    \end{scope}
+    \begin{scope}[xshift=-2cm]
+      \path[white] (289.9004,540.2377) node[above right] (text6352-3-3-9)
+           {\Huge Python};
+    \end{scope}
+  \end{scope}
+
+  %% Matplotlib
+  \path[draw=white,fill=gray,line join=miter,line cap=butt,miter
+    limit=4.00,line width=4.663pt] (436.6190,412.9467) -- (436.6190,330.0658) --
+    (507.9343,288.6254) -- (579.2496,330.0658) -- (579.2496,412.9467) --
+    (507.9343,454.3871) -- cycle;
+  \begin{scope}[xshift=-1.8cm]
+    \path[white] (508.9051,402.8219) node[above right] (text6352-9-2-8) {\Huge Matplotlib};
+  \end{scope}
+  \begin{scope}[cm={{0.50301,0.0,0.0,0.50627,(483.11556,127.44849)}}]
+    \path[draw=white,fill=white,even odd rule] (72.1376,443.9349) .. controls
+      (67.9051,438.1317) and (59.4988,435.1198) .. (52.1927,433.7612) .. controls
+      (44.8867,432.4026) and (41.8139,431.4991) .. (37.1119,428.9414) .. controls
+      (33.4436,426.9460) and (30.7996,420.0990) .. (31.6238,414.4311) .. controls
+      (32.9044,405.6506) and (41.0864,399.5302) .. (49.9006,400.7639) .. controls
+      (54.3025,401.3879) and (58.0353,403.7241) .. (60.4965,407.0128) --
+      (70.2561,419.8656) .. controls (75.8345,427.0671) and (82.1064,429.2104) ..
+      (88.9296,425.8098) -- (92.3698,424.3427) .. controls (92.6455,424.2143) and
+      (92.9685,424.2022) .. (93.2821,424.3166) .. controls (93.5388,424.4165) and
+      (93.7477,424.5999) .. (93.8713,424.8167) -- (94.5557,425.8502) .. controls
+      (94.7457,426.1621) and (95.0308,426.4145) .. (95.4016,426.5552) .. controls
+      (96.0287,426.7935) and (96.7036,426.6507) .. (97.1787,426.2409) --
+      (105.1042,418.7487) .. controls (106.4916,417.5579) and (106.0829,416.4649) ..
+      (106.0829,416.4649) -- (104.1727,412.1044) .. controls (104.1727,412.1044) and
+      (103.6501,411.0590) .. (101.8445,411.2995) -- (91.2201,412.2783) .. controls
+      (90.6024,412.3663) and (90.0511,412.7785) .. (89.8137,413.4071) .. controls
+      (89.6712,413.7739) and (89.6618,414.1572) .. (89.7661,414.5050) --
+      (90.1463,415.7314) .. controls (90.2224,415.9862) and (90.2224,416.2720) ..
+      (90.1179,416.5339) .. controls (89.9944,416.8578) and (89.7474,417.0866) ..
+      (89.4528,417.2080) -- (86.4498,418.4822) .. controls (83.3042,420.3277) and
+      (79.7312,419.1489) .. (77.3458,416.2245) -- (74.6185,412.5926) --
+      (66.8545,402.2641) .. controls (63.1674,397.3629) and (57.6080,393.8669) ..
+      (51.0415,392.9478) .. controls (37.8940,391.1023) and (25.6921,400.2281) ..
+      (23.7819,413.3308) .. controls (22.8173,419.9346) and (24.7920,426.1831) ..
+      (28.3957,431.2013) .. controls (31.0138,434.8478) and (35.8122,436.9311) ..
+      (38.4075,437.5817) .. controls (44.8950,439.9016) and (50.5075,440.2254) ..
+      (56.6575,442.4105) .. controls (58.0383,442.9116) and (61.2190,444.0870) ..
+      (63.8038,446.2074) -- (63.8038,446.2074) .. controls (66.8922,449.3547) and
+      (68.5268,453.8510) .. (67.8332,458.5664) .. controls (66.6642,466.6063) and
+      (59.1759,472.2076) .. (51.1079,471.0738) .. controls (47.0668,470.5117) and
+      (43.6550,468.3648) .. (41.3957,465.3582) -- (32.0733,452.9556) .. controls
+      (30.1726,450.4275) and (27.2980,448.6214) .. (23.9006,448.1354) .. controls
+      (20.5081,447.6591) and (17.2248,448.6021) .. (14.6804,450.5130) --
+      (-4.9314,465.1828) .. controls (-10.9818,469.2598) and (-4.7858,474.8667) ..
+      (-0.7079,471.6798) -- (19.3815,456.5852) .. controls (20.3008,455.9565) and
+      (21.4413,455.6707) .. (22.6244,455.8327) .. controls (23.8836,456.0137) and
+      (24.9550,456.6766) .. (25.6583,457.6141) -- (35.5201,470.8989) .. controls
+      (38.9933,475.1705) and (44.0397,478.1958) .. (49.9481,479.0284) .. controls
+      (62.3782,480.7715) and (73.9149,472.1412) .. (75.7205,459.7478) .. controls
+      (76.5564,453.9808) and (75.1500,448.4119) .. (72.1375,443.9348);
+    \path[draw=white,fill=white,line join=miter,line cap=butt,miter
+      limit=4.00,line width=1.848pt] (23.2051,387.6350) -- (23.3607,438.4933);
+    \path[draw=white,fill=white,line join=miter,line cap=butt,miter
+      limit=4.00,line width=1.848pt] (67.5312,392.3787) -- (11.6437,392.5342);
+    \path[draw=white,fill=white,line join=miter,line cap=butt,miter
+      limit=4.00,line width=1.848pt] (93.6602,479.1644) -- (28.6487,479.3200);
+    \path[draw=white,fill=white,line join=miter,line cap=butt,miter
+      limit=4.00,line width=1.848pt] (77.0056,434.0010) -- (76.9505,489.4380);
+    \path[draw=white,fill=white,line join=miter,line cap=butt,miter
+      limit=4.00,line width=1.848pt] (41.2466,447.7474) -- (2.2086,447.9029);
+  \end{scope}
+
+  %% Scikit
+  %% \path[draw=white,fill=blue,line join=miter,line cap=butt,miter
+  %%   limit=4.00,line width=4.663pt] (152.4674,413.7202) -- (152.4674,330.8394) --
+  %%   (223.7827,289.3990) -- (295.0980,330.8394) -- (295.0980,413.7202) --
+  %%   (223.7827,455.1606) -- cycle;
+  %% \begin{scope}[cm={{0.58101,0.0,0.0,0.58477,(268.02538,211.61993)}}]
+  %%     \path[color=black,draw=white,line join=miter,line cap=butt,miter
+  %%       limit=4.00,line width=2.000pt] (-95.0460,183.1009) .. controls
+  %%       (-96.0177,183.5197) and (-96.9310,184.0151) .. (-97.8695,184.4716) --
+  %%       (-97.9362,184.4951) -- (-95.7766,198.0873) .. controls (-99.2840,200.2995) and
+  %%       (-102.3523,203.0376) .. (-104.8741,206.1778) -- (-118.0309,202.3224) ..
+  %%       controls (-120.0918,205.5248) and (-121.7683,209.0034) .. (-123.0565,212.5851)
+  %%       -- (-112.0247,220.6461) .. controls (-113.0457,224.8066) and
+  %%       (-113.3490,229.2533) .. (-112.8567,233.6392) .. controls (-112.8507,233.6584)
+  %%       and (-112.8345,233.7027) .. (-112.8332,233.7059) -- (-124.8274,240.1870) ..
+  %%       controls (-124.3913,242.1654) and (-123.8026,244.1615) .. (-123.1123,246.1205)
+  %%       .. controls (-122.5474,247.7233) and (-121.9459,249.2891) ..
+  %%       (-121.2393,250.7960) -- (-107.7375,248.5931) .. controls (-105.2800,252.6853)
+  %%       and (-102.1125,256.1997) .. (-98.4368,258.9924) -- (-102.3393,272.0155) ..
+  %%       controls (-99.2295,273.9389) and (-95.8703,275.5040) .. (-92.4185,276.7107) --
+  %%       (-84.3142,265.5885) .. controls (-79.7360,266.6558) and (-74.9741,266.8574) ..
+  %%       (-70.1611,266.0868) -- (-63.7035,278.0142) .. controls (-62.2328,277.6417) and
+  %%       (-60.7700,277.1307) .. (-59.3114,276.6167) .. controls (-57.2521,275.8911) and
+  %%       (-55.3126,275.1199) .. (-53.4129,274.1624) -- (-55.5528,260.4130) .. controls
+  %%       (-51.6350,257.8310) and (-48.2542,254.5555) .. (-45.6289,250.8289) --
+  %%       (-32.6962,254.6881) .. controls (-30.8270,251.4760) and (-29.3057,248.0051) ..
+  %%       (-28.1857,244.4566) -- (-39.4887,236.2658) .. controls (-38.6951,232.0496) and
+  %%       (-38.6517,227.6910) .. (-39.3959,223.3076) -- (-27.4685,216.8501) .. controls
+  %%       (-27.8224,215.4926) and (-28.2500,214.2059) .. (-28.7246,212.8590) .. controls
+  %%       (-29.5494,210.5184) and (-30.6302,208.3193) .. (-31.7525,206.1858) --
+  %%       (-45.4116,208.3690) .. controls (-47.7261,205.0095) and (-50.5975,202.1259) ..
+  %%       (-53.7854,199.7471) -- (-49.8829,186.7240) .. controls (-53.2333,184.6857) and
+  %%       (-56.8364,182.9817) .. (-60.5702,181.7729) -- (-68.8279,193.0995) .. controls
+  %%       (-72.6122,192.3509) and (-76.4831,192.1174) .. (-80.4256,192.6024) --
+  %%       (-86.9067,180.6082) .. controls (-88.8076,181.0367) and (-90.6901,181.5657) ..
+  %%       (-92.5727,182.2291) .. controls (-93.0816,182.4084) and (-93.6105,182.5779) ..
+  %%       (-94.1102,182.7709) .. controls (-94.3532,182.8666) and (-94.6053,182.9284) ..
+  %%       (-94.8455,183.0300) .. controls (-94.9105,183.0577) and (-94.9812,183.0730) ..
+  %%       (-95.0460,183.1006) -- cycle;
+  %%     \begin{scope}[cm={{0.64551,0.0,0.0,0.64551,(-242.64657,-9.6559)}},fill=white]
+  %%       \path[color=black,fill=white,nonzero rule,line width=0.800pt]
+  %%         (289.7439,337.9207) .. controls (273.3892,321.5661) and (267.3181,329.6797) ..
+  %%         (267.3181,329.6797) -- (259.9887,337.0456) -- (275.5956,352.6525) --
+  %%         (273.3894,354.8586) -- (251.5835,333.0527) .. controls (251.5835,333.0527) and
+  %%         (242.3050,321.4005) .. (225.8030,337.9025) .. controls (209.3009,354.4046) and
+  %%         (219.0206,362.9538) .. (219.0206,362.9538) -- (224.4720,368.4053) --
+  %%         (232.1296,360.7477) .. controls (232.1296,360.7477) and (240.9702,351.3194) ..
+  %%         (250.2526,360.6018) .. controls (259.5350,369.8842) and (265.7319,376.0811) ..
+  %%         (265.7319,376.0811) .. controls (265.7319,376.0811) and (274.2881,384.9185) ..
+  %%         (282.8338,376.3728) .. controls (291.3795,367.8271) and (296.9639,362.2427) ..
+  %%         (296.9639,362.2427) .. controls (296.9639,362.2427) and (306.8353,355.0122) ..
+  %%         (289.7439,337.9207) -- cycle(276.1972,334.2561) .. controls
+  %%         (277.7500,335.8088) and (277.7500,338.3188) .. (276.1972,339.8716) .. controls
+  %%         (274.6445,341.4244) and (272.1344,341.4244) .. (270.5817,339.8716) .. controls
+  %%         (269.0289,338.3188) and (269.0289,335.8088) .. (270.5817,334.2561) .. controls
+  %%         (272.1344,332.7033) and (274.6445,332.7033) .. (276.1972,334.2561) -- cycle;
+  %%       \path[color=black,fill=white,nonzero rule,line width=0.800pt]
+  %%         (226.1202,402.4733) .. controls (242.4749,418.8281) and (248.5460,410.7144) ..
+  %%         (248.5460,410.7144) -- (255.8755,403.3485) -- (240.2686,387.7416) --
+  %%         (242.4747,385.5355) -- (264.2806,407.3414) .. controls (264.2806,407.3414) and
+  %%         (273.5591,418.9936) .. (290.0611,402.4916) .. controls (306.5632,385.9895) and
+  %%         (296.8436,377.4403) .. (296.8436,377.4403) -- (291.3921,371.9889) --
+  %%         (283.7345,379.6465) .. controls (283.7345,379.6465) and (274.8940,389.0747) ..
+  %%         (265.6115,379.7923) .. controls (256.3291,370.5099) and (250.1323,364.3130) ..
+  %%         (250.1323,364.3130) .. controls (250.1323,364.3130) and (241.5760,355.4756) ..
+  %%         (233.0303,364.0213) .. controls (224.4846,372.5670) and (218.9002,378.1514) ..
+  %%         (218.9002,378.1514) .. controls (218.9002,378.1514) and (209.0289,385.3820) ..
+  %%         (226.1203,402.4734) -- cycle(239.6669,406.1380) .. controls
+  %%         (238.1141,404.5853) and (238.1141,402.0752) .. (239.6669,400.5225) .. controls
+  %%         (241.2196,398.9697) and (243.7297,398.9697) .. (245.2824,400.5225) .. controls
+  %%         (246.8352,402.0752) and (246.8352,404.5853) .. (245.2824,406.1380) .. controls
+  %%         (243.7297,407.6908) and (241.2196,407.6908) .. (239.6669,406.1380) -- cycle;
+  %%     \end{scope}
+  %%   \path[fill=black] (-75.0286,334.7870) node[above right] (text6352-5-4-1)
+  %%     {SciKits};
+  %% \end{scope}
+
+  %% Numpy
+  \path[draw=white,fill=blue,line join=miter,line cap=butt,miter
+    limit=4.00,line width=4.663pt] (293.9884,412.9467) -- (293.9884,330.0658) --
+    (365.3037,288.6254) -- (436.6190,330.0658) -- (436.6190,412.9467) --
+    (365.3037,454.3871) -- cycle;
+  \begin{scope}[xshift=-1.3cm]
+    \path[white] (365.1383,402.8219) node[above right] (text6352-2-9-62) {\Huge Numpy};
+  \end{scope}
+  \begin{scope}[cm={{0.46686,0.0,0.0,0.46988,(369.60147,91.0536)}},draw=white,miter limit=4.00,line width=1.493pt]
+    \begin{scope}[shift={(-73.64625,-7.08662)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+        -- (61.3719,532.6772);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \begin{scope}[shift={(-92.05782,-17.71654)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+        -- (61.3719,532.6772);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+      width=1.493pt] (-24.5488,532.6772) -- (-9.2058,523.8189) -- (6.1372,532.6772);
+    \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+      width=1.493pt] (-24.5488,532.6772) -- (-9.2058,541.5354) -- (6.1372,532.6772)
+      -- (6.1372,550.3937);
+    \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+      width=1.493pt] (-24.5488,532.6772) -- (-24.5488,550.3937) --
+      (-9.2058,559.2520);
+    \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+      width=1.493pt] (-9.2058,541.5354) -- (-9.2058,559.2520) -- (6.1372,550.3937);
+    \begin{scope}[shift={(-58.30328,15.94488)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+          -- (61.3719,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,541.5354);
+      \end{scope}
+    \end{scope}
+    \begin{scope}[shift={(-39.89172,26.5748)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+          -- (61.3719,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,541.5354);
+      \end{scope}
+    \end{scope}
+    \begin{scope}[draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-21.48016,37.20472)},draw=white,miter limit=4.00,line width=1.493pt]
+        \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+            -- (61.3719,546.8504);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087);
+        \end{scope}
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (9.2058,548.6220) -- (24.5488,539.7638);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (9.2058,548.6220) -- (6.1372,546.8504);
+    \end{scope}
+    \begin{scope}[shift={(-39.89172,5.31496)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+          -- (61.3719,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,541.5354);
+      \end{scope}
+    \end{scope}
+    \begin{scope}[shift={(-21.48016,15.94488)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+          -- (61.3719,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,541.5354);
+      \end{scope}
+    \end{scope}
+    \begin{scope}[shift={(18.41156,-10.62992)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-21.48016,37.20472)},draw=white,miter limit=4.00,line width=1.493pt]
+        \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+            -- (61.3719,546.8504);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087);
+        \end{scope}
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (9.2058,548.6220) -- (24.5488,539.7638);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (9.2058,548.6220) -- (6.1372,546.8504);
+    \end{scope}
+    \begin{scope}[shift={(-92.05782,3.5433)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (49.0975,536.2205);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \begin{scope}[shift={(-73.64625,14.17322)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (49.0975,536.2205);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \begin{scope}[draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+    \begin{scope}[shift={(18.41156,-10.62992)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,536.2205) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,553.9370) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+    \begin{scope}[shift={(36.82313,-21.25984)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,536.2205) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,553.9370) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+    \begin{scope}[shift={(-92.05782,24.80314)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (49.0975,536.2205);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \begin{scope}[shift={(-73.64625,35.43306)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (49.0975,536.2205);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \begin{scope}[shift={(0,21.25984)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+    \begin{scope}[shift={(18.41156,10.62992)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,536.2205) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,553.9370) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+    \begin{scope}[shift={(36.82313,0)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,536.2205) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,553.9370) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+  \end{scope}
+
+
+  %% Scipy
+  %% \path[draw=white,fill=blue,line join=miter,line cap=butt,miter
+  %%   limit=4.00,line width=4.663pt] (223.4533,537.5948) -- (223.4533,454.7140) --
+  %%   (294.7686,413.2736) -- (366.0840,454.7140) -- (366.0840,537.5948) --
+  %%   (294.7686,579.0353) -- cycle;
+  %% \begin{scope}[cm={{0.58101,0.0,0.0,0.58477,(197.49033,336.19612)}}]
+  %%   \path[fill=white,even odd rule] (180.5306,231.1490) .. controls
+  %%     (177.7528,227.3496) and (173.5081,225.7654) .. (167.4410,224.4881) --
+  %%     (161.7995,223.1578) -- (157.5436,221.3326) .. controls (155.3068,219.7516) and
+  %%     (153.4009,215.5433) .. (153.9419,211.8325) .. controls (154.7823,206.0838) and
+  %%     (160.1520,202.0766) .. (165.9367,202.8843) .. controls (168.8256,203.2929) and
+  %%     (171.2754,204.8224) .. (172.8907,206.9756) -- (179.2957,215.3905) .. controls
+  %%     (182.9568,220.1054) and (187.0730,221.5087) .. (191.5510,219.2822) --
+  %%     (193.8087,218.3217) .. controls (193.9896,218.2376) and (194.2016,218.2297) ..
+  %%     (194.4075,218.3046) .. controls (194.5759,218.3700) and (194.7130,218.4901) ..
+  %%     (194.7941,218.6321) -- (195.2433,219.3087) .. controls (195.3680,219.5129) and
+  %%     (195.5551,219.6782) .. (195.7984,219.7703) .. controls (196.2100,219.9263) and
+  %%     (196.6529,219.8327) .. (196.9647,219.5645) -- (202.1661,214.6592) .. controls
+  %%     (203.0767,213.8796) and (202.8084,213.1640) .. (202.8084,213.1640) --
+  %%     (201.5548,210.3091) .. controls (201.5548,210.3091) and (201.2118,209.6247) ..
+  %%     (200.0268,209.7821) -- (193.0542,210.4230) .. controls (192.6488,210.4807) and
+  %%     (192.2870,210.7504) .. (192.1312,211.1620) .. controls (192.0377,211.4022) and
+  %%     (192.0315,211.6532) .. (192.1001,211.8808) -- (192.3496,212.6838) .. controls
+  %%     (192.3995,212.8506) and (192.3995,213.0377) .. (192.3310,213.2092) .. controls
+  %%     (192.2499,213.4212) and (192.0879,213.5710) .. (191.8945,213.6505) --
+  %%     (189.9237,214.4847) .. controls (187.8592,215.6930) and (185.5143,214.9212) ..
+  %%     (183.9488,213.0066) -- (182.1589,210.6288) -- (177.0635,203.8665) .. controls
+  %%     (174.6437,200.6577) and (170.9951,198.3688) .. (166.6856,197.7670) .. controls
+  %%     (158.0571,196.5587) and (150.0491,202.5335) .. (148.7955,211.1121) .. controls
+  %%     (148.1624,215.4357) and (149.4584,219.5267) .. (151.8234,222.8121) .. controls
+  %%     (153.5417,225.1995) and (156.6908,226.5635) .. (158.3941,226.9895) --
+  %%     (162.8646,228.2668) -- (167.1457,229.2479) .. controls (167.7345,229.3877) and
+  %%     (169.3910,229.7968) .. (170.3713,230.1509) .. controls (171.2776,230.4790) and
+  %%     (173.3649,231.2486) .. (175.0614,232.6368) -- (175.0614,232.6368) .. controls
+  %%     (177.0882,234.6974) and (178.1610,237.6412) .. (177.7058,240.7284) .. controls
+  %%     (176.9386,245.9923) and (172.0241,249.6595) .. (166.7292,248.9172) .. controls
+  %%     (164.0770,248.5492) and (161.8380,247.1436) .. (160.3552,245.1751) --
+  %%     (154.2371,237.0550) .. controls (152.9896,235.3998) and (151.1031,234.2173) ..
+  %%     (148.8734,233.8991) .. controls (146.6470,233.5873) and (144.4922,234.2047) ..
+  %%     (142.8223,235.4558) -- (129.9513,245.0603) .. controls (126.7389,239.3627) and
+  %%     (124.9100,232.8141) .. (124.9100,225.8477) .. controls (124.9100,203.8713) and
+  %%     (143.0995,186.0499) .. (165.5344,186.0499) .. controls (182.2395,186.0499) and
+  %%     (196.5778,195.9257) .. (202.8207,210.0395) -- (204.8789,209.0821) --
+  %%     (206.2697,205.2808) -- (207.7292,205.7922) -- (206.4755,209.1912) --
+  %%     (209.9494,210.3886) -- (209.4256,211.8122) -- (205.5463,210.4573) --
+  %%     (203.4072,211.4411) .. controls (205.1784,215.9113) and (206.1638,220.7650) ..
+  %%     (206.1638,225.8476) .. controls (206.1638,247.8258) and (187.9714,265.6442) ..
+  %%     (165.5346,265.6442) .. controls (152.0571,265.6442) and (140.1121,259.2116) ..
+  %%     (132.7231,249.3140) -- (145.9076,239.4313) .. controls (146.5109,239.0197) and
+  %%     (147.2594,238.8326) .. (148.0358,238.9386) .. controls (148.8623,239.0572) and
+  %%     (149.5654,239.4912) .. (150.0270,240.1049) -- (156.4991,248.8027) .. controls
+  %%     (158.7786,251.5994) and (162.0904,253.5801) .. (165.9681,254.1252) .. controls
+  %%     (174.1258,255.2664) and (181.6972,249.6161) .. (182.8822,241.5020) .. controls
+  %%     (183.4308,237.7262) and (182.5078,234.0802) .. (180.5307,231.1490);
+  %%   \path[fill=black] (166.5490,330.2626) node[above right] (text6352-91-9) {SciPy};
+  %% \end{scope}
+
+  \path[draw=white,fill=gray,line join=miter,line cap=butt,miter
+    limit=4.00,line width=4.663pt] (294.4044,661.0585) -- (294.4044,578.1777) --
+  (365.7197,536.7372) -- (437.0350,578.1777) -- (437.0350,661.0585) --
+  (365.7197,702.4989) -- cycle;
+  \begin{scope}[cm={{0.58101,0.0,0.0,0.58477,(268.02538,211.61993)}}, xshift=-6.8cm]
+    \begin{scope}[xshift=-2.2cm]
+      \path[white] (413.1522,756.5214) node[above right] (text6352-3-4-5-6)
+           {\Huge IPython};
+    \end{scope}
+    \path[draw=white,miter limit=4.00,line width=2.000pt,rounded corners=0.4100cm]
+    (358.1919,621.8396) rectangle (472.7127,696.6207);
+    \begin{scope}[xshift=-1.4cm, yshift=0.3cm]
+      \path[white] (417.0812,665.8630) node[above right] (text4084-5-1-0)
+           {\tt \Large IP[y]:};
+    \end{scope}
+  \end{scope}
+
+  %% Cython
+  %% \path[draw=white,fill=gray,line join=miter,line cap=butt,miter
+  %%   limit=4.00,line width=4.663pt] (436.9142,661.9552) -- (436.9142,579.0744) --
+  %%   (508.2295,537.6340) -- (579.5448,579.0744) -- (579.5448,661.9552) --
+  %%   (508.2295,703.3956) -- cycle;
+  %% \begin{scope}[shift={(108.61371,236.39074)}]
+  %%   \path[xscale=0.997,yscale=1.003,fill=black] (258.4141,416.9937) node[above
+  %%     right] (text6352-5-4-4-7) {Cython};
+  %%   \begin{scope}[cm={{0.28235,0.0,0.0,0.28235,(227.87372,329.66354)}}]
+  %%     \path[fill=white] (109.1732,35.7911) .. controls (104.0938,35.8147) and
+  %%       (99.2431,36.2479) .. (94.9750,37.0032) .. controls (82.4016,39.2245) and
+  %%       (80.1187,43.8739) .. (80.1187,52.4481) -- (80.1187,63.7721) --
+  %%       (109.8312,63.7721) -- (109.8312,67.5468) -- (80.1187,67.5468) --
+  %%       (68.9679,67.5468) .. controls (60.3326,67.5468) and (52.7713,72.7371) ..
+  %%       (50.4062,82.6108) .. controls (47.6781,93.9284) and (47.5571,100.9907) ..
+  %%       (50.4062,112.8081) .. controls (52.5183,121.6045) and (57.5622,127.8721) ..
+  %%       (66.1975,127.8721) -- (76.4133,127.8721) -- (76.4133,114.2972) .. controls
+  %%       (76.4133,104.4901) and (84.8986,95.8394) .. (94.9750,95.8394) --
+  %%       (124.6528,95.8394) .. controls (132.9141,95.8394) and (139.5091,89.0374) ..
+  %%       (139.5091,80.7408) -- (139.5091,52.4481) .. controls (139.5091,44.3959) and
+  %%       (132.7161,38.3471) .. (124.6528,37.0032) .. controls (119.5487,36.1535) and
+  %%       (114.2527,35.7675) .. (109.1733,35.7911) -- cycle(93.1050,44.8988) .. controls
+  %%       (96.1741,44.8988) and (98.6804,47.4461) .. (98.6804,50.5781) .. controls
+  %%       (98.6804,53.6990) and (96.1741,56.2228) .. (93.1050,56.2228) .. controls
+  %%       (90.0249,56.2228) and (87.5295,53.6990) .. (87.5295,50.5781) .. controls
+  %%       (87.5295,47.4461) and (90.0249,44.8988) .. (93.1050,44.8988) -- cycle;
+  %%     \path[fill=white] (143.2145,67.5468) -- (143.2145,80.7408) .. controls
+  %%       (143.2145,90.9699) and (134.5422,99.5795) .. (124.6528,99.5795) --
+  %%       (94.9750,99.5795) .. controls (86.8457,99.5795) and (80.1187,106.5370) ..
+  %%       (80.1187,114.6781) -- (80.1187,142.9708) .. controls (80.1187,151.0231) and
+  %%       (87.1207,155.7593) .. (94.9750,158.0695) .. controls (104.3803,160.8350) and
+  %%       (113.3995,161.3348) .. (124.6528,158.0695) .. controls (132.1331,155.9037) and
+  %%       (139.5091,151.5451) .. (139.5091,142.9708) -- (139.5091,131.6468) --
+  %%       (109.8312,131.6468) -- (109.8312,127.8721) -- (139.5091,127.8721) --
+  %%       (154.3653,127.8721) .. controls (163.0006,127.8721) and (166.2185,121.8488) ..
+  %%       (169.2216,112.8081) .. controls (172.3237,103.5008) and (172.1917,94.5503) ..
+  %%       (169.2216,82.6108) .. controls (167.0875,74.0143) and (163.0116,67.5468) ..
+  %%       (154.3653,67.5468) -- (143.2145,67.5468) -- cycle(126.5229,139.1961) ..
+  %%       controls (129.6030,139.1961) and (132.0983,141.7199) .. (132.0983,144.8408) ..
+  %%       controls (132.0983,147.9729) and (129.6030,150.5201) .. (126.5229,150.5201) ..
+  %%       controls (123.4538,150.5201) and (120.9474,147.9729) .. (120.9474,144.8408) ..
+  %%       controls (120.9474,141.7199) and (123.4538,139.1961) .. (126.5229,139.1961) --
+  %%       cycle;
+  %%     \path[fill=white] (107.5938,0.0000) .. controls (74.9700,0.0000) and
+  %%       (48.5729,9.5931) .. (28.5000,28.6875) .. controls (9.5017,46.6869) and
+  %%       (0.0000,68.7821) .. (0.0000,95.0625) .. controls (0.0000,123.0197) and
+  %%       (8.7638,146.2939) .. (26.3438,164.8750) .. controls (45.7289,185.6803) and
+  %%       (72.5905,196.1250) .. (107.0625,196.1250) .. controls (141.8355,196.1250) and
+  %%       (169.0835,185.6803) .. (188.8125,164.8750) .. controls (194.0935,159.4004) and
+  %%       (198.5849,153.5073) .. (202.3125,147.2188) -- (162.1250,147.2188) .. controls
+  %%       (151.7155,166.5139) and (133.6263,176.2430) .. (107.8438,176.4062) .. controls
+  %%       (84.8051,176.7142) and (67.5194,167.6005) .. (56.0000,149.1562) .. controls
+  %%       (46.9737,134.6815) and (42.5000,116.6549) .. (42.5000,95.0625) .. controls
+  %%       (42.5000,47.9768) and (63.9939,23.3910) .. (107.0625,21.4062) .. controls
+  %%       (130.3591,22.2617) and (147.5980,30.5180) .. (158.6875,46.1563) .. controls
+  %%       (160.7986,49.0607) and (162.6463,52.1543) .. (164.2812,55.4063) --
+  %%       (207.0625,55.4063) .. controls (202.3624,45.6638) and (195.7481,36.7684) ..
+  %%       (187.2188,28.6875) .. controls (166.7589,9.5931) and (140.2176,0.0000) ..
+  %%       (107.5938,0.0000) -- cycle;
+  %%   \end{scope}
+  %% \end{scope}
+
+  %% \path[draw=white,fill=blue,line join=miter,line cap=butt,miter
+  %%   limit=4.00,line width=4.663pt] (507.4937,537.9174) -- (507.4937,455.0366) --
+  %%   (578.8090,413.5962) -- (650.1243,455.0366) -- (650.1243,537.9174) --
+  %%   (578.8090,579.3579) -- cycle;
+  %% \path[fill=white] (516.7370,532.6381) -- (516.7370,460.1173) --
+  %%   (579.1379,423.8570) -- (641.5388,460.1173) -- (641.5388,532.6381) --
+  %%   (579.1379,568.8984) -- cycle;
+  %% \path[draw=white,fill=blue,opacity=0.100,line join=miter,line
+  %%   cap=butt,miter limit=4.00,line width=4.663pt] (433.1394,163.4074) --
+  %%   (433.1394,80.5266) -- (504.4547,39.0862) -- (575.7701,80.5266) --
+  %%   (575.7701,163.4074) -- (504.4547,204.8478) -- cycle;
+  %% \path[draw=white,fill=blue,opacity=0.250,line join=miter,line
+  %%   cap=butt,miter limit=4.00,line width=4.663pt] (77.4649,289.2191) --
+  %%   (77.4649,206.3382) -- (148.7803,164.8978) -- (220.0956,206.3382) --
+  %%   (220.0956,289.2191) -- (148.7803,330.6595) -- cycle;
+  %% \path[draw=white,fill=blue,opacity=0.200,line join=miter,line
+  %%   cap=butt,miter limit=4.00,line width=4.663pt] (79.3966,539.4449) --
+  %%   (79.3966,456.5641) -- (150.7119,415.1237) -- (222.0272,456.5641) --
+  %%   (222.0272,539.4449) -- (150.7119,580.8854) -- cycle;
+  %% \path[draw=white,fill=blue,opacity=0.250,line join=miter,line
+  %%   cap=butt,miter limit=4.00,line width=4.663pt] (508.5636,287.2191) --
+  %%   (508.5636,204.3382) -- (579.8790,162.8978) -- (651.1943,204.3382) --
+  %%   (651.1943,287.2191) -- (579.8790,328.6595) -- cycle;
+  %% \path[draw=white,fill=blue,opacity=0.050,line join=miter,line
+  %%   cap=butt,miter limit=4.00,line width=4.663pt] (289.1511,162.0099) --
+  %%   (289.1511,79.1291) -- (360.4664,37.6887) -- (431.7817,79.1291) --
+  %%   (431.7817,162.0099) -- (360.4664,203.4504) -- cycle;
+
+  %% Creative commons
+  %% \begin{scope}[cm={{0.48957,0.0,0.0,0.48957,(575.76898,835.69006)}},fill=blue]
+  %%   \path[fill=blue,even odd rule] (94.2820,49.1160) .. controls
+  %%     (91.5230,44.0860) and (86.8170,42.0840) .. (81.3540,42.0840) .. controls
+  %%     (73.4030,42.0840) and (67.0740,47.7090) .. (67.0740,57.2300) .. controls
+  %%     (67.0740,66.9120) and (73.0240,72.3750) .. (81.6240,72.3750) .. controls
+  %%     (87.1410,72.3750) and (91.8470,69.3460) .. (94.4430,64.7480) --
+  %%     (88.3850,61.6650) .. controls (87.0320,64.9110) and (84.9770,65.8850) ..
+  %%     (82.3810,65.8850) .. controls (77.8910,65.8850) and (75.8360,62.1530) ..
+  %%     (75.8360,57.2310) .. controls (75.8360,52.3080) and (77.5670,48.5760) ..
+  %%     (82.3810,48.5760) .. controls (83.6790,48.5760) and (86.2760,49.2790) ..
+  %%     (87.7900,52.5250) -- (94.2820,49.1160) -- cycle;
+  %%   \path[fill=blue,even odd rule] (109.7460,48.5750) .. controls
+  %%     (114.5600,48.5750) and (116.6160,52.3070) .. (116.6160,56.9050) .. controls
+  %%     (116.6160,62.1520) and (114.5600,65.8840) .. (109.7460,65.8840) .. controls
+  %%     (104.9320,65.8840) and (102.8770,62.1520) .. (102.8770,57.2300) .. controls
+  %%     (102.8770,52.3080) and (104.9320,48.5750) .. (109.7460,48.5750) --
+  %%     cycle(109.7460,42.0840) .. controls (100.7670,42.0840) and (94.4390,47.5470)
+  %%     .. (94.4390,57.2300) .. controls (94.4390,66.9120) and (100.7670,72.3750) ..
+  %%     (109.7460,72.3750) .. controls (118.7250,72.3750) and (125.0540,66.9120) ..
+  %%     (125.0540,57.2300) .. controls (125.0540,47.5480) and (118.7250,42.0840) ..
+  %%     (109.7460,42.0840) -- cycle;
+  %%   \path[fill=blue,even odd rule] (126.7830,71.6170) -- (135.2210,71.6170) --
+  %%     (135.2210,53.7140) .. controls (135.2210,51.1180) and (136.3030,48.9000) ..
+  %%     (139.7100,48.9000) .. controls (142.9560,48.9000) and (143.8210,50.7930) ..
+  %%     (143.8210,53.6060) -- (143.8210,71.6180) -- (152.2590,71.6180) --
+  %%     (152.2590,53.9300) .. controls (152.2590,51.0090) and (153.7190,48.9000) ..
+  %%     (156.5320,48.9000) .. controls (159.7230,48.9000) and (160.8590,50.7390) ..
+  %%     (160.8590,54.7960) -- (160.8590,71.6170) -- (169.2970,71.6170) --
+  %%     (169.2970,49.6570) .. controls (169.2970,43.0580) and (163.2390,42.0840) ..
+  %%     (160.4260,42.0840) .. controls (157.0720,42.0840) and (153.9350,43.1120) ..
+  %%     (151.1770,45.9240) .. controls (149.2830,43.3820) and (146.8500,42.0840) ..
+  %%     (143.5500,42.0840) .. controls (140.9540,42.0840) and (137.3840,42.8410) ..
+  %%     (135.2200,45.3840) -- (135.2200,42.8420) -- (126.7820,42.8420) --
+  %%     (126.7820,71.6170) -- cycle;
+  %%   \path[fill=blue,even odd rule] (171.9970,71.6170) -- (180.4350,71.6170) --
+  %%     (180.4350,53.7140) .. controls (180.4350,51.1180) and (181.5170,48.9000) ..
+  %%     (184.9240,48.9000) .. controls (188.1700,48.9000) and (189.0350,50.7930) ..
+  %%     (189.0350,53.6060) -- (189.0350,71.6180) -- (197.4730,71.6180) --
+  %%     (197.4730,53.9300) .. controls (197.4730,51.0090) and (198.9330,48.9000) ..
+  %%     (201.7450,48.9000) .. controls (204.9360,48.9000) and (206.0730,50.7390) ..
+  %%     (206.0730,54.7960) -- (206.0730,71.6170) -- (214.5110,71.6170) --
+  %%     (214.5110,49.6570) .. controls (214.5110,43.0580) and (208.4520,42.0840) ..
+  %%     (205.6400,42.0840) .. controls (202.2860,42.0840) and (199.1500,43.1120) ..
+  %%     (196.3910,45.9240) .. controls (194.4980,43.3820) and (192.0640,42.0840) ..
+  %%     (188.7640,42.0840) .. controls (186.1680,42.0840) and (182.5980,42.8410) ..
+  %%     (180.4340,45.3840) -- (180.4340,42.8420) -- (171.9960,42.8420) --
+  %%     (171.9960,71.6170) -- cycle;
+  %%   \path[fill=blue,even odd rule] (231.5440,48.5750) .. controls
+  %%     (236.3570,48.5750) and (238.4130,52.3070) .. (238.4130,56.9050) .. controls
+  %%     (238.4130,62.1520) and (236.3570,65.8840) .. (231.5440,65.8840) .. controls
+  %%     (226.7300,65.8840) and (224.6740,62.1520) .. (224.6740,57.2300) .. controls
+  %%     (224.6740,52.3080) and (226.7300,48.5750) .. (231.5440,48.5750) --
+  %%     cycle(231.5440,42.0840) .. controls (222.5650,42.0840) and (216.2360,47.5470)
+  %%     .. (216.2360,57.2300) .. controls (216.2360,66.9120) and (222.5640,72.3750) ..
+  %%     (231.5440,72.3750) .. controls (240.5230,72.3750) and (246.8520,66.9120) ..
+  %%     (246.8520,57.2300) .. controls (246.8520,47.5480) and (240.5230,42.0840) ..
+  %%     (231.5440,42.0840) -- cycle;
+  %%   \path[fill=blue,even odd rule] (249.1220,71.6170) -- (257.5600,71.6170) --
+  %%     (257.5600,53.7140) .. controls (257.5600,51.1180) and (258.6420,48.9000) ..
+  %%     (262.0500,48.9000) .. controls (265.2950,48.9000) and (266.1600,50.7930) ..
+  %%     (266.1600,53.6060) -- (266.1600,71.6180) -- (274.5980,71.6180) --
+  %%     (274.5980,50.3600) .. controls (274.5980,46.0330) and (272.7040,42.0840) ..
+  %%     (265.8890,42.0840) .. controls (263.2930,42.0840) and (259.7230,42.8410) ..
+  %%     (257.5590,45.3840) -- (257.5590,42.8420) -- (249.1210,42.8420) --
+  %%     (249.1210,71.6170) -- cycle;
+  %%   \path[fill=blue,even odd rule] (302.7740,46.2500) .. controls
+  %%     (298.8790,43.6540) and (294.4990,42.0850) .. (290.0630,42.0850) .. controls
+  %%     (284.2200,42.0850) and (277.8920,44.8980) .. (277.8920,52.1460) .. controls
+  %%     (277.8920,62.3690) and (294.9300,58.7990) .. (294.9300,63.2890) .. controls
+  %%     (294.9300,65.8860) and (291.7400,66.2100) .. (290.3320,66.2100) .. controls
+  %%     (286.4920,66.2100) and (283.8420,64.6420) .. (281.2450,62.1530) --
+  %%     (275.9980,66.6960) .. controls (280.2180,70.5910) and (283.7870,72.3760) ..
+  %%     (290.0620,72.3760) .. controls (296.3350,72.3760) and (303.0430,69.6710) ..
+  %%     (303.0430,62.0990) .. controls (303.0430,51.3350) and (286.0050,55.3920) ..
+  %%     (286.0050,50.4700) .. controls (286.0050,49.0100) and (287.5190,48.2530) ..
+  %%     (289.6280,48.2530) .. controls (292.2790,48.2530) and (295.9030,49.3350) ..
+  %%     (297.5790,51.3360) -- (302.7740,46.2500) -- cycle;
+  %%   \path[fill=blue,even odd rule] (94.2820,16.0110) .. controls
+  %%     (91.5230,10.9810) and (86.8170,8.9790) .. (81.3540,8.9790) .. controls
+  %%     (73.4030,8.9790) and (67.0740,14.6040) .. (67.0740,24.1240) .. controls
+  %%     (67.0740,33.8060) and (73.0240,39.2700) .. (81.6240,39.2700) .. controls
+  %%     (87.1410,39.2700) and (91.8470,36.2410) .. (94.4430,31.6430) --
+  %%     (88.3850,28.5600) .. controls (87.0320,31.8060) and (84.9770,32.7790) ..
+  %%     (82.3810,32.7790) .. controls (77.8910,32.7790) and (75.8360,29.0470) ..
+  %%     (75.8360,24.1240) .. controls (75.8360,19.2020) and (77.5670,15.4700) ..
+  %%     (82.3810,15.4700) .. controls (83.6790,15.4700) and (86.2760,16.1730) ..
+  %%     (87.7900,19.4190) -- (94.2820,16.0110) -- cycle;
+  %%   \path[fill=blue,even odd rule] (96.3400,38.5120) -- (104.7780,38.5120) --
+  %%     (104.7780,21.8520) .. controls (104.7780,18.6610) and (106.7790,17.7950) ..
+  %%     (111.8100,17.2000) -- (112.7290,17.0920) -- (112.6750,9.6280) .. controls
+  %%     (109.7000,9.8450) and (106.6170,10.9260) .. (104.7780,12.6570) --
+  %%     (104.7780,9.7360) -- (96.3400,9.7360) -- (96.3400,38.5120) -- cycle;
+  %%   \path[fill=blue,even odd rule] (141.3860,25.8550) .. controls
+  %%     (141.3320,16.9840) and (137.7620,8.9790) .. (127.2680,8.9790) .. controls
+  %%     (118.5050,8.9790) and (113.1500,14.8210) .. (113.1500,24.9900) .. controls
+  %%     (113.1500,33.1030) and (118.3430,39.2700) .. (127.2680,39.2700) .. controls
+  %%     (133.7050,39.2700) and (138.3020,36.7280) .. (141.2230,31.3190) --
+  %%     (134.8940,28.0190) .. controls (132.4600,31.4810) and (130.9990,33.1030) ..
+  %%     (127.8620,33.1030) .. controls (125.1580,33.1030) and (121.6420,31.3720) ..
+  %%     (121.5880,25.8550) -- (141.3860,25.8550) -- cycle(121.4810,20.6630) ..
+  %%     controls (121.8590,16.8760) and (124.7800,15.1460) .. (127.2140,15.1460) ..
+  %%     controls (129.6480,15.1460) and (132.6770,16.4440) .. (132.9470,20.6630) --
+  %%     (121.4810,20.6630) -- cycle;
+  %%   \path[fill=blue,even odd rule] (160.7420,26.5040) .. controls
+  %%     (160.7420,30.8850) and (158.2540,33.1030) .. (154.9540,33.1030) .. controls
+  %%     (152.8980,33.1030) and (151.0050,32.1290) .. (151.0050,29.8580) .. controls
+  %%     (151.0050,27.5320) and (152.9520,26.7210) .. (155.0620,26.1260) --
+  %%     (160.7420,24.5030) -- (160.7420,26.5040) -- cycle(168.8550,17.3090) ..
+  %%     controls (168.8010,10.8180) and (163.8790,8.9790) .. (156.0360,8.9790) ..
+  %%     controls (152.1410,8.9790) and (144.4610,9.7360) .. (144.1900,18.0120) --
+  %%     (152.3040,18.0120) .. controls (152.7370,15.1450) and (154.0340,14.1720) ..
+  %%     (156.7390,14.1720) .. controls (159.0110,14.1720) and (160.7420,15.0910) ..
+  %%     (160.7420,17.2550) -- (160.7420,19.6350) -- (157.6590,20.0680) .. controls
+  %%     (148.4640,21.3660) and (142.8920,23.8000) .. (142.8920,30.7240) .. controls
+  %%     (142.8920,36.2410) and (147.0030,39.2700) .. (152.5200,39.2700) .. controls
+  %%     (155.5490,39.2700) and (159.7680,37.8100) .. (161.1740,35.5380) --
+  %%     (161.2820,35.5380) .. controls (161.3360,36.5120) and (161.4990,37.5390) ..
+  %%     (161.8230,38.5130) -- (169.6120,38.5130) .. controls (168.9090,36.7280) and
+  %%     (168.8550,34.5110) .. (168.8550,32.5090) -- (168.8550,17.3090) -- cycle;
+  %%   \path[fill=blue,even odd rule] (188.6990,10.2770) -- (183.6680,10.2770) --
+  %%     (183.6680,1.9470) -- (175.2300,1.9470) -- (175.2300,10.2770) --
+  %%     (171.1200,10.2770) -- (171.1200,15.4690) -- (175.2300,15.4690) --
+  %%     (175.2300,30.6150) .. controls (175.2300,34.7800) and (176.2580,39.2690) ..
+  %%     (183.4530,39.2690) .. controls (185.2920,39.2690) and (187.7800,39.0530) ..
+  %%     (188.8620,38.9440) -- (188.8620,32.2910) .. controls (188.4280,32.3450) and
+  %%     (187.2390,32.4530) .. (186.3200,32.4530) .. controls (184.8040,32.4530) and
+  %%     (183.6690,31.8580) .. (183.6690,29.5860) -- (183.6690,15.4700) --
+  %%     (188.7000,15.4700) -- (188.7000,10.2770) -- cycle;
+  %%   \path[fill=blue,even odd rule] (191.8760,9.7360) -- (191.8760,38.5120) --
+  %%     (200.3140,38.5120) -- (200.3140,9.7360) -- (191.8760,9.7360) --
+  %%     cycle(200.3150,6.4910) -- (200.3150,0.0000) -- (191.8770,0.0000) --
+  %%     (191.8770,6.4910) -- (200.3150,6.4910) -- cycle;
+  %%   \path[fill=blue,even odd rule] (215.9440,30.0740) -- (210.9660,9.7360) --
+  %%     (201.9340,9.7360) -- (211.6700,38.5120) -- (220.1620,38.5120) --
+  %%     (230.0070,9.7360) -- (221.0280,9.7360) -- (216.0510,30.0740) -- cycle;
+  %%   \path[fill=blue,even odd rule] (257.2560,25.8550) .. controls
+  %%     (257.2020,16.9840) and (253.6320,8.9790) .. (243.1390,8.9790) .. controls
+  %%     (234.3750,8.9790) and (229.0220,14.8210) .. (229.0220,24.9900) .. controls
+  %%     (229.0220,33.1030) and (234.2130,39.2700) .. (243.1390,39.2700) .. controls
+  %%     (249.5760,39.2700) and (254.1730,36.7280) .. (257.0940,31.3190) --
+  %%     (250.7650,28.0190) .. controls (248.3310,31.4810) and (246.8700,33.1030) ..
+  %%     (243.7340,33.1030) .. controls (241.0300,33.1030) and (237.5130,31.3720) ..
+  %%     (237.4600,25.8550) -- (257.2560,25.8550) -- cycle(237.3510,20.6630) ..
+  %%     controls (237.7300,16.8760) and (240.6500,15.1460) .. (243.0840,15.1460) ..
+  %%     controls (245.5180,15.1460) and (248.5480,16.4440) .. (248.8180,20.6630) --
+  %%     (237.3510,20.6630) -- cycle;
+  %% \end{scope}
+
+  %% \begin{scope}[cm={{1.13425,0.0,0.0,1.13425,(520.37788,832.9539)}}]
+  %%   \path[fill=white] (34.2541,19.6061) .. controls (34.2593,27.1358) and
+  %%     (28.1575,33.2428) .. (20.6276,33.2477) .. controls (13.0976,33.2529) and
+  %%     (6.9889,27.1522) .. (6.9845,19.6226) .. controls (6.9845,19.6174) and
+  %%     (6.9845,19.6119) .. (6.9845,19.6061) .. controls (6.9802,12.0764) and
+  %%     (13.0811,5.9694) .. (20.6111,5.9650) .. controls (28.1420,5.9598) and
+  %%     (34.2497,12.0605) .. (34.2541,19.5901) .. controls (34.2541,19.5953) and
+  %%     (34.2541,19.6008) .. (34.2541,19.6061) -- cycle;
+  %%   \begin{scope}[cm={{0.86749,0.0,0.0,0.8674,(-379.11677,228.23655)}},fill=blue]
+  %%     \path[fill=blue] (473.5757,-253.3275) .. controls (477.0611,-249.8421) and
+  %%       (478.8041,-245.5736) .. (478.8041,-240.5253) .. controls (478.8041,-235.4759)
+  %%       and (477.0914,-231.2533) .. (473.6658,-227.8574) .. controls
+  %%       (470.0305,-224.2808) and (465.7340,-222.4931) .. (460.7763,-222.4931) ..
+  %%       controls (455.8786,-222.4931) and (451.6565,-224.2663) .. (448.1112,-227.8126)
+  %%       .. controls (444.5654,-231.3585) and (442.7928,-235.5956) ..
+  %%       (442.7928,-240.5253) .. controls (442.7928,-245.4539) and (444.5654,-249.7213)
+  %%       .. (448.1112,-253.3275) .. controls (451.5664,-256.8140) and
+  %%       (455.7885,-258.5570) .. (460.7763,-258.5570) .. controls (465.8246,-258.5570)
+  %%       and (470.0904,-256.8140) .. (473.5757,-253.3275) -- cycle(450.4578,-250.9827)
+  %%       .. controls (447.5110,-248.0063) and (446.0382,-244.5198) ..
+  %%       (446.0382,-240.5203) .. controls (446.0382,-236.5220) and (447.4965,-233.0651)
+  %%       .. (450.4125,-230.1497) .. controls (453.3290,-227.2332) and
+  %%       (456.8010,-225.7754) .. (460.8295,-225.7754) .. controls (464.8581,-225.7754)
+  %%       and (468.3597,-227.2477) .. (471.3361,-230.1938) .. controls
+  %%       (474.1620,-232.9303) and (475.5755,-236.3709) .. (475.5755,-240.5203) ..
+  %%       controls (475.5755,-244.6384) and (474.1390,-248.1338) .. (471.2678,-251.0050)
+  %%       .. controls (468.3971,-253.8757) and (464.9179,-255.3116) ..
+  %%       (460.8295,-255.3116) .. controls (456.7411,-255.3116) and (453.2831,-253.8684)
+  %%       .. (450.4578,-250.9827) -- cycle(458.2122,-242.2795) .. controls
+  %%       (457.7620,-243.2612) and (457.0879,-243.7523) .. (456.1890,-243.7523) ..
+  %%       controls (454.5999,-243.7523) and (453.8056,-242.6822) .. (453.8056,-240.5432)
+  %%       .. controls (453.8056,-238.4037) and (454.5999,-237.3347) ..
+  %%       (456.1890,-237.3347) .. controls (457.2384,-237.3347) and (457.9880,-237.8555)
+  %%       .. (458.4377,-238.8992) -- (460.6404,-237.7262) .. controls
+  %%       (459.5905,-235.8608) and (458.0154,-234.9278) .. (455.9150,-234.9278) ..
+  %%       controls (454.2951,-234.9278) and (452.9973,-235.4245) .. (452.0229,-236.4168)
+  %%       .. controls (451.0468,-237.4102) and (450.5602,-238.7795) ..
+  %%       (450.5602,-240.5253) .. controls (450.5602,-242.2404) and (451.0625,-243.6019)
+  %%       .. (452.0676,-244.6103) .. controls (453.0728,-245.6189) and
+  %%       (454.3247,-246.1229) .. (455.8254,-246.1229) .. controls (458.0456,-246.1229)
+  %%       and (459.6353,-245.2480) .. (460.5963,-243.5001) -- (458.2122,-242.2795) --
+  %%       cycle(468.5756,-242.2795) .. controls (468.1247,-243.2612) and
+  %%       (467.4642,-243.7523) .. (466.5932,-243.7523) .. controls (464.9722,-243.7523)
+  %%       and (464.1611,-242.6822) .. (464.1611,-240.5432) .. controls
+  %%       (464.1611,-238.4037) and (464.9722,-237.3347) .. (466.5932,-237.3347) ..
+  %%       controls (467.6443,-237.3347) and (468.3804,-237.8555) .. (468.8005,-238.8992)
+  %%       -- (471.0525,-237.7262) .. controls (470.0042,-235.8608) and
+  %%       (468.4313,-234.9278) .. (466.3348,-234.9278) .. controls (464.7171,-234.9278)
+  %%       and (463.4222,-235.4245) .. (462.4483,-236.4168) .. controls
+  %%       (461.4761,-237.4102) and (460.9890,-238.7795) .. (460.9890,-240.5253) ..
+  %%       controls (460.9890,-242.2404) and (461.4834,-243.6019) .. (462.4718,-244.6103)
+  %%       .. controls (463.4597,-245.6189) and (464.7171,-246.1229) ..
+  %%       (466.2453,-246.1229) .. controls (468.4615,-246.1229) and (470.0490,-245.2480)
+  %%       .. (471.0066,-243.5001) -- (468.5756,-242.2795) -- cycle;
+  %%   \end{scope}
+  %% \end{scope}
+
+  %% \begin{scope}[cm={{1.52778,0.0,0.0,1.52778,(465.57971,833.03561)}}]
+  %%   \path[cm={{0.99377,0.0,0.0,0.99367,(-177.69267,0.0)}},fill=white]
+  %%     (255.5512,15.3135) circle (0.3050cm);
+  %%   \begin{scope}[cm={{0.99377,0.0,0.0,0.99367,(-177.69267,0.0)}},fill=blue]
+  %%     \path[fill=blue] (258.6782,12.1870) .. controls (258.6782,11.7705) and
+  %%       (258.3403,11.4331) .. (257.9253,11.4331) -- (253.1518,11.4331) .. controls
+  %%       (252.7368,11.4331) and (252.3989,11.7705) .. (252.3989,12.1870) --
+  %%       (252.3989,16.9600) -- (253.7299,16.9600) -- (253.7299,22.6118) --
+  %%       (257.3471,22.6118) -- (257.3471,16.9600) -- (258.6782,16.9600) --
+  %%       (258.6782,12.1870) -- (258.6782,12.1870) -- cycle;
+  %%     \path[fill=blue] (255.5385,9.1724) circle (0.0461cm);
+  %%   \end{scope}
+  %%   \path[fill=blue,even odd rule] (76.2400,3.3857) .. controls (73.0277,3.3857)
+  %%     and (70.3084,4.5065) .. (68.0831,6.7480) .. controls (65.7996,9.0668) and
+  %%     (64.6583,11.8115) .. (64.6583,14.9803) .. controls (64.6583,18.1490) and
+  %%     (65.7996,20.8743) .. (68.0831,23.1547) .. controls (70.3667,25.4346) and
+  %%     (73.0860,26.5748) .. (76.2400,26.5748) .. controls (79.4329,26.5748) and
+  %%     (82.2007,25.4259) .. (84.5415,23.1256) .. controls (86.7474,20.9423) and
+  %%     (87.8509,18.2271) .. (87.8509,14.9802) .. controls (87.8509,11.7334) and
+  %%     (86.7280,8.9896) .. (84.4843,6.7480) .. controls (82.2386,4.5065) and
+  %%     (79.4911,3.3857) .. (76.2400,3.3857) -- cycle(76.2692,5.4720) .. controls
+  %%     (78.9011,5.4720) and (81.1361,6.4001) .. (82.9742,8.2555) .. controls
+  %%     (84.8317,10.0910) and (85.7605,12.3326) .. (85.7605,14.9803) .. controls
+  %%     (85.7605,17.6469) and (84.8511,19.8598) .. (83.0324,21.6181) .. controls
+  %%     (81.1157,23.5123) and (78.8623,24.4589) .. (76.2692,24.4589) .. controls
+  %%     (73.6751,24.4589) and (71.4400,23.5220) .. (69.5641,21.6473) .. controls
+  %%     (67.6862,19.7725) and (66.7487,17.5503) .. (66.7487,14.9803) .. controls
+  %%     (66.7487,12.4097) and (67.6969,10.1686) .. (69.5932,8.2555) .. controls
+  %%     (71.4119,6.4001) and (73.6372,5.4720) .. (76.2692,5.4720) -- cycle;
+  %% \end{scope}
+
+\end{tikzpicture}

@@ -1,0 +1,138 @@
+#+TITLE:  Programmation en Python
+#+AUTHOR: Xavier Garrido
+#+DATE:   01/09/2015
+#+OPTIONS: toc:nil ^:{}
+#+STARTUP:     beamer
+#+LATEX_CLASS: python-slide
+#+LATEX_HEADER_EXTRA: \hypersetup{colorlinks=false}
+#+BEAMER_HEADER: \institute{Laboratoire de l'Accélérateur Linéaire, Orsay}
+#+BEAMER_HEADER: \setbeamercovered{invisible}
+
+* Introduction
+:PROPERTIES:
+:BEAMER_ENV: fullframe
+:END:
+
+#+BEGIN_QUOTE
+Plus qu'une initiation au langage Python, cette option propose de découvrir *_les
+outils de représentation et d'interface graphiques_*, éléments incontournables de
+l'analyse scientifique.
+#+END_QUOTE
+
+#+BEAMER: \pause\hspace{+4cm}
+/Xavier Garrido, il y a ~ 48 heures.../
+
+
+* La représentation graphique /aka plotting/
+
+L'art de présenter des données numériques sous forme graphique
+
+* L'art de la représentation graphique (1/3)
+#+BEAMER: \framesubtitle{Découverte de la première onde gravitationnelle, \href{http://arxiv.org/abs/1602.03837}{Phys. Rev. Lett. 116, 2016}}
+
+#+BEGIN_CENTER
+[[file:figures/ligo_og.pdf]]
+#+END_CENTER
+
+* L'art de la représentation graphique (2/3)
+#+BEAMER: \framesubtitle{Mesure du fond diffus cosmologique, collaboration Planck, \href{http://xxx.lanl.gov/abs/1502.01582}{A\&A, 2016}}
+
+#+ATTR_LATEX: :options [12][lwuc][][1][3]
+#+BEGIN_CBOX
+[[file:figures/planck_skymap.jpg]]
+#+END_CBOX
+
+* L'art de la représentation graphique (2/3)
+#+BEAMER: \framesubtitle{Mesure du fond diffus cosmologique, collaboration Planck, \href{http://xxx.lanl.gov/abs/1502.01582}{A\&A, 2016}}
+
+#+ATTR_LATEX: :options [12][lwuc][][1][3]
+#+BEGIN_CBOX
+[[file:figures/planck_skymap.jpg]]
+#+END_CBOX
+
+#+ATTR_LATEX: :options [12][lwuc][][5][6]
+#+BEGIN_CBOX
+[[file:figures/planck_power_spectrum.jpg]]
+#+END_CBOX
+
+* L'art de la représentation graphique (3/3)
+#+BEAMER: \framesubtitle{Découverte du boson de Higgs, \href{https://arxiv.org/abs/1207.7214}{Phys. Lett. B716, 2012}}
+
+#+ATTR_LATEX: :options [12][lwuc][][1][3]
+#+BEGIN_CBOX
+[[file:figures/higgs_gg.pdf]]
+#+END_CBOX
+
+* L'art de la représentation graphique (3/3)
+#+BEAMER: \framesubtitle{Découverte du boson de Higgs, \href{https://arxiv.org/abs/1207.7214}{Phys. Lett. B716, 2012}}
+
+#+ATTR_LATEX: :options [12][lwuc][][1][3]
+#+BEGIN_CBOX
+[[file:figures/higgs_gg.pdf]]
+#+END_CBOX
+
+#+ATTR_LATEX: :options [12][lwuc][][5][5.8]
+#+BEGIN_CBOX
+[[file:figures/higgs_gg_p0.pdf]]
+#+END_CBOX
+
+* La représentation graphique
+
+L'[[https://root.cern.ch/rainbow-color-map][art]] de présenter des données numériques sous forme graphique
+- rôle prépondérant dans l'analyse scientifique
+- outil puissant de la publication scientifique
+- vecteur essentiel de la communication publique
+
+* L'interface graphique /aka Graphical User Interface/
+
+L'art de faire interagir l'utilisateur avec les données graphiques
+
+* L'interface graphique (1/2)
+#+BEAMER: \framesubtitle{Visualisation d'événements, Higgs $\to$ 4 leptons, \href{https://home.cern/about/updates/2012/12/highlights-cern-2012}{CMS}}
+
+#+BEGIN_CENTER
+#+ATTR_LATEX: :width \linewidth
+[[file:figures/cms_candidate_higgs.png]]
+#+END_CENTER
+
+* L'interface graphique (2/2)
+#+BEAMER: \framesubtitle{Suivi en ligne des détecteurs, \href{https://arxiv.org/abs/1005.0343}{expérience BiPo}}
+
+#+BEGIN_CENTER
+#+ATTR_LATEX: :width \linewidth
+[[file:figures/bipo_event_display.png]]
+#+END_CENTER
+
+* L'interface graphique
+
+Depuis 2015, dans le cadre de *la préparation à l'aggrégation à Montrouge*, [[http://poisson.ens.fr/Ressources/index.php][des
+interfaces graphiques]] relativement simples sont proposées afin d'illustrer les
+leçons
+
+- Mécanique Quantique : Effet tunnel
+- Optique : Diffraction par $N$ fentes
+- Thermodynamique : Isothermes de Van der Waals
+
+* Déroulement de l'option Python au second semestre
+
+*Option du second semestre*, 15h45 à 17h45, salle informatique
+
+#+BEAMER: \setbeamercovered{transparent}
+
+- *Bases de la programmation en Python (~ 4 séances)*
+  - environnement Python (=ipython=, =pip=, =venv=)
+  - type de données (containeurs), bloc conditionnel, boucles =for=
+  - fonctions et initiation à la programmation orientée objet
+  - gestion & manipulation données numériques (=numpy=)
+
+#+BEAMER: \pause
+
+- *Représentation graphique avec =matplotlib= (3-4 séances)*
+  - création de figures, /subplots/, axes
+  - histogramme, courbe de niveau, 3D
+
+#+BEAMER: \pause
+
+- *Interface graphique (~ 4 séances)*
+  - utilisation des /widgets/ de =matplotlib=
+  - applications directes aux TD Méca. Quan., EM, Phys. Stat.
