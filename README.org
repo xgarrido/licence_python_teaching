@@ -1753,7 +1753,7 @@ Then define the custom beamer template
         \vskip0.5em{%
           \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor%
         }
-        \ifx\insertauthor\@empty%
+        \ifx\insertinstitute\@empty%
         \else%
         \vskip-0.35em{%
           \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute

@@ -115,7 +115,7 @@ leçons
 
 * Déroulement de l'option Python au second semestre
 
-*Option du second semestre*, 15h45 à 17h45, salle informatique
+*Option du second semestre*, 10h30 à 12h30, salle informatique
 
 #+BEAMER: \setbeamercovered{transparent}
 
