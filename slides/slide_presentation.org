@@ -4,6 +4,7 @@
 #+OPTIONS: toc:nil ^:{}
 #+STARTUP:     beamer
 #+LATEX_CLASS: python-slide
+#+LATEX_CLASS_OPTIONS: [aspectratio=32,9pt]
 #+LATEX_HEADER_EXTRA: \hypersetup{colorlinks=false}
 #+BEAMER_HEADER: \institute{Laboratoire de l'Accélérateur Linéaire, Orsay}
 #+BEAMER_HEADER: \setbeamercovered{invisible}
@@ -19,7 +20,7 @@ outils de représentation et d'interface graphiques_*, éléments incontournable
 l'analyse scientifique.
 #+END_QUOTE
 
-#+BEAMER: \pause\hspace{+4cm}
+#+BEAMER: \pause\hspace{+6cm}
 /Xavier Garrido, il y a ~ 48 heures.../
 
 
