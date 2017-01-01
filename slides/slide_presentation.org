@@ -23,7 +23,6 @@ l'analyse scientifique.
 #+BEAMER: \pause\hspace{+6cm}
 /Xavier Garrido, il y a ~ 48 heures.../
 
-
 * La représentation graphique /aka plotting/
 
 L'art de présenter des données numériques sous forme graphique

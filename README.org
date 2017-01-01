@@ -25,7 +25,7 @@ different directories.
 
 * Orgmode settings
 :PROPERTIES:
-:TANGLE: README.el
+:HEADER-ARGS: :tangle README.el
 :END:
 ** General settings
 *** Timestamp location
@@ -91,6 +91,7 @@ Code fragments are syntax highlighted using [[https://code.google.com/p/minted/]
           ("mathescape" "")
           ("xrightmargin" "0.5cm")
           ("xleftmargin"  "0.5cm")
+          ("bgcolor" "solarizedbg")
           ))
 #+END_SRC
 
@@ -113,7 +114,7 @@ Only include one default package and remove all the crapppy stuff included by
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'org-latex-classes
                '("python-slide"
-                 "\\documentclass[c]{beamer}
+                 "\\documentclass[c,aspectratio=32,9pt]{beamer}
                   [PACKAGES]
                   \\usepackage[python_teaching]{slide-style}
                   [NO-DEFAULT-PACKAGES]"
@@ -294,7 +295,7 @@ Add a new tag =correction=
 *** LaTeX stylesheets
 **** Org preamble
 :PROPERTIES:
-:TANGLE: org-preamble.sty
+:HEADER-ARGS: :tangle org-preamble.sty
 :END:
 
 This section defines =org= preamble and settings for documents exported from
@@ -392,7 +393,7 @@ each =tikzpicture=. =tikz/external= looks if the pdf exist and if not, export it
 #+END_SRC
 **** Lectures/class style
 :PROPERTIES:
-:TANGLE: lecture-style.sty
+:HEADER-ARGS: :tangle lecture-style.sty
 :END:
 ***** General settings
 ****** Basics
@@ -733,7 +734,7 @@ layout)
 
 **** Beamer style
 :PROPERTIES:
-:TANGLE: slide-style.sty
+:HEADER-ARGS: :tangle slide-style.sty
 :END:
 ***** General settings
 ****** Basics
@@ -1739,6 +1740,8 @@ Set =subtitle= font to =\scriptsize=
 Then define the custom beamer template
 #+BEGIN_SRC latex
   \newcommand{\insertprefixtitle}{}
+  \renewcommand{\insertinstitute}{}
+  \newcommand{\insertgitstatus}{}
   \defbeamertemplate*{title page}{custom}[1][colsep=-4bp,
     rounded=true,shadow=\beamer@themerounded@shadow]{
     \vbox{}
@@ -1756,8 +1759,13 @@ Then define the custom beamer template
         \ifx\insertinstitute\@empty%
         \else%
         \vskip-0.35em{%
-          \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute
+          \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute%
         }
+        \ifx\insertgitstatus\@empty%
+        \else%
+        \begin{textblock}{5}(10.75,15.5)
+          \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertgitstatus%
+        \end{textblock}
       \end{flushright}
     \end{textblock}
     \begin{textblock}{14}(1,1)
@@ -1952,6 +1960,17 @@ such an operation.
 #+BEGIN_SRC latex
   \interfootnotelinepenalty=10000
 #+END_SRC
+****** =git= status
+#+NAME: git-status
+#+BEGIN_SRC sh :results output :tangle no
+  url=$(git config --get remote.origin.url | sed -e 's#git@github.com:#https://github.com/#' -e 's#\.git##')
+  log=$(LC_MESSAGES=en git --no-pager log -1 HEAD --date=short --pretty=format:"\faGithubAlt \ttfamily\href{$url/commit/%H}{\color{gray}\texttt{%h}}")
+  echo "\renewcommand{\insertgitstatus}{\textnormal{\color{gray}${log}}}"
+#+END_SRC
+
+#+BEGIN_SRC latex :noweb yes
+  <<git-status()>>
+#+END_SRC
 ***** Template settings
 Given the =driver= to be used, generic colors, special title inclusion are set
 up. Practically, everything can be done within this section.
@@ -1971,6 +1990,7 @@ up. Practically, everything can be done within this section.
   \definecolor{blue}{RGB}{0,72,112}
   \definecolor{orange}{RGB}{192,128,64}
   \definecolor{gray}{RGB}{107,108,110}
+  \definecolor{solarizedbg}{RGB}{253,246,227}
 
   \colorlet{generic0}{green}
   \colorlet{generic1}{green}
@@ -2009,7 +2029,8 @@ up. Practically, everything can be done within this section.
 #+END_SRC
 ****** Minted lexer
 #+BEGIN_SRC latex
-  \usemintedstyle{upsud}
+  %% \usemintedstyle{upsud}
+  \usemintedstyle{tomorrownightbright}
 #+END_SRC
 ****** Postamble
 #+BEGIN_SRC latex :noweb yes
@@ -2022,7 +2043,11 @@ up. Practically, everything can be done within this section.
   (require 'ox-html)
 #+END_SRC
 *** Building html preamble
-#+TBLNAME: lecture_list :results none
+:PROPERTIES:
+:HEADER-ARGS: :results none
+:END:
+
+#+TBLNAME: lecture_list
 |---+----------------------------+------------------------------------------------------|
 | + | lecture_pointeur           | Pointeurs, références & allocation dynamique         |
 | + | lecture_fonction           | Rappels sur les fonctions                            |
@@ -2042,7 +2067,7 @@ up. Practically, everything can be done within this section.
 | + | annexe_enum_typedef        | Utilisation de enum et de typedef                    |
 |---+----------------------------+------------------------------------------------------|
 
-#+TBLNAME: td_list :results none
+#+TBLNAME: td_list
 |---+------------------------+------------------------------------|
 | + | td_pointeur_fonction   | Compilation, pointeur & références |
 | + | td_specificite_c++     | Spécificités du C++                |
@@ -2054,7 +2079,7 @@ up. Practically, everything can be done within this section.
 | + | td_blackjack           | Jeu du blackjack                   |
 |---+------------------------+------------------------------------|
 
-#+TBLNAME: slide_list :results none
+#+TBLNAME: slide_list
 |---+------------------------+---------------------------------------------------------|
 | + | slide_compilation      | Compilation & Directives de préprocesseur               |
 | + | slide_pointeur         | Pointeurs, Références & Allocation Dynamique de Mémoire |
@@ -2072,7 +2097,7 @@ up. Practically, everything can be done within this section.
 
 #+NAME: html-preamble
 #+HEADERS: :var list=""
-#+BEGIN_SRC sh :tangle no :results output
+#+BEGIN_SRC shell :tangle no :results output
   hr=true
   tag=true
   for f in $list
@@ -2100,7 +2125,7 @@ up. Practically, everything can be done within this section.
 #+END_SRC
 *** Building index page
 :PROPERTIES:
-:TANGLE: index.html
+:HEADER-ARGS: :tangle index.html
 :END:
 #+BEGIN_SRC html
   <?xml version="1.0" encoding="utf-8"?>
@@ -2265,8 +2290,7 @@ up. Practically, everything can be done within this section.
 *** CSS stylesheets
 **** Main stylesheets
 :PROPERTIES:
-:MKDIRP: yes
-:TANGLE: doc/stylesheets/styles.css
+:HEADER-ARGS: :mkdirp yes :tangle doc/stylesheets/styles.css
 :END:
 ***** Google fonts
 #+BEGIN_SRC css
@@ -2737,8 +2761,7 @@ up. Practically, everything can be done within this section.
 
 **** Org source code styles
 :PROPERTIES:
-:MKDIRP: yes
-:TANGLE: doc/stylesheets/org-pygments.css
+:HEADER-ARGS: :mkdirp yes :tangle doc/stylesheets/org-pygments.css
 :END:
 
 #+BEGIN_SRC css
