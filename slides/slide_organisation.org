@@ -1,0 +1,163 @@
+#+TITLE:  Option « Programmation en Python »  Présentation & Organisation
+#+AUTHOR: Xavier Garrido
+#+DATE:   11/09/2015
+#+OPTIONS: toc:nil ^:{}
+#+STARTUP:     beamer
+#+LATEX_CLASS: python-slide
+#+BEAMER_HEADER: \institute{Laboratoire de l'Accélérateur Linéaire, Orsay}
+
+* Langage Python
+
+#+BEGIN_QUOTE
+Python est un langage de programmation, dont la première version est sortie en
+*1991*. Créé par *Guido van Rossum*, il a voyagé du Macintosh de son créateur,
+qui travaillait à cette époque au Centrum voor Wiskunde en Informatica aux
+Pays-Bas, jusqu'à se voir associer une organisation à but non lucratif
+particulièrement dévouée, la *[[https://www.python.org/][Python Software Foundation]]*, créée en 2001. Ce
+langage a été baptisé ainsi en hommage à la troupe de comiques les *« Monty
+Python »*.
+#+END_QUOTE
+
+* Langage Python : pourquoi ?
+
+#+ATTR_LATEX: :width 0.55\linewidth
+[[file:figures/python_xkcd.png]]
+
+#+BEAMER:\scriptsize\hfill$^\dagger$
+[[http://xkcd.com/353/][xkcd comic]]
+
+* Langage Python : pourquoi ?
+
+Pour tout un tas de raisons que vous découvrirez durant cette option parmi
+lesquelles
+
+#+BEAMER: \pause
+
+- *Un langage simple et clair*
+  - code facile à lire et intuitif,
+  - visuellement épuré,
+  - *syntaxe minimaliste* facile à apprendre,
+  - moins de lignes de code, moins de bugs, plus facile à entretenir.
+
+#+BEAMER: \pause
+#+ATTR_BEAMER: :overlay +-
+- Détails techniques :
+  - *Type dynamique* : pas besoin de définir le type de variables, les arguments de
+    fonction ou les types de retour.
+  - *Gestion automatique de la mémoire* : pas besoin d'allouer et de désallouer
+    explicitement la mémoire pour les variables et les tableaux de données. Pas
+    de bugs de fuite de mémoire.
+  - *Langage interprété* : Pas besoin de compiler le code. L'interpréteur Python lit et
+    exécute directement le code python.
+
+* Langage Python : /pros & cons/
+
+- Avantages:
+  - Le principal avantage est la facilité de programmation, minimisant le temps
+    nécessaire pour développer, déboguer et maintenir le code.
+  - *Programmation modulaire et orientée objet*, système performant de /packaging/
+    et de réutilisation du code.
+  - *Documentation* étroitement intégrée au code.
+  - Une vaste bibliothèque standard et *une grande collection de modules
+    complémentaires*, scientifiques et autres (serveur web,...).
+  - *multi-plateformes* : Python est facilement accessible et utilisable que ce
+    soit sur Windows, MacOS X ou *Linux*
+
+#+BEAMER: \pause
+
+- Désavantages:
+  - langage de programmation interprété et typé dynamiquement \to *exécution du
+    code python plus lente* par rapport aux langages de programmation
+    compilés statiquement, tels que C et Fortran.
+
+* Option « Programmation en Python »
+
+- À qui s'adresse cette option ?
+
+  - à tout étudiant de niveau académique suffisant (min. L3), *sans pré-requis en
+    programmation et/ou algorithmie*
+  - pas aux /geeks/ férus d'informatique ayant déjà 20 ans de pratique du Python
+
+#+BEAMER: \pause
+
+- Qu'est ce que cette option n'est pas ?
+
+  - pas un cours de *programmation numérique/algorithmie* \to cours de C du L3
+    Physique Fondamentale
+  - pas un cours de *méthodes numériques* \to option « Méthodes numériques » du L3
+    de Physique Fondamentale
+  - *une simple initiation* à la programmation Python
+
+* Option « Programmation en Python »
+
+- *Bases de la programmation en Python*
+  - environnement Python (=ipython=, =pip=, =venv=)
+  - type de données, /containers/, bloc conditionnel, boucles =for=
+  - fonctions, scripts & modules, initiation à la programmation orientée objet
+  - gestion & manipulation données numériques (=numpy=)
+
+#+BEAMER: \pause
+
+- *Représentation graphique avec =matplotlib=*
+  - création de figures, /subplots/, axes, légendes
+  - histogramme, courbe de niveau, 3D
+
+#+BEAMER: \pause
+
+- *Interface graphique*
+  - utilisation des /widgets/ de =matplotlib=
+  - applications directes aux TD Méca. Quan., EM, Phys. Stat.
+
+#+BEAMER: \pause
+
+- *=Scipy= : bibliothèques scientifiques*
+  - Systèmes linéaires
+  - Transformé de Fourier
+  - Optimisation & ajustement de fonction
+  - Outils statistiques & Générateurs aléatoires
+  - Interpolation, intégration numérique, traitement du signal...
+
+* Notes/transparents de cours, TD
+
+** Dokeos /tree/
+:PROPERTIES:
+:BEAMER_COL: 0.4
+:END:
+
+#+BEGIN_SRC latex
+    \begin{tikzpicture}[%
+      grow via three points={one child at (1.0,-0.7) and
+        two children at (0.25,-0.7) and (0.25,-1.4)},
+      edge from parent path={([xshift=8pt]\tikzparentnode.south west) |- (\tikzchildnode.west)},%
+      line width=0.75pt]
+
+      \newcommand{\closedDirectory}[1]{\faFolderO #1}
+      \newcommand{\openedDirectory}[1]{\faFolderOpenO #1}
+      \newcommand{\pdfFile}[1]{\faFilePdfO #1}
+
+      \tikzstyle{every node}=[anchor=west]
+      \tikzstyle{selected}=[draw=blue,rounded corners,fill=blue!30,blue]
+      \tikzstyle{optional}=[dashed,fill=gray!50]
+
+      \node {\openedDirectory{Informatique}}
+      child { node {\closedDirectory{cours}}}
+      %%   child { node[xshift=-20pt] {\pdfFile{annexe\_compilation}}}
+      %% }
+      %% child [missing] {}
+      %% child { node {\closedDirectory{projets}}}
+      child { node {\closedDirectory{td}}}
+      child { node[] {\openedDirectory{transparents}}
+        child { node[xshift=-28pt] {\pdfFile{slide\_presentation}}}
+        child { node[xshift=-28pt,optional] {\pdfFile{slide\_organisation}}}
+      };
+    \end{tikzpicture}
+#+END_SRC
+
+** Ressources Dokeos
+:PROPERTIES:
+:BEAMER_COL: 0.7
+:END:
+#+ATTR_LATEX: :options [][][\centering]
+#+BEGIN_CBOX
+_Ressources disponibles sur dokeos [[http://formation.u-psud.fr][http://formation.u-psud.fr]]_
+#+END_CBOX
