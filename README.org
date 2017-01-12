@@ -129,7 +129,7 @@ We also translate *bold* into beamer =structure= and underline into *bold*.
 #+BEGIN_SRC emacs-lisp
   (defun python-beamer-bold (contents backend info)
     (when (eq backend 'beamer)
-      (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\structure" contents)))
+      (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+{" "\\\\structure{\\\\bf " contents)))
   (defun python-beamer-underline (contents backend info)
     (when (eq backend 'beamer)
       (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
@@ -355,12 +355,8 @@ customize the highlighted source code output using =fancyvrb=.
 #+END_SRC
 ****** Font Awesome
 #+BEGIN_SRC latex
-  \ifxetex
-  \newfontfamily{\FA}{FontAwesome}
-  \newcommand*{\faicon}[1]{{\FA\csname faicon@#1\endcsname}}
-  \expandafter\def\csname faicon@github-alt\endcsname{\symbol{"F113}}\def\faGithubAlt{{\FA\csname faicon@github-alt\endcsname}\xspace}
-  \expandafter\def\csname faicon@external-link\endcsname{\symbol{"F08E}}\def\faExternalLink{{\FA\csname faicon@external-link\endcsname}\xspace}
-  \fi
+  \IfFileExists{"$TEXMFHOME/tex/latex/commonstuff/font-awesome.sty"}{\RequirePackage{font-awesome}}{}%
+  %% \IfFileExists{"$TEXMFHOME/tex/latex/commonstuff/font-awesome-ext.sty"}{\RequirePackage{font-awesome-ext}}{}%
 #+END_SRC
 ****** graphics package
 #+BEGIN_SRC latex
@@ -783,10 +779,10 @@ different booleans used in the nex section.
   \hypersetup{
     xetex,
     colorlinks=true,
-    urlcolor=green,
-    filecolor=green,
-    linkcolor=red,
-    citecolor=green,
+    urlcolor=gray,
+    filecolor=gray,
+    linkcolor=gray,
+    citecolor=gray,
     plainpages=false,
     pdfpagelabels,
     bookmarksnumbered,
@@ -1964,7 +1960,7 @@ such an operation.
 #+NAME: git-status
 #+BEGIN_SRC sh :results output :tangle no
   url=$(git config --get remote.origin.url | sed -e 's#git@github.com:#https://github.com/#' -e 's#\.git##')
-  log=$(LC_MESSAGES=en git --no-pager log -1 HEAD --date=short --pretty=format:"\faGithubAlt \ttfamily\href{$url/commit/%H}{\color{gray}\texttt{%h}}")
+  log=$(LC_MESSAGES=en git --no-pager log -1 HEAD --date=short --pretty=format:"\ttfamily\orighref{$url/commit/%H}{\color{gray}\faGithubSquare}")
   echo "\renewcommand{\insertgitstatus}{\textnormal{\color{gray}${log}}}"
 #+END_SRC
 
@@ -1990,7 +1986,8 @@ up. Practically, everything can be done within this section.
   \definecolor{blue}{RGB}{0,72,112}
   \definecolor{orange}{RGB}{192,128,64}
   \definecolor{gray}{RGB}{107,108,110}
-  \definecolor{solarizedbg}{RGB}{253,246,227}
+  %% \definecolor{solarizedbg}{RGB}{253,246,227}
+  \definecolor{solarizedbg}{HTML}{002b36}
 
   \colorlet{generic0}{green}
   \colorlet{generic1}{green}
@@ -1999,8 +1996,10 @@ up. Practically, everything can be done within this section.
 #+END_SRC
 ****** Title prefix
 #+BEGIN_SRC latex
-  \newcommand{\Cpp}{\mbox{C\vspace{.5em}\protect\raisebox{.2ex}{\footnotesize++~}}}
-  %% \renewcommand{\insertprefixtitle}{\textbf{Cours \Cpp}\vskip0.25em\normalsize}
+  \setbeamerfont{title}{series=\bfseries, size=\Large}
+  \setbeamerfont{frametitle}{series=\bfseries}
+
+  \setbeamertemplate{frametitle}[default][\hfill]
 #+END_SRC
 ****** =quote= environment
 #+BEGIN_SRC latex
@@ -2029,12 +2028,14 @@ up. Practically, everything can be done within this section.
 #+END_SRC
 ****** Minted lexer
 #+BEGIN_SRC latex
-  %% \usemintedstyle{upsud}
-  \usemintedstyle{tomorrownightbright}
+    %% \usemintedstyle{upsud}
+  \renewcommand{\theFancyVerbLine}{\ttfamily \textcolor[HTML]{93A1A1}{\scriptsize\oldstylenums{\arabic{FancyVerbLine}}}}
+  \usemintedstyle{solarizeddark}
 #+END_SRC
 ****** Postamble
 #+BEGIN_SRC latex :noweb yes
   <<generate_beamer_colors>>
+  \setbeamercolor{frametitle}{fg=gray}
   }{}
 #+END_SRC
 ** Settings for =org= to =html= conversion
