@@ -332,7 +332,8 @@ but do not use it.
 using the powerful Pygments library. The package also provides options to
 customize the highlighted source code output using =fancyvrb=.
 #+BEGIN_SRC latex
-  \RequirePackage[cache]{minted}
+  %% \RequirePackage[cache]{minted}
+  \RequirePackage{minted}
 #+END_SRC
 
 ****** Unicode typesettings aka XeTeX
@@ -778,7 +779,7 @@ different booleans used in the nex section.
 #+BEGIN_SRC latex
   \hypersetup{
     xetex,
-    colorlinks=true,
+    colorlinks=false,
     urlcolor=gray,
     filecolor=gray,
     linkcolor=gray,
@@ -831,16 +832,18 @@ called within =postamble= part of [[Template settings]]
   \setbeamercolor{buc_upper}{fg=white,bg=blue}
   \setbeamercolor{buc_lower}{fg=blue,bg=white}
 
-  \setbeamercolor{lruc}{fg=white,bg=red!10}
-  \setbeamercolor{lrtuc}{fg=red,bg=red!10}
-  \setbeamercolor{lguc}{fg=white,bg=green!10}
-  \setbeamercolor{lgtuc}{fg=green,bg=green!10}
-  \setbeamercolor{lbuc}{fg=white,bg=blue!10}
-  \setbeamercolor{lbtuc}{fg=blue,bg=blue!10}
-  \setbeamercolor{louc}{fg=white,bg=orange!10}
-  \setbeamercolor{lotuc}{fg=orange,bg=orange!10}
-  \setbeamercolor{lwuc}{fg=blue,bg=white}
-  \setbeamercolor{hidden}{fg=white,bg=white}
+  \setbeamercolor{-wred}{fg=white,bg=red!10}
+  \setbeamercolor{-red}{fg=red,bg=red!10}
+  \setbeamercolor{-wgreen}{fg=white,bg=green!10}
+  \setbeamercolor{-green}{fg=green,bg=green!10}
+  \setbeamercolor{-wblue}{fg=white,bg=blue!10}
+  \setbeamercolor{-blue}{fg=blue,bg=blue!10}
+  \setbeamercolor{-worange}{fg=white,bg=orange!10}
+  \setbeamercolor{-orange}{fg=orange,bg=orange!10}
+  \setbeamercolor{-wgray}{fg=white,bg=gray}
+  \setbeamercolor{-white}{fg=blue,bg=white}
+  \setbeamercolor{-hidden}{fg=white,bg=white}
+  \setbeamercolor{-transparent}{fg=gray!30}
 #+END_SRC
 
 ****** Font
@@ -1981,13 +1984,13 @@ up. Practically, everything can be done within this section.
 #+END_SRC
 ****** Colors
 #+BEGIN_SRC latex
-  \definecolor{red}{RGB}{221,42,43}
+  \definecolor{red}{RGB}{220,50,47}
   \definecolor{green}{RGB}{132,184,24}
   \definecolor{blue}{RGB}{0,72,112}
   \definecolor{orange}{RGB}{192,128,64}
   \definecolor{gray}{RGB}{107,108,110}
-  %% \definecolor{solarizedbg}{RGB}{253,246,227}
-  \definecolor{solarizedbg}{HTML}{002b36}
+  \definecolor{solarizedbg}{RGB}{253,246,227}
+  %% \definecolor{solarizedbg}{HTML}{002b36}
 
   \colorlet{generic0}{green}
   \colorlet{generic1}{green}
@@ -1998,8 +2001,8 @@ up. Practically, everything can be done within this section.
 #+BEGIN_SRC latex
   \setbeamerfont{title}{series=\bfseries, size=\Large}
   \setbeamerfont{frametitle}{series=\bfseries}
-
-  \setbeamertemplate{frametitle}[default][\hfill]
+  \setbeamertemplate{frametitle}{\vskip+10pt\hfill\insertframetitle\\\hfill\small\insertframesubtitle}
+  \renewcommand{\insertprefixtitle}{\textbf{Option « Programmation en Python »\\}}
 #+END_SRC
 ****** =quote= environment
 #+BEGIN_SRC latex
@@ -2019,23 +2022,23 @@ up. Practically, everything can be done within this section.
     }%
                      {\closequote\endorigquote}
 #+END_SRC
-****** =prompt= environment
+****** Remark
 #+BEGIN_SRC latex
-  \newenvironment{prompt}
-                 {\begin{center}\tt\color{blue}\$}
-                 {\end{center}}
-
+  \newenvironment{remark}
+                 {\begin{cbox}[0.85\linewidth][-wgray][]\faExclamationTriangle\small}
+                 {\end{cbox}}
 #+END_SRC
 ****** Minted lexer
 #+BEGIN_SRC latex
     %% \usemintedstyle{upsud}
   \renewcommand{\theFancyVerbLine}{\ttfamily \textcolor[HTML]{93A1A1}{\scriptsize\oldstylenums{\arabic{FancyVerbLine}}}}
-  \usemintedstyle{solarizeddark}
+  \usemintedstyle{solarizedlight}
 #+END_SRC
 ****** Postamble
 #+BEGIN_SRC latex :noweb yes
   <<generate_beamer_colors>>
   \setbeamercolor{frametitle}{fg=gray}
+  <<generate_colored_box>>
   }{}
 #+END_SRC
 ** Settings for =org= to =html= conversion
