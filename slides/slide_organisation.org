@@ -1,4 +1,4 @@
-#+TITLE:  Option « Programmation en Python »  Présentation & Organisation
+#+TITLE:  Présentation & Organisation
 #+AUTHOR: Xavier Garrido
 #+DATE:   11/09/2015
 #+OPTIONS: toc:nil ^:{}
@@ -90,34 +90,98 @@ lesquelles
 
 * Option « Programmation en Python »
 
+#+ATTR_LATEX: :options [100][-none][][1.25][2]
+#+BEGIN_CBOX
 - *Bases de la programmation en Python*
-  - environnement Python (=ipython=, =pip=, =venv=)
+  - environnement Python (=venv=, =pip=, =ipython=)
   - type de données, /containers/, bloc conditionnel, boucles =for=
   - fonctions, scripts & modules, initiation à la programmation orientée objet
   - gestion & manipulation données numériques (=numpy=)
+#+END_CBOX
 
-#+BEAMER: \pause
+* Option « Programmation en Python »
 
+#+ATTR_LATEX: :options [100][-none][][1.25][2]
+#+BEGIN_CBOX
+- *Bases de la programmation en Python*
+  - environnement Python (=venv=, =pip=, =ipython=)
+  - type de données, /containers/, bloc conditionnel, boucles =for=
+  - fonctions, scripts & modules, initiation à la programmation orientée objet
+  - gestion & manipulation données numériques (=numpy=)
+#+END_CBOX
+
+#+ATTR_LATEX: :options [100][-none][][1.25][5.5]
+#+BEGIN_CBOX
 - *Représentation graphique avec =matplotlib=*
   - création de figures, /subplots/, axes, légendes
   - histogramme, courbe de niveau, 3D
+#+END_CBOX
 
-#+BEAMER: \pause
+* Option « Programmation en Python »
+:PROPERTIES:
+:BEAMER_ENV: fullframe
+:END:
 
+#+ATTR_LATEX: :options [12][-none][][-0.5][0]
+#+BEGIN_CBOX
+[[file:figures/ligo_og.pdf]]
+#+END_CBOX
+
+* Option « Programmation en Python »
+:PROPERTIES:
+:BEAMER_ENV: fullframe
+:END:
+
+#+ATTR_LATEX: :options [12][-none][][-0.5][0]
+#+BEGIN_CBOX
+[[file:figures/ligo_og.pdf]]
+#+END_CBOX
+
+#+ATTR_LATEX: :options [10][-none][][5][6]
+#+BEGIN_CBOX
+[[file:figures/planck_skymap.jpg]]
+#+END_CBOX
+
+
+* Option « Programmation en Python »
+
+#+ATTR_LATEX: :options [100][-none][][1.25][2]
+#+BEGIN_CBOX
+- *Bases de la programmation en Python*
+  - environnement Python (=venv=, =pip=, =ipython=)
+  - type de données, /containers/, bloc conditionnel, boucles =for=
+  - fonctions, scripts & modules, initiation à la programmation orientée objet
+  - gestion & manipulation données numériques (=numpy=)
+#+END_CBOX
+
+#+ATTR_LATEX: :options [100][-none][][1.25][5.5]
+#+BEGIN_CBOX
+- *Représentation graphique avec =matplotlib=*
+  - création de figures, /subplots/, axes, légendes
+  - histogramme, courbe de niveau, 3D
+#+END_CBOX
+
+#+ATTR_LATEX: :options [100][-none][][1.25][7.75]
+#+BEGIN_CBOX
 - *Interface graphique*
   - utilisation des /widgets/ de =matplotlib=
   - applications directes aux TD Méca. Quan., EM, Phys. Stat.
+#+END_CBOX
 
-#+BEAMER: \pause
-
+#+ATTR_LATEX: :options [100][-none][][1.25][10]
+#+BEGIN_CBOX
 - *=Scipy= : bibliothèques scientifiques*
-  - Systèmes linéaires
+  - Algèbre linéaire
   - Transformé de Fourier
   - Optimisation & ajustement de fonction
   - Outils statistiques & Générateurs aléatoires
   - Interpolation, intégration numérique, traitement du signal...
+#+END_CBOX
 
-* Notes/transparents de cours, TD
+* Notes/transparents de cours \faArchive
+:PROPERTIES:
+:BEAMER_OPT: fragile
+:END:
 
 ** Dokeos /tree/
 :PROPERTIES:
@@ -125,32 +189,32 @@ lesquelles
 :END:
 
 #+BEGIN_SRC latex
-    \begin{tikzpicture}[%
-      grow via three points={one child at (1.0,-0.7) and
-        two children at (0.25,-0.7) and (0.25,-1.4)},
-      edge from parent path={([xshift=8pt]\tikzparentnode.south west) |- (\tikzchildnode.west)},%
-      line width=0.75pt]
+  \begin{tikzpicture}[%
+    grow via three points={one child at (1.0,-0.7) and
+      two children at (0.25,-0.7) and (0.25,-1.4)},
+    edge from parent path={([xshift=8pt]\tikzparentnode.south west) |- (\tikzchildnode.west)},%
+    line width=0.75pt]
 
-      \newcommand{\closedDirectory}[1]{\faFolderO #1}
-      \newcommand{\openedDirectory}[1]{\faFolderOpenO #1}
-      \newcommand{\pdfFile}[1]{\faFilePdfO #1}
+    \newcommand{\closedDirectory}[1]{\faFolderO #1}
+    \newcommand{\openedDirectory}[1]{\faFolderOpenO #1}
+    \newcommand{\pdfFile}[1]{\faFilePdfO #1}
 
-      \tikzstyle{every node}=[anchor=west]
-      \tikzstyle{selected}=[draw=blue,rounded corners,fill=blue!30,blue]
-      \tikzstyle{optional}=[dashed,fill=gray!50]
+    \tikzstyle{every node}=[anchor=west]
+    \tikzstyle{selected}=[draw=blue,rounded corners,fill=blue!30,blue]
+    \tikzstyle{optional}=[dashed,fill=gray!50]
 
-      \node {\openedDirectory{Informatique}}
-      child { node {\closedDirectory{cours}}}
-      %%   child { node[xshift=-20pt] {\pdfFile{annexe\_compilation}}}
-      %% }
-      %% child [missing] {}
-      %% child { node {\closedDirectory{projets}}}
-      child { node {\closedDirectory{td}}}
-      child { node[] {\openedDirectory{transparents}}
-        child { node[xshift=-28pt] {\pdfFile{slide\_presentation}}}
-        child { node[xshift=-28pt,optional] {\pdfFile{slide\_organisation}}}
-      };
-    \end{tikzpicture}
+    \node {\openedDirectory{Informatique}}
+    child { node {\closedDirectory{cours}}}
+    %%   child { node[xshift=-20pt] {\pdfFile{annexe\_compilation}}}
+    %% }
+    %% child [missing] {}
+    %% child { node {\closedDirectory{projets}}}
+    child { node {\closedDirectory{td}}}
+    child { node[] {\openedDirectory{transparents}}
+      child { node[xshift=-28pt] {\pdfFile{slide\_presentation}}}
+      child { node[xshift=-28pt,optional] {\pdfFile{slide\_organisation}}}
+    };
+  \end{tikzpicture}
 #+END_SRC
 
 ** Ressources Dokeos
@@ -160,4 +224,17 @@ lesquelles
 #+ATTR_LATEX: :options [][][\centering]
 #+BEGIN_CBOX
 _Ressources disponibles sur dokeos [[http://formation.u-psud.fr][http://formation.u-psud.fr]]_
+#+END_CBOX
+
+* Bibliographie
+:PROPERTIES:
+:BEAMER_ENV: fullframe
+:END:
+
+#+ATTR_LATEX: :options [\linewidth](\bf\Large Bibliographie \faBookmark)
+#+BEGIN_CBOX
+- /Open Classrooms/ : [[https://openclassrooms.com/courses/apprenez-a-programmer-en-python][Apprenez à programmer en Python]]
+- [[http://www.scipy-lectures.org/index.html][*Scipy Lectures Notes*]]
+- [[https://github.com/jrjohansson/scientific-python-lectures][*Scientific Python Lectures*]]
+- ...
 #+END_CBOX
