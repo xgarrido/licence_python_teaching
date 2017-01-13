@@ -844,6 +844,7 @@ called within =postamble= part of [[Template settings]]
   \setbeamercolor{-white}{fg=blue,bg=white}
   \setbeamercolor{-hidden}{fg=white,bg=white}
   \setbeamercolor{-transparent}{fg=gray!30}
+  \setbeamercolor{-none}{}
 #+END_SRC
 
 ****** Font
@@ -1828,7 +1829,7 @@ environment, otherwise a =minipage= is defined.
       \begin{center}
         \begin{minipage}[c]{\IfNoValueOrEmptyTF{#1}{0.9\linewidth}{#1}}}{
       \begin{textblock}{\IfNoValueOrEmptyTF{#1}{10}{#1}}(#4,#5)}
-    \begin{beamerboxesrounded}[upper=\IfNoValueOrEmptyTF{#2}{lbtuc}{#2}, lower=\IfNoValueOrEmptyTF{#2}{lbtuc}{#2}, shadow=false]
+    \begin{beamerboxesrounded}[upper=\IfNoValueOrEmptyTF{#2}{-blue}{#2}, lower=\IfNoValueOrEmptyTF{#2}{-blue}{#2}, shadow=false]
       {\IfNoValueOrEmptyTF{#3}{}{#3}\IfNoValueOrEmptyTF{#6}{}{#6}}
       \IfNoValueOrEmptyTF{#3}{}{#3}
   }{
