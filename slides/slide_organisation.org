@@ -1,4 +1,4 @@
-#+TITLE:  Présentation & Organisation
+#+TITLE:  Présentation & Organisation de l'année
 #+AUTHOR: Xavier Garrido
 #+DATE:   11/09/2015
 #+OPTIONS: toc:nil ^:{}
@@ -87,6 +87,16 @@ lesquelles
   - pas un cours de *méthodes numériques* \to option « Méthodes numériques » du L3
     de Physique Fondamentale
   - *une simple initiation* à la programmation Python
+
+#+BEAMER: \pause
+
+#+BEGIN_REMARK
+_Python 2 ou Python 3 ?_
+
+En 2008, Python 3 a été officiellement lancé. Quelques (vielles) librairies
+scientifiques ne fonctionnent pas encore sous Python 3 mais c'est de plus en
+plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
+#+END_REMARK
 
 * Option « Programmation en Python »
 
@@ -226,15 +236,10 @@ lesquelles
 _Ressources disponibles sur dokeos [[http://formation.u-psud.fr][http://formation.u-psud.fr]]_
 #+END_CBOX
 
-* Bibliographie
-:PROPERTIES:
-:BEAMER_ENV: fullframe
-:END:
+* Bibliographie \faBookmark
 
-#+ATTR_LATEX: :options [\linewidth](\bf\Large Bibliographie \faBookmark)
-#+BEGIN_CBOX
 - /Open Classrooms/ : [[https://openclassrooms.com/courses/apprenez-a-programmer-en-python][Apprenez à programmer en Python]]
+- [[https://inforef.be/swi/python.htm][Apprendre à programmer en Python]], Gérard Swinnen, éd. Eyrolles
 - [[http://www.scipy-lectures.org/index.html][*Scipy Lectures Notes*]]
 - [[https://github.com/jrjohansson/scientific-python-lectures][*Scientific Python Lectures*]]
 - ...
-#+END_CBOX

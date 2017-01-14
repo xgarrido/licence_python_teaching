@@ -332,8 +332,8 @@ but do not use it.
 using the powerful Pygments library. The package also provides options to
 customize the highlighted source code output using =fancyvrb=.
 #+BEGIN_SRC latex
-  %% \RequirePackage[cache]{minted}
-  \RequirePackage{minted}
+  \RequirePackage[cache]{minted}
+  %% \RequirePackage{minted}
 #+END_SRC
 
 ****** Unicode typesettings aka XeTeX
@@ -2026,7 +2026,7 @@ up. Practically, everything can be done within this section.
 ****** Remark
 #+BEGIN_SRC latex
   \newenvironment{remark}
-                 {\begin{cbox}[0.85\linewidth][-wgray][]\faExclamationTriangle\small}
+                 {\begin{cbox}[0.85\linewidth][-wgray][\centering]\faExclamationTriangle\small}
                  {\end{cbox}}
 #+END_SRC
 ****** Minted lexer

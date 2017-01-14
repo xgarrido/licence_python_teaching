@@ -1,0 +1,254 @@
+#+TITLE:  L'environnement Python
+#+AUTHOR: Xavier Garrido
+#+DATE:   11/09/2015
+#+OPTIONS: toc:nil ^:{} author:nil
+#+STARTUP:     beamer
+#+LATEX_CLASS: python-slide
+
+* Environnements virtuels
+
+- Un environnement virtuel permet d'avoir des installations de Python
+  décorrélées les unes des autres et *isolées du système*
+  - permet de travailler avec différentes versions de Python (version 2.X, 3.X)
+  - permet de travailler avec différentes versions de modules (=matplotlib=,
+    =numpy=,...)
+  - *permet de nous affranchir des droits administrateurs*
+
+* Environnements virtuels
+
+- Déclaration d'un environnement virtuel
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC shell-session
+    $ python3.5 -m venv ~/python.d/my_python_env
+
+    $ ls ~/python.d/my_python_env
+    bin  include  lib  lib64  pip-selfcheck.json  pyvenv.cfg  share
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- Chargement de l'environnement virtuel
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC shell-session
+    $ source ~/python.d/my_python_env/bin/activate
+
+    $ which python
+    ~/python.d/my_python_env/bin/python
+  #+END_SRC
+
+#+BEGIN_REMARK
+La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
+#+END_REMARK
+
+* Gestionnaire de modules =pip=
+
+- =pip= est *un système de gestion de paquets* utilisé pour installer et gérer des
+  librairies écrites en Python
+  - gestion des versions de modules/librairies (=matplotlib=, =numpy=, =django=, ...)
+  - gestion & installation des dépendances
+
+#+BEAMER: \pause
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \begin{tikzpicture}[
+        grow=down,
+        linet/.style={very thick,draw=gray!60,
+          shorten >=0pt, shorten <=0pt, ->},
+        punkt/.style={rectangle, rounded corners, shade, top color=white,
+          bottom color=gray!10, draw=gray!60, very
+          thick, text centered, text width=5em, text height=0.2cm}
+      ]
+      \ttfamily\color{gray}
+      \path (0,0) node(a) [punkt] {matplotlib}
+      (-2.5,+1.5) node(b) [punkt] {numpy}
+      (+0.0,+1.5) node(c) [punkt] {dateutil}
+      (+2.5,+1.5) node(d) [punkt] {...};
+      \draw[linet] (a) -- (b);
+      \draw[linet] (a) -- (c);
+      \draw[linet] (a) -- (d);
+    \end{tikzpicture}
+  \end{center}
+#+END_SRC
+
+#+BEAMER: \pause
+
+- Liste des libraries consultables sur le site [[https://pypi.python.org/pypi][/Python Package Index/]] (96 537
+  paquets)
+
+* Gestionnaire de modules =pip=
+
+- Installation d'un module
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC shell-session
+    $ pip install matplotlib
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- Installation d'une version donnée d'un module
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC shell-session
+    $ pip install matplotlib==1.5.0
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- Suppression d'un module
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC shell-session
+    $ pip uninstall matplotlib
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- Mise à jour d'un module
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC shell-session
+    $ pip install matplotlib --upgrade
+  #+END_SRC
+
+* Gestionnaire de modules =pip=
+
+- Liste des modules installés
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC shell-session
+    $ pip freeze
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- Liste des modules pouvant être mis à jour
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC shell-session
+    $ pip list --outdated
+  #+END_SRC
+
+- Documentation de =pip= et de ses commandes [[https://pip.pypa.io][https://pip.pypa.io]]
+
+* Interpréteurs =python=
+
+- Interpréteur standard @@beamer:\onslide<2->{$\to$ utilisation limitée}@@
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    $ python
+    Python 3.5.2 (default, Oct 14 2016, 12:54:53)
+    [GCC 6.2.1 20160916 (Red Hat 6.2.1-2)] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> 2*2
+    4
+    >>> exit()
+  #+END_SRC
+
+#+BEAMER: \pause\pause
+
+- Interpréteur intéractif =ipython=
+  - *historique des commandes* \to touches \faArrowCircleUp et \faArrowCircleDown
+  - *auto-complétion* \to touche =<TAB>=
+  - édition en ligne du code
+  - extraction automatique de *la documentation des fonctions* et objets =python=
+  - interaction avec le shell du système d'exploitation
+
+* Interpréteur =ipython=
+
+- Installation /via/ =pip=
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC shell-session
+    $ pip install ipython
+  #+END_SRC
+
+- Utilisation de =ipython=
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    $ ipython
+    Python 3.5.2 (default, Oct 14 2016, 12:54:53)
+    Type "copyright", "credits" or "license" for more information.
+
+    IPython 5.1.0 -- An enhanced Interactive Python.
+    ?         -> Introduction and overview of IPython's features.
+    %quickref -> Quick reference.
+    help      -> Python's own help system.
+    object?   -> Details about 'object', use 'object??' for extra details.
+
+    In [1]: 2*2
+    Out[1]: 4
+  #+END_SRC
+
+* Interpréteur =ipython=
+
+- Premier programme =python= : /"Hello world"/
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: print("Hello world")
+    Hello world
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- Obtenir de l'aide /via/ l'opérateur =?=
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [2]: print?
+    Docstring:
+    print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
+
+    Prints the values to a stream, or to sys.stdout by default.
+    Optional keyword arguments:
+    file:  a file-like object (stream); defaults to the current sys.stdout.
+    sep:   string inserted between values, default a space.
+    end:   string appended after the last value, default a newline.
+    flush: whether to forcibly flush the stream.
+    Type:      builtin_function_or_method
+  #+END_SRC
+* Interpréteur =ipython=
+
+- Historique des commandes
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: x = 10
+
+    In [2]: <UP>
+
+    In [2]: x = 10
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- Auto-complétion
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: x = 10
+
+    In [2]: x.<TAB>
+    x.bit_length   x.denominator  x.imag         x.real
+    x.conjugate    x.from_bytes   x.numerator    x.to_bytes
+  #+END_SRC
+
+* Interpréteur =ipython=
+
+Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =%=
+
+- =%cd= : changer de répertoire
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: %cd /tmp
+    /tmp
+  #+END_SRC
+
+- =%whos= : afficher un résumé des variables déclarées
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: x = 10
+
+    In [2]: %whos
+    Variable   Type    Data/Info
+    ----------------------------
+    x          int     10
+  #+END_SRC
+
+- =%timeit= : évalue le temps moyen d'exécution d'un code
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: %timeit x = 10
+    10000000 loops, best of 3: 13.7 ns per loop
+  #+END_SRC
