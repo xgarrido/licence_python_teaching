@@ -1,6 +1,6 @@
-#+TITLE:  Présentation & Organisation de l'année
+#+TITLE:  Présentation & Organisation de l'option
 #+AUTHOR: Xavier Garrido
-#+DATE:   11/09/2015
+#+DATE:   14/01/2017
 #+OPTIONS: toc:nil ^:{}
 #+STARTUP:     beamer
 #+LATEX_CLASS: python-slide

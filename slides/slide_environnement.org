@@ -1,6 +1,6 @@
 #+TITLE:  L'environnement Python
 #+AUTHOR: Xavier Garrido
-#+DATE:   11/09/2015
+#+DATE:   14/01/2017
 #+OPTIONS: toc:nil ^:{} author:nil
 #+STARTUP:     beamer
 #+LATEX_CLASS: python-slide
@@ -228,13 +228,6 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 
 Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =%=
 
-- =%cd= : changer de répertoire
-  #+BEAMER: \vskip5pt
-  #+BEGIN_SRC python
-    In [1]: %cd /tmp
-    /tmp
-  #+END_SRC
-
 - =%whos= : afficher un résumé des variables déclarées
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
@@ -252,3 +245,30 @@ Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =
     In [1]: %timeit x = 10
     10000000 loops, best of 3: 13.7 ns per loop
   #+END_SRC
+
+* Interpréteur =ipython=
+
+=ipython= fournit enfin des alias vers les commandes unix standards
+
+#+BEAMER: \vskip5pt
+#+BEGIN_SRC python
+  In [1]: alias
+  Total number of aliases: 16
+  Out[1]:
+  [('cat', 'cat'),
+   ('clear', 'clear'),
+   ('cp', 'cp'),
+   ('ldir', 'ls -F -o --color %l | grep /$'),
+   ('less', 'less'),
+   ('lf', 'ls -F -o --color %l | grep ^-'),
+   ('lk', 'ls -F -o --color %l | grep ^l'),
+   ('ll', 'ls -F -o --color'),
+   ('ls', 'ls -F --color'),
+   ('lx', 'ls -F -o --color %l | grep ^-..x'),
+   ('man', 'man'),
+   ('mkdir', 'mkdir'),
+   ('more', 'more'),
+   ('mv', 'mv'),
+   ('rm', 'rm'),
+   ('rmdir', 'rmdir')]
+#+END_SRC
