@@ -1,0 +1,41 @@
+#+TITLE:  =venv=, =pip= et =ipython=
+#+AUTHOR: Xavier Garrido
+#+DATE:   14/01/2017
+#+OPTIONS: toc:nil ^:{}
+#+LATEX_HEADER: \setcounter{chapter}{0}
+
+* Python et son écosystème
+
+1) Définir un environnement virtuel que l'on placera dans le répertoire
+   =~/option_python=.
+
+2) Charger ce nouvel environnement et s'assurer que la commande =python= pointe
+   bien vers le répertoire =bin= du répertoire =~/option_python=.
+
+3) Lister les modules actuellement installés puis suivre les recommendations
+   issues de la précédente commande.
+
+4) Installer la version =1.5.2= de la librarie =matplotlib= puis mettez à jour cette
+   dernière.
+
+5) Installer l'interpréteur =ipython= et l'utiliser pour afficher la chaîne de
+   caractères ="Bonjour tout le monde"=
+
+6) Définir une première variable =x1= égale à 10 et une seconde =x2= égale à
+   10.0. Afficher le statut des variables.
+
+7) Afficher la partie réelle puis la partie imaginaire de =x1=. Afficher la taille
+   en bits de =x1=. Lors des différentes opérations, on pourra se servir de
+   l'auto-complétion et de la commande d'aide =?= pour accéder à la documentation
+   de chaque commande.
+
+8) Afficher la documentation de la fonction =input= puis se servir de cette
+   fonction pour demander à l'utilisateur la saisie d'un nombre =y=.
+
+#+BEGIN_REMARK
+Dans toute la suite de cette option et notamment lors des prochains exercices,
+on prendra bien garde de systématiquement charger l'environnement virtuel défini
+lors de ce premier exercice.
+#+END_REMARK
+
+* La calculatrice Python
