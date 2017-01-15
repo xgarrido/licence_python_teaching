@@ -1,0 +1,7 @@
+*.aux
+*.fdb*
+*.tex
+*.toc
+*.sty
+*latex.d*
+*.pdf
