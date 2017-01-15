@@ -4,7 +4,7 @@
 #+OPTIONS: toc:nil ^:{}
 #+LATEX_HEADER: \setcounter{chapter}{0}
 
-* Python et son écosystème
+* L'écosystème Python
 
 1) Définir un environnement virtuel que l'on placera dans le répertoire
    =~/option_python=.
@@ -39,3 +39,17 @@ lors de ce premier exercice.
 #+END_REMARK
 
 * La calculatrice Python
+
+1) Dans l'interpréteur =ipython= réaliser les opérations arithmétiques d'addition,
+   soustraction, multiplication et division sur des nombres entiers ainsi que
+   sur des nombres flottants.
+
+2) Comparer le résultat de la division de deux entiers lorsque vous utilisez
+   l'opérateur =/= et =//=. Dans le second cas,
+
+3) À l'aide de la fonction =type= dont on cherchera le fonctionnement à l'aide de
+   l'opérateur =?= de =ipython=, afficher la nature de nombres entier et flottant.
+
+4) Déclarer deux nombres =i = 10= et =x = 10.0= et tester leur égalité /via/
+   l'opérateur ====. Stocker ce résultat dans une variable =test= et retourner son
+   type.
