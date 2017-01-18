@@ -15,21 +15,28 @@
 3) Lister les modules actuellement installés puis suivre les recommendations
    issues de la précédente commande.
 
-4) Installer la version =1.5.2= de la librarie =matplotlib= puis mettez à jour cette
+4) Installer la version =1.5.2= de la librarie =matplotlib= puis mettre à jour cette
    dernière.
 
-5) Installer l'interpréteur =ipython= et l'utiliser pour afficher la chaîne de
-   caractères ="Bonjour tout le monde"=
+5) Installer l'interpréteur =ipython= et l'utiliser pour vérifier que
+   l'installation de =matplotlib= a été correctement réalisée en
+   important la librairie /via/ la commande
 
-6) Définir une première variable =x1= égale à 10 et une seconde =x2= égale à
+   #+BEGIN_SRC python
+     import matplotlib
+   #+END_SRC
+
+6) Afficher la chaîne de caractères ="Bonjour tout le monde"=
+
+7) Définir une première variable =x1= égale à 10 et une seconde =x2= égale à
    10.0. Afficher le statut des variables.
 
-7) Afficher la partie réelle puis la partie imaginaire de =x1=. Afficher la taille
+8) Afficher la partie réelle puis la partie imaginaire de =x1=. Afficher la taille
    en bits de =x1=. Lors des différentes opérations, on pourra se servir de
    l'auto-complétion et de la commande d'aide =?= pour accéder à la documentation
    de chaque commande.
 
-8) Afficher la documentation de la fonction =input= puis se servir de cette
+9) Afficher la documentation de la fonction =input= puis se servir de cette
    fonction pour demander à l'utilisateur la saisie d'un nombre =y=.
 
 #+BEGIN_REMARK
@@ -53,3 +60,16 @@ lors de ce premier exercice.
 4) Déclarer deux nombres =i = 10= et =x = 10.0= et tester leur égalité /via/
    l'opérateur ====. Stocker ce résultat dans une variable =test= et retourner son
    type.
+
+5) Calculer le nombre de valeurs flottantes pouvant être représentées sur une
+   gamme dynamique de 12 bits.
+
+6) Importer le module mathématiques de Python à l'aide de la commande
+
+   #+BEGIN_SRC python
+     import math
+   #+END_SRC
+
+   En vous servant de l'aide intéractive fournit par =ipython=, déterminer la
+   valeur de factoriel 13. Calculer la valeur du cosinus d'un angle mesurant
+   666°.
