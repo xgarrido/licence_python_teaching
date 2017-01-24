@@ -1,0 +1,365 @@
+#+TITLE:  Variables, structures conditionnelles et autres boucles
+#+AUTHOR: Xavier Garrido
+#+DATE:   22/01/2017
+#+OPTIONS: toc:nil ^:{} author:nil
+#+STARTUP:     beamer
+#+LATEX_CLASS: python-slide
+#+LATEX_HEADER_EXTRA: \usepackage[normalem]{ulem}
+
+* @@beamer:\only<1>{Déclaration de variables}\only<2->{\sout{Déclaration} Initialisation de variables}@@
+
+- En raison du *typage dynamique*, Python permet de déclarer des variables sans en
+  préciser le type (entier, nombre flottant, ...)
+
+#+BEAMER: \pause\vskip5pt
+#+BEGIN_SRC python
+  In [1]: i = 2
+
+  In [2]: x = 10.5
+
+  In [3]: s = "Une noisette, j'la casse entre mes fesses tu vois... JCVD"
+#+END_SRC
+
+#+BEAMER:\pause\vskip5pt
+#+BEGIN_SRC python
+  In [4]: %whos
+  Variable   Type     Data/Info
+  -----------------------------
+  i          int      2
+  s          str      Une noisette, j'la casse <...>es fesses tu vois... JCVD
+  x          float    10.5
+#+END_SRC
+
+
+#+BEGIN_COMMENT
+/cf./ cours
+http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-1-Introduction-to-Python-Programming.ipynb#Assignment
+
+Affectation multiples /cf./ cours http://python.developpez.com/cours/apprendre-python3/?page=page_4#L4-G
+#+END_COMMENT
+
+* Type fondamentaux
+
+- La fonction *=type=* permet d'accéder au type d'une variable
+
+#+BEAMER: \pause
+- *Nombre entier*
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: i = 2
+    In [2]: type(i)
+    Out[2]: int
+  #+END_SRC
+
+#+BEAMER: \pause
+- *Nombre flottant*
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: x = 10.5
+    In [2]: type(x)
+    Out[2]: float
+  #+END_SRC
+
+* Type fondamentaux
+
+- *Nombre complexe*
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: z = 1.5 + 0.5j
+    In [2]: type(z)
+    Out[2]: complex
+    In [3]: z.real
+    Out[3]: 1.5
+    In [4]: z.imag
+    Out[4]: 0.5
+  #+END_SRC
+
+#+BEAMER: \pause
+- *Booléen*
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: b = 3 > 4
+    In [2]: type(b)
+    Out[2]: bool
+    In [3]: b
+    Out[3]: False
+  #+END_SRC
+
+* Conversion explicite
+
+- Nombre entier \to nombre flottant
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: i = 2
+    In [2]: i
+    Out[2]: 2
+    In [3]: x = float(i)
+    In [4]: x
+    Out[4]: 2.0
+  #+END_SRC
+
+#+BEAMER: \pause
+- Nombre entier \to booléen
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: b = bool(i)
+    In [2]: b
+    Out[2]: True
+  #+END_SRC
+
+#+BEGIN_REMARK
+Toutes valeurs différentes de 0 est considérée comme vraie
+#+END_REMARK
+
+#+BEGIN_COMMENT
+/cf./ cours
+http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-1-Introduction-to-Python-Programming.ipynb#Type-casting
+#+END_COMMENT
+
+* Conversion explicite
+
+- Nombre entier \to nombre complexe
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: z = complex(i)
+    In [2]: z
+    Out[2]: (2+0j)
+  #+END_SRC
+
+#+BEAMER: \pause
+- Nombre complexe \to nombre flottant
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: z = 1.5 + 0.5j
+    In [2]: x = float(z.imag)
+    In [3]: x
+    Out[3]: 0.5
+  #+END_SRC
+
+* Opérations & comparaisons
+
+- Opérations arithmétiques =+=, =-=, =*=, =/=, =//= division entière, =**= puissance, =%= modulo
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: 1 + 2, 1 - 2, 1 * 2, 1 / 2
+    Out[1]: (3, -1, 2, 0)
+
+    In [2]: 1.0 + 2.0, 1.0 - 2.0, 1.0 * 2.0, 1.0 / 2.0
+    Out[2]: (3.0, -1.0, 2.0, 0.5)
+
+    In [3]: 2**2
+    Out[3]: 4
+
+    In [4]: 3.0 // 2.0
+    Out[4]: 1.0
+
+    In [5]: 3.0 % 2.0
+    Out[5]: 1.0
+  #+END_SRC
+
+#+BEAMER: \pause
+#+BEGIN_REMARK
+En Python 2.X, la division entière pouvait se faire à l'aide de l'opérateur =/=
+dès lors que des entiers étaient impliqués.
+
+Python 3.X a introduit l'opérateur =//= pour lever toutes ambiguïtés.
+#+END_REMARK
+
+#+BEGIN_COMMENT
+/cf./ cours
+http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-1-Introduction-to-Python-Programming.ipynb#Operators-and-comparisons
+
+Attention à la division dans Python 3.X
+#+END_COMMENT
+
+* Opérations & comparaisons
+
+- Opérations arithmétiques (suite) :  =+==, =-==, =*==, =/==
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: x = 1.0
+    In [2]: x = x + 1.5
+    In [3]: x += 1.5
+
+    In [4]: i = 0
+    In [5]: i+=1
+  #+END_SRC
+
+#+BEAMER: \pause
+#+BEGIN_REMARK
+Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
+#+END_REMARK
+
+* Opérations & comparaisons
+
+- Opérations booléennes : =and=, =or= et =not=
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: True and False
+    Out[1]: False
+
+    In [2]: not False
+    Out[2]: True
+
+    In [3]: True or False
+    Out[3]: True
+  #+END_SRC
+
+* Opérations & comparaisons
+
+- Opérateur de comparaison : =>=, =<=, =>==, =<==, ====, =!==
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: 2 > 1, 2 < 1
+    Out[1]: (True, False)
+
+    In [2]: 2 > 2, 2 < 2
+    Out[2]: (False, False)
+
+    In [3]: 2 == 2
+    Out[3]: True
+
+    In [4]: 2 != 2
+    Out[4]: False
+  #+END_SRC
+
+* Affectation multiples et parallèles
+
+- Python autorise *l'affectation simultanée* d'une même valeur à plusieurs
+  variables
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: x = y = 1.0
+
+    In [2]: x, y
+    Out[2]: (1.0, 1.0)
+  #+END_SRC
+
+  #+BEAMER: \pause
+
+- Python permet également *l'affectation en parallèle* de plusieurs variables
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: x, y = 1.0, 1.0
+
+    In [2]: x, y
+    Out[2]: (1.0, 1.0)
+  #+END_SRC
+
+* Application : échange de deux valeurs
+
+  #+BEGIN_SRC python
+    In [1]: x, y = 1.0, 2.0
+
+    In [2]: x, y
+    Out[2]: (1.0, 2.0)
+
+    In [2]: x, y = y, x
+
+    In [3]: x, y
+    Out[3]: (2.0, 1.0)
+  #+END_SRC
+
+* Mot-clés réservés
+
+- Parmi les bonnes pratiques de programmation, le nom des variables doit être le
+  plus clair et le plus explicite possible pour le développeur comme pour un
+  lecteur non averti
+
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: planck_constant = 6.626e-34 # J.s
+    In [2]: pc = 6.626e-34 # J.s
+    In [3]: energy = pc # WTF !?
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- Toutefois, un certain nombre de mot-clés sont réservés au langage Python
+
+  #+BEGIN_CENTER
+  =and=, =as=, =assert=, =break=, =class=, =continue=, =def=, =del=, =elif=, =else=, =except=, =exec=,
+  =finally=, =for=, =from=, =global=, =if=, =import=, =in=, =is=, *=lambda=*, =not=, =or=, =pass=,
+  =print=, =raise=, =return=, =try=, =while=, =with=, *=yield=*
+  #+END_CENTER
+
+* Intermède /geek/
+
+#+ATTR_LATEX: :width 0.65\linewidth
+[[file:figures/ballmer_peak.png]]
+
+#+BEAMER:\scriptsize\hfill$^\dagger$
+[[http://xkcd.com/323/][xkcd comic]]
+
+* Structure conditionnelle
+
+** =if= python
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+#+BEGIN_SRC python
+  In [1]: test1 = False
+     ...: test2 = False
+     ...:
+     ...: if test1:
+     ...:     print("test1 is True")
+     ...:
+     ...: elif test2:
+     ...:     print("test2 is True")
+     ...:
+     ...: else:
+     ...:     print("test1 and test2 are False")
+#+END_SRC
+
+** Description
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_BEAMER: :overlay +-
+- utilisation des mot-clés *=if/elif/else=*
+- la fin de chaque condition est matérialisée par *le caractère =:=*
+- *l'indentation (4 espaces ou une tabulation) délimite le bloc de condition*
+- dans =ipython=, appuyer sur =Entrée= deux fois pour exécuter le bloc
+
+* Structure conditionnelle
+
+** =if= python
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+#+BEGIN_SRC python
+  In [1]: test1 = False
+     ...: test2 = False
+     ...:
+     ...: if test1:
+     ...:     print("test1 est True")
+     ...:
+     ...: elif test2:
+     ...:     print("test2 est True")
+     ...:
+     ...: else:
+     ...:     print("test1 & test2 sont False")
+#+END_SRC
+
+** =if= C/C++
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+#+BEGIN_SRC C++
+  bool test1 = false;
+  bool test2 = false;
+
+  if (test1)
+    {
+      cout << "test1 est True" << endl;
+    }
+   else if (test2)
+     {
+       cout << "test2 est True" << endl;
+     }
+   else
+     {
+       cout << "test1 & test2 sont False" << endl;
+     }
+#+END_SRC
