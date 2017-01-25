@@ -80,17 +80,16 @@ On notera que le nombre complexe $i$ est noté =j= ou =J= en Python
   #+BEGIN_SRC python
     In [1]: j = 5
 
-    In [2]: 2 + j
-    Out[2]: 7
+    In [2]: 2 + 5*j
+    Out[2]: 27
 
-    In [3]: 2 +5j
+    In [3]: 2 + 5j
     Out[3]: (2+5j)
   #+END_SRC
 #+END_REMARK
 
 * Type fondamentaux
 
-#+ATTR_BEAMER: :overlay +-
 - *Nombre complexe*
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
@@ -210,7 +209,7 @@ Attention à la division dans Python 3.X
     In [3]: x += 1.5
 
     In [4]: i = 0
-    In [5]: i+=1
+    In [5]: i += 1
   #+END_SRC
 
 #+BEAMER: \pause
@@ -282,10 +281,10 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
     In [2]: x, y
     Out[2]: (1.0, 2.0)
 
-    In [2]: x, y = y, x
+    In [3]: x, y = y, x
 
-    In [3]: x, y
-    Out[3]: (2.0, 1.0)
+    In [4]: x, y
+    Out[4]: (2.0, 1.0)
   #+END_SRC
 
 * Mot-clés réservés
@@ -319,11 +318,11 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: type = 666
-    In [2]: type(int)
+    In [2]: type(666)
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
     <ipython-input-2-7e2d10a8adcc> in <module>()
-    ----> 1 type(int)
+    ----> 1 type(666)
 
     TypeError: 'int' object is not callable
   #+END_SRC
@@ -555,9 +554,9 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 * Intermède culturel
 
 #+BEGIN_QUOTE
-"Selon les statistiques, il y a une personne sur cinq qui est
+Selon les statistiques, il y a une personne sur cinq qui est
 déséquilibrée. S'il y a 4 personnes autour de toi et qu'elles te semblent
-normales, c'est pas bon."
+normales, c'est pas bon.
 #+END_QUOTE
 
 #+BEAMER: \hspace{+10cm}
