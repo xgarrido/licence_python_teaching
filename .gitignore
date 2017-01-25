@@ -1,6 +1,12 @@
+*.fls
+*.log
+*.nav
+*.out
+*.vrb
+*.snm
 *.aux
 *.fdb*
-*.tex
+*.tex*
 *.toc
 *.sty
 *latex.d*
