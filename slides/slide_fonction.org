@@ -1,0 +1,11 @@
+#+TITLE:  Fonctions, scripts/modules
+#+AUTHOR: Xavier Garrido
+#+DATE:   22/01/2017
+#+OPTIONS: toc:nil ^:{} author:nil
+#+STARTUP:     beamer
+#+LATEX_CLASS: python-slide
+#+LATEX_HEADER_EXTRA: \usepackage[normalem]{ulem}
+
+* Fonctions intégrées
+
+/cf./ cours "Une petite référence Python" \to Chapitre 1.8

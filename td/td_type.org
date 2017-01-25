@@ -1,0 +1,152 @@
+#+TITLE:  Variables, structure conditionnelle et autres boucles
+#+AUTHOR: Xavier Garrido
+#+DATE:   25/01/2017
+#+OPTIONS: toc:nil ^:{}
+#+LATEX_HEADER: \setcounter{chapter}{1}
+
+#+BEGIN_REMARK
+On n'oubliera pas et on commencera donc ce second TD, en chargeant
+l'environnement virtuel défini lors de la première séance à l'aide de la
+commande =source=.
+#+END_REMARK
+
+* Calculs simples avec des nombres complexes
+
+1) Initialiser deux nombres complexes =z1= et =z2= et réaliser un certain nombre
+   d'opérations mathématiques telles qu'addition, multiplication... entre ces
+   deux nombres. Tester également l'élévation à une puissance de ces nombres
+   complexes.
+
+2) Calculer le module et l'argument de chacun de ces nombres complexes. On
+   s'aidera pour cela de la librairie mathématique =math= de Python.
+
+3) Déterminer à présent le module et l'argument en utilisant la librairie
+   mathématique =cmath= dédiée au calcul sur les nombres complexes.
+
+* Structure conditionnelle, boucles et autres réjouissances
+
+1) En fonction d'une valeur entière saisie par l'utilisateur (on utilisera à
+   cette fin la fonction =input= de Python et on prendra bien garde à convertir le
+   résultat en entier), afficher l'un des messages suivants :
+
+   - "Ce nombre est pair"
+   - "Ce nombre est impair, mais est multiple de 3"
+   - "Ce nombre n'est ni pair ni multiple de 3"
+
+2) Dénombrer le nombre de voyelles dans une phrase que l'utilisateur saisira.
+
+3) Projet Euler n°1[fn:a297e5a90191e07]: Calculer la somme des entiers divisibles
+   par 3 ou par 5 dans l'intervalle $[0,N[$ où $N$ sera fourni par
+   l'utilisateur.
+
+4) Projet Euler n°16: Donner la somme des chiffres de la représentation décimale
+   de $2^N$ où $N$ est un entier naturel fourni par l'utilisateur. Faire de même
+   avec $N!$ (Projet Euler n°20).
+
+5) La suite de Fibonacci est définie de la façon suivante
+   #+BEGIN_SRC latex
+     \begin{align*}
+       \mathcal{F}_1 &= 1 \\
+       \mathcal{F}_2 &= 1 \\
+       ...\\
+       \mathcal{F}_n &= \mathcal{F}_{n-2}+\mathcal{F}_{n-1}
+     \end{align*}
+   #+END_SRC
+
+   1) Calculer le résultat de cette suite pour un ordre $n$ donné par
+      l'utilisateur. On essaiera en particulier de tirer profit de l'affectation
+      parallèle des variables dans Python.
+   2) Projet Euler n°2: Calculer la somme des termes de Fibonacci pairs jusqu'à
+      une valeur $N$ donnée par l'utilisateur.
+   3) Projet Euler n°25: Déterminer l'indice $n$ du premier terme
+      $\mathcal{F}_n$ dont la valeur contient plus de 1000 chiffres.
+
+6) La formule de Wallis permet de calculer la valeur de \pi /via/ l'expression
+   #+BEGIN_SRC latex
+     \begin{align*}
+       \pi = 2\prod_{n=1}^\infty\frac{4n^2}{4n^2-1}
+     \end{align*}
+   #+END_SRC
+   Déterminer le nombre d'itérations $n$ nécessaires pour que la valeur de \pi
+   soit correcte jusqu'à la 7^{ème} décimale.
+
+* Correction                                                     :correction:
+
+1)
+      #+BEGIN_SRC python
+        N = int(input("Quelle est la valeur entière ? "))
+        if N % 2 == 0:
+            print("Ce nombre est pair")
+        elif N % 3 == 0:
+            print("Ce nombre est impair, mais est multiple de 3")
+        else:
+            print("Ce nombre n'est ni pair ni multiple de 3")
+      #+END_SRC
+2)
+      #+BEGIN_SRC python
+        voyelles = "aeiouy"
+        phrase = input("Quelle est la phrase ? ")
+        count = 0
+        for c in phrase:
+            if c in voyelles:
+                count += 1
+        print("Nombre de voyelles =", count)
+      #+END_SRC
+3)
+     #+BEGIN_SRC python
+       N = int(input("Quelle est la valeur de N ? "))
+       somme = 0
+       for i in range(0, N):
+            if i % 3 == 0 or i % 5 == 0:
+                 somme += i
+       print("Somme =", somme)
+     #+END_SRC
+4)
+     #+BEGIN_SRC python
+       N = int(input("Quelle est la valeur de N ? "))
+       somme = 0
+       for i in str(2**N):
+           somme += int(i)
+       print("Somme =", somme)
+     #+END_SRC
+5)
+   1)
+       #+BEGIN_SRC python
+         f = g = 1
+         for i in range(0,11):
+             f, g = g, f+g
+         print("F10 =", f)
+       #+END_SRC
+   2)
+       #+BEGIN_SRC python
+         f = g = 1
+         somme = 0
+         while f < 4e6:
+             if f % 2 == 0:
+                 somme += f
+             f, g = g, f+g
+         print("somme =", somme)
+       #+END_SRC
+   3)
+       #+BEGIN_SRC python
+         f = g = 1
+         n = 0
+         while f < 10**1000:
+             f, g, n = g, f+g, n+1
+         print("n =", n)
+       #+END_SRC
+6)
+   #+BEGIN_SRC python
+     i = 1; p = 1
+     while abs(2*p - math.pi) > 1e-7:
+         p *= 4*i**2/(4*i**2-1)
+         i += 1
+     print(p, i)
+   #+END_SRC
+
+* Footnotes
+
+[fn:a297e5a90191e07] Le /Project Euler/ est situé à l’adresse suivante:
+http://projecteuler.net. Ce site propose un grand nombre de problèmes (587 en
+date du 22/01/2017) aux apprentis programmeurs comme aux programmeurs
+chevronnés.

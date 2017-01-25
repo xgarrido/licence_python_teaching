@@ -61,8 +61,7 @@ lors de ce premier exercice.
    l'opérateur ====. Stocker ce résultat dans une variable =test= et retourner son
    type.
 
-5) Calculer le nombre de valeurs flottantes pouvant être représentées sur une
-   gamme dynamique de 12 bits.
+5) Calculer le nombre de valeurs pouvant être encodées sur 12 bits.
 
 6) Importer le module mathématiques de Python à l'aide de la commande
 

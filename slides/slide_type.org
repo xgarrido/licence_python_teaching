@@ -1,4 +1,4 @@
-#+TITLE:  Variables, structures conditionnelles et autres boucles
+#+TITLE:  Variables, structure conditionnelle et autres boucles
 #+AUTHOR: Xavier Garrido
 #+DATE:   22/01/2017
 #+OPTIONS: toc:nil ^:{} author:nil
@@ -40,9 +40,9 @@ Affectation multiples /cf./ cours http://python.developpez.com/cours/apprendre-p
 
 * Type fondamentaux
 
+#+ATTR_BEAMER: :overlay +-
 - La fonction *=type=* permet d'accéder au type d'une variable
 
-#+BEAMER: \pause
 - *Nombre entier*
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
@@ -51,7 +51,6 @@ Affectation multiples /cf./ cours http://python.developpez.com/cours/apprendre-p
     Out[2]: int
   #+END_SRC
 
-#+BEAMER: \pause
 - *Nombre flottant*
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
@@ -62,6 +61,7 @@ Affectation multiples /cf./ cours http://python.developpez.com/cours/apprendre-p
 
 * Type fondamentaux
 
+#+ATTR_BEAMER: :overlay +-
 - *Nombre complexe*
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
@@ -74,7 +74,35 @@ Affectation multiples /cf./ cours http://python.developpez.com/cours/apprendre-p
     Out[4]: 0.5
   #+END_SRC
 
-#+BEAMER: \pause
+#+BEGIN_REMARK
+On notera que le nombre complexe $i$ est noté =j= ou =J= en Python
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: j = 5
+
+    In [2]: 2 + j
+    Out[2]: 7
+
+    In [3]: 2 +5j
+    Out[3]: (2+5j)
+  #+END_SRC
+#+END_REMARK
+
+* Type fondamentaux
+
+#+ATTR_BEAMER: :overlay +-
+- *Nombre complexe*
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: z = 1.5 + 0.5j
+    In [2]: type(z)
+    Out[2]: complex
+    In [3]: z.real
+    Out[3]: 1.5
+    In [4]: z.imag
+    Out[4]: 0.5
+  #+END_SRC
+
 - *Booléen*
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
@@ -174,7 +202,7 @@ Attention à la division dans Python 3.X
 
 * Opérations & comparaisons
 
-- Opérations arithmétiques (suite) :  =+==, =-==, =*==, =/==
+- Opérations arithmétiques (suite) :  =+==, =-==, =*==, =/==, =%==, =**==
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = 1.0
@@ -269,11 +297,11 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: planck_constant = 6.626e-34 # J.s
-    In [2]: pc = 6.626e-34 # J.s
-    In [3]: energy = pc # WTF !?
+    In [2]: pc = 6.626e-34              # J.s
+    In [3]: energy = pc                 # WTF !?
   #+END_SRC
 
-#+BEAMER: \pause
+* Mot-clés réservés
 
 - Toutefois, un certain nombre de mot-clés sont réservés au langage Python
 
@@ -282,6 +310,23 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
   =finally=, =for=, =from=, =global=, =if=, =import=, =in=, =is=, *=lambda=*, =not=, =or=, =pass=,
   =print=, =raise=, =return=, =try=, =while=, =with=, *=yield=*
   #+END_CENTER
+
+#+BEAMER: \pause
+
+- Rien n'empêche en revanche, utiliser des noms de variables identiques à
+  certaines fonctions du Python
+
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: type = 666
+    In [2]: type(int)
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    <ipython-input-2-7e2d10a8adcc> in <module>()
+    ----> 1 type(int)
+
+    TypeError: 'int' object is not callable
+  #+END_SRC
 
 * Intermède /geek/
 
@@ -302,13 +347,13 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
      ...: test2 = False
      ...:
      ...: if test1:
-     ...:     print("test1 is True")
+     ...:     print("test1 est True")
      ...:
      ...: elif test2:
-     ...:     print("test2 is True")
+     ...:     print("test2 est True")
      ...:
      ...: else:
-     ...:     print("test1 and test2 are False")
+     ...:     print("test1 & test2 sont False")
 #+END_SRC
 
 ** Description
@@ -363,3 +408,157 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
        cout << "test1 & test2 sont False" << endl;
      }
 #+END_SRC
+
+* Structure conditionnelle
+
+- Python offre la possibilité de former des /expressions/ dont l'évaluation est
+  soumise à une condition
+
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: x = 2.0
+
+    In [2]: y = x if x < 0 else x**2
+    In [3]: y
+    Out[3]: 4.0
+
+    In [4]: print("y est positif" if y > 0 else "y est négatif")
+    Out[4]: y est positif
+  #+END_SRC
+
+* Répétition conditionnelle
+
+- Pour répéter un bloc d'instructions tant qu'une condition est réalisée, Python
+  propose la clause *=while=*
+
+- Suite de Syracuse
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [3]: n = 27
+    In [4]: while n != 1:
+       ...:     if n % 2:
+       ...:         n = 3*n+1
+       ...:     else:
+       ...:         n //= 2
+       ...:     print(n, end=" ")
+       ...:
+    82 41 124 62 31 94 47 142 71 214 107 322 161 484 242 121 364 182 91 274 137 412 206 103
+    310 155 466 233 700 350 175 526 263 790 395 1186 593 1780 890 445 1336 668 334 167 502
+    251 754 377 1132 566 283 850 425 1276 638 319 958 479 1438 719 2158 1079 3238 1619 4858
+    2429 7288 3644 1822 911 2734 1367 4102 2051 6154 3077 9232 4616 2308 1154 577 1732 866
+    433 1300 650 325 976 488 244 122 61 184 92 46 23 70 35 106 53 160 80 40 20 10 5 16 8 4 2 1
+  #+END_SRC
+
+* Boucles =for=
+
+- Pour répéter un certain nombre de fois un bloc d'instructions, on utilisera la
+  construction suivante
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    for variable in objet:
+        bloc de commandes
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- Exemple :
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: for c in "abcdef":
+      ...: print(c)
+      ...:
+      a
+      b
+      c
+      d
+      e
+      f
+  #+END_SRC
+
+* Boucles =for=
+
+- Autres exemples:
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: for i in range(4):
+       ...:     print(i)
+       ...:
+       0
+       1
+       2
+       3
+  #+END_SRC
+
+  #+BEAMER: \pause \vskip15pt
+  #+BEGIN_SRC python
+    In [1]: for i in range(-4, 4, 2):
+       ...:     print(i)
+       ...:
+       -4
+       -2
+       0
+       2
+  #+END_SRC
+
+* Instructions =break= & =continue=
+
+- Pour quitter une boucle =for= en cours d'exécution, on utilisera l'instruction
+  *=break=*
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: for i in range(-4,4,2):
+       ...:     if i == 0:
+       ...:         break
+       ...:     print(i)
+       ...:
+    -4
+    -2
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- S'il s'agit de passer outre le bloc d'instruction suivant, on utilisera
+  l'instruction *=continue=*
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: for i in range(-4,4,2):
+       ...:     if i == 0:
+       ...:         continue
+       ...:     print(i)
+       ...:
+    -4
+    -2
+    2
+  #+END_SRC
+
+* Instructions =break= & =continue=
+
+- S'il s'agit de passer outre le bloc d'instruction suivant, on utilisera
+  l'instruction *=continue=*
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: for i in range(-4,4,2):
+       ...:     if i == 0:
+       ...:         continue
+       ...:     print(i)
+       ...:
+    -4
+    -2
+    2
+  #+END_SRC
+
+  #+BEGIN_REMARK
+  L'instruction =continue= est particulièrement utile afin d'éviter une trop grande
+  imbrication d'instructions =if= successives.
+  #+END_REMARK
+
+* Intermède culturel
+
+#+BEGIN_QUOTE
+"Selon les statistiques, il y a une personne sur cinq qui est
+déséquilibrée. S'il y a 4 personnes autour de toi et qu'elles te semblent
+normales, c'est pas bon."
+#+END_QUOTE
+
+#+BEAMER: \hspace{+10cm}
+/JCVD/
