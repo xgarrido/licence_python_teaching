@@ -1,4 +1,4 @@
-#+TITLE:  Fonctions, scripts/modules
+#+TITLE:  Séquences, fonctions & utilisation de scripts/modules
 #+AUTHOR: Xavier Garrido
 #+DATE:   22/01/2017
 #+OPTIONS: toc:nil ^:{} author:nil
@@ -6,6 +6,441 @@
 #+LATEX_CLASS: python-slide
 #+LATEX_HEADER_EXTRA: \usepackage[normalem]{ulem}
 
+* Les séquences ou /containers/
+
+- En plus des types fondamentaux, Python propose nativement un ensemble d'objets
+  à accès séquentiel dont :
+  - les chaînes de caractère
+  - les listes & /tuples/
+  - les dictionnaires
+
+* Les chaînes de caractères
+
+#+BEGIN_SRC python
+  In [1]: citation = "Une noisette, j'la casse entre mes fesses tu vois... JCVD"
+
+  In [2]: type(citation)
+  Out[2]: str
+
+  In [3]: len(citation)
+  Out[3]: 57
+#+END_SRC
+
+#+BEGIN_REMARK
+La fonction =len()= comme la fonction =type()= sont toutes deux des fonctions
+intégrées au langage Python (/cf./ [[Fonctions intégrées]["Fonctions intégrées"]])
+#+END_REMARK
+
+* Les chaînes de caractères
+#+BEAMER: \framesubtitle{Apostrophe, guillemets \& triple guillemets}
+
+#+ATTR_BEAMER: :overlay +-
+- Chaîne de caractères délimitée par des guillemets
+ #+BEAMER:\vskip5pt
+ #+BEGIN_SRC python
+    In [1]: "Une noisette, j'la casse entre mes fesses tu vois... JCVD"
+  #+END_SRC
+
+- Chaîne de caractères délimitée par de simples apostrophes
+ #+BEAMER:\vskip5pt
+ #+BEGIN_SRC python
+   In [1]: 'Une noisette, j'la casse entre mes fesses tu vois... JCVD'
+     File "<ipython-input-17-39c8b67fd376>", line 1
+       'Une noisette, j'la casse entre mes fesses tu vois... JCVD'
+
+   SyntaxError: invalid syntax
+ #+END_SRC
+
+ #+BEAMER:\vskip5pt
+ #+BEGIN_SRC python
+   In [2]: 'Une noisette, j\'la casse entre mes fesses tu vois... JCVD'
+ #+END_SRC
+
+* Les chaînes de caractères
+#+BEAMER: \framesubtitle{Apostrophe, guillemets \& triple guillemets}
+
+- Chaîne de caractères délimitée par des guillemets
+ #+BEAMER:\vskip5pt
+ #+BEGIN_SRC python
+    In [1]: "Une noisette, j'la casse entre mes fesses tu vois... JCVD"
+  #+END_SRC
+
+- Chaîne de caractères délimitée par de simples apostrophes
+ #+BEAMER:\vskip5pt
+ #+BEGIN_SRC python
+   In [2]: 'Une noisette, j\'la casse entre mes fesses tu vois... JCVD'
+ #+END_SRC
+
+- Chaîne de caractères délimitée par des triples guillemets \to *documentation de
+  fonctions*
+ #+BEAMER:\vskip5pt
+ #+BEGIN_SRC python
+   In [3]: """Une noisette,
+   j'la casse entre mes fesses tu vois...
+   JCVD"""
+ #+END_SRC
+
+* Les chaînes de caractères
+#+BEAMER: \framesubtitle{Les méthodes associées}
+
+- Les méthodes ou fonctions membres associées aux objets de type =str= sont
+  accessibles par le biais de *l'opérateur =.=*
+
+  #+BEAMER:\pause\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: question = "Qu'est-ce qu'un chat qui travaille à la SNCF ?"
+
+    In [2]: question.upper()
+    Out[2]: "QU'EST-CE QU'UN CHAT QUI TRAVAILLE À LA SNCF ?"
+  #+END_SRC
+
+  #+BEAMER:\pause\vskip5pt
+  #+BEGIN_SRC python
+    In [3]: reponse = "un cheminou"
+
+    In [4]: reponse.capitalize().center(20)
+    Out[4]: '    Un cheminou     '
+
+    In [5]: reponse.capitalize().center(20).strip()
+    Out[5]: 'Un cheminou'
+  #+END_SRC
+
+#+BEAMER:\pause
+- L'ensemble de ces méthodes sont accessibles /via/ l'aide en ligne de =ipython= /i.e./
+  =help(str)= ou en usant de la complétion soit =reponse.<TAB>=
+
+* Les chaînes de caractères
+#+BEAMER: \framesubtitle{Parcours \& sélection de chaînes}
+
+- Parcours par indice : =str[indice]=
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
+
+    In [2]: citation[0]
+    Out[2]: 'C'
+
+    In [3]: citation[2]
+    Out[3]: 'u'
+
+    In [4]: citation[-1]
+    Out[4]: '.'
+  #+END_SRC
+
+* Les chaînes de caractères
+#+BEAMER: \framesubtitle{Parcours \& sélection de chaînes}
+
+- Sélection de sous-chaînes : =str[début:fin:pas]=
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
+
+    In [2]: citation[0:5]
+    Out[2]: 'Chuck'
+
+    In [3]: citation[2:4]
+    Out[3]: 'uc'
+
+    In [4]: citation[:5]
+    Out[4]: 'Chuck'
+
+    In [5]: citation[5:]
+    Out[5]: " Norris a déjà compté jusqu'à l'infini. Deux fois."
+
+    In [6]: citation[::2]
+    Out[6]: "CukNri  éàcmt uq' 'nii exfi."
+
+    In [7]: citation[::-1]
+    Out[7]: ".siof xueD .inifni'l à'uqsuj étpmoc àjéd a sirroN kcuhC"
+  #+END_SRC
+
+* Les chaînes de caractères
+#+BEAMER: \framesubtitle{Parcours \& sélection de chaînes}
+
+- Remplacement de sous-chaînes :
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
+
+    In [2]: citation[6] = "D"
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    <ipython-input-53-7080d03086cc> in <module>()
+    ----> 1 citation[6] = "D"
+
+    TypeError: 'str' object does not support item assignment
+  #+END_SRC
+
+  #+BEAMER: \pause
+  #+BEGIN_REMARK
+  Une chaîne de caractères est _un objet non /mutable/_ : on ne peut modifier
+  l'objet qu'à la condition de créer une nouvelle référence en mémoire !
+  #+END_REMARK
+
+* Les chaînes de caractères
+#+BEAMER: \framesubtitle{Parcours \& sélection de chaînes}
+
+#+ATTR_BEAMER: :overlay +-
+- Remplacement de sous-chaînes :
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
+    In [2]: id(citation)
+    Out[2]: 139717789098984
+
+    In [3]: citation = citation[0:6] + "D" + citation[7:]
+    In [4]: id(citation)
+    Out[4]: 139717714061872
+  #+END_SRC
+
+- Pour le remplacement de sous-chaînes, on tirera profit de la méthode =replace=
+  associée aux méthodes =index= et =find=
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
+    In [2]: citation = citation.replace("Chuck Norris", "Patrick Puzo")
+  #+END_SRC
+
+* Les chaînes de caractères
+#+BEAMER: \framesubtitle{Opérations logiques et arithmétiques}
+
+#+ATTR_BEAMER: :overlay +-
+- Vérification de présence :
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
+    In [2]: "Chuck" in citation
+    Out[2]: True
+
+    In [3]: "Patrick" not in citation
+    Out[3]: True
+  #+END_SRC
+
+- Concaténation :
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
+    In [2]: citation + "Mais seulement " + str(1) + " fois jusqu'à moins l'infini."
+
+    In [3]: citation*2
+    Out[3]: "Chuck Norris a déjà [...].Chuck Norris a déjà [...]"
+  #+END_SRC
+
+* Les chaînes de caractères
+#+BEAMER: \framesubtitle{Format et \emph{Formatage}}
+
+- Utilisation des formats de données du C[fn:20089b4921487a8]
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: "Un entier: %i; un nombre flottant: %f; une chaîne : %s" % (1, 0.1, "toto")
+    Out[1]: 'Un entier: 1; un nombre flottant: 0.100000; une chaîne : toto'
+
+    In [2]: i = 2
+    In [3]: filename = "processing_of_dataset_%03d.txt" % i
+    In [4]: filename
+    Out[4]: 'processing_of_dataset_002.txt'
+  #+END_SRC
+
+* Les chaînes de caractères
+#+BEAMER: \framesubtitle{Format et \emph{Formatage}}
+
+- Utilisation de la méthode =format=[fn:14f65e5336818de0]
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: canevas = "Nom: {}, prénom: {}, date de naissance: {}"
+
+    In [2]: canevas.format("Van Rossum", "Guido", "31/01/1956")
+    Out[2]: 'Nom: Van Rossum, prénom: Guido, date de naissance: 31/01/1956'
+  #+END_SRC
+
+  #+BEAMER:\pause\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: canevas = "Nom: {nom}, prénom: {prenom}, date de naissance: {date}"
+
+    In [2]: canevas.format(date="31/01/1956", nom="Van Rossum", prenom="Guido")
+    Out[2]: 'Nom: Van Rossum, prénom: Guido, date de naissance: 31/01/1956'
+  #+END_SRC
+
+  #+BEAMER:\pause\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: canevas = "L'année {0:d} s'écrit {0:b} en binaire et {0:x} en héxadécimal"
+
+    In [2]: canevas.format(2017)
+    Out[2]: "L'année 2017 s'écrit 11111100001 en binaire et 7e1 en héxadécimal"
+  #+END_SRC
+
+* Les listes & /tuples/
+#+BEAMER: \framesubtitle{Initialisation d'une liste}
+
+#+ATTR_BEAMER: :overlay +-
+- Une liste est un objet qui permet de stocker *une collection d'objets de tous
+  types*
+
+- Initialisation d'une liste
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: l = []
+
+    In [2]: l = ["salade", "tomates", "oignons", "sauce blanche"]
+
+    In [3]: l = [1, 2, 3, 4]
+
+    In [4]: l = [1, 2, "bleu", 3, 4]
+    Out[4]: [1, 2, 'bleu', 3, 4]
+
+    In [5]: type(l)
+    Out[5]: list
+  #+END_SRC
+
+* Les listes & /tuples/
+#+BEAMER: \framesubtitle{Initialisation d'une liste}
+
+#+ATTR_BEAMER: :overlay +-
+- Conversion en liste
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: l = list(range(4))
+    In [2]: l
+    Out[2]: [0, 1, 2, 3]
+
+    In [3]: l = list("abcdef")
+    In [4]: l
+    Out[4]: ['a', 'b', 'c', 'd', 'e', 'f']
+  #+END_SRC
+
+- Initialisation d'une liste "en compréhension"
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: l = [x**2 for x in range(4)]
+    In [2]: l
+    Out[2]: [0, 1, 4, 9]
+
+    In [3]: l = [x**2 for x in range(1,100) if x % 10 == 3]
+    In [4]: l
+    Out[4]: [9, 169, 529, 1089, 1849, 2809, 3969, 5329, 6889, 8649]
+  #+END_SRC
+
+* Les listes & /tuples/
+#+BEAMER: \framesubtitle{Manipulation d'une liste}
+
+- Accès par indice
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: l = ["salade", "tomates", "oignons", "sauce blanche"]
+
+    In [2]: l[2]
+    Out[2]: 'oignons'
+
+    In [3]: l[-1]
+    Out[3]: 'sauce blanche'
+    In [4]: l[-2]
+    Out[4]: 'oignons'
+
+    In [5]: l[1:3]
+    Out[5]: ['tomates', 'oignons']
+
+    In [6]: l[0] = "sans salade"
+    In [7]: l
+    Out[7]: ['sans salade', 'tomates', 'oignons', 'sauce blanche']
+  #+END_SRC
+
+#+BEAMER: \pause
+#+BEGIN_REMARK
+À la différence des chaînes de caractères, les listes sont des objets _mutables_ !
+#+END_REMARK
+
+* Les listes & /tuples/
+#+BEAMER: \framesubtitle{Manipulation d'une liste}
+
+- Ajout & suppression d'éléments
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: l = ["salade", "tomates", "oignons", "sauce blanche"]
+
+    In [2]: l.append("frites")
+    In [3]: l
+    Out[3]: ['salade', 'tomates', 'oignons', 'sauce blanche', 'frites']
+
+    In [4]: l.pop()
+    Out[4]: 'frites'
+    In [5]: l
+    Out[5]: ['salade', 'tomates', 'oignons', 'sauce blanche']
+
+    In [6]: l.extend(['frites', 'coca'])
+    In [7]: l
+    Out[7]: ['salade', 'tomates', 'oignons', 'sauce blanche', 'frites', 'coca']
+
+    In [8]: l.insert(3, "harissa")
+    In [9]: l
+    Out[9]: ['tomates', 'sauce blanche', 'salade', 'harissa', 'oignons']
+  #+END_SRC
+
+* Les listes & /tuples/
+#+BEAMER: \framesubtitle{Manipulation d'une liste}
+
+- Tri de listes
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: l = ["salade", "tomates", "oignons", "sauce blanche"]
+
+    In [2]: l.sort()
+    In [3]: l
+    Out[3]: ['oignons', 'salade', 'sauce blanche', 'tomates']
+
+    In [4]: l.reverse()
+    In [5]: l
+    Out[5]: ['tomates', 'sauce blanche', 'salade', 'oignons']
+  #+END_SRC
+
+- Comme pour les chaînes de caractères, l'ensemble des méthodes associées aux
+  objets de type =list= sont accessibles /via/ l'aide en ligne de =ipython= /i.e./
+  =help(list)= ou en utilisant la complétion =l.<TAB>=
+
+* Les listes & /tuples/
+
+- Un /tuple/ correspond à *une liste /immutable/*
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: t = ("salade", "tomates", "oignons", "sauce blanche")
+
+    In [2]: t
+    Out[2]: ('salade', 'tomates', 'oignons', 'sauce blanche')
+
+    In [3]: type(t)
+    Out[3]: tuple
+
+    In[4]: t[0] = "saucisson"
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    <ipython-input-145-2c877a5b0218> in <module>()
+    ----> 1 t[0] = "toto"
+
+    TypeError: 'tuple' object does not support item assignment
+ #+END_SRC
+
+
+* Intermède /geek/
+
+#+ATTR_LATEX: :width 0.65\linewidth
+[[file:figures/ineffective_sorts.png]]
+
+#+BEAMER:\scriptsize\hfill$^\dagger$
+[[http://xkcd.com/1185/][xkcd comic]]
+
 * Fonctions intégrées
 
 /cf./ cours "Une petite référence Python" \to Chapitre 1.8
+
+* Une fonction renvoyant plusieurs valeurs
+
+https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-listes-et-tuples-1-2#/id/r-2232360
+
+* Fonction lambda
+
+https://openclassrooms.com/courses/apprenez-a-programmer-en-python/pas-a-pas-vers-la-modularite-1-2#/id/r-231371
+
+* Footnotes
+
+[fn:20089b4921487a8] /cf./ [[https://en.wikipedia.org/wiki/Printf_format_string][C-style format]]
+
+[fn:14f65e5336818de0] /cf./ [[https://docs.python.org/3/library/string.html#new-string-formatting][Python 3 string format]]

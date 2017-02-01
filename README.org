@@ -1751,7 +1751,7 @@ Then define the custom beamer template
     \begin{textblock}{8}(7,10)
       \begin{flushright}
         {%
-          \usebeamerfont{title}\usebeamercolor[bg]{title}\insertprefixtitle\inserttitle\par%
+          \usebeamerfont{title}\usebeamercolor[bg]{title}\insertprefixtitle{\vspace{+0.2em}\LARGE\inserttitle}\par%
         }%
         \ifx\insertauthor\@empty%
         \else%
@@ -2005,7 +2005,7 @@ up. Practically, everything can be done within this section.
   \setbeamerfont{title}{series=\bfseries, size=\Large}
   \setbeamerfont{frametitle}{series=\bfseries}
   \setbeamertemplate{frametitle}{\vskip+10pt\hfill\insertframetitle\\\hfill\small\insertframesubtitle}
-  \renewcommand{\insertprefixtitle}{\textbf{Option « Programmation en Python »\\}}
+  \renewcommand{\insertprefixtitle}{{\color{gray}\small\textbf{Option « Programmation en Python »\\}}}
 #+END_SRC
 ****** =quote= environment
 #+BEGIN_SRC latex

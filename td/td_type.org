@@ -18,10 +18,12 @@ commande =source=.
    complexes.
 
 2) Calculer le module et l'argument de chacun de ces nombres complexes. On
-   s'aidera pour cela de la librairie mathématique =math= de Python.
+   s'aidera pour cela de la librairie mathématique =math= de Python déjà présente
+   dans le système.
 
 3) Déterminer à présent le module et l'argument en utilisant la librairie
-   mathématique =cmath= dédiée au calcul sur les nombres complexes.
+   mathématique =cmath= dédiée au calcul sur les nombres complexes et également
+   présente par défaut dans Python.
 
 * Structure conditionnelle, boucles et autres réjouissances
 
