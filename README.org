@@ -123,6 +123,17 @@ Only include one default package and remove all the crapppy stuff included by
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  (add-to-list 'org-latex-classes
+               '("python-slide-handout"
+                 "\\documentclass[c,aspectratio=32,9pt,handout]{beamer}
+                  [PACKAGES]
+                  \\usepackage[python_teaching]{slide-style}
+                  [NO-DEFAULT-PACKAGES]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 #+END_SRC
 
 We also translate *bold* into beamer =structure= and underline into *bold*.
