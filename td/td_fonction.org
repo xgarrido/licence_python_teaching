@@ -1,0 +1,99 @@
+#+TITLE:  Containers et fonctions
+#+AUTHOR: Xavier Garrido
+#+DATE:   01/02/2017
+#+OPTIONS: toc:nil ^:{}
+#+LATEX_HEADER: \setcounter{chapter}{2}
+
+#+BEGIN_REMARK
+On n'oubliera pas et on commencera donc ce second TD, en chargeant
+l'environnement virtuel défini lors de la première séance à l'aide de la
+commande =source=.
+#+END_REMARK
+
+* Utilisation des /containers/ de Python
+
+1) Reprendre le Projet Euler n°1 dont l'objet est le calcul de la somme des
+   entiers divisibles par 3 ou par 5 dans l'intervalle $[0,N[$ *en utilisant une
+   liste établie "en compréhension"*. On s'aidera de la fonction intégrée =sum=
+   pour calculer la somme.
+
+2) Projet Euler n°6 : Calculer le résultat de la formule suivante
+   #+BEGIN_SRC latex
+     \begin{align*}
+       \left(\sum_{k=1}^nk\right)^2 -\sum_{k=1}^nk^2
+     \end{align*}
+   #+END_SRC
+   où $n$ sera saisi par l'utilisateur.
+
+3) On s'aidera des méthodes =join= et =split= de la classe =str=. Demander à
+   l'utilisateur de saisir une chaîne de caractères puis
+   1) renvoyer une chaîne telle qu'un lecteur l'aurait lue de droite à gauche
+   2) renvoyer une chaîne où le premier mot devient le dernier, le second mot
+      devient l'avant dernier, ...
+   3) renvoyer la chaîne de caractères saisie sans les voyelles
+
+4) Demander à l'utilisateur de saisir son nom, prénom et âge sur une seule ligne
+   et en utilisant le caractère =,= comme séparateur de champ.
+
+   1) Présenter le résultat sous la forme "Votre nom et prénom sont XXX XXX et
+      vous êtes agé(e) de XXX" en n'oubliant les majuscules les majuscules aux noms
+      propres.
+   2) Créer ensuite un dictionnaire indexé sur le nom de la personne et
+      conservant son âge.
+
+5) Demander à plusieurs utilisateurs de saisir nom, prénom et âge en utilisant
+   toujours le caractère =,= comme séparateur de champ et stocker chacune des
+   chaînes dans une liste. On terminera la saisie en entrant le caractère
+   =$=. Construire un dictionnaire toujours indexé sur le nom mais qui
+   conservera le prénom et l'âge de la personne. Présenter finalement chacune
+   des entrées du dictionnaire sous une forme intelligible.
+
+* Modularité
+
+- Dans un fichier intitulé =euler_project.py=, reprener les différentes
+  solutions aux projets Euler résolus jusqu'à présent et isoler ces solutions
+  dans des fonctions dont le nom correspondra au numéro du projet préfixé du
+  terme =euler=. Documenter chacune de ces fonctions puis résoudre les 587
+  problèmes proposés[fn:1da3e3a46156a060]
+
+- Exécuter le fichier =euler_project.py= dans la console =ipython= à l'aide de
+  la commande =%run euler_project.py=. Tester les différentes fonctions puis
+  construiser un dictionnaire qui associera le numéro du projet à la fonction
+  idoine. Demander finalement à l'utilisateur quel numéro de projet résoudre,
+  s'assurer que le projet a une solution et proposer cette solution.
+
+* Correction                                                     :correction:
+
+1)
+   #+BEGIN_SRC python
+     sum([x for x in range(N) if x % 3 == 0 or x % 5 == 0])
+   #+END_SRC
+2)
+   #+BEGIN_SRC python
+     N = int(input("Quelle est la valeur de N ? "))
+     r = range(1, N+1)
+     sum(r)**2 - sum([x**2 for x in r])
+   #+END_SRC
+
+3)
+   #+BEGIN_SRC python
+     s = input("Saisissez votre phrase\n")
+     s[::-1]
+     " ".join(s.split()[::-1])
+     "".join(c for c in s if c.lower() not in "aeiouy")
+   #+END_SRC
+
+5)
+   #+BEGIN_SRC python
+     infos=[]
+     while True:
+         print("Tapez '$' pour quitter...")
+         chaine = input()
+         if chaine == "$":
+             break
+         infos.append(chaine)
+   #+END_SRC
+
+* Footnotes
+
+[fn:1da3e3a46156a060] je plaisante ! ne le faites pas
