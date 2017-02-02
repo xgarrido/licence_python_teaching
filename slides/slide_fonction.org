@@ -1,10 +1,9 @@
-#+TITLE:  Séquences, fonctions & utilisation de scripts/modules
+#+TITLE:  /Containers/ et autres fonctions
 #+AUTHOR: Xavier Garrido
 #+DATE:   22/01/2017
 #+OPTIONS: toc:nil ^:{} author:nil
 #+STARTUP:     beamer
-#+LATEX_CLASS: python-slide
-#+LATEX_HEADER_EXTRA: \usepackage[normalem]{ulem}
+#+LATEX_CLASS: python-slide-handout
 
 * Les séquences ou /containers/
 
@@ -28,7 +27,7 @@
 
 #+BEGIN_REMARK
 La fonction =len()= comme la fonction =type()= sont toutes deux des fonctions
-intégrées au langage Python (/cf./ [[Fonctions intégrées]["Fonctions intégrées"]])
+intégrées au langage Python
 #+END_REMARK
 
 * Les chaînes de caractères
@@ -269,7 +268,7 @@ intégrées au langage Python (/cf./ [[Fonctions intégrées]["Fonctions intégr
     Out[2]: "L'année 2017 s'écrit 11111100001 en binaire et 7e1 en héxadécimal"
   #+END_SRC
 
-* Les listes & /tuples/
+* Les listes
 #+BEAMER: \framesubtitle{Initialisation d'une liste}
 
 #+ATTR_BEAMER: :overlay +-
@@ -281,7 +280,7 @@ intégrées au langage Python (/cf./ [[Fonctions intégrées]["Fonctions intégr
   #+BEGIN_SRC python
     In [1]: l = []
 
-    In [2]: l = ["salade", "tomates", "oignons", "sauce blanche"]
+    In [2]: l = ["rouge", "vert", "bleu", "noir"]
 
     In [3]: l = [1, 2, 3, 4]
 
@@ -292,7 +291,7 @@ intégrées au langage Python (/cf./ [[Fonctions intégrées]["Fonctions intégr
     Out[5]: list
   #+END_SRC
 
-* Les listes & /tuples/
+* Les listes
 #+BEAMER: \framesubtitle{Initialisation d'une liste}
 
 #+ATTR_BEAMER: :overlay +-
@@ -320,27 +319,27 @@ intégrées au langage Python (/cf./ [[Fonctions intégrées]["Fonctions intégr
     Out[4]: [9, 169, 529, 1089, 1849, 2809, 3969, 5329, 6889, 8649]
   #+END_SRC
 
-* Les listes & /tuples/
+* Les listes
 #+BEAMER: \framesubtitle{Manipulation d'une liste}
 
 - Accès par indice
   #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
-    In [1]: l = ["salade", "tomates", "oignons", "sauce blanche"]
+    In [1]: kebab = ["salade", "tomates", "oignons", "sauce blanche"]
 
-    In [2]: l[2]
+    In [2]: kebab[2]
     Out[2]: 'oignons'
 
-    In [3]: l[-1]
+    In [3]: kebab[-1]
     Out[3]: 'sauce blanche'
-    In [4]: l[-2]
+    In [4]: kebab[-2]
     Out[4]: 'oignons'
 
-    In [5]: l[1:3]
+    In [5]: kebab[1:3]
     Out[5]: ['tomates', 'oignons']
 
-    In [6]: l[0] = "sans salade"
-    In [7]: l
+    In [6]: kebab[0] = "sans salade"
+    In [7]: kebab
     Out[7]: ['sans salade', 'tomates', 'oignons', 'sauce blanche']
   #+END_SRC
 
@@ -349,75 +348,155 @@ intégrées au langage Python (/cf./ [[Fonctions intégrées]["Fonctions intégr
 À la différence des chaînes de caractères, les listes sont des objets _mutables_ !
 #+END_REMARK
 
-* Les listes & /tuples/
+* Les listes
 #+BEAMER: \framesubtitle{Manipulation d'une liste}
 
 - Ajout & suppression d'éléments
   #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
-    In [1]: l = ["salade", "tomates", "oignons", "sauce blanche"]
+    In [1]: kebab = ["salade", "tomates", "oignons", "sauce blanche"]
 
-    In [2]: l.append("frites")
-    In [3]: l
+    In [2]: kebab.append("frites")
+    In [3]: kebab
     Out[3]: ['salade', 'tomates', 'oignons', 'sauce blanche', 'frites']
 
-    In [4]: l.pop()
+    In [4]: kebab.pop()
     Out[4]: 'frites'
-    In [5]: l
+    In [5]: kebab
     Out[5]: ['salade', 'tomates', 'oignons', 'sauce blanche']
 
-    In [6]: l.extend(['frites', 'coca'])
-    In [7]: l
+    In [6]: kebab.extend(['frites', 'coca'])
+    In [7]: kebab
     Out[7]: ['salade', 'tomates', 'oignons', 'sauce blanche', 'frites', 'coca']
 
-    In [8]: l.insert(3, "harissa")
-    In [9]: l
+    In [8]: kebab.insert(3, "harissa")
+    In [9]: kebab
     Out[9]: ['tomates', 'sauce blanche', 'salade', 'harissa', 'oignons']
   #+END_SRC
 
-* Les listes & /tuples/
+* Les listes
+#+BEAMER: \framesubtitle{Manipulation d'une liste}
+
+#+ATTR_BEAMER: :overlay +-
+- Parcourir une liste
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: kebab = ["salade", "tomates", "oignons", "sauce blanche"]
+
+    In [2]: for item in kebab:
+       ...:     print(item)
+    salade
+    tomates
+    oignons
+    sauce blanche
+  #+END_SRC
+
+- Parcourir une liste en conservant l'indice
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: kebab = ["salade", "tomates", "oignons", "sauce blanche"]
+
+    In [2]: for idx in range(0, len(kebab)):
+       ...:     print(idx, kebab[idx])
+    0 salade
+    1 tomates
+    2 oignons
+    3 sauce blanche
+
+    In [3]: for idx, item in enumerate(kebab):
+       ...:     print(idx, kebab[idx])
+  #+END_SRC
+
+* Les listes
 #+BEAMER: \framesubtitle{Manipulation d'une liste}
 
 - Tri de listes
   #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
-    In [1]: l = ["salade", "tomates", "oignons", "sauce blanche"]
+    In [1]: kebab = ["salade", "tomates", "oignons", "sauce blanche"]
 
-    In [2]: l.sort()
-    In [3]: l
+    In [2]: kebab.sort()
+    In [3]: kebab
     Out[3]: ['oignons', 'salade', 'sauce blanche', 'tomates']
 
-    In [4]: l.reverse()
-    In [5]: l
+    In [4]: kebab.reverse()
+    In [5]: kebab
     Out[5]: ['tomates', 'sauce blanche', 'salade', 'oignons']
   #+END_SRC
 
 - Comme pour les chaînes de caractères, l'ensemble des méthodes associées aux
   objets de type =list= sont accessibles /via/ l'aide en ligne de =ipython= /i.e./
-  =help(list)= ou en utilisant la complétion =l.<TAB>=
+  =help(list)= ou en utilisant la complétion =kebab.<TAB>=
 
-* Les listes & /tuples/
+* Les /tuples/
 
 - Un /tuple/ correspond à *une liste /immutable/*
   #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
-    In [1]: t = ("salade", "tomates", "oignons", "sauce blanche")
+    In [1]: kebab = ("salade", "tomates", "oignons", "sauce blanche")
 
-    In [2]: t
+    In [2]: kebab
     Out[2]: ('salade', 'tomates', 'oignons', 'sauce blanche')
 
-    In [3]: type(t)
+    In [3]: type(kebab)
     Out[3]: tuple
 
-    In[4]: t[0] = "saucisson"
+    In[4]: kebab[0] = "saucisson"
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
     <ipython-input-145-2c877a5b0218> in <module>()
-    ----> 1 t[0] = "toto"
+    ----> 1 kebab[0] = "saucisson"
 
     TypeError: 'tuple' object does not support item assignment
  #+END_SRC
 
+* Les dictionnaires
+
+- Les dictionnaires sont des structures *mutables*, non ordonnées, formées
+  d’enregistrements du type *=clé:valeur=*
+
+- Le seul moyen d’accéder à une valeur particulière est par l’intermédiaire de
+  sa clé
+
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: tel = {"emmanuelle": 5752, "sébastien": 5578}
+
+    In [2]: tel["francis"] = 5915
+    In [3]: tel
+    Out[3]: {'sébastien': 5578, 'francis': 5915, 'emmanuelle': 5752}
+    In [4]: tel['sébastien']
+    Out[4]: 5578
+
+    In [5]: tel.keys()
+    Out[5]: dict_keys(['emmanuelle', 'sébastien', 'francis'])
+
+    In [6]: tel.values()
+    Out[6]: dict_values([5752, 5578, 5915])
+
+    In [7]: "francis" in tel
+    Out[7]: True
+  #+END_SRC
+
+* Les dictionnaires
+
+- Les dictionnaires sont des structures *mutables*, non ordonnées, formées
+  d’enregistrements du type *=clé:valeur=*
+
+- Le seul moyen d’accéder à une valeur particulière est par l’intermédiaire de
+  sa clé
+
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: tel = {"emmanuelle": 5752, "sébastien": 5578, 'francis': 5915}
+
+    In [2]: for key, value in tel.items():
+       ...:     print("Clé/Valeur : {}/{}".format(key.capitalize(), value))
+
+    Clé/Valeur : Emmanuelle/5752
+    Clé/Valeur : Sébastien/5578
+    Clé/Valeur : Francis/5915
+  #+END_SRC
 
 * Intermède /geek/
 
@@ -427,17 +506,170 @@ intégrées au langage Python (/cf./ [[Fonctions intégrées]["Fonctions intégr
 #+BEAMER:\scriptsize\hfill$^\dagger$
 [[http://xkcd.com/1185/][xkcd comic]]
 
-* Fonctions intégrées
+* Les fonctions
 
-/cf./ cours "Une petite référence Python" \to Chapitre 1.8
+- Une fonction est *un bloc d’instructions* qui a reçu *un nom*
+- Une fonction peut :
+  1) dépendre d’un certain nombre de paramètres \to *les arguments*
+  2) renvoyer un résultat au moyen de l’instruction *=return=*
 
-* Une fonction renvoyant plusieurs valeurs
+#+BEAMER: \pause
+- Quelques fonctions intégrées au langage Python
+  - =help= : aide sur un nom \to =help(dict)=
+  - =input= : entrée au clavier \to =n = int(input("N ?"))=
+  - =print= : affiche à l'écran \to =print(n)=
+  - =type=, =sum=, =range=, =min/max=, ...
 
-https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-listes-et-tuples-1-2#/id/r-2232360
+* Les fonctions
+#+BEAMER: \framesubtitle{Déclaration de fonctions}
 
-* Fonction lambda
+- Fonction sans argument et sans valeur de retour
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: def dummy():
+       ...:     print("Fonction 'dummy'")
+       ...:
 
-https://openclassrooms.com/courses/apprenez-a-programmer-en-python/pas-a-pas-vers-la-modularite-1-2#/id/r-231371
+    In [2]: dummy()
+    Fonction 'dummy'
+  #+END_SRC
+
+#+BEAMER: \pause
+#+BEGIN_REMARK
+Par défaut, la valeur de retour d'une fonction est =None=
+#+END_REMARK
+
+* Les fonctions
+#+BEAMER: \framesubtitle{Déclaration de fonctions}
+
+- Fonction *avec argument et valeur de retour*
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: def aire_disque(rayon):
+       ...:     return 3.14 * rayon**2
+       ...:
+
+    In [2]: aire_disque(1.5)
+    Out[2]: 7.065
+
+    In [3]: aire_disque()
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    <ipython-input-175-daee2592ca2a> in <module>()
+    ----> 1 aire_disque()
+
+    TypeError: aire_disque() missing 1 required positional argument: 'rayon'
+  #+END_SRC
+
+* Les fonctions
+#+BEAMER: \framesubtitle{Déclaration de fonctions}
+
+- Fonction *avec argument par défaut et valeur de retour*
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: def aire_disque(rayon=10.0):
+       ...:     return 3.14 * rayon**2
+       ...:
+
+    In [2]: aire_disque(1.5)
+    Out[2]: 7.065
+
+    In [3]: aire_disque()
+    Out[3]: 314.0
+
+    In [4]: aire_disque(rayon=20)
+    Out[4]: 1256.0
+  #+END_SRC
+
+* Les fonctions
+#+BEAMER: \framesubtitle{Déclaration de fonctions}
+
+- Fonction *retournant plusieurs valeurs*
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: def decomposer(entier, diviseur):
+       ...:     return entier // diviseur, entier % diviseur
+       ...:
+
+    In [2]: partie_entiere, diviseur = decomposer(20,3)
+    In [3]: partie_entiere, diviseur
+    Out[3]: (6, 2)
+  #+END_SRC
+
+* Les fonctions
+#+BEAMER: \framesubtitle{Fonctions $\lambda$}
+
+- Les fonctions \lambda sont des fonctions dites *anonymes* /i.e./ sans nom
+  pouvant être appliquée "à la volée" dans une expression
+
+  #+BEAMER:\pause\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: f = lambda x : x**2
+    In [2]: f(2)
+    Out[2]: 4
+
+    In [3]: g = lambda x,y,z: 100*x+10*y+z
+    In [4]: g(1,2,3)
+    Out[4]: 123
+  #+END_SRC
+
+* Les fonctions
+#+BEAMER: \framesubtitle{Documentation}
+
+#+BEAMER:\pause\vskip5pt
+#+BEGIN_SRC python
+  In [1]: def dummy():
+     ...:     """Cette fonction ne sert strictement à rien.
+     ...:
+     ...:     En plus détaillé, cette fonction ne sert toujours
+     ...:     à rien mais la description est plus longue.
+     ...:     """
+
+  In [2]: help(dummy)
+      1 Help on function dummy in module __main__:
+      2
+      3 dummy()
+      4     Cette fonction ne sert strictement à rien.
+      5
+      6     En plus détaillé, cette fonction ne sert toujours
+      7     à rien mais la description est plus longue.
+#+END_SRC
+
+#+BEGIN_REMARK
+Pour plus de détails sur les us et coutumes en matière de documentation /cf./
+[[https://www.python.org/dev/peps/pep-0257/][/Docstrings conventions/]]
+#+END_REMARK
+
+* Les fonctions
+
+- Les fonctions sont des objets ce qui implique qu'elles peuvent être :
+  1) affectées à une variable
+  2) un élément dans une séquence (liste, dictionnaires)
+  3) passées comme argument à une autre fonction
+
+  #+BEAMER:\pause\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: ad = aire_disque
+
+    In [2]: ad(2)
+    Out[2]: 12.56
+
+    In [3]: table = {"Calcul de l'aire d'un disque" : ad}
+    In [4]: table["Calcul de l'aire d'un disque"]()
+    Out[4]: 314.0
+
+    In [5]: decomposer(ad(), 2)
+    Out[5]: (157.0, 0.0)
+  #+END_SRC
+
+* Conclusion culturelle
+
+#+BEGIN_QUOTE
+Google, c'est le seul endroit où tu peux taper Chuck Norris...
+#+END_QUOTE
+
+#+BEAMER: \hspace{+8cm}
+/Chuck Norris Facts/
 
 * Footnotes
 

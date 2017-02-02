@@ -3,7 +3,7 @@
 #+DATE:   22/01/2017
 #+OPTIONS: toc:nil ^:{} author:nil
 #+STARTUP:     beamer
-#+LATEX_CLASS: python-slide
+#+LATEX_CLASS: python-slide-handout
 #+LATEX_HEADER_EXTRA: \usepackage[normalem]{ulem}
 
 * @@beamer:\only<1>{Déclaration de variables}\only<2->{\sout{Déclaration} Initialisation de variables}@@
@@ -551,7 +551,7 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
   imbrication d'instructions =if= successives.
   #+END_REMARK
 
-* Intermède culturel
+* Conclusion culturelle
 
 #+BEGIN_QUOTE
 Selon les statistiques, il y a une personne sur cinq qui est
