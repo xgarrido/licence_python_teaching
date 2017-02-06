@@ -1,0 +1,60 @@
+#+TITLE:  Scripts/modules, programmation orientée objet & exceptions
+#+AUTHOR: Xavier Garrido
+#+DATE:   06/02/2017
+#+OPTIONS: toc:nil ^:{} author:nil
+#+STARTUP:     beamer
+#+LATEX_CLASS: python-slide
+
+* Scripts/modules
+
+#+ATTR_BEAMER: :overlay +-
+- Jusqu'à présent l'ensemble des commandes ou blocs d'instructions ont été tapé
+  et testé directement dans l'interpréteur =ipython=
+
+  #+ATTR_BEAMER: :overlay +-
+  - @@beamer:\color{green}\faThumbsUp@@ :: @@beamer:\color{green}@@ permet de
+       tester en intéractif le code et sa validité
+  - @@beamer:\color{red}\faThumbsDown@@ :: @@beamer:\color{red}@@ rend difficile
+       la réutilisation et la modification du code
+
+- Plus la problématique deviendra compliquée, plus le besoin d'écrire du code
+  dans un ou des fichiers =texte= deviendra pertinente (maintenance, test, lecture
+  du code...)
+
+* Script =python=
+
+- *Un script* est un fichier contenant un ensemble d'instructions =python=
+
+- L'extension du fichier-script sera naturellement *=.py=* (reconnaissance du
+  fichier par les différentes éditeurs de texte \to indentation, coloration
+  syntaxique...)
+
+ #+BEAMER:\vskip5pt
+ #+BEGIN_SRC python
+   citation = "Une noisette, j'la casse entre mes fesses tu vois... JCVD"
+   for word in citation.split():
+       print(word)
+ #+END_SRC
+
+
+* Programmation orientée objet
+
+/cf./ http://www.scipy-lectures.org/intro/language/oop.html
+
+* Exceptions
+
+/cf./ http://www.scipy-lectures.org/intro/language/exceptions.html + https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-exceptions-4#/id/r-2232017
+
+
+* Input/Output
+
+/cf./ http://www.scipy-lectures.org/intro/language/io.html pour introduction
+
+/cf./
+https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-fichiers-2#/id/r-2232732
+pour sérialization d'objet avec le module pickle \to mieux
+http://www.scipy-lectures.org/intro/language/standard_library.html#pickle-easy-persistence
+
+* Librairie standard
+
+/cf./ http://www.scipy-lectures.org/intro/language/standard_library.html#standard-library

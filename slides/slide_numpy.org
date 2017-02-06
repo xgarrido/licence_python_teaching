@@ -1,0 +1,25 @@
+* Pourquoi =numpy= ?
+
+http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-2-Numpy.ipynb#From-lists
+
+http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
+
+* =numpy= reference documentation
+
+http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
+
+* =import= convention
+
+http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
+
+* creating arrays
+
+http://www.scipy-lectures.org/intro/numpy/array_object.html#creating-arrays
+
+http://www.scipy-lectures.org/intro/numpy/array_object.html#creating-arrays
+
+** linspace logspace
+
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html
+
+http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-2-Numpy.ipynb#linspace-and-logspace
