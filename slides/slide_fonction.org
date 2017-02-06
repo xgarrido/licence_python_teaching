@@ -3,7 +3,7 @@
 #+DATE:   22/01/2017
 #+OPTIONS: toc:nil ^:{} author:nil
 #+STARTUP:     beamer
-#+LATEX_CLASS: python-slide-handout
+#+LATEX_CLASS: python-slide
 
 * Les séquences ou /containers/
 
