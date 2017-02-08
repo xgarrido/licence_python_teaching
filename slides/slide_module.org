@@ -5,48 +5,332 @@
 #+STARTUP:     beamer
 #+LATEX_CLASS: python-slide
 
+* Outline
+:PROPERTIES:
+:BEAMER_ENV: fullframe
+:END:
+
+- *Modularité du code : script/modules*
+
+- *Notion de programmation orientée objet*
+
+- *Gestion des exceptions en Python*
+
+- Entrées/sorties
+
+- Librairie standard : =os=, =sys=, =pickle=
+
 * Scripts/modules
 
 #+ATTR_BEAMER: :overlay +-
 - Jusqu'à présent l'ensemble des commandes ou blocs d'instructions ont été tapé
   et testé directement dans l'interpréteur =ipython=
 
-  #+ATTR_BEAMER: :overlay +-
   - @@beamer:\color{green}\faThumbsUp@@ :: @@beamer:\color{green}@@ permet de
        tester en intéractif le code et sa validité
   - @@beamer:\color{red}\faThumbsDown@@ :: @@beamer:\color{red}@@ rend difficile
        la réutilisation et la modification du code
 
 - Plus la problématique deviendra compliquée, plus le besoin d'écrire du code
-  dans un ou des fichiers =texte= deviendra pertinente (maintenance, test, lecture
-  du code...)
+  dans un ou des fichiers, *scripts ou modules*, deviendra pertinente (test,
+  maintenance, lecture du code...)
 
-* Script =python=
+* Scripts =python=
 
 - *Un script* est un fichier contenant un ensemble d'instructions =python=
 
-- L'extension du fichier-script sera naturellement *=.py=* (reconnaissance du
-  fichier par les différentes éditeurs de texte \to indentation, coloration
+- L'extension du fichier-script sera *=.py=* (indentation, coloration
   syntaxique...)
 
+- Exemple =citation.py=
  #+BEAMER:\vskip5pt
- #+BEGIN_SRC python
+ #+BEGIN_SRC python -n
    citation = "Une noisette, j'la casse entre mes fesses tu vois... JCVD"
    for word in citation.split():
        print(word)
  #+END_SRC
 
+* Scripts =python=
+
+- Le script peut être lancé depuis le terminal /via/ la commande
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    $ python citation.py
+  #+END_SRC
+
+  #+BEAMER:\vskip5pt
+  ou directement dans l'interpréteur =ipython= en faisant
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: %run citation.py
+
+    In [2]: citation
+    Out[2]: "Une noisette, j'la casse entre mes fesses tu vois... JCVD"
+  #+END_SRC
+
+* Modules =python=
+
+- À la différence d'un script, *un module =python=* est un fichier contenant un
+  *ensemble de fonctions* pouvant être utilisées par différents scripts
+
+- Exemple =jcvd_collection.py=
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python -n :tangle /tmp/jcvd_collection.py
+    """
+       A file with a lot of JCVD inside
+
+       This module holds several quotes from Jean-Claude Van Damme
+    """
+
+    def quote0():
+        print("Une noisette, j'la casse entre mes fesses tu vois...")
+
+    def quote1():
+        print("Quand tu prends confiance en la confiance tu deviens confiant.")
+
+    def quote2():
+        print("Ce n'est pas moi qui parle...c'est nous qui parlons.")
+  #+END_SRC
+
+* Modules =python=
+
+- Pour pouvoir utiliser le module et ses fonctions, *il est nécessaire de
+  l'importer* soit dans un script ou soit dans l'interpréteur
+  #+ATTR_BEAMER: :overlay +-
+  1) Importation de base
+     #+BEAMER:\vskip5pt
+     #+BEGIN_SRC python
+       In [1]: import jcvd_collection
+       In [2]: jcvd_collection.quote1()
+       Quand tu prends confiance en la confiance tu deviens confiant.
+     #+END_SRC
+     #+BEAMER:\vskip5pt
+
+  2) Importation à l'aide d'un nom raccourci
+     #+BEAMER:\vskip5pt
+     #+BEGIN_SRC python
+       In [1]: import jcvd_collection as jcvd
+       In [2]: jcvd.quote1()
+       Quand tu prends confiance en la confiance tu deviens confiant.
+     #+END_SRC
+     #+BEAMER:\vskip5pt
+
+  3) Importation spécifique d'une fonction
+     #+BEAMER:\vskip5pt
+     #+BEGIN_SRC python
+       In [1]: from jcvd_collection import quote1
+       In [2]: quote1()
+       Quand tu prends confiance en la confiance tu deviens confiant.
+     #+END_SRC
+
+* Modules =python=
+
+#+BEGIN_REMARK
+Lors de l'importation, le module est mis _en cache_ et il faut donc le recharger
+pour que les modifications soient prises en compte
+#+BEAMER:\vskip5pt
+#+BEGIN_SRC python
+  In [1]: import importlib
+  In [2]: importlib.reload(jcvd_collection)
+#+END_SRC
+#+END_REMARK
+
+* Modules =python=
+
+- La fonction =help= permet d'accéder à la documentation du module
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: help(jcvd_collection)
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- Par défaut, la localisation des modules se fait dans différents répertoires
+  #+ATTR_BEAMER: :overlay +-
+  1) dans le répertoire local
+  2) dans les répertoires définis au sein de la variable d'environnement
+     =PYTHONPATH=
+  3) dans l'ensemble des répertoires référencés par =sys.path=
+     #+BEAMER:\vskip5pt
+     #+BEGIN_SRC python
+       In [1]: import sys
+       In [2]: sys.path
+       ['',
+        '/home/garrido/Development/python.d/ipython/bin',
+        '/usr/lib/python36.zip',
+        '/usr/lib/python3.6',
+        '/usr/lib/python3.6/lib-dynload',
+        '/home/garrido/Development/python.d/ipython/lib/python3.6/site-packages',
+        '/home/garrido/Development/python.d/ipython/lib/python3.6/site-packages/IPython/extensions',
+        '/home/garrido/.ipython']
+  #+END_SRC
+
+* Script & modules
+
+- Il est possible de faire cohabiter au sein d'un même fichier un script et un
+  module
+
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python -n
+    def quote0():
+        print("Une noisette, j'la casse entre mes fesses tu vois...")
+
+    def quote1():
+        print("Quand tu prends confiance en la confiance tu deviens confiant.")
+
+    def quote2():
+        print("Ce n'est pas moi qui parle...c'est nous qui parlons.")
+
+    # quote0() sera appelé lors du premier import et à chaque exécution
+    quote0()
+
+    if __main__ == "__main__":
+        # quote2() ne sera appelé que lors de l'exécution
+        quote2()
+  #+END_SRC
+
+* Script & modules
+
+#+BEGIN_SRC python
+  In [1]: import jcvd_collection
+  Une noisette, j'la casse entre mes fesses tu vois...
+
+  In [2]: import jcvd_collection
+
+  In [3]: %run jcvd_collection.py
+  Une noisette, j'la casse entre mes fesses tu vois...
+  Ce n'est pas moi qui parle...c'est nous qui parlons.
+#+END_SRC
 
 * Programmation orientée objet
 
-/cf./ http://www.scipy-lectures.org/intro/language/oop.html
+#+BEAMER: \pause
+#+BEGIN_QUOTE
+La programmation orientée objet (POO), ou programmation par objet, est *un
+paradigme de programmation informatique* élaboré par les Norvégiens Ole-Johan
+Dahl et Kristen Nygaard au début des années 1960 et poursuivi par les travaux
+d'Alan Kay dans les années 1970.
+#+BEAMER: \pause
+Il consiste en la définition et l'interaction de briques logicielles appelées
+objets ; *un objet représente un concept, une idée ou toute entité du monde
+physique, comme une voiture, une personne ou encore une page d'un livre*.
+#+BEAMER: \pause
+Il possède *une structure interne et un comportement*, et il sait interagir avec
+ses pairs. Il s'agit donc de représenter ces objets et leurs relations ;
+*l'interaction entre les objets via leurs relations* permet de concevoir et
+réaliser les fonctionnalités attendues, de mieux résoudre le ou les
+problèmes.
+#+BEAMER: \pause
+Dès lors, l'étape de modélisation revêt une importance majeure et nécessaire
+pour la POO. C'est elle qui permet de transcrire les éléments du réel sous forme
+virtuelle.
+#+END_QUOTE
 
-* Exceptions
+#+BEAMER: \hspace{+9cm}
+[[https://fr.wikipedia.org/wiki/Programmation_orient%C3%A9e_objet][/Wikipedia/]]
+
+* Programmation orientée objet
+
+#+ATTR_BEAMER: :overlay +-
+- *Un objet* est une structure hébergeant des *données membres* (ou attributs) et
+  des *fonctions membres* également appelées *méthodes*
+
+- La représentation sous forme d'objet est parfaitement adaptée à la
+  programmation graphique (/GUI/) et à la description des détecteurs en physique
+  (des particules/nucléaire)
+
+- Pour rappel, en Python tout est objet (variables, *fonctions*, classes)
+
+* Programmation orientée objet
+
+- Déclaration d'un objet/classe =Student=
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python -n
+    class Student(object):
+        def __init__(self, name):
+            self.name = name
+        def set_age(self, age):
+            self.age = age
+        def set_mark(self, mark):
+            self.mark = mark
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- *Données membres* : =name=, =age= et =mark=
+
+- *Méthodes* : =__init__=, =set_age=, =set_mark=
+
+* Programmation orientée objet
+
+- Création d'un objet de type =Student=
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python -n
+    student0 = Student("Patrick Puzo")
+    student0.set_age(50)
+    student0.set_mark(0.0)
+  #+END_SRC
+
+* COMMENT Exceptions
 
 /cf./ http://www.scipy-lectures.org/intro/language/exceptions.html + https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-exceptions-4#/id/r-2232017
 
+* Entrées/sorties
 
-* Input/Output
+- La fonction intégrée *=print=* permet d'afficher à l'écran n'importe quelle chaîne
+  de caractères
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: print("Qu'est qu'un chat qui voit dans le futur ?")
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- La fonction intégrée *=input=* permet de récupérer une saisie clavier sous la
+  forme d'une chaîne de caractères
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [2]: reponse = input("Réponse ? ")
+  #+END_SRC
+
+* Entrées/sorties
+
+- L'écriture dans un fichier se fait nécessairement par le biais de chaîne de
+  caractères
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: f = open("QA.txt", "w")
+    In [2]: f.write("Qu'est qu'un chat qui voit dans le futur ?")
+    In [3]: f.close()
+  #+END_SRC
+
+* Entrées/sorties
+
+- La lecture dans un fichier peut se faire de la façon suivante...
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: f = open("QA.txt", "r")
+    In [2]: s = f.read()
+    In [3]: print(s)
+    Qu'est qu'un chat qui voit dans le futur ?
+    In [4]: f.close()
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- ...ou en lisant le fichier ligne par ligne
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: with open("QA.txt", "r") as f:
+       ...:     for line in f:
+       ...:         print(line)
+       ...:
+  #+END_SRC
+
+  L'instruction =with= assure que le fichier sera fermé quoiqu'il advienne
+  notamment si une exception est levée
+
+* COMMENT Entrées/sorties
 
 /cf./ http://www.scipy-lectures.org/intro/language/io.html pour introduction
 
@@ -55,6 +339,113 @@ https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-fichiers-
 pour sérialization d'objet avec le module pickle \to mieux
 http://www.scipy-lectures.org/intro/language/standard_library.html#pickle-easy-persistence
 
-* Librairie standard
 
-/cf./ http://www.scipy-lectures.org/intro/language/standard_library.html#standard-library
+* Librairie standard
+#+BEAMER: \framesubtitle{Module \texttt{os} : interaction avec le système d'exploitation}
+
+- Importation du module =os=
+ #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: import os
+  #+END_SRC
+
+- Récupérer le nom du répertoire courant
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: os.getcwd()
+  #+END_SRC
+
+- Lister les fichiers présents dans le répertoire courant
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: os.listdir(os.curdir)
+  #+END_SRC
+
+* Librairie standard
+#+BEAMER: \framesubtitle{Module \texttt{os} : interaction avec le système d'exploitation}
+
+- Créer un répertoire
+ #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: os.mkdir("junkdir")
+
+    In [2]: "junkdir" in os.listdir(os.curdir)
+    Out[2]: True
+  #+END_SRC
+
+- Renommer et supprimer un répertoire
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: os.rename("junkdir", "foodir")
+
+    In [2]: os.rmdir("foodir")
+    In [3]: "foodir" in os.listdir(os.curdir)
+    Out[3]: False
+  #+END_SRC
+
+- Supprimer un fichier
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: os.remove("junk.txt")
+  #+END_SRC
+
+* Librairie standard
+#+BEAMER: \framesubtitle{Module \texttt{os} : Manipulation des chemins d'accès avec \texttt{os.path}}
+
+#+BEGIN_SRC python
+  In [1]: %mkdir /tmp/python.d
+  In [2]: cd /tmp/python.d
+
+  In [3]: fp = open("junk.txt", "w"); fp.close()
+
+  In [4]: a = os.path.abspath("junk.txt")
+
+  In [5]: a
+  Out[5]: '/tmp/python.d/junk.txt'
+
+  In [6]: os.path.split(a)
+  Out[6]: ('/tmp/python.d', 'junk.txt')
+
+  In [7]: os.path.dirname(a)
+  Out[7]: '/tmp/python.d'
+
+  In [8]: os.path.basename(a)
+  Out[8]: 'junk.txt'
+
+  In [9]: os.path.splitext(os.path.basename(a))
+  Out[9]: ('junk', '.txt')
+#+END_SRC
+
+* Librairie standard
+#+BEAMER: \framesubtitle{Module \texttt{os} : Manipulation des chemins d'accès avec \texttt{os.path}}
+
+#+BEGIN_SRC python
+  In [10]: os.path.exists("junk.txt")
+  Out[10]: True
+
+  In [11]: os.path.isfile("junk.txt")
+  Out[11]: True
+
+  In [12]: os.path.isdir("junk.txt")
+  Out[12]: False
+
+  In [13]: os.path.expanduser("~/local")
+  Out[13]: '/home/jcvd/local'
+
+  In [14]: os.path.join(os.path.expanduser("~"), "local", "bin")
+  Out[14]: '/home/jcvd/local/bin'
+#+END_SRC
+
+* Librairie standard
+#+BEAMER: \framesubtitle{Sérialisation d'objets : \texttt{pickle}}
+
+#+BEGIN_SRC python
+In [1]: import pickle
+
+In [2]: l = [1, None, "Stan"]
+
+In [3]: pickle.dump(l, file("test.pkl", "w"))
+
+In [4]: pickle.load(file("test.pkl"))
+Out[4]: [1, None, "Stan"]
+#+END_SRC
