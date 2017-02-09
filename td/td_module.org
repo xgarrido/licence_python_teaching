@@ -1,0 +1,65 @@
+#+TITLE:  Modules et POO
+#+AUTHOR: Xavier Garrido
+#+DATE:   08/02/2017
+#+OPTIONS: toc:nil ^:{}
+#+LATEX_HEADER: \setcounter{chapter}{3}
+
+#+BEGIN_REMARK
+On n'oubliera pas et on commencera donc ce second TD, en chargeant
+l'environnement virtuel défini lors de la première séance à l'aide de la
+commande =source=.
+#+END_REMARK
+
+* Modularité (suite)
+
+- Modifier le fichier =euler_project.py=, créé lors du précédent TD, de telle
+  sorte à ce que l'interaction avec l'utilisateur (saisie du numéro de projet à
+  afficher) ne soit effective que lorsque le fichier est exécuté en tant que
+  script.
+
+- Faire en sorte que le fichier =euler_project.py= puisse être charger en tant que
+  module dans un script =test_euler_project.py= qui se chargera de lancer et donc
+  de tester chaque fonction sans intervention de l'utilisateur.
+
+- Déplacer ce module/script dans un répertoire référencé par la variable
+  =PYTHONPATH=
+
+* Objets =python=
+
+1) Classe =Particle=
+   1) Dans un fichier =particle.py=, créer une classe/objet =Particle= qui prendra
+      pour attributs, le nom de la particule, sa masse exprimée en eV et sa
+      charge électrique. La méthode d'initialisation =__init__= permettra de
+      fournir des valeurs par défaut à ces trois attributs tout en autorisant
+      l'utilisateur à initialiser ces attributs.
+
+   2) Ajouter une méthode =dump= permettant d'afficher les valeurs des attributs
+      et concevoir un programme =test_particle.py= qui créera diverses instances
+      de type =Particle= en les stockant dans une liste puis affichera chacune de
+      ces instances.
+
+   3) Renommer la méthode =dump= en =__str__= et faire en sorte qu'elle retourne une
+      chaîne de caractères. Tester la fonction =print= sur un objet de type
+      =Particle=.
+
+2) Classe =Point=
+   1) Dans un fichier =Point.py=, créer une classe =Point= dont les attributs seront
+      les valeurs des coordonnées cartésiennes $x$ et $y$. Surcharger la méthode
+      =__str__= afin d'afficher ces deux informations. Pour tester l'ensemble, on
+      créera un programme test dans lequel diverses instances de type =Point=
+      seront générées.
+
+   2) Définir une nouvelle méthode appelé =__add__= qui retournera un nouvel objet
+      de type =Point=, résultat de la somme des coordonnées cartésiennes $x$ et
+      $y$.
+
+   3) Afficher le résultat de la somme de deux objets =Point= /via/ la fonction
+      =print=.
+
+   4) Créer une nouvelle classe =Vector2D= dont les attributs seront deux objets
+      de type =Point=. Définir une méthode de =Vector2D= qui retournera la norme du
+      vecteur.
+
+   5) Définir une méthode de =Vector2D= qui permettra d'afficher les coordonnées
+      des deux points constituant le vecteur et que l'on pourra utiliser par le
+      biais de la fonction =print=.
