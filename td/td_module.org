@@ -50,8 +50,7 @@ commande =source=.
       seront générées.
 
    2) Définir une nouvelle méthode appelé =__add__= qui retournera un nouvel objet
-      de type =Point=, résultat de la somme des coordonnées cartésiennes $x$ et
-      $y$.
+      de type =Point=, résultat de la somme de deux instances de type =Point= .
 
    3) Afficher le résultat de la somme de deux objets =Point= /via/ la fonction
       =print=.
