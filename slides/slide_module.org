@@ -246,7 +246,7 @@ virtuelle.
 - Déclaration d'un objet/classe =Student=
   #+BEAMER:\vskip5pt
   #+BEGIN_SRC python -n
-    class Student(object):
+    class Student:
         def __init__(self, name):
             self.name = name
         def set_age(self, age):
@@ -271,9 +271,82 @@ virtuelle.
     student0.set_mark(0.0)
   #+END_SRC
 
-* COMMENT Exceptions
+* Gestion des exceptions en Python
 
-/cf./ http://www.scipy-lectures.org/intro/language/exceptions.html + https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-exceptions-4#/id/r-2232017
+#+ATTR_BEAMER: :overlay +-
+- Les exceptions sont la conséquence d'erreurs fonctionnelles
+  - erreur lors d'un résultat indéfini
+     #+BEAMER:\vskip5pt
+     #+BEGIN_SRC python
+       In [1]: 0/0
+       ---------------------------------------------------------------------------
+       ZeroDivisionError                         Traceback (most recent call last)
+       <ipython-input-1-6549dea6d1ae> in <module>()
+       ----> 1 0/0
+
+       ZeroDivisionError: division by zero
+     #+END_SRC
+     #+BEAMER:\vskip5pt
+
+  - erreur typographique dans le nom d'une fonction
+     #+BEAMER:\vskip5pt
+     #+BEGIN_SRC python
+       In [1]: import jcvd_collection
+       In [2]: quot1()
+       ---------------------------------------------------------------------------
+       NameError                                 Traceback (most recent call last)
+       <ipython-input-4-2459ec87cda3> in <module>()
+       ----> 1 quot1()
+
+       NameError: name 'quot1' is not defined
+     #+END_SRC
+
+* Gestion des exceptions en Python
+
+- Pour "attraper" les exceptions avant qu'elles ne causent l'arrêt du programme,
+  on utilise les instructions *=try/except=*
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: while True:
+       ...:     try:
+       ...:         x = int(input("Veuillez saisir un nombre: "))
+       ...:         break
+       ...:     except ValueError:
+       ...:         print("Je crois avoir demandé un nombre !")
+       ...:
+    Veuillez saisir un nombre: a
+    Je crois avoir demandé un nombre !
+    Veuillez saisir un nombre: 11
+  #+END_SRC
+
+* Gestion des exceptions en Python
+
+- Pour "lever" une exception, on utilise l'instruction *=raise=*...
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [1]: def achilles_arrow(x):
+       ...:    if abs(x - 1) < 1e-3:
+       ...:        raise StopIteration
+       ...:    x = 1 - (1-x)/2.
+       ...:    return x
+       ...:
+  #+END_SRC
+
+  #+BEAMER:\pause
+- ... pour mieux pouvoir la récupérer dans un second bloc
+  #+BEAMER:\vskip5pt
+  #+BEGIN_SRC python
+    In [18]: x = 0
+    In [19]: while True:
+        ...:     try:
+        ...:         x = achilles_arrow(x)
+        ...:     except StopIteration:
+        ...:         break
+        ...:
+
+    In [20]: x
+    Out[20]: 0.9990234375
+  #+END_SRC
 
 * Entrées/sorties
 
@@ -329,16 +402,6 @@ virtuelle.
 
   L'instruction =with= assure que le fichier sera fermé quoiqu'il advienne
   notamment si une exception est levée
-
-* COMMENT Entrées/sorties
-
-/cf./ http://www.scipy-lectures.org/intro/language/io.html pour introduction
-
-/cf./
-https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-fichiers-2#/id/r-2232732
-pour sérialization d'objet avec le module pickle \to mieux
-http://www.scipy-lectures.org/intro/language/standard_library.html#pickle-easy-persistence
-
 
 * Librairie standard
 #+BEAMER: \framesubtitle{Module \texttt{os} : interaction avec le système d'exploitation}
@@ -434,6 +497,55 @@ http://www.scipy-lectures.org/intro/language/standard_library.html#pickle-easy-p
 
   In [14]: os.path.join(os.path.expanduser("~"), "local", "bin")
   Out[14]: '/home/jcvd/local/bin'
+#+END_SRC
+
+* Librairie standard
+#+BEAMER: \framesubtitle{Module \texttt{os} : Parcourir un répertoire avec \texttt{os.walk}}
+
+#+BEGIN_SRC python
+  In [1]: for i in range(4):
+     ...:     open("junk" + str(i) + ".txt", "w")
+
+  In [2]: for dirpath, dirnames, filenames in os.walk(os.curdir):
+     ...:     for f in filenames:
+     ...:         print(os.path.abspath(f))
+  /tmp/python.d/junk3.txt
+  /tmp/python.d/junk2.txt
+  /tmp/python.d/junk1.txt
+  /tmp/python.d/junk0.txt
+  /tmp/python.d/junk.txt
+
+  In [3]: import glob
+  In [4]: for f in glob.glob("*.txt"):
+     ...:     os.remove(f)
+#+END_SRC
+
+* Librairie standard
+#+BEAMER: \framesubtitle{Module \texttt{os} : Exécuter une commande système}
+
+#+BEGIN_SRC python
+  In [1]: os.system("ls")
+#+END_SRC
+
+#+BEGIN_REMARK
+Pour intéragir /via/ des commandes systèmes, on priviligiera toutefois
+[[http://amoffat.github.io/sh/][le module =sh=]] qui, en plus d'être plus
+complet, fournit des outils pour récupérer le résultat de la commande, les
+éventuelles erreurs, le code erreur.
+#+END_REMARK
+
+* Librairie standard
+#+BEAMER: \framesubtitle{Module \texttt{sys} : Information système}
+
+#+BEGIN_SRC python
+  In [1]: import sys
+
+  In [2]: sys.platform
+  Out[2]: 'linux'
+
+  In [3]: print(sys.version)
+  3.6.0 (default, Jan 16 2017, 12:12:55)
+  [GCC 6.3.1 20170109]
 #+END_SRC
 
 * Librairie standard

@@ -135,7 +135,7 @@ On notera que le nombre complexe $i$ est noté =j= ou =J= en Python
   #+END_SRC
 
 #+BEGIN_REMARK
-Toutes valeurs différentes de 0 est considérée comme vraie
+Toute valeur différente de 0 est considérée comme vraie
 #+END_REMARK
 
 #+BEGIN_COMMENT
