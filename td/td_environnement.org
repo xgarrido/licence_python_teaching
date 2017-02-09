@@ -52,7 +52,7 @@ lors de ce premier exercice.
    sur des nombres flottants.
 
 2) Comparer le résultat de la division de deux entiers lorsque vous utilisez
-   l'opérateur =/= et =//=. Dans le second cas, affiche le reste de la division.
+   l'opérateur =/= et =//=. Dans le second cas, afficher le reste de la division.
 
 3) À l'aide de la fonction =type= dont on cherchera le fonctionnement à l'aide de
    l'opérateur =?= de =ipython=, afficher la nature de nombres entier et flottant.
