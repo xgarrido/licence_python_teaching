@@ -280,6 +280,15 @@ Add a new tag =correction=
   (defun python-export-classes ()
     (progn
       (setq org-latex-default-class "python-class")
+      (setq org-latex-minted-options
+            '(;;("frame" "lines")
+              ("fontsize" "\\footnotesize")
+              ("samepage" "")
+              ("mathescape" "")
+              ("xrightmargin" "0.5cm")
+              ("xleftmargin"  "0.5cm")
+              ))
+
       (org-latex-export-to-pdf)
       ))
 #+END_SRC
