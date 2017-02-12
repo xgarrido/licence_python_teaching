@@ -45,6 +45,111 @@ on prendra bien garde de systématiquement charger l'environnement virtuel défi
 lors de ce premier exercice.
 #+END_REMARK
 
+** Correction                                                   :correction:
+
+1) Dans l'invite de commande du terminal, répérée ici par le signe =$=, on tape
+   les commandes suivantes
+
+    #+BEGIN_SRC shell-session
+      $ python3.5 -m venv ~/python.d/my_python_env
+    #+END_SRC
+2) \nbsp
+
+   #+BEGIN_SRC shell-session
+     $ source ~/python.d/my_python_env/bin/activate
+     $ which python
+     ~/python.d/my_python_env/bin/python
+   #+END_SRC
+
+3) Liste de l'ensemble des modules installés
+
+   #+BEGIN_SRC shell-session
+     $ pip freeze
+   #+END_SRC
+
+   puis mise à jour de =pip=
+
+   #+BEGIN_SRC shell-session
+     $ pip install --upgrade pip
+   #+END_SRC
+
+4) \nbsp
+   #+BEGIN_SRC shell-session
+     $ pip install matplotlib=1.5.2
+     $ pip install --upgrade matplotlib
+   #+END_SRC
+
+5) \nbsp
+   #+BEGIN_SRC shell-session
+     $ pip install ipython
+     $ ipython
+   #+END_SRC
+   #+BEGIN_SRC python
+     Python 3.6.0 (default, Jan 16 2017, 12:12:55)
+     Type "copyright", "credits" or "license" for more information.
+
+     IPython 5.1.0 -- An enhanced Interactive Python.
+     ?         -> Introduction and overview of IPython's features.
+     %quickref -> Quick reference.
+     help      -> Python's own help system.
+     object?   -> Details about 'object', use 'object??' for extra details.
+
+     In [1]: import matplotlib
+   #+END_SRC
+
+6) \nbsp
+
+   #+BEGIN_SRC python
+     In [2]: print("Bonjour tout le monde")
+     Bonjour tout le monde
+   #+END_SRC
+
+7) \nbsp
+
+   #+BEGIN_SRC python
+     In [3]: x1 = 10
+
+     In [4]: x2 = 10.0
+
+     In [5]: %whos
+   #+END_SRC
+
+8) \nbsp
+
+   #+BEGIN_SRC python
+     In [6]: x1.real
+     Out[6]: 10
+
+     In [7]: x1.imag
+     Out[7]: 0
+
+     In [8]: x1.bit_length()
+     Out[8]: 4
+   #+END_SRC
+
+9) On pourra utiliser soit la commande =input?=, propre à l'interprêteur =ipython=,
+   soit l'aide intéractive /i.e./ =help(input)=
+
+   #+BEGIN_SRC python
+     In [9]: input?
+     Signature: input(prompt=None, /)
+     Docstring:
+     Read a string from standard input.  The trailing newline is stripped.
+
+     The prompt string, if given, is printed to standard output without a
+     trailing newline before reading input.
+
+     If the user hits EOF (*nix: Ctrl-D, Windows: Ctrl-Z+Return), raise EOFError.
+     On *nix systems, readline is used if available.
+     Type:      builtin_function_or_method
+   #+END_SRC
+
+   Comme l'indique l'aide, la fonction =input= lit une chaîne de caractère et on
+   prendra donc bien garde à convertir la valeur saisie en nombre (flottant)
+
+   #+BEGIN_SRC python
+     In[10]: n = float(input("Saisissez un nombre "))
+   #+END_SRC
 * La calculatrice Python
 
 1) Dans l'interpréteur =ipython= réaliser les opérations arithmétiques d'addition,
@@ -72,3 +177,72 @@ lors de ce premier exercice.
    En vous servant de l'aide intéractive fournit par =ipython=, déterminer la
    valeur de factoriel 13. Calculer la valeur du cosinus d'un angle mesurant
    666°.
+
+** Correction                                                   :correction:
+
+1) \nbsp
+
+   #+BEGIN_SRC python
+     In [1]: x1 = x2 = 10.0
+
+     In [2]: x1+x2, x1-x2, x1*x2, x1/x2
+     Out[2]: (20.0, 0.0, 100.0, 1.0)
+
+     In [3]: i1, i2 = 3, 4
+
+     In [4]: i1+i2, i1-i2, i1*i2, i1/i2
+     Out[4]: (7, -1, 12, 0.75)
+   #+END_SRC
+
+2) \nbsp
+
+   #+BEGIN_SRC python
+     In [5]: i1/i2, i1//i2
+     Out[5]: (0.75, 0)
+   #+END_SRC
+
+   Le reste de la division s'obtient /via/ l'opérateur modulo =%=
+   #+BEGIN_SRC python
+     In [6]: i1%i2
+     Out[6]: 3
+   #+END_SRC
+
+3) \nbsp
+
+   #+BEGIN_SRC python
+     In [7]: type(i1), type(x1)
+     Out[7]: (int, float)
+   #+END_SRC
+
+4) \nbsp
+
+   #+BEGIN_SRC python
+     In [8]: i, x = 10, 10.0
+
+     In [9]: i == x
+     Out[9]: True
+
+     In [10]: test = i == x
+
+     In [11]: type(test)
+     Out[11]: bool
+   #+END_SRC
+
+5) \nbsp
+
+   #+BEGIN_SRC python
+     In [12]: 2**12
+     Out[12]: 4096
+   #+END_SRC
+
+6) \nbsp
+
+   #+BEGIN_SRC python
+     In [13]: import math
+
+     In [14]: math.factorial(13)
+     Out[14]: 6227020800
+
+     In [15]: math.cos(math.radians(666))
+     Out[15]: 0.5877852522924728
+    #+END_SRC
