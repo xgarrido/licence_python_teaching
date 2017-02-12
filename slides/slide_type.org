@@ -464,14 +464,14 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: for c in "abcdef":
-      ...: print(c)
-      ...:
-      a
-      b
-      c
-      d
-      e
-      f
+       ...:     print(c)
+       ...:
+       a
+       b
+       c
+       d
+       e
+       f
   #+END_SRC
 
 * Boucles =for=
@@ -550,14 +550,3 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
   L'instruction =continue= est particulièrement utile afin d'éviter une trop grande
   imbrication d'instructions =if= successives.
   #+END_REMARK
-
-* Conclusion culturelle
-
-#+BEGIN_QUOTE
-Selon les statistiques, il y a une personne sur cinq qui est
-déséquilibrée. S'il y a 4 personnes autour de toi et qu'elles te semblent
-normales, c'est pas bon.
-#+END_QUOTE
-
-#+BEAMER: \hspace{+10cm}
-/JCVD/
