@@ -36,7 +36,7 @@ commande =source=.
    et en utilisant le caractère =,= comme séparateur de champ.
 
    1) Présenter le résultat sous la forme "Votre nom et prénom sont XXX XXX et
-      vous êtes agé(e) de XXX" en n'oubliant les majuscules les majuscules aux noms
+      vous êtes agé(e) de XXX" en n'oubliant pas les majuscules aux noms
       propres.
    2) Créer ensuite un dictionnaire indexé sur le nom de la personne et
       conservant son âge.
@@ -47,6 +47,67 @@ commande =source=.
    =$=. Construire un dictionnaire toujours indexé sur le nom mais qui
    conservera le prénom et l'âge de la personne. Présenter finalement chacune
    des entrées du dictionnaire sous une forme intelligible.
+
+** Correction                                                   :correction:
+
+1)
+    #+BEGIN_SRC python
+      In [1]: sum([x for x in range(N) if x % 3 == 0 or x % 5 == 0])
+    #+END_SRC
+
+2)
+    #+BEGIN_SRC python
+      In [1]: N = int(input("Quelle est la valeur de N ? "))
+
+      In [2]: r = range(1, N+1)
+
+      In [3]: sum(r)**2 - sum([x**2 for x in r])
+    #+END_SRC
+
+3)
+    #+BEGIN_SRC python
+      In [1]: s = input("Saisissez votre phrase\n")
+      Qu'est qu'un chat qui voit dans le futur ?
+
+      In [2]: s[::-1]
+      Out[2]: "? rutuf el snad tiov iuq tahc nu'uq tse'uQ"
+
+      In [3]: " ".join(s.split()[::-1])
+      Out[3]: "? futur le dans voit qui chat qu'un Qu'est"
+
+      In [4]: "".join(c for c in s if c.lower() not in "aeiouy")
+      Out[4]: "Q'st q'n cht q vt dns l ftr ?"
+    #+END_SRC
+
+4)
+   1)
+       #+BEGIN_SRC python
+         In [1]: s = input("Veuillez saisir votre nom, prénom et âge en séparant chaque champ par une virgule")
+         Simpson, Homer, 55
+
+         In [2]: l = s.split(",")
+
+         In [3]: print("Votre nom et prénom sont {}{} et vous êtes agé(e) de{}".format(l[0], l[1], l[2]))
+       #+END_SRC
+
+   2)
+      #+BEGIN_SRC python
+      In [4]: d = {l[0]:l[2]}
+      #+END_SRC
+5)
+    #+BEGIN_SRC python
+      In [1]: infos={}
+         ...: while True:
+         ...:     print("Tapez '$' pour quitter...")
+         ...:     chaine = input()
+         ...:     if chaine == "$":
+         ...:         break
+         ...:     l = chaine.split(",")
+         ...:     infos[l[0]] = (l[1],l[2])
+         ...:
+         ...: for key,values in infos.items():
+         ...:     print("Nom {}, prénom {}, âge {}".format(key, values[0], values[1]))
+    #+END_SRC
 
 * Modularité
 
@@ -62,37 +123,97 @@ commande =source=.
   idoine. Demander finalement à l'utilisateur quel numéro de projet résoudre,
   s'assurer que le projet a une solution et proposer cette solution.
 
-* Correction                                                     :correction:
+** Correction                                                   :correction:
 
-1)
-   #+BEGIN_SRC python
-     sum([x for x in range(N) if x % 3 == 0 or x % 5 == 0])
-   #+END_SRC
-2)
-   #+BEGIN_SRC python
-     N = int(input("Quelle est la valeur de N ? "))
-     r = range(1, N+1)
-     sum(r)**2 - sum([x**2 for x in r])
-   #+END_SRC
+Fichier =euler_project.py=
 
-3)
-   #+BEGIN_SRC python
-     s = input("Saisissez votre phrase\n")
-     s[::-1]
-     " ".join(s.split()[::-1])
-     "".join(c for c in s if c.lower() not in "aeiouy")
-   #+END_SRC
+#+BEGIN_SRC python -n :tangle /tmp/euler_project.py
+  """
+  Module for Euler projects
 
-5)
-   #+BEGIN_SRC python
-     infos=[]
-     while True:
-         print("Tapez '$' pour quitter...")
-         chaine = input()
-         if chaine == "$":
-             break
-         infos.append(chaine)
-   #+END_SRC
+  This file holds several solution of Euler project
+  """
+
+  def euler001(n=None):
+      """Solution for Euler project n°1
+
+      Find the sum of all the multiples of 3 or 5 below n.
+
+      """
+      if n == None:
+          n = int(input("Give the n value : "))
+      return sum([x for x in range(n) if x % 3 == 0 or x % 5 == 0])
+
+  def euler002(n=None):
+      """Solution for Euler project n°2
+
+      By considering the terms in the Fibonacci sequence whose values do not
+      exceed a given value, find the sum of the even-valued terms.
+
+      """
+      if n == None:
+          n = int(input("Give the n value : "))
+      f, g, somme = 1, 1, 0
+      while f < n:
+          if f % 2 == 0:
+              somme += f
+          f, g = g, f+g
+      return somme
+
+  def euler006(n=None):
+      """Solution of Euler project n°6
+
+      Find the difference between the sum of the squares of the first n natural
+      numbers and the square of the sum.
+
+      """
+      if n == None:
+          n = int(input("Give the n value : "))
+      r = range(1, n+1)
+      return sum(r)**2 - sum([x**2 for x in r])
+
+  def euler016(n=None):
+      """Solution for Euler project n°16
+
+      What is the sum of the digits of the number 2**n?
+
+      """
+      if n == None:
+          n = int(input("Give the n value : "))
+      somme = 0
+      for i in str(2**n):
+          somme += int(i)
+      return somme
+
+  def euler025(n=None):
+      """Solution for Euler project n°25
+
+      What is the index of the first term in the Fibonacci sequence to contain n digits?
+
+      """
+      if n == None:
+          n = int(input("Give the n value : "))
+      f, g, i = 1, 1, 0
+      while f < 10**n:
+          f, g, i = g, f+g, i+1
+      return i
+#+END_SRC
+
+#+BEGIN_SRC python
+In [1]: %run euler_project.py
+
+In [2]: projects = {1 : euler001, 2 : euler002, 6 : euler006, 16 : euler016, 25 : euler025}
+
+In [3]: i = 0
+   ...: while True:
+   ...:     i = int(input("Project number ? "))
+   ...:     if i not in projects.keys():
+   ...:         print("Project n°{} not solved yet".format(i))
+   ...:         continue
+   ...:     print(projects[i]())
+   ...:     break
+   ...:
+#+END_SRC
 
 * Footnotes
 

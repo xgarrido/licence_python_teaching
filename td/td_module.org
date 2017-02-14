@@ -24,6 +24,37 @@ commande =source=.
 - Déplacer ce module/script dans un répertoire référencé par la variable
   =PYTHONPATH=
 
+** Correction                                                   :correction:
+
+- On ajoutera à la fin du fichier =euler_project.py=, les lignes suivantes
+
+  #+BEGIN_SRC python
+    projects = {1 : euler001, 2 : euler002, 6 : euler006, 16 : euler016, 25 : euler025}
+
+    if __name__ == "__main__":
+        i = 0
+        while True:
+            i = int(input("Project number ? "))
+            if i not in projects.keys():
+                print("Project n°{} not solved yet".format(i))
+                continue
+            print(projects[i]())
+            break
+  #+END_SRC
+
+-
+  #+BEGIN_SRC python :tangle /tmp/test_euler_project.py
+    import euler_project as ep
+
+    # To generate random integer values
+    from numpy.random import randint
+
+    for key, fcn in ep.projects.items():
+        n = randint(1000)
+        print("Testing Euler project n°{} with value n={}".format(key, n))
+        print("-> Solution = {}".format(str(fcn(n))))
+  #+END_SRC
+
 * Objets =python=
 
 1) Classe =Particle=
@@ -62,3 +93,79 @@ commande =source=.
    5) Définir une méthode de =Vector2D= qui permettra d'afficher les coordonnées
       des deux points constituant le vecteur et que l'on pourra utiliser par le
       biais de la fonction =print=.
+
+** Correction                                                   :correction:
+
+1) Ci-dessous la classe =Particle=
+
+   #+BEGIN_SRC python :tangle /tmp/particle.py
+     class Particle:
+         def __init__(self, name=None, mass=None, charge=None):
+             self.name = name
+             self.mass = mass
+             self.charge = charge
+         def __str__(self):
+             return "Particle name {}, mass = {} eV and electric charge = {} C".format(self.name,
+                                                                                       self.mass,
+                                                                                       self.charge)
+   #+END_SRC
+
+   et son fichier test
+
+   #+BEGIN_SRC python :tangle /tmp/test_particle.py
+     import particle
+
+     # Create an empty list of particles
+     particles = []
+     particles.append(particle.Particle("electron", 511e3, -1.6e-19))
+     particles.append(particle.Particle("muon", 155e6, -1.6e-19))
+     particles.append(particle.Particle("proton", 939e6, +1.6e-19))
+
+     for p in particles:
+         print(p)
+   #+END_SRC
+
+2) Classe =Point=
+
+   #+BEGIN_SRC python :tangle /tmp/point.py
+     class Point:
+          def __init__(self, x=None, y=None):
+               self.x = x
+               self.y = y
+          def  __str__(self):
+               return "(x, y) = ({}, {})".format(self.x, self.y)
+          def __add__(self, other):
+               return Point(self.x+other.x, self.y+other.y)
+   #+END_SRC
+
+   Classe =Vector2D=
+
+   #+BEGIN_SRC python :tangle /tmp/vector2d.py
+     class Vector2D:
+         def __init__(self, point1=None, point2=None):
+             self.point1 = point1
+             self.point2 = point2
+         def norm(self):
+             from math import hypot
+             return hypot(self.point1.x - self.point2.x,
+                          self.point1.y - self.point2.y)
+         def __str__(self):
+             return "point1 : {}, point2 : {}".format(self.point1, self.point2)
+   #+END_SRC
+
+   Fichier test des deux précédentes classes
+
+   #+BEGIN_SRC python :tangle /tmp/test_vector2d.py
+     import point as p
+     point1 = p.Point(3,4)
+     point2 = p.Point(2,7)
+     point3 = point1 + point2
+     print(point1)
+     print(point2)
+     print(point3)
+
+     import vector2d as v2d
+     vector = v2d.Vector2D(point1, point2)
+     print(vector)
+     print("norm = " + str(vector.norm()))
+   #+END_SRC

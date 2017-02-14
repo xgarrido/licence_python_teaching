@@ -53,7 +53,7 @@ lors de ce premier exercice.
     #+BEGIN_SRC shell-session
       $ python3.5 -m venv ~/python.d/my_python_env
     #+END_SRC
-2) \nbsp
+2)
 
    #+BEGIN_SRC shell-session
      $ source ~/python.d/my_python_env/bin/activate
@@ -73,13 +73,13 @@ lors de ce premier exercice.
      $ pip install --upgrade pip
    #+END_SRC
 
-4) \nbsp
+4)
    #+BEGIN_SRC shell-session
      $ pip install matplotlib=1.5.2
      $ pip install --upgrade matplotlib
    #+END_SRC
 
-5) \nbsp
+5)
    #+BEGIN_SRC shell-session
      $ pip install ipython
      $ ipython
@@ -97,14 +97,14 @@ lors de ce premier exercice.
      In [1]: import matplotlib
    #+END_SRC
 
-6) \nbsp
+6)
 
    #+BEGIN_SRC python
      In [2]: print("Bonjour tout le monde")
      Bonjour tout le monde
    #+END_SRC
 
-7) \nbsp
+7)
 
    #+BEGIN_SRC python
      In [3]: x1 = 10
@@ -114,7 +114,7 @@ lors de ce premier exercice.
      In [5]: %whos
    #+END_SRC
 
-8) \nbsp
+8)
 
    #+BEGIN_SRC python
      In [6]: x1.real
@@ -180,7 +180,7 @@ lors de ce premier exercice.
 
 ** Correction                                                   :correction:
 
-1) \nbsp
+1)
 
    #+BEGIN_SRC python
      In [1]: x1 = x2 = 10.0
@@ -194,7 +194,7 @@ lors de ce premier exercice.
      Out[4]: (7, -1, 12, 0.75)
    #+END_SRC
 
-2) \nbsp
+2)
 
    #+BEGIN_SRC python
      In [5]: i1/i2, i1//i2
@@ -207,14 +207,14 @@ lors de ce premier exercice.
      Out[6]: 3
    #+END_SRC
 
-3) \nbsp
+3)
 
    #+BEGIN_SRC python
      In [7]: type(i1), type(x1)
      Out[7]: (int, float)
    #+END_SRC
 
-4) \nbsp
+4)
 
    #+BEGIN_SRC python
      In [8]: i, x = 10, 10.0
@@ -228,14 +228,14 @@ lors de ce premier exercice.
      Out[11]: bool
    #+END_SRC
 
-5) \nbsp
+5)
 
    #+BEGIN_SRC python
      In [12]: 2**12
      Out[12]: 4096
    #+END_SRC
 
-6) \nbsp
+6)
 
    #+BEGIN_SRC python
      In [13]: import math

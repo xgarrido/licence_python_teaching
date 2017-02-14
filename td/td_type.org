@@ -25,6 +25,59 @@ commande =source=.
    mathématique =cmath= dédiée au calcul sur les nombres complexes et également
    présente par défaut dans Python.
 
+** Correction                                                   :correction:
+
+1)
+
+   #+BEGIN_SRC python
+     In [1]: z1, z2 = 1+2j, 3+3j
+
+     In [2]: z1+z2, z1-z2, z1*z2, z1/z2
+     Out[2]: ((4+5j), (-2-1j), (-3+9j), (0.5+0.16666666666666666j))
+
+     In [3]: z1**2
+     Out[3]: (-3+4j)
+   #+END_SRC
+
+2)
+
+   #+BEGIN_SRC python
+     In [4]: import math
+
+     In [5]: module = math.sqrt(z1.real**2+z1.imag**2)
+
+     In [6]: argument = math.atan(z1.imag/z1.real)
+
+     In [7]: module, argument
+     Out[7]: (2.23606797749979, 1.1071487177940904)
+   #+END_SRC
+
+   Un autre moyen de calculer le module consistait à utiliser la fonction =hypot=
+   de =math=.
+
+3)
+
+   #+BEGIN_SRC python
+     In [8]: import cmath
+
+     In [9]: cmath.polar(z1)
+     Out[9]: (2.23606797749979, 1.1071487177940904)
+   #+END_SRC
+
+   L'objet retourné par la fonction =polar= est un /tuple/ i.e. une liste non
+   modifiable. Pour accéder individuellement au module et à l'argument, on
+   pourra écrire
+
+   #+BEGIN_SRC python
+     In [10]: t = cmath.polar(z1)
+
+     In [11]: type(t)
+     Out[11]: tuple
+
+     In [12]: t[0], t[1]
+     Out[12]: (2.23606797749979, 1.1071487177940904)
+   #+END_SRC
+
 * Structure conditionnelle, boucles et autres réjouissances
 
 1) En fonction d'une valeur entière saisie par l'utilisateur (on utilisera à
@@ -72,11 +125,11 @@ commande =source=.
    Déterminer le nombre d'itérations $n$ nécessaires pour que la valeur de \pi
    soit correcte jusqu'à la 7^{ème} décimale.
 
-* Correction                                                     :correction:
+** Correction                                                   :correction:
 
 1)
       #+BEGIN_SRC python
-        N = int(input("Quelle est la valeur entière ? "))
+        N = int(input("Saisissez un entier ? "))
         if N % 2 == 0:
             print("Ce nombre est pair")
         elif N % 3 == 0:
@@ -114,20 +167,22 @@ commande =source=.
 5)
    1)
        #+BEGIN_SRC python
+         N = int(input("Quelle est la valeur de N ? "))
          f = g = 1
-         for i in range(0,11):
+         for i in range(0,N):
              f, g = g, f+g
-         print("F10 =", f)
+         print("F({}) = {}".format(N,g))
        #+END_SRC
    2)
        #+BEGIN_SRC python
+         N = int(input("Quelle est la valeur de N ? "))
          f = g = 1
          somme = 0
-         while f < 4e6:
+         while f < N:
              if f % 2 == 0:
                  somme += f
              f, g = g, f+g
-         print("somme =", somme)
+         print("Somme =", somme)
        #+END_SRC
    3)
        #+BEGIN_SRC python
@@ -135,7 +190,7 @@ commande =source=.
          n = 0
          while f < 10**1000:
              f, g, n = g, f+g, n+1
-         print("n =", n)
+         print("n = ", n)
        #+END_SRC
 6)
    #+BEGIN_SRC python
@@ -143,7 +198,7 @@ commande =source=.
      while abs(2*p - math.pi) > 1e-7:
          p *= 4*i**2/(4*i**2-1)
          i += 1
-     print(p, i)
+     print("pi = {} pour {} itérations".format(2*p, i))
    #+END_SRC
 
 * Footnotes
