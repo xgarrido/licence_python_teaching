@@ -184,7 +184,7 @@ pour que les modifications soient prises en compte
     # quote0() sera appelé lors du premier import et à chaque exécution
     quote0()
 
-    if __main__ == "__main__":
+    if __name__ == "__main__":
         # quote2() ne sera appelé que lors de l'exécution
         quote2()
   #+END_SRC
