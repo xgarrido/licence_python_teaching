@@ -1,4 +1,26 @@
+#+TITLE:  _=numpy=_ : librairie pour le calcul numérique
+#+AUTHOR: Xavier Garrido
+#+DATE:   15/02/2017
+#+OPTIONS: toc:nil ^:{} author:nil
+#+STARTUP:     beamer
+#+LATEX_CLASS: python-slide
+
 * Pourquoi =numpy= ?
+
+So far the numpy.ndarray looks awefully much like a Python list (or nested list). Why not simply use Python lists for computations instead of creating a new array type?
+
+There are several reasons:
+
+- Python lists are very general. They can contain any kind of object. They are
+  dynamically typed. They do not support mathematical functions such as matrix
+  and dot multiplications, etc. Implementing such functions for Python lists
+  would not be very efficient because of the dynamic typing.
+- Numpy arrays are statically typed and homogeneous. The type of the elements is
+  determined when the array is created.
+- Numpy arrays are memory efficient.
+- Because of the static typing, fast implementation of mathematical functions
+  such as multiplication and addition of numpy arrays can be implemented in a
+  compiled language (C and Fortran is used).
 
 http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-2-Numpy.ipynb#From-lists
 
@@ -23,3 +45,24 @@ http://www.scipy-lectures.org/intro/numpy/array_object.html#creating-arrays
 https://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html
 
 http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-2-Numpy.ipynb#linspace-and-logspace
+
+* Indexing and slicing
+
+Quite similar to Python list
+
+http://www.scipy-lectures.org/intro/numpy/array_object.html#indexing-and-slicing
+
+http://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.02-The-Basics-Of-NumPy-Arrays.ipynb#Array-Slicing:-Accessing-Subarrays
+* Copies & views
+
+http://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.02-The-Basics-Of-NumPy-Arrays.ipynb#Subarrays-as-no-copy-views
+http://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.02-The-Basics-Of-NumPy-Arrays.ipynb#Creating-copies-of-arrays
+http://www.scipy-lectures.org/intro/numpy/array_object.html#copies-and-views
+
+* Ufuncs
+
+http://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.03-Computation-on-arrays-ufuncs.ipynb#Array-arithmetic
+
+* Min, max, sum, stat
+
+http://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.04-Computation-on-arrays-aggregates.ipynb
