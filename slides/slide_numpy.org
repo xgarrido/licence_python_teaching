@@ -1,12 +1,94 @@
-#+TITLE:  _=numpy=_ : librairie pour le calcul numérique
+#+TITLE:  _=numpy=_ : librairie pour le calcul scientifique
 #+AUTHOR: Xavier Garrido
 #+DATE:   15/02/2017
 #+OPTIONS: toc:nil ^:{} author:nil
 #+STARTUP:     beamer
 #+LATEX_CLASS: python-slide
 
+* =numpy= ?
+
+- Le module =numpy= est l'outil de base utilisé dans tous calculs scientifiques et
+  donc numériques en Python
+
+- =numpy= fournit en particulier des objets de type *vecteurs, matrices et plus
+  généralement tableaux à $n$ dimensions*
+
+- =numpy= facilite et *optimise[fn:e0eb780c73d6562]* les opérations de *stockage et
+  de manipulation* des données *numériques* notamment lorsque la taille des
+  tableaux devient importante \to /array oriented computing/
+
+#+BEAMER: \pause
+- Convention d'importation
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: import numpy as np
+  #+END_SRC
+
+* Création de vecteurs, matrices
+
+- À partir d'une liste de valeurs
+  #+ATTR_BEAMER: :overlay +-
+  - Vecteur
+    #+BEAMER: \vskip5pt
+    #+BEGIN_SRC python
+      In [2]: v = np.array([0, 1, 2, 3])
+      In [3]: v
+      Out[3]: array([0, 1, 2, 3])
+    #+END_SRC
+    #+BEAMER: \vskip5pt
+
+  - Matrice 2\times2
+    #+BEAMER: \vskip5pt
+    #+BEGIN_SRC python
+      In [4]: M = np.array([[0, 1], [2, 3]])
+      In [5]: M
+      Out[5]:
+      array([[0, 1],
+             [2, 3]])
+    #+END_SRC
+
+    #+BEAMER: \pause\vskip5pt
+    #+BEGIN_SRC python
+      In [6]: type(v), type(M)
+      Out[6]: (numpy.ndarray, numpy.ndarray)
+
+      In [7]: v.ndim, M.ndim
+      Out[7]: (1, 2)
+
+      In [8]: v.shape, M.shape
+      Out[8]: ((4,), (2, 2))
+    #+END_SRC
+
+
 * Pourquoi =numpy= ?
 
+- Les objets de type =numpy.ndarray= \equiv à une liste Python (ou liste de
+  listes)
+
+- *Pourquoi ne pas simplement utiliser les listes Python pour les calculs au
+  lieu de créer un nouveau type de tableau ?*
+
+* Pourquoi =numpy= ?
+
+Il existe plusieurs (très bonnes) raisons à cela:
+
+#+ATTR_BEAMER: :overlay +-
+- Les listes Python sont très générales (on parle également d'objet de haut
+  niveau). *Elles peuvent contenir n'importe quel objet \to typage
+  dynamique*. Elles ne supportent pas les fonctions mathématiques.
+
+- Les tableaux ou /array/ de =numpy= sont *statiquement typées et homogènes*
+
+  - Le type des éléments est déterminé lorsque le tableau est créé *\to plus de
+    typage dynamique*
+  - De même la taille du tableau est fixée à la création *\to stockage en
+    mémoire optimisée*
+
+- En raison du typage statique, les fonctions mathématiques telles que la
+  multiplication et l'addition de matrices peuvent être mises en œuvre /via/ un
+  langage compilé (C et Fortran)
+
+#+BEGIN_COMMENT
 So far the numpy.ndarray looks awefully much like a Python list (or nested list). Why not simply use Python lists for computations instead of creating a new array type?
 
 There are several reasons:
@@ -26,11 +108,25 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
 
 http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
 
+#+END_COMMENT
+
+* Pourquoi =numpy= ?
+
+- Démonstration
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: %timeit [i**2 for i in range(1000)]
+    1000 loops, best of 3: 403 us per loop
+  #+END_SRC
+
+  #+BEAMER: \pause\vskip5pt
+  #+BEGIN_SRC python
+    In [3]: a = np.arange(1000)
+    In [4]: %timeit a**2
+    100000 loops, best of 3: 12.7 us per loop
+  #+END_SRC
+
 * =numpy= reference documentation
-
-http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
-
-* =import= convention
 
 http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
 
@@ -66,3 +162,8 @@ http://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/master
 * Min, max, sum, stat
 
 http://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.04-Computation-on-arrays-aggregates.ipynb
+
+* Footnotes
+
+[fn:e0eb780c73d6562] les principales fonctions de =numpy= sont implémentées en C
+et en Fortran

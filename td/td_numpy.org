@@ -1,5 +1,30 @@
-#+TITLE:  Modules et POO
+#+TITLE:  Librairie =numpy=
 #+AUTHOR: Xavier Garrido
-#+DATE:   08/02/2017
+#+DATE:   21/02/2017
 #+OPTIONS: toc:nil ^:{}
-#+LATEX_HEADER: \setcounter{chapter}{3}
+#+LATEX_HEADER: \setcounter{chapter}{4}
+
+
+* Rainy days
+
+#+BEGIN_SRC python
+# construct a mask of all rainy days
+rainy = (inches > 0)
+
+# construct a mask of all summer days (June 21st is the 172nd day)
+days = np.arange(365)
+summer = (days > 172) & (days < 262)
+
+print("Median precip on rainy days in 2014 (inches):   ",
+      np.median(inches[rainy]))
+print("Median precip on summer days in 2014 (inches):  ",
+      np.median(inches[summer]))
+print("Maximum precip on summer days in 2014 (inches): ",
+      np.max(inches[summer]))
+print("Median precip on non-summer rainy days (inches):",
+      np.median(inches[rainy & ~summer]))
+Median precip on rainy days in 2014 (inches):    0.194881889764
+Median precip on summer days in 2014 (inches):   0.0
+Maximum precip on summer days in 2014 (inches):  0.850393700787
+Median precip on non-summer rainy days (inches): 0.200787401575
+#+END_SRC
