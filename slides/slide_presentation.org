@@ -1,6 +1,6 @@
 #+TITLE:  Programmation en Python
 #+AUTHOR: Xavier Garrido
-#+DATE:   01/09/2016
+#+DATE:   01/09/2015
 #+OPTIONS: toc:nil ^:{}
 #+STARTUP:     beamer
 #+LATEX_CLASS: python-slide
