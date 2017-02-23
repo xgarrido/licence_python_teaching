@@ -4,9 +4,117 @@
 #+OPTIONS: toc:nil ^:{}
 #+LATEX_HEADER: \setcounter{chapter}{4}
 
+* Création de matrices
 
-* Rainy days
+- Créer les matrices suivantes en respectant le type et en 3 opérations maximum
+  #+BEGIN_SRC latex
+    \begin{align*}
+      \begin{bmatrix}
+        1&1&1&1\\
+        1&1&1&1\\
+        1&1&1&2\\
+        1&6&1&1\\
+      \end{bmatrix}&\quad
+      \begin{bmatrix}
+        0.& 0.& 0.& 0.& 0.\\
+        2.& 0.& 0.& 0.& 0.\\
+        0.& 3.& 0.& 0.& 0.\\
+        0.& 0.& 4.& 0.& 0.\\
+        0.& 0.& 0.& 5.& 0.\\
+        0.& 0.& 0.& 0.& 6.\\
+      \end{bmatrix}
+    \end{align*}
+  #+END_SRC
+  Dans le second cas, on pourra s'aider de la méthode =diag=
 
+- En utilisant la méthode =tile=, reproduire la matrice suivante à l'aide d'une
+  seule commande
+  #+BEGIN_SRC latex
+    \begin{align*}
+      \begin{bmatrix}
+        4& 3& 4& 3& 4& 3\\
+        2& 1& 2& 1& 2& 1\\
+        4& 3& 4& 3& 4& 3\\
+        2& 1& 2& 1& 2& 1\\
+      \end{bmatrix}
+    \end{align*}
+  #+END_SRC
+
+
+** Correction                                                   :correction:
+-
+  #+BEGIN_SRC python
+    In [1]: M = np.ones((4,4))
+    In [2]: M[2,3] = 2
+    In [3]: M[3,1] = 6
+  #+END_SRC
+
+  #+BEGIN_SRC python
+    In [1]: M = np.diag([2, 3, 4, 5, 6], k=-1)
+    In [2]: M = M[:, :5]
+  #+END_SRC
+
+-
+  #+BEGIN_SRC python
+    In [1]: np.tile([[4,3], [2, 1]], (2, 3))
+  #+END_SRC
+
+* Fonctions universelles
+
+- Créer un tableau à une dimension contenant 1 million de valeurs aléatoires
+  comprises entre 1 et 100
+
+- Créer une fonction =invert= qui retournera un second tableau résultat de
+  l'opération d'inversion du premier tableau
+
+- À l'aide de la fonction intégrée =%timeit= de l'interpréteur =ipython=, estimer le
+  temps moyen nécessaire à l'exécution de la fonction =inverse=
+
+- Estimer ce même temps d'exécution, en utilisant l'opérateur division
+
+** Correction                                                   :correction:
+
+#+BEGIN_SRC python
+  In [1]: def inverse(value):
+     ...:     output = np.empty(len(values))
+     ...:     for i in range(len(values)):
+     ...:         output[i] = 1./values[i]
+     ...:     return output
+     ...:
+
+  In [2]: %timeit inverse(v)
+  1 loop, best of 3: 2.46 s per loop
+
+  In [3]: %timeit 1./v
+  100 loops, best of 3: 6.45 ms per loop
+#+END_SRC
+* Sale temps sur Seattle
+
+- Télécharger le fichier [[https://goo.gl/LnXGOe][=seattle2014.csv=]] qui contient pour chaque jour de
+  l'année 2014 (colonne 1), la hauteur des précipitations exprimé en /inch/
+  (colonne 2) ainsi que les températures minimale (colonne 3) et maximale
+  (colonne 4) à Seattle.
+
+- Charger l'ensemble des données dans un tableau =numpy= en prenant bien garde au
+  caractère délimitant chaque champ puis, après avoir converti la hauteur des
+  précipitations en centimètres, calculer les valeurs suivantes sur chacune des
+  données du fichier (hauteur des précipitations, $T_\text{min}$ et
+  $T_\text{max}$) :
+  1) moyenne, médiane et écart type
+  2) valeurs minimale et maximale
+  3) les quantiles à 25% et 75%
+
+- Afficher les valeurs ci-dessus pour la période estivale
+
+- Calculer la hauteur totale d'eau tombée à Seattle en 2014
+
+- Dénombrer le nombre total de jours dans l'année pendant lesquels il n'a pas
+  plu à Seattle et déterminer combien de ces jours étaient pairs
+
+- Représenter la distribution de la hauteur des précipitations à l'aide de la
+  méthode =hist= de =matplotlib.pyplot=
+
+** Correction                                                   :correction:
 #+BEGIN_SRC python
 # construct a mask of all rainy days
 rainy = (inches > 0)

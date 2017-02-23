@@ -456,15 +456,19 @@ different booleans used in the nex section.
   \hypersetup{
     xetex,
     colorlinks=true,
-    urlcolor=green,
-    filecolor=green,
-    linkcolor=red,
+    urlcolor=gray,
+    filecolor=gray,
+    linkcolor=gray,
+    citecolor=gray,
     plainpages=false,
     pdfpagelabels,
     bookmarksnumbered,
     pagebackref
   }
+  \let\orighref\href
+  \renewcommand{\href}[2]{\orighref{#1}{#2\,\scalebox{0.75}{\faExternalLink}}}
 #+END_SRC
+
 ***** Template settings
 Given the =driver= to be used, generic colors, special title inclusion are set
 up. Practically, everything can be done within this section.
