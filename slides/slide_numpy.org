@@ -284,7 +284,7 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 #+BEGIN_SRC python
   In [1]: import numpy as np
   In [2]: import matplotlib.pyplot as plt
-  In [3]: %matplotlib tk
+  In [3]: %matplotlib
 
   In [4]: img = np.random.randn(30, 30)
   In [5]: plt.imshow(img, cmap=plt.cm.hot,
@@ -687,7 +687,7 @@ Le type de données numériques stockées est fixé à la création du tableau
 #+BEGIN_SRC python
   In [1]: import numpy as np
   In [2]: import matplotlib.pyplot as plt
-  In [3]: %matplotlib tk
+  In [3]: %matplotlib
 
   In [4]: x = np.linspace(0, 5, 500)
   In [5]: y = np.linspace(0, 5, 500)[:, np.newaxis]
@@ -780,18 +780,17 @@ Le type de données numériques stockées est fixé à la création du tableau
 #+BEGIN_SRC python
   In [1]: import numpy as np
   In [2]: import matplotlib.pyplot as plt
-  In [3]: %matplotlib tk
+  In [3]: %matplotlib
 
   In [4]: x = np.random.rand(1000)
   In [5]: y = np.random.rand(1000)
   In [6]: plt.scatter(x, y, alpha=0.3)
-  In [7]: plt.xlim(0, 1); plt.ylim(0, 1)
+  In [7]: plt.axis([0, 1, 0, 1])
 
   In [8]: mask = (x*y > 0.5)
   In [9]: plt.scatter(x[mask], y[mask], alpha=0.6,
                       edgecolors="orange", c="none",
                       s=200)
-
 #+END_SRC
 
 ** Mask
