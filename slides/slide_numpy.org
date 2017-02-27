@@ -280,7 +280,6 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 :BEAMER_COL: 0.5
 :END:
 
-#+BEAMER: \tiny
 #+BEGIN_SRC python
   In [1]: import numpy as np
   In [2]: import matplotlib.pyplot as plt
@@ -288,7 +287,7 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 
   In [4]: img = np.random.randn(30, 30)
   In [5]: plt.imshow(img, cmap=plt.cm.hot,
-                     extent=(0, 30, 0, 30))
+                     extent=(0,30,0,30))
   In [6]: plt.colorbar()
 #+END_SRC
 
@@ -785,7 +784,7 @@ Le type de données numériques stockées est fixé à la création du tableau
   In [4]: x = np.random.rand(1000)
   In [5]: y = np.random.rand(1000)
   In [6]: plt.scatter(x, y, alpha=0.3)
-  In [7]: plt.axis([0, 1, 0, 1])
+  In [7]: plt.axis("scaled"); plt.axis([0, 1, 0, 1])
 
   In [8]: mask = (x*y > 0.5)
   In [9]: plt.scatter(x[mask], y[mask], alpha=0.6,
@@ -800,6 +799,7 @@ Le type de données numériques stockées est fixé à la création du tableau
 
 #+ATTR_LATEX: :width 1.1\linewidth
 [[file:figures/mask.pdf]]
+
 * Entrées/sorties de =numpy=
 
 - =numpy= permet de charger un fichier texte dans un objet de type =ndarray=
