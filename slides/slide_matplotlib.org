@@ -1,0 +1,131 @@
+#+TITLE:  _=matplotlib=_ : librairie pour la représentation graphique
+#+AUTHOR: Xavier Garrido
+#+DATE:   25/02/2017
+#+OPTIONS: toc:nil ^:{} author:nil
+#+STARTUP:     beamer
+#+LATEX_CLASS: python-slide
+
+#+COMMENT: Special latex tweaks for these slides
+#+BEGIN_SRC latex
+  %%\tikzexternaldisable
+#+END_SRC
+
+* =matplotlib= ?
+
+#+ATTR_BEAMER: :overlay +-
+- La librairie =matplotlib= est *la* bibliothèque graphique de Python
+
+- Forte intéraction avec =numpy= et =scipy=
+
+- Grande variété de *format de sortie (=png=, =pdf=, =svg=, =eps=, =pgf=)*
+  ainsi que support de *\LaTeX* pour le texte
+
+- /Graphical User Interface/ pour l'exploration interactive des figures (zoom,
+  sélection,...)
+
+- Tous les aspects d'une figure (taille, position,...) peuvent être contrôlés
+  d'un point de vue /programmatique/ \to *reproductibilité* des figures et des
+  résultats scientifiques
+
+* Installation & importation de =matplotlib=
+
+#+ATTR_BEAMER: :overlay +-
+- Installation /via/ =pip=
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC shell-session
+    $ pip install matplotlib
+  #+END_SRC
+
+- Convention d'importation
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python
+    In [1]: import matplotlib as mpl
+    In [2]: import matplotlib.pyplot as plt
+  #+END_SRC
+
+* Comment afficher vos figures : =show()= or not =show()=
+
+#+BEAMER: \setbeamercovered{invisible}
+
+- Affichage depuis un script python
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python -n
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    x = np.linspace(0, 3*np.pi, 100)
+
+    plt.plot(x, np.sin(x))
+    plt.plot(x, np.cos(x))
+
+    plt.show()
+  #+END_SRC
+
+  #+BEAMER: \pause
+
+  #+BEGIN_SRC latex
+    \begin{tikzpicture}[remember picture,overlay]
+      \tikzset{codeblock/.style={color=#1!50,rounded corners=0.5ex, opacity=0.2, fill}}
+      \draw[codeblock=blue] (3ex,0.75ex) rectangle (13ex,3ex);
+      \node[blue] (t) [xshift=40ex, yshift=+4ex] {\small Utilisation de \texttt{\bf plt.show()}};
+      \draw[->, blue] (t.west) to [out=180, in=0] (14ex, 1.5ex);
+    \end{tikzpicture}
+  #+END_SRC
+
+* Comment afficher vos figures : =show()= or not =show()=
+
+#+BEAMER: \setbeamercovered{invisible}
+
+- Affichage depuis la console =ipython=
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC python -n
+    In [1]: %matplotlib
+    Using matplotlib backend: TkAgg
+
+    In [2]: import matplotlib.pyplot as plt
+    In [3]: import numpy as np
+
+    In [4]: x = np.linspace(0, 3*np.pi, 100)
+
+    In [6]: plt.plot(x, np.sin(x))
+    In [7]: plt.plot(x, np.cos(x))
+  #+END_SRC
+
+  #+BEAMER: \pause
+
+  #+BEGIN_SRC latex
+    \begin{tikzpicture}[remember picture,overlay]
+      \tikzset{codeblock/.style={color=#1!50,rounded corners=0.5ex, opacity=0.2, fill}}
+      \draw[codeblock=blue] (10ex,18.75ex) rectangle (20ex,21ex);
+      \node[blue] (t) [xshift=50ex, yshift=+18ex] {\small Utilisation de \texttt{\bf \%matplotlib}};
+      \draw[->, blue] (t.west) to [out=180, in=0] (21ex, 20ex);
+    \end{tikzpicture}
+  #+END_SRC
+
+- Possibilité également de lancer la commande =ipython= avec l'option =--matplotlib=
+
+* Premières figures
+
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC python
+  In [1]: %matplotlib
+  In [2]: import matplotlib.pyplot as plt
+  In [3]: import numpy as np
+
+  In [4]: x = np.linspace(0, 3*np.pi, 100)
+
+  In [5]: plt.plot(x, np.sin(x))
+  In [6]: plt.plot(x, np.cos(x))
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+ATTR_LATEX: :width 1.2\linewidth
+[[file:figures/matplotlib1.pdf]]
