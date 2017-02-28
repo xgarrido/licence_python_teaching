@@ -5,11 +5,6 @@
 #+STARTUP:     beamer
 #+LATEX_CLASS: python-slide
 
-#+COMMENT: Special latex tweaks for these slides
-#+BEGIN_SRC latex
-  %%\tikzexternaldisable
-#+END_SRC
-
 * =matplotlib= ?
 
 #+ATTR_BEAMER: :overlay +-
@@ -104,11 +99,11 @@
 
 - Possibilité également de lancer la commande =ipython= avec l'option =--matplotlib=
 
-* Premières figures
+* Première figure sous =matplotlib=
 
 ** Python code
 :PROPERTIES:
-:BEAMER_COL: 0.5
+:BEAMER_COL: 0.52
 :END:
 
 #+BEGIN_SRC python
@@ -122,10 +117,174 @@
   In [6]: plt.plot(x, np.cos(x))
 #+END_SRC
 
+#+BEAMER: \pause
+- Sauvegarder la figure (=eps=, =pdf=, =png=)
+
+#+BEGIN_SRC python
+  In [7]: plt.savefig("/tmp/mpl1.pdf")
+#+END_SRC
+
 ** Figure
 :PROPERTIES:
 :BEAMER_COL: 0.5
 :END:
 
-#+ATTR_LATEX: :width 1.2\linewidth
+#+ATTR_LATEX: :width 1.1\linewidth
 [[file:figures/matplotlib1.pdf]]
+* /Kozmetix/ sous =matplotlib=
+#+BEAMER: \framesubtitle{Styles \& couleurs des lignes}
+
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \small
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [8]: plt.plot(x, x + 0, linestyle="solid")
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [9]: plt.plot(x, x + 1, linestyle="dashed")
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[10]: plt.plot(x, x + 2, linestyle="dashdot")
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[11]: plt.plot(x, x + 3, linestyle="dotted")
+#+END_SRC
+
+- Il est également possible d'utiliser les notations raccourcies
+
+  | =-=  | \equiv | =solid=   |
+  | =--= | \equiv | =dashed=  |
+  | =-.= | \equiv | =dashdot= |
+  | =:=  | \equiv | =dotted=  |
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_line0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_line1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_line2.pdf}
+    \includegraphics<4>[width=1.1\linewidth]{figures/mpl_line3.pdf}
+  \end{center}
+#+END_SRC
+* /Kozmetix/ sous =matplotlib=
+#+BEAMER: \framesubtitle{Styles \& couleurs des lignes}
+
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \small
+
+#+ATTR_BEAMER: :overlay +-
+- En spécifiant le nom de la couleur
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [8]: plt.plot(x, np.sin(x - 0), color="blue")
+  #+END_SRC
+
+- Nom raccourci (=rgbcmyk=)
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [9]: plt.plot(x, np.sin(x - 1), color="g")
+  #+END_SRC
+
+- Échelle de gris =[0; 1]=
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In[10]: plt.plot(x, np.sin(x - 2), color="0.75")
+  #+END_SRC
+
+- Code héxadécimal (=RRGGBB=)
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In[11]: plt.plot(x, np.sin(x - 3),
+                     color="#FFDD44")
+  #+END_SRC
+
+- RGB /tuple/ =[0; 1]=
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In[12]: plt.plot(x, np.sin(x - 4),
+                     color=(1.0,0.2,0.3))
+  #+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_color0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_color1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_color2.pdf}
+    \includegraphics<4>[width=1.1\linewidth]{figures/mpl_color3.pdf}
+    \includegraphics<5>[width=1.1\linewidth]{figures/mpl_color4.pdf}
+  \end{center}
+#+END_SRC
+* /Kozmetix/ sous =matplotlib=
+#+BEAMER: \framesubtitle{Styles \& couleurs des lignes}
+
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \small
+#+ATTR_LATEX: :overlay +-
+- Il est finalement possible de combiner style & couleur au sein d'une syntaxe
+  minimaliste
+
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [8]: plt.plot(x, x + 0, "-g")
+  #+END_SRC
+  #+BEAMER: \pause\vskip-3pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [9]: plt.plot(x, x + 1, "--c")
+  #+END_SRC
+  #+BEAMER: \pause\vskip-3pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In[10]: plt.plot(x, x + 2, "-.k")
+  #+END_SRC
+  #+BEAMER: \pause\vskip-3pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In[11]: plt.plot(x, x + 3, ":r")
+  #+END_SRC
+
+- Pour découvrir l'ensemble des options d'affichage *=plt.plot?=* ou
+  *=help(plt.plot)=*
+
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_colorline0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_colorline1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_colorline2.pdf}
+    \includegraphics<4-5>[width=1.1\linewidth]{figures/mpl_colorline3.pdf}
+  \end{center}
+#+END_SRC
