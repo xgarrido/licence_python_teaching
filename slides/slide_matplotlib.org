@@ -10,7 +10,7 @@
 #+ATTR_BEAMER: :overlay +-
 - La librairie =matplotlib= est *la* bibliothèque graphique de Python
 
-- Forte intéraction avec =numpy= et =scipy=
+- Étroitement liée à =numpy= et =scipy=
 
 - Grande variété de *format de sortie (=png=, =pdf=, =svg=, =eps=, =pgf=)*
   ainsi que support de *\LaTeX* pour le texte
@@ -100,7 +100,6 @@
 - Possibilité également de lancer la commande =ipython= avec l'option =--matplotlib=
 
 * Première figure sous =matplotlib=
-
 ** Python code
 :PROPERTIES:
 :BEAMER_COL: 0.52
@@ -130,10 +129,10 @@
 :END:
 
 #+ATTR_LATEX: :width 1.1\linewidth
-[[file:figures/matplotlib1.pdf]]
+[[file:figures/mpl.pdf]]
+
 * /Kozmetix/ sous =matplotlib=
 #+BEAMER: \framesubtitle{Styles \& couleurs des lignes}
-
 ** Python code
 :PROPERTIES:
 :BEAMER_COL: 0.52
@@ -183,7 +182,6 @@
 #+END_SRC
 * /Kozmetix/ sous =matplotlib=
 #+BEAMER: \framesubtitle{Styles \& couleurs des lignes}
-
 ** Python code
 :PROPERTIES:
 :BEAMER_COL: 0.52
@@ -240,7 +238,6 @@
 #+END_SRC
 * /Kozmetix/ sous =matplotlib=
 #+BEAMER: \framesubtitle{Styles \& couleurs des lignes}
-
 ** Python code
 :PROPERTIES:
 :BEAMER_COL: 0.52
@@ -274,7 +271,6 @@
 - Pour découvrir l'ensemble des options d'affichage *=plt.plot?=* ou
   *=help(plt.plot)=*
 
-
 ** Figure
 :PROPERTIES:
 :BEAMER_COL: 0.5
@@ -287,4 +283,106 @@
     \includegraphics<3>[width=1.1\linewidth]{figures/mpl_colorline2.pdf}
     \includegraphics<4-5>[width=1.1\linewidth]{figures/mpl_colorline3.pdf}
   \end{center}
+#+END_SRC
+
+* /Kozmetix/ sous =matplotlib=
+#+BEAMER: \framesubtitle{Définition des limites \& \emph{ticks}}
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_limit0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_limit1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_limit2.pdf}
+    \includegraphics<4-5>[width=1.1\linewidth]{figures/mpl_limit3.pdf}
+  \end{center}
+#+END_SRC
+
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \small\vskip+17pt
+#+BEGIN_SRC python
+  In [4]: x = np.linspace(0, 3*np.pi, 100)
+  In [5]: plt.plot(x, np.sin(x))
+
+  In [6]: plt.xlim(-1, 11)
+  In [7]: plt.ylim(-1.5, 1.5)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+BEGIN_SRC python
+  In [8]: plt.axis([11, -1, 1.5, -1.5])
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+BEGIN_SRC python
+  In [9]: plt.axis("tight")
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+BEGIN_SRC python
+  In[10]: plt.axis("equal")
+#+END_SRC
+
+#+BEAMER: \pause
+- Pour découvrir l'ensemble des options d'affichage *=plt.axis?=* ou
+  *=help(plt.axis)=*
+
+* /Kozmetix/ sous =matplotlib=
+#+BEAMER: \framesubtitle{Définition des limites \& \emph{ticks}}
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=0.6\linewidth]{figures/mpl_ticks0.pdf}
+    \includegraphics<2>[width=0.6\linewidth]{figures/mpl_ticks1.pdf}
+  \end{center}
+#+END_SRC
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[11]: plt.xticks([0, np.pi/2, np.pi, 3*np.pi/2, 2*np.pi, 5*np.pi/2, 3*np.pi])
+  In[12]: plt.yticks([-1, 0, +1])
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[13]: plt.xticks([0, np.pi/2, np.pi, 3*np.pi/2, 2*np.pi, 5*np.pi/2, 3*np.pi],
+                     [r"$0$", r"$\pi/2$", r"$\pi$", r"$3\pi/2$", r"$2\pi", r"$5\pi/2$", r"$3\pi$"])
+#+END_SRC
+
+* /Kozmetix/ sous =matplotlib=
+#+BEAMER: \framesubtitle{Titre \& axes}
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_title.pdf}
+  \end{center}
+#+END_SRC
+
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \small\vskip+17pt
+#+BEGIN_SRC python
+  In [4]: x = np.linspace(0, 3*np.pi, 100)
+  In [5]: plt.plot(x, np.sin(x))
+
+  In [6]: plt.title("Variation de la fonction sinus")
+  In [7]: plt.xlabel(r"$\theta$")
+  In [8]: plt.ylabel(r"$\cos\theta$")
 #+END_SRC
