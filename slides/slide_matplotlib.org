@@ -132,7 +132,7 @@
 [[file:figures/mpl.pdf]]
 
 * /Kozmetix/ sous =matplotlib=
-#+BEAMER: \framesubtitle{Styles \& couleurs des lignes}
+#+BEAMER: \framesubtitle{Lignes, marqueurs : styles \& couleurs}
 ** Python code
 :PROPERTIES:
 :BEAMER_COL: 0.52
@@ -181,7 +181,7 @@
   \end{center}
 #+END_SRC
 * /Kozmetix/ sous =matplotlib=
-#+BEAMER: \framesubtitle{Styles \& couleurs des lignes}
+#+BEAMER: \framesubtitle{Lignes, marqueurs : styles \& couleurs}
 ** Python code
 :PROPERTIES:
 :BEAMER_COL: 0.52
@@ -236,36 +236,79 @@
     \includegraphics<5>[width=1.1\linewidth]{figures/mpl_color4.pdf}
   \end{center}
 #+END_SRC
+
 * /Kozmetix/ sous =matplotlib=
-#+BEAMER: \framesubtitle{Styles \& couleurs des lignes}
+#+BEAMER: \framesubtitle{Lignes, marqueurs : styles \& couleurs}
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \small\vskip+17pt
+#+BEGIN_SRC python
+  In [4]: x = np.linspace(0, 3*np.pi, 30)
+  In [5]: plt.plot(x, np.sin(x), "o")
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+BEGIN_SRC python
+  In [6]: plt.plot(x, np.sin(x), "p",
+     ...:          markersize=15,
+     ...:          markerfacecolor='pink',
+     ...:          markeredgecolor='gray',
+     ...:          markeredgewidth=2)
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_marker0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_marker1.pdf}
+  \end{center}
+#+END_SRC
+* /Kozmetix/ sous =matplotlib=
+#+BEAMER: \framesubtitle{Lignes, marqueurs : styles \& couleurs}
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics[width=0.6\linewidth]{figures/mpl_marker2.pdf}
+  \end{center}
+#+END_SRC
+
+#+BEGIN_SRC python
+  In [7]: for marker in ["o", ".", ",", "x", "+", "v", "^", "<", ">", "s", "d"]:
+    ...:     plt.plot(np.random.rand(10), np.random.rand(10), marker)
+#+END_SRC
+
+* /Kozmetix/ sous =matplotlib=
+#+BEAMER: \framesubtitle{Lignes, marqueurs : styles \& couleurs}
 ** Python code
 :PROPERTIES:
 :BEAMER_COL: 0.52
 :END:
 
 #+BEAMER: \small
-#+ATTR_LATEX: :overlay +-
 - Il est finalement possible de combiner style & couleur au sein d'une syntaxe
   minimaliste
 
-  #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
-    In [8]: plt.plot(x, x + 0, "-g")
+    In [8]: plt.plot(x, x + 0, "-og")
   #+END_SRC
   #+BEAMER: \pause\vskip-3pt
-  #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
-    In [9]: plt.plot(x, x + 1, "--c")
+    In [9]: plt.plot(x, x + 1, "--xc")
   #+END_SRC
   #+BEAMER: \pause\vskip-3pt
-  #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
-    In[10]: plt.plot(x, x + 2, "-.k")
+    In[10]: plt.plot(x, x + 2, "-..k")
   #+END_SRC
   #+BEAMER: \pause\vskip-3pt
-  #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
-    In[11]: plt.plot(x, x + 3, ":r")
+    In[11]: plt.plot(x, x + 3, ":sr")
   #+END_SRC
 
 - Pour découvrir l'ensemble des options d'affichage *=plt.plot?=* ou
@@ -445,7 +488,6 @@ sans échapper les caractères précédés de =\=
 
 * /Kozmetix/ sous =matplotlib=
 #+BEAMER: \framesubtitle{\emph{Labelling} : titre, axes, légendes et autres annotations}
-
 ** Figure
 :PROPERTIES:
 :BEAMER_COL: 0.5
@@ -491,6 +533,7 @@ sans échapper les caractères précédés de =\=
 #+BEAMER: \pause
 - Pour découvrir l'ensemble des options d'affichage *=plt.legend?=* ou
   *=help(plt.legend)=*
+
 * /Kozmetix/ sous =matplotlib=
 #+BEAMER: \framesubtitle{\emph{Labelling} : titre, axes, légendes et autres annotations}
 
@@ -512,4 +555,184 @@ sans échapper les caractères précédés de =\=
   In[12]: plt.annotate(r"$\cos\left(\frac{\pi}{2}\right)=0$",
                        xy=(np.pi/2, np.cos(np.pi/2)), xytext=(3, 2),
                        arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"))
+#+END_SRC
+
+* /Scatter plot/
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_scatter0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_scatter1.pdf}
+  \end{center}
+#+END_SRC
+
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \vskip+17pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: x = np.linspace(0, 3*np.pi, 30)
+  In [2]: plt.scatter(x, np.sin(x), marker="o")
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [3]: plt.plot(x, np.cos(x), "o", color="orange")
+#+END_SRC
+
+* /Scatter plot/
+
+- Le mode /scatter/ permet de contrôler (taille, couleur) chaque point/marqueur
+  individuellement
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_scatter2.pdf}
+  \end{center}
+#+END_SRC
+
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \vskip+17pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: rng = np.random
+  In [2]: x = rng.randn(100)
+  In [3]: y = rng.randn(100)
+  In [4]: colors = rng.rand(100)
+  In [5]: sizes = 1000 * rng.rand(100)
+
+  In [6]: plt.grid()
+  In [7]: plt.scatter(x, y, c=colors, s=sizes, alpha=0.3,
+                      cmap="viridis")
+  In [8]: plt.colorbar()
+#+END_SRC
+* Barres d'erreur
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \vskip+17pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: x = np.linspace(0, 10, 50)
+  In [2]: dy = 0.8
+  In [3]: y = np.sin(x) + dy * np.random.randn(50)
+
+  In [4]: plt.errorbar(x, y, yerr=dy, fmt="o")
+  In [5]: plt.plot(x, np.sin(x))
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [6]: plt.errorbar(x, y, yerr=dy,
+                       fmt="o", color="black",
+                       ecolor="lightgray",
+                       elinewidth=3,
+                       capsize=0)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [7]: plt.fill_between(x, np.sin(x)-dy, np.sin(x)+dy,
+                           alpha=0.2, color="gray")
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_errorbar0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_errorbar1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_errorbar2.pdf}
+  \end{center}
+#+END_SRC
+
+* Histogrammes
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \vskip+17pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: data = np.random.randn(1000)
+  In [2]: plt.hist(data)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [3]: plt.hist(data, bins=30, normed=True)
+#+END_SRC
+
+- Pour découvrir l'ensemble des options d'affichage *=plt.hist?=* ou
+  *=help(plt.hist)=*
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_histogram0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_histogram1.pdf}
+  \end{center}
+#+END_SRC
+
+* Histogrammes
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \vskip+17pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [0]: x1 = np.random.normal(0, 0.8, 1000)
+  In [1]: x2 = np.random.normal(-2, 1, 1000)
+  In [2]: x3 = np.random.normal(3, 2, 1000)
+
+  In [3]: kwargs = dict(histtype="stepfilled", alpha=0.5,
+                        normed=True, bins=40)
+
+  In [4]: plt.hist(x1, **kwargs)
+  In [5]: plt.hist(x2, **kwargs)
+  In [6]: plt.hist(x3, **kwargs);
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_histogram2.pdf}
+  \end{center}
 #+END_SRC
