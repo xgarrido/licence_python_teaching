@@ -1,0 +1,138 @@
+#+TITLE:  Librairie =matplotlib=
+#+AUTHOR: Xavier Garrido
+#+DATE:   02/03/2017
+#+OPTIONS: toc:nil ^:{}
+#+LATEX_HEADER: \setcounter{chapter}{5}
+
+* Sale temps sur Seattle (suite)
+
+- À partir de l'histogramme représentant la distribution des hauteurs de
+  précipitations à Seattle (/cf./ précédent TD), préciser les axes de la figure
+  ainsi que le titre de l'histogramme
+
+- Annoter la figure pour faire apparaître la valeur moyenne, la médiane et
+  l'écart-type des précipitations
+
+- Représenter sur une seconde figure, la variation temporelle des températures
+  minimale et maximale. On s'aidera du code suivant pour convertir les jours
+  extraits du fichier =csv= en une grandeur exploitable par =numpy=
+
+  #+BEGIN_SRC python
+    import pandas as pd
+    a = pd.to_datetime(day, format="%Y%m%d")
+    new_day = np.array(a, dtype=np.np.datetime64)
+  #+END_SRC
+
+- Sur une troisième figure, représenter la distribution des valeurs minimale et
+  maximale des températures. Faire en sorte que les distributions puissent être
+  visible y compris au niveau des zones de recouvrement
+
+* Fonctions discontinues
+
+- Représenter la fonction d'Heaviside $\Theta(x)$ définie
+  #+BEGIN_SRC latex
+    \begin{align*}
+      \left\{
+        \begin{array}{lll}
+          \Theta(x)&=1&\text{si } x \geq 0\\
+          &=0&\text{sinon}
+        \end{array}
+        \right.
+    \end{align*}
+  #+END_SRC
+
+- La variation du nombre de noyaux radioactifs de\nbsp^{11}C est donnée par
+  l'expression suivante
+  #+BEGIN_SRC latex
+    \begin{align*}
+      \left\{
+        \begin{array}{lll}
+          n(t)&=\frac{n_i}{\lambda}\left(1 - e^{-\lambda t}\right)&\text{si } t \leq t_0\\
+          &=n(t_0)\,e^{-\lambda t}&\text{si } t > t_0
+        \end{array}
+        \right.
+    \end{align*}
+  #+END_SRC
+  où $\lambda=\frac{\ln2}{T_{1/2}}$ et $T_{1/2}$ = 20.36 minutes. $n_i$
+  correspond au taux d'irradition et est égal à 3 10^{8} noyaux/s. Représenter
+  $n(t)$ pour $t_0$ = 3 heures.
+
+* /Iris setosa, Iris virginica et Iris versicolor/
+
+Le jeu de données /Iris/ contient les propriétés morphologiques de 3 espèces de
+fleur d'iris collectées par Edgar Anderson. Ce jeu de données est surtout reputé
+par l'utilisation faite en 1936 par Ronald Fisher pour démontrer la puissance de
+son algorithme d'analyse discriminante linéaire à même de séparer les 3 espèces
+de fleur d'iris. Ces données sont devenues depuis un cas typique pour de
+nombreuses techniques de classification automatique en /machine learning/.
+
+- Télécharger le fichier [[https://goo.gl/8IjB9o][=iris.csv=]] qui contient la longueur et la largeur des
+  sépales en cm (colonne 1 et 2), la longueur et la largeur des pétales en cm
+  (colonne 3 et 4) ainsi qu'une dernière colonne dont la valeur, 0, 1 ou 2, est
+  relative à l'espèce de la fleur d'iris (0 = /iris setosa/, 1 = /iris versicolor/,
+  2 = /iris virginica/). Charger ce fichier dans un tableau =numpy=
+
+- Représenter les distributions normalisées de longueur et de largeur des
+  sépales et des pétales pour les 3 espèces
+
+- Représenter dans un diagramme (largeur des sépales /vs./ longueur des sépales),
+  la largeur des pétales ainsi que l'espèce de fleur d'iris considérée
+
+** Correction                                                   :correction:
+
+#+BEGIN_SRC python -n :tangle /tmp/iris.py
+  import numpy as np
+
+  data = np.loadtxt("./data/iris.csv", delimiter=",")
+
+  sepal_length = data[:, 0]
+  sepal_width  = data[:, 1]
+  petal_length = data[:, 2]
+  petal_width  = data[:, 3]
+  species      = data[:, 4]
+
+  # Distributions des longueurs
+
+  style = dict(histtype="stepfilled", alpha=0.5, normed=True)
+
+  import matplotlib.pyplot as plt
+
+  d = {0 : "iris setosa", 1 : "iris versicolor", 2 : "iris virginica"}
+  h = {"longueur des sépales [cm]" : sepal_length,
+       "largeur des sépales [cm]"  : sepal_width,
+       "longueur des pétales [cm]" : petal_length,
+       "largeur des pétales [cm]"  : petal_width}
+
+  for xlabel, data in h.items():
+      plt.figure()
+      for key, name in d.items():
+          plt.hist(data[species == key], **style, label=name)
+      plt.xlabel(xlabel)
+      plt.ylabel("probabilité")
+      plt.legend(frameon=False)
+
+  # Diagrammes longueur vs. largeur sépales
+  plt.figure()
+  plt.scatter(sepal_length, sepal_width, s=100*petal_width,
+              c=species, cmap="viridis", alpha=0.2)
+  plt.xlabel("longueur des sépales [cm]")
+  plt.ylabel("largeur des sépales [cm]")
+
+  # Création d'une légende à partir d'un scatter plot vide
+  color = plt.cm.get_cmap("viridis")
+  for key, name in d.items():
+      rgba = color(key/2)
+      plt.scatter([], [],c=rgba, alpha=0.2, label=name)
+  plt.legend(frameon=False)
+
+  plt.show()
+#+END_SRC
+
+#+RESULTS:
+: None
+
+#+ATTR_LATEX: :align p{0.5\textwidth}p{0.5\textwidth}
+| [[file:figures/sepal_length.pdf]] | [[file:figures/sepal_width.pdf]] |
+| [[file:figures/petal_length.pdf]] | [[file:figures/petal_width.pdf]] |
+
+[[file:figures/iris.pdf]]

@@ -36,7 +36,7 @@
 
 - Documentation de référence du module http://docs.scipy.org/
 
-- Aide intéractive
+- Aide interactive
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: np.array?
@@ -250,7 +250,6 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 
 * Création de tableau (suite)
 
-#+ATTR_BEAMER: :overlay +-
 - Générateurs aléatoires =rand/randint/randn=
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python

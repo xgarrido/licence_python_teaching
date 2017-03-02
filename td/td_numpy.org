@@ -91,15 +91,15 @@
 * Sale temps sur Seattle
 
 - Télécharger le fichier [[https://goo.gl/LnXGOe][=seattle2014.csv=]] qui contient pour chaque jour de
-  l'année 2014 (colonne 1), la hauteur des précipitations exprimé en /inch/
-  (colonne 2) ainsi que les températures minimale (colonne 3) et maximale
-  (colonne 4) à Seattle.
+  l'année 2014 (colonne 1), la hauteur des précipitations exprimé en dixième de
+  millimètres (colonne 2) ainsi que les températures minimale (colonne 3) et
+  maximale (colonne 4), exprimées en dixième de degrés Celsius, à Seattle.
 
 - Charger l'ensemble des données dans un tableau =numpy= en prenant bien garde au
   caractère délimitant chaque champ puis, après avoir converti la hauteur des
-  précipitations en centimètres, calculer les valeurs suivantes sur chacune des
-  données du fichier (hauteur des précipitations, $T_\text{min}$ et
-  $T_\text{max}$) :
+  précipitations en centimètres et les températures en degré Celsius, calculer
+  les valeurs suivantes sur chacune des données du fichier (hauteur des
+  précipitations, $T_\text{min}$ et $T_\text{max}$) :
   1) moyenne, médiane et écart type
   2) valeurs minimale et maximale
   3) les quantiles à 25% et 75%
@@ -115,24 +115,64 @@
   méthode =hist= de =matplotlib.pyplot=
 
 ** Correction                                                   :correction:
-#+BEGIN_SRC python
-# construct a mask of all rainy days
-rainy = (inches > 0)
 
-# construct a mask of all summer days (June 21st is the 172nd day)
-days = np.arange(365)
-summer = (days > 172) & (days < 262)
+#+BEGIN_SRC python -n :tangle /tmp/seattle.py
+  import numpy as np
 
-print("Median precip on rainy days in 2014 (inches):   ",
-      np.median(inches[rainy]))
-print("Median precip on summer days in 2014 (inches):  ",
-      np.median(inches[summer]))
-print("Maximum precip on summer days in 2014 (inches): ",
-      np.max(inches[summer]))
-print("Median precip on non-summer rainy days (inches):",
-      np.median(inches[rainy & ~summer]))
-Median precip on rainy days in 2014 (inches):    0.194881889764
-Median precip on summer days in 2014 (inches):   0.0
-Maximum precip on summer days in 2014 (inches):  0.850393700787
-Median precip on non-summer rainy days (inches): 0.200787401575
+  def print_report(prcp, tmin, tmax):
+
+      print("Hauteur des précipitations:")
+      print("  valeur moyenne = {} cm".format(np.mean(prcp)))
+      print("  valeur médiane = {} cm".format(np.median(prcp)))
+      print("      écart type = {} cm".format(np.std(prcp)))
+      print("     valeur min. = {} cm".format(np.min(prcp)))
+      print("     valeur max. = {} cm".format(np.max(prcp)))
+      print("  quantile à 25% = {} cm".format(np.percentile(prcp, 25)))
+      print("  quantile à 75% = {} cm".format(np.percentile(prcp, 75)))
+      print("\n")
+
+      print("Température minimale:")
+      print("  valeur moyenne = {} °C".format(np.mean(tmin)))
+      print("  valeur médiane = {} °C".format(np.median(tmin)))
+      print("      écart type = {} °C".format(np.std(tmin)))
+      print("     valeur min. = {} °C".format(np.min(tmin)))
+      print("     valeur max. = {} °C".format(np.max(tmin)))
+      print("  quantile à 25% = {} °C".format(np.percentile(tmin, 25)))
+      print("  quantile à 75% = {} °C".format(np.percentile(tmin, 75)))
+      print("\n")
+
+      print("Température maximale:")
+      print("  valeur moyenne = {} °C".format(np.mean(tmax)))
+      print("  valeur médiane = {} °C".format(np.median(tmax)))
+      print("      écart type = {} °C".format(np.std(tmax)))
+      print("     valeur min. = {} °C".format(np.min(tmax)))
+      print("     valeur max. = {} °C".format(np.max(tmax)))
+      print("  quantile à 25% = {} °C".format(np.percentile(tmax, 25)))
+      print("  quantile à 75% = {} °C".format(np.percentile(tmax, 75)))
+      print("\n")
+
+  data = np.loadtxt("./data/seattle2014.csv", delimiter=",")
+
+  day = data[:,0]
+  precipitations = data[:,1]/100
+  tmax = data[:,2]/10
+  tmin = data[:,3]/10
+
+
+  print("* Valeurs annuelles")
+  print_report(precipitations, tmin, tmax)
+
+  print("* Valeurs estivales")
+  summer = (day > 20140401) & (day < 20140930)
+  print_report(precipitations[summer], tmin[summer], tmax[summer])
+
+  print("Hauteur totale d'eau en 2014 : {} cm".format(np.sum(precipitations)))
+  print("Nombre de jours sans pluie : {}".format(np.sum(precipitations > 0)))
+  print("Nombre de jours pairs sans pluie : {}".format(np.sum((precipitations > 0) & (day % 2 == 0))))
+
+  import matplotlib.pyplot as plt
+  plt.hist(precipitations, 40)
+  plt.show()
 #+END_SRC
+
+[[file:figures/seattle2014_prcp.pdf]]
