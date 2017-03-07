@@ -40,7 +40,6 @@
     \end{align*}
   #+END_SRC
 
-
 ** Correction                                                   :correction:
 -
   #+BEGIN_SRC python
@@ -82,12 +81,15 @@
      ...:     return output
      ...:
 
-  In [2]: %timeit inverse(v)
+  In [2]: v = np.random.randint(1, 100, 1000000)
+
+  In [3]: %timeit inverse(v)
   1 loop, best of 3: 2.46 s per loop
 
-  In [3]: %timeit 1./v
+  In [4]: %timeit 1./v
   100 loops, best of 3: 6.45 ms per loop
 #+END_SRC
+
 * Sale temps sur Seattle
 
 - Télécharger le fichier [[https://goo.gl/LnXGOe][=seattle2014.csv=]] qui contient pour chaque jour de
@@ -108,8 +110,8 @@
 
 - Calculer la hauteur totale d'eau tombée à Seattle en 2014
 
-- Dénombrer le nombre total de jours dans l'année pendant lesquels il n'a pas
-  plu à Seattle et déterminer combien de ces jours étaient pairs
+- Dénombrer le nombre total de jours dans l'année pendant lesquels il a plu à
+  Seattle et déterminer combien de ces jours étaient pairs
 
 - Représenter la distribution de la hauteur des précipitations à l'aide de la
   méthode =hist= de =matplotlib.pyplot=
@@ -119,7 +121,7 @@
 #+BEGIN_SRC python -n :tangle /tmp/seattle.py
   import numpy as np
 
-  def print_report(prcp, tmin, tmax):
+  def print_report(prcp, Tmin, Tmax):
 
       print("Hauteur des précipitations:")
       print("  valeur moyenne = {} cm".format(np.mean(prcp)))
@@ -132,46 +134,46 @@
       print("\n")
 
       print("Température minimale:")
-      print("  valeur moyenne = {} °C".format(np.mean(tmin)))
-      print("  valeur médiane = {} °C".format(np.median(tmin)))
-      print("      écart type = {} °C".format(np.std(tmin)))
-      print("     valeur min. = {} °C".format(np.min(tmin)))
-      print("     valeur max. = {} °C".format(np.max(tmin)))
-      print("  quantile à 25% = {} °C".format(np.percentile(tmin, 25)))
-      print("  quantile à 75% = {} °C".format(np.percentile(tmin, 75)))
+      print("  valeur moyenne = {} °C".format(np.mean(Tmin)))
+      print("  valeur médiane = {} °C".format(np.median(Tmin)))
+      print("      écart type = {} °C".format(np.std(Tmin)))
+      print("     valeur min. = {} °C".format(np.min(Tmin)))
+      print("     valeur max. = {} °C".format(np.max(Tmin)))
+      print("  quantile à 25% = {} °C".format(np.percentile(Tmin, 25)))
+      print("  quantile à 75% = {} °C".format(np.percentile(Tmin, 75)))
       print("\n")
 
       print("Température maximale:")
-      print("  valeur moyenne = {} °C".format(np.mean(tmax)))
-      print("  valeur médiane = {} °C".format(np.median(tmax)))
-      print("      écart type = {} °C".format(np.std(tmax)))
-      print("     valeur min. = {} °C".format(np.min(tmax)))
-      print("     valeur max. = {} °C".format(np.max(tmax)))
-      print("  quantile à 25% = {} °C".format(np.percentile(tmax, 25)))
-      print("  quantile à 75% = {} °C".format(np.percentile(tmax, 75)))
+      print("  valeur moyenne = {} °C".format(np.mean(Tmax)))
+      print("  valeur médiane = {} °C".format(np.median(Tmax)))
+      print("      écart type = {} °C".format(np.std(Tmax)))
+      print("     valeur min. = {} °C".format(np.min(Tmax)))
+      print("     valeur max. = {} °C".format(np.max(Tmax)))
+      print("  quantile à 25% = {} °C".format(np.percentile(Tmax, 25)))
+      print("  quantile à 75% = {} °C".format(np.percentile(Tmax, 75)))
       print("\n")
 
   data = np.loadtxt("./data/seattle2014.csv", delimiter=",")
 
   day = data[:,0]
-  precipitations = data[:,1]/100
-  tmax = data[:,2]/10
-  tmin = data[:,3]/10
-
+  prcp = data[:,1]/100 # cm
+  Tmax = data[:,2]/10  # °C
+  Tmin = data[:,3]/10  # °C
 
   print("* Valeurs annuelles")
-  print_report(precipitations, tmin, tmax)
+  print_report(prcp, Tmin, Tmax)
 
   print("* Valeurs estivales")
   summer = (day > 20140401) & (day < 20140930)
-  print_report(precipitations[summer], tmin[summer], tmax[summer])
+  print_report(prcp[summer], Tmin[summer], Tmax[summer])
 
-  print("Hauteur totale d'eau en 2014 : {} cm".format(np.sum(precipitations)))
-  print("Nombre de jours sans pluie : {}".format(np.sum(precipitations > 0)))
-  print("Nombre de jours pairs sans pluie : {}".format(np.sum((precipitations > 0) & (day % 2 == 0))))
+  print("Hauteur totale d'eau en 2014 : {} cm".format(np.sum(prcp)))
+  print("Nombre de jours avec pluie : {}".format(np.sum(prcp > 0)))
+  print("Nombre de jours pairs avec pluie : {}".format(np.sum((prcp > 0) & (day % 2 == 0))))
 
   import matplotlib.pyplot as plt
-  plt.hist(precipitations, 40)
+  plt.hist(prcp, 40)
+
   plt.show()
 #+END_SRC
 

@@ -10,8 +10,10 @@
   précipitations à Seattle (/cf./ précédent TD), préciser les axes de la figure
   ainsi que le titre de l'histogramme
 
-- Annoter la figure pour faire apparaître la valeur moyenne, la médiane et
-  l'écart-type des précipitations
+- Changer l'axe $y$ pour passer en échelle logarithmique
+
+- Annoter la figure pour faire apparaître la valeur moyenne et l'écart-type des
+  précipitations
 
 - Représenter sur une seconde figure, la variation temporelle des températures
   minimale et maximale. On s'aidera du code suivant pour convertir les jours
@@ -19,15 +21,81 @@
 
   #+BEGIN_SRC python
     import pandas as pd
-    a = pd.to_datetime(day, format="%Y%m%d")
-    new_day = np.array(a, dtype=np.np.datetime64)
+    day = pd.to_datetime(day, format="%Y%m%d")
   #+END_SRC
 
 - Sur une troisième figure, représenter la distribution des valeurs minimale et
   maximale des températures. Faire en sorte que les distributions puissent être
   visible y compris au niveau des zones de recouvrement
 
-* Fonctions discontinues
+** Correction                                                   :correction:
+
+#+BEGIN_SRC python -n
+  import numpy as np
+  data = np.loadtxt("./data/seattle2014.csv", delimiter=",")
+
+  day  = data[:,0]
+  prcp = data[:,1]/100 # cm
+  Tmax = data[:,2]/10  # °C
+  Tmin = data[:,3]/10  # °C
+
+  import matplotlib.pyplot as plt
+  plt.hist(prcp, 365)
+
+  plt.title("Distribution des précipitations à Seattle en 2014")
+  plt.xlabel("hauteur des précipitations [cm]")
+  plt.ylabel("nombre de jours")
+
+  plt.yscale("log")
+  # Remove exponential notation
+  from matplotlib.ticker import ScalarFormatter
+  plt.gca().yaxis.set_major_formatter(ScalarFormatter())
+
+  # Affiche valeur moyenne et écart type
+  mean = np.mean(prcp)
+  std  = np.std(prcp)
+
+  ymin, ymax = plt.gca().get_ylim()
+  plt.annotate(r"$\mu$ = {0:.2f} $\pm$ {1:.2f} cm".format(mean, std),
+               xy=(mean, ymin), xytext=(mean, 10),
+               arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"))
+
+#+END_SRC
+
+[[file:figures/seattle2014_prcp_annotated.pdf]]
+
+#+BEGIN_SRC python -n
+  # Variation des températures minimale et maximale au cours de l'année 2014
+  import pandas as pd
+  day = pd.to_datetime(day, format="%Y%m%d")
+
+  plt.figure()
+  plt.plot(day, Tmin, label=r"T$_\mathrm{min.}$")
+  plt.plot(day, Tmax, label=r"T$_\mathrm{max.}$")
+  plt.title("Variation de la température à Seattle en 2014")
+  plt.ylabel("température [°C]")
+  plt.legend(loc="lower center", ncol=2)
+#+END_SRC
+
+[[file:figures/seattle2014_temp.pdf]]
+
+#+BEGIN_SRC python -n
+  # Distributions normalisées des températures minimale et maximale
+  plt.figure()
+  kwargs = dict(histtype="stepfilled", alpha=0.5, bins=40, range=(-10, 40))
+  plt.hist(Tmin, label=r"T$_\mathrm{min.}$", **kwargs, weights=np.ones_like(Tmin)/len(Tmin))
+  plt.hist(Tmax, label=r"T$_\mathrm{max.}$", **kwargs, weights=np.ones_like(Tmax)/len(Tmax))
+  plt.xlabel("température [°C]")
+  plt.ylabel("probabilité")
+  plt.legend(loc="upper center", ncol=2)
+
+  # Show everything !
+  plt.show()
+#+END_SRC
+
+[[file:figures/seattle2014_temp_hist.pdf]]
+
+* Fonctions discontinues@@latex:\protect@@[fn:19d5b0088c02b452]
 
 - Représenter la fonction d'Heaviside $\Theta(x)$ définie
   #+BEGIN_SRC latex
@@ -41,14 +109,23 @@
     \end{align*}
   #+END_SRC
 
-- La variation du nombre de noyaux radioactifs de\nbsp^{11}C est donnée par
-  l'expression suivante
+- Le noyau radioactif de\nbsp^{11}C est un émetteur \beta^{+} utilisé lors de
+  tomographie par émission de positrons. La réaction permettant la production de
+  cet élement est la suivante
+  #+BEGIN_SRC latex
+    \begin{align*}
+      p + ^{14}_{7}\text{N}\rightarrow ^{11}_{6}\text{C}+\alpha
+    \end{align*}
+  #+END_SRC
+  En tenant compte du taux de production de\nbsp^{11}C par irradiation et du
+  nombre de noyaux se désintégrant, on peut montrer que le nombre de noyaux
+  de\nbsp^{11}C au cours du temps s'exprime de la façon suivante
   #+BEGIN_SRC latex
     \begin{align*}
       \left\{
         \begin{array}{lll}
           n(t)&=\frac{n_i}{\lambda}\left(1 - e^{-\lambda t}\right)&\text{si } t \leq t_0\\
-          &=n(t_0)\,e^{-\lambda t}&\text{si } t > t_0
+          &=n(t_0)\,e^{-\lambda (t-t_0)}&\text{si } t > t_0
         \end{array}
         \right.
     \end{align*}
@@ -56,6 +133,82 @@
   où $\lambda=\frac{\ln2}{T_{1/2}}$ et $T_{1/2}$ = 20.36 minutes. $n_i$
   correspond au taux d'irradition et est égal à 3 10^{8} noyaux/s. Représenter
   $n(t)$ pour $t_0$ = 3 heures.
+
+** Correction                                                   :correction:
+
+#+LATEX: \begin{tabular}{lc}\begin{minipage}{0.5\linewidth}
+#+BEGIN_SRC python -n
+  def heaviside(x):
+      return 0.5 * (np.sign(x) + 1)
+
+  import numpy as np
+  x = np.linspace(-10, 10, 100)
+
+  import matplotlib.pyplot as plt
+  plt.plot(x, heaviside(x))
+  plt.xlabel(r"$x$")
+  plt.ylabel(r"$\Theta(x)$")
+
+  plt.show()
+#+END_SRC
+#+LATEX: \end{minipage}&
+
+#+LATEX: \begin{minipage}{0.5\linewidth}
+[[file:figures/heaviside.pdf]]
+#+LATEX: \end{minipage}\end{tabular}
+
+#+BEGIN_SRC python -n
+  import numpy as np
+
+  # Définition des constantes du problème
+  ni  = 3e8*3600  # noyaux/h
+  T12 = 20.36/60  # hours
+  l   = np.log(2)/T12
+
+  def carbon11(t, t0):
+      conds = [t <= t0, t > t0]
+      funcs = [lambda t: ni/l*(1-np.exp(-l*t)),
+               lambda t: ni/l*(1-np.exp(-l*t0))*np.exp(-l*(t-t0))]
+      return np.piecewise(t, conds, funcs)
+
+  t0 = 3 # hours
+  t  = np.linspace(0, 10, 1000)
+  n  = carbon11(t, t0)
+
+  import matplotlib.pyplot as plt
+  plt.plot(t, n)
+  plt.xlabel("temps [heures]")
+  plt.ylabel(r"$n(^{11}\mathrm{C})$")
+
+  plt.show()
+#+END_SRC
+
+[[file:figures/carbon11.pdf]]
+
+À titre de comparaison, la fonction suivante
+#+BEGIN_SRC python -n
+  def carbon11bis(t, t0):
+      import math
+      y = np.empty(len(t))
+      for i, val in enumerate(t):
+          if t[i] <= t0:
+              y[i] = ni/l*(1-math.exp(-l*val))
+          else:
+              y[i] = ni/l*(1-math.exp(-l*t0))*math.exp(-l*(val-t0))
+      return y
+#+END_SRC
+qui réalise le même calcul que =carbon11= défini plus haut mais sans user de la
+fonction =piecewise= de =numpy= est, peut-être plus naturelle à écrire mais n'en
+demeure pas moins beaucoup plus longue à exécuter
+#+BEGIN_SRC python
+  In [1]: t = np.linspace(0, 10, 1000000)
+
+  In [2]: %timeit carbon11(t, t0)
+  1 loop, best of 3: 332 ms per loop
+
+  In [3]: %timeit carbon11bis(t, t0)
+  1 loop, best of 3: 6.54 s per loop
+#+END_SRC
 
 * /Iris setosa, Iris virginica et Iris versicolor/
 
@@ -92,24 +245,27 @@ nombreuses techniques de classification automatique en /machine learning/.
   species      = data[:, 4]
 
   # Distributions des longueurs
-
-  style = dict(histtype="stepfilled", alpha=0.5, normed=True)
-
   import matplotlib.pyplot as plt
 
-  d = {0 : "iris setosa", 1 : "iris versicolor", 2 : "iris virginica"}
-  h = {"longueur des sépales [cm]" : sepal_length,
-       "largeur des sépales [cm]"  : sepal_width,
-       "longueur des pétales [cm]" : petal_length,
-       "largeur des pétales [cm]"  : petal_width}
+  style = dict(histtype="stepfilled", alpha=0.5, bins=20)
 
-  for xlabel, data in h.items():
+  iris = {0 : "iris setosa", 1 : "iris versicolor", 2 : "iris virginica"}
+  labels = {"longueur des sépales [cm]" : sepal_length,
+            "largeur des sépales [cm]"  : sepal_width,
+            "longueur des pétales [cm]" : petal_length,
+            "largeur des pétales [cm]"  : petal_width}
+
+  for xlabel, data in labels.items():
+      # Determine best range and bin probability
+      r=(np.min(data), np.max(data))
       plt.figure()
-      for key, name in d.items():
-          plt.hist(data[species == key], **style, label=name)
+      for key, name in iris.items():
+          d = data[species == key]
+          w = np.ones_like(d)/len(d)
+          plt.hist(d, **style, label=name, range=r, weights=w)
       plt.xlabel(xlabel)
       plt.ylabel("probabilité")
-      plt.legend(frameon=False)
+      plt.legend()
 
   # Diagrammes longueur vs. largeur sépales
   plt.figure()
@@ -120,19 +276,20 @@ nombreuses techniques de classification automatique en /machine learning/.
 
   # Création d'une légende à partir d'un scatter plot vide
   color = plt.cm.get_cmap("viridis")
-  for key, name in d.items():
+  for key, name in iris.items():
       rgba = color(key/2)
       plt.scatter([], [],c=rgba, alpha=0.2, label=name)
-  plt.legend(frameon=False)
+  plt.legend()
 
   plt.show()
 #+END_SRC
-
-#+RESULTS:
-: None
 
 #+ATTR_LATEX: :align p{0.5\textwidth}p{0.5\textwidth}
 | [[file:figures/sepal_length.pdf]] | [[file:figures/sepal_width.pdf]] |
 | [[file:figures/petal_length.pdf]] | [[file:figures/petal_width.pdf]] |
 
 [[file:figures/iris.pdf]]
+
+* Footnotes
+
+[fn:19d5b0088c02b452] on pourra s'aider ou pas de la fonction =piecewise= de =numpy=
