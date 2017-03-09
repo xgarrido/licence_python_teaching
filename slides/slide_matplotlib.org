@@ -132,7 +132,6 @@
 #+ATTR_LATEX: :width 1.1\linewidth
 [[file:figures/mpl.pdf]]
 
-
 * /Kozmetix/ sous =matplotlib=
 ** Titre
 :PROPERTIES:
@@ -556,7 +555,7 @@ sans échapper les caractères précédés de =\=
 :BEAMER_COL: 0.52
 :END:
 
-#+BEAMER: \small\vskip+17pt
+#+BEAMER: \vskip+17pt
 
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
@@ -606,7 +605,7 @@ sans échapper les caractères précédés de =\=
 :BEAMER_COL: 0.52
 :END:
 
-#+BEAMER: \small\vskip+17pt
+#+BEAMER: \vskip+17pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [4]: x = np.linspace(0, 3*np.pi, 100)
@@ -1036,7 +1035,7 @@ sans échapper les caractères précédés de =\=
     In [1]: from mpl_toolkits import mplot3d
   #+END_SRC
 
-- Une vue 3D est initialisée en spécifiant la projection
+- Une vue 3D est initialisée en spécifiant le type de projection
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [2]: ax = plt.axes(projection="3d")
@@ -1060,6 +1059,8 @@ http://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/master
 http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-4-Matplotlib.ipynb#Coutour-plots-with-projections
 #+END_COMMENT
 ** Figure 3D
+#+BEAMER: \framesubtitle{\texttt{plot3D} \& \texttt{scatter3D}}
+
 *** Python code
 :PROPERTIES:
 :BEAMER_COL: 0.52
@@ -1105,3 +1106,615 @@ http://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/master
 
 http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-4-Matplotlib.ipynb#Coutour-plots-with-projections
 #+END_COMMENT
+** Figure 3D
+#+BEAMER: \framesubtitle{\texttt{plot\_wireframe} \& \texttt{plot\_surface}}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+- $f(x,y) = \sin(\sqrt{x^2+y^2})$
+  #+BEAMER: \vskip5pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [2]: ax = plt.axes(projection="3d")
+    In [3]: def f(x, y):
+       ...:     return np.sin(np.sqrt(x**2 + y**2))
+
+    In [4]: x = np.linspace(-6, 6, 30)
+    In [5]: y = np.linspace(-6, 6, 30)
+
+    In [6]: X, Y = np.meshgrid(x, y)
+    In [7]: Z = f(X, Y)
+  #+END_SRC
+
+  #+BEAMER: \pause\vskip-1pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [8]: ax.plot_wireframe(X, Y, Z, linewidth=0.5
+                              color="gray")
+  #+END_SRC
+
+  #+BEAMER: \pause\vskip-1pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [9]: ax.plot_surface(X, Y, Z, cmap="viridis")
+  #+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_3dwireframe.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_3dsurface.pdf}
+  \end{center}
+#+END_SRC
+** Figure 3D
+#+BEAMER: \framesubtitle{\texttt{plot\_wireframe} \& \texttt{plot\_surface}}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+- $f(x,y) = \sin(\sqrt{x^2+y^2})$
+  #+BEAMER: \vskip5pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [2]: ax = plt.axes(projection="3d")
+    In [3]: def f(x, y):
+       ...:     return np.sin(np.sqrt(x**2 + y**2))
+
+    In [4]: x = np.linspace(-6, 6, 30)
+    In [5]: y = np.linspace(-6, 6, 30)
+
+    In [6]: X, Y = np.meshgrid(x, y)
+    In [7]: Z = f(X, Y)
+    In [9]: ax.plot_surface(X, Y, Z, alpha=0.25,
+                            edgecolor="k", linewidth=0.1)
+
+  #+END_SRC
+  #+BEAMER: \pause\vskip-1pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In[10]: ax.contour(X, Y, Z, zdir='z', offset=+1)
+    In[11]: ax.contour(X, Y, Z, zdir='y', offset=-7)
+    In[12]: ax.contour(X, Y, Z, zdir='x', offset=+7)
+    In[13]: ax.set_zlim3d(-1, 1)
+    In[14]: ax.set_ylim3d(-7, 7)
+    In[15]: ax.set_xlim3d(-7, 7)
+  #+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_3dcontour0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_3dcontour1.pdf}
+  \end{center}
+#+END_SRC
+** /Subplot/
+
+- =matplotlib= permet une gestion relativement aisée du placement des figures et
+  de leurs sous-figures
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \small\vskip5pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: ax1 = plt.axes()
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [3]: ax2 = plt.axes([0.65, 0.65, 0.2, 0.2])
+#+END_SRC
+
+#+BEAMER: \small\vskip+5pt
+où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_subplot0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_subplot1.pdf}
+  \end{center}
+#+END_SRC
+** /Subplot/
+
+- =matplotlib= permet une gestion relativement aisée du placement des figures et
+  de leurs sous-figures
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \vskip+17pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: x = np.linspace(-1, 1, 1000)
+  In [3]: plt.plot(x, x**2, x, x**3)
+
+  In [4]: inset = plt.axes([0.6, 0.2, 0.25, 0.25])
+
+  In [5]: inset.plot(x, x**2, x, x**3)
+  In [6]: inset.set_title("zoom x = 0")
+  In [7]: inset.set_xlim(-0.2, +0.2)
+  In [8]: inset.set_ylim(-0.005, +0.01)
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_subplot2.pdf}
+  \end{center}
+#+END_SRC
+** /Subplot/
+
+- La commande *=subplot=* permet la génération *sous-figure par sous-figure* selon
+  une représentation matricielle
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: plt.subplot(2, 3, 1)
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [3]: plt.subplot(2, 3, 3)
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: plt.subplot(2, 3, 5)
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_subplot3.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_subplot4.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_subplot5.pdf}
+  \end{center}
+#+END_SRC
+** /Subplot/
+
+- La commande *=subplots=* permet la génération de *l'ensemble des sous-figures*
+  selon une représentation matricielle
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: plt.subplots(2, 3)
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [3]: plt.subplots_adjust(hspace=0.4, wspace=0.4)
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: plt.subplots(2, 3, sharex="col", sharey="row")
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [5]: fig, ax = plt.subplots(2, 3, sharex="col", sharey="row")
+  In [6]: for i in range(2):
+     ...:     for j in range(3):
+     ...:         ax[i, j].text(0.5, 0.5, str((i, j)),
+     ...:                       fontsize=18, ha="center")
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_subplot6.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_subplot7.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_subplot8.pdf}
+    \includegraphics<4>[width=1.1\linewidth]{figures/mpl_subplot9.pdf}
+  \end{center}
+#+END_SRC
+
+** /Subplot/
+
+- La commande *=GridSpec=* ne génère pas de figures ou sous figures mais facilite
+  la gestion et notamment la fusion d'espaces réservés aux sous-figures
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: grid = plt.GridSpec(2, 3, hspace=0.4, wspace=0.4)
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [3]: plt.subplot(grid[0, 0])
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: plt.subplot(grid[0, 1:])
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [5]: plt.subplot(grid[1, :2])
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [6]: plt.subplot(grid[1, 2])
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_subplot10.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_subplot11.pdf}
+    \includegraphics<4>[width=1.1\linewidth]{figures/mpl_subplot12.pdf}
+    \includegraphics<5>[width=1.1\linewidth]{figures/mpl_subplot13.pdf}
+  \end{center}
+#+END_SRC
+
+** /Subplot/
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python -n
+  import numpy as np
+  import matplotlib.pyplot as plt
+
+  # Create some normally distributed data
+  mean = [0, 0]
+  cov = [[1, 1], [1, 2]]
+  x, y = np.random.multivariate_normal(mean, cov, 3000).T
+
+  # Set up the axes with gridspec
+  plt.figure(figsize=(6, 6))
+  grid = plt.GridSpec(4, 4, hspace=0, wspace=0)
+  main_ax = plt.subplot(grid[:-1, 1:])
+  y_hist = plt.subplot(grid[:-1, 0],
+                       xticklabels=[], sharey=main_ax)
+  x_hist = plt.subplot(grid[-1, 1:],
+                       yticklabels=[], sharex=main_ax)
+
+  # scatter points on the main axes
+  main_ax.plot(x, y, "ok", markersize=3, alpha=0.2)
+
+  # histogram on the attached axes
+  x_hist.hist(x, 40, histtype="stepfilled",
+              orientation="vertical", color="gray")
+  x_hist.invert_yaxis()
+
+  y_hist.hist(y, 40, histtype="stepfilled",
+              orientation="horizontal", color="gray")
+  y_hist.invert_xaxis()
+
+  plt.show()
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_subplot14.pdf}
+  \end{center}
+#+END_SRC
+
+** COMMENT Goodies
+*** css
+*** basemap
+*** xkcd
+* Interaction avec =matplotlib=
+** Titre
+:PROPERTIES:
+:BEAMER_ENV: fullframe
+:END:
+
+#+BEGIN_EXPORT beamer
+\title{Épisode 3 : Interaction avec \texttt{matplotlib}}
+\titlepage
+#+END_EXPORT
+
+** Interface graphique sous =matplotlib=
+
+#+ATTR_BEAMER: :overlay +-
+- =matplotlib= propose une interface relativement rudimentaire pour interagir avec
+  les objets graphiques
+
+- Parmi les /widgets/ ou objets de contrôle
+  - *=Cursor/MultiCursor=* permet l'affichage des valeurs dans la barre d'état
+  - *=Slider=* permet la variation d'une quantité numérique
+  - *=Button=* de générer une action définie par l'utilisateur lors du clic souris
+  - *=CheckButtons/RadioButtons=* permet l'activation/désactivation de
+    fonctionnalités graphiques
+  - =Selector=, =Menu=,...
+
+- Importation des /widgets/
+  #+BEAMER: \vskip+5pt
+  #+BEGIN_SRC python
+    from matplotlib.widgets import Cursor, Slider, Button
+  #+END_SRC
+
+** Interface graphique sous =matplotlib=
+#+BEAMER: \framesubtitle{Utilisation de curseurs}
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \vspace{-1cm}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_widget_cursor0.png}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_widget_cursor1.png}
+  \end{center}
+#+END_SRC
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: import numpy as np
+  In [2]: x, y = np.random.rand(2, 100)
+
+  In [3]: import matplotlib.pyplot as plt
+  In [4]: plt.figure(figsize=(6,6))
+  In [5]: plt.scatter(x, y, c=x*y, alpha=0.5)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [6]: from matplotlib.widgets import Cursor
+  In [7]: cursor = Cursor(plt.gca(), color="red", lw=2)
+#+END_SRC
+
+** Interface graphique sous =matplotlib=
+#+BEAMER: \framesubtitle{Utilisation de curseurs}
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \vspace{-0.5cm}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_widget_multicursor.png}
+  \end{center}
+#+END_SRC
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: import numpy as np
+  In [2]: t = np.arange(0.0, np.pi, 0.01)
+
+  In [3]: import matplotlib.pyplot as plt
+  In [4]: fig, ax = plt.subplots(2, 1, sharex="col")
+  In [5]: plt.subplots_adjust(hspace=0)
+  In [6]: ax[0].plot(t, np.sin(2*np.pi*t))
+  In [7]: ax[1].plot(t, np.sin(4*np.pi*t))
+
+  In [8]: from matplotlib.widgets import MultiCursor
+  In [9]: multi = MultiCursor(fig.canvas, (ax[0], ax[1]),
+     ...:                     color="red", lw=2)
+#+END_SRC
+** Interface graphique sous =matplotlib=
+#+BEAMER: \framesubtitle{Utilisation de \texttt{sliders}}
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \vspace{-0.5cm}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_widget_slider0.png}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_widget_slider1.png}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_widget_slider2.png}
+    \includegraphics<4>[width=1.1\linewidth]{figures/mpl_widget_slider3.png}
+  \end{center}
+#+END_SRC
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: import numpy as np
+  In [2]: t = np.arange(0.0, np.pi, 0.01)
+
+  In [3]: a0, f0 = 5, 1
+  In [4]: def signal(t, a=a0, f=f0):
+     ...:     return a*np.sin(2*np.pi*f*t)
+
+  In [5]: import matplotlib.pyplot as plt
+  In [6]: fig, ax = plt.subplots()
+  In [7]: l, = plt.plot(t, signal(t))
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [8]: axfreq = plt.axes([0.25, 0.10, 0.65, 0.03])
+  In [9]: axamp  = plt.axes([0.25, 0.15, 0.65, 0.03])
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[10]: plt.subplots_adjust(bottom=0.25)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[11]: from matplotlib.widgets import Slider
+  In[12]: sfreq = Slider(axfreq, "Fréquence", 0.1, 30.0,
+                         valinit=f0)
+  In[13]: samp = Slider(axamp, "Amplitude", 0.1, 10.0,
+                        valinit=a0)
+#+END_SRC
+** Interface graphique sous =matplotlib=
+#+BEAMER: \framesubtitle{Utilisation de \texttt{sliders}}
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \vspace{-0.5cm}
+    \includegraphics<1-2>[width=1.1\linewidth]{figures/mpl_widget_slider3.png}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_widget_slider4.png}
+  \end{center}
+#+END_SRC
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[11]: from matplotlib.widgets import Slider
+  In[12]: sfreq = Slider(axfreq, "Fréquence", 0.1, 30.0,
+                         valinit=f0)
+  In[13]: samp = Slider(axamp, "Amplitude", 0.1, 10.0,
+                        valinit=a0)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[14]: def update(val):
+     ...:     l.set_ydata(signal(t, samp.val, sfreq.val))
+     ...:     fig.canvas.draw_idle()
+
+  In[15]: sfreq.on_changed(update)
+  In[16]: samp.on_changed(update)
+#+END_SRC
+** Interface graphique sous =matplotlib=
+#+BEAMER: \framesubtitle{Utilisation de boutons}
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \vspace{-0.5cm}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_widget_slider4.png}
+    \includegraphics<2-3>[width=1.1\linewidth]{figures/mpl_widget_button.png}
+    \includegraphics<4>[width=1.1\linewidth]{figures/mpl_widget_radio.png}
+  \end{center}
+#+END_SRC
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[17]: from matplotlib.widgets import Button
+  In[18]: axreset = plt.axes([0.8, 0.025, 0.1, 0.04])
+  In[19]: button = Button(axreset, "Reset")
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[20]: def reset(event):
+     ...:    sfreq.reset()
+     ...:    samp.reset()
+  In[21]: button.on_clicked(reset)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[22]: from matplotlib.widgets import RadioButtons
+  In[23]: axcolor = plt.axes([0.025, 0.5, 0.15, 0.15])
+  In[24]: plt.subplots_adjust(left=0.25)
+  In[25]: radio = RadioButtons(axcolor,
+                               ("red", "blue", "green"),
+                               active=1)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[26]: def update_color(label):
+     ...:    l.set_color(label)
+     ...:    fig.canvas.draw_idle()
+  In[27]: radio.on_clicked(update_color)
+#+END_SRC
