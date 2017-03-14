@@ -1,0 +1,190 @@
+%% Creator: Matplotlib, PGF backend
+%%
+%% To include the figure in your LaTeX document, write
+%%   \input{<filename>.pgf}
+%%
+%% Make sure the required packages are loaded in your preamble
+%%   \usepackage{pgf}
+%%
+%% Figures using additional raster images can only be included by \input if
+%% they are in the same directory as the main LaTeX file. For loading figures
+%% from other directories you can use the `import` package
+%%   \usepackage{import}
+%% and then include the figures with
+%%   \import{<path to file>}{<filename>.pgf}
+%%
+%% Matplotlib used the following preamble
+%%   \usepackage{fontspec}
+%%   \setmainfont{DejaVu Serif}
+%%   \setsansfont{DejaVu Sans}
+%%   \setmonofont{DejaVu Sans Mono}
+%%
+\begingroup%
+\makeatletter%
+\begin{pgfpicture}%
+\pgfpathrectangle{\pgfpointorigin}{\pgfqpoint{6.400000in}{4.800000in}}%
+\pgfusepath{use as bounding box, clip}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetmiterjoin%
+\pgfsetlinewidth{0.000000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.000000}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{6.400000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{6.400000in}{4.800000in}}%
+\pgfpathlineto{\pgfqpoint{0.000000in}{4.800000in}}%
+\pgfpathclose%
+\pgfusepath{}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetmiterjoin%
+\definecolor{currentfill}{rgb}{0.984314,0.705882,0.682353}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.000000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.000000}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{4.954424in}{2.377212in}}%
+\pgfpathcurveto{\pgfqpoint{4.954424in}{2.433206in}}{\pgfqpoint{4.951610in}{2.489164in}}{\pgfqpoint{4.945993in}{2.544875in}}%
+\pgfpathcurveto{\pgfqpoint{4.940375in}{2.600586in}}{\pgfqpoint{4.931961in}{2.655980in}}{\pgfqpoint{4.920783in}{2.710847in}}%
+\pgfpathlineto{\pgfqpoint{3.283199in}{2.377212in}}%
+\pgfpathlineto{\pgfqpoint{4.954424in}{2.377212in}}%
+\pgfpathclose%
+\pgfusepath{fill}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetmiterjoin%
+\definecolor{currentfill}{rgb}{0.800000,0.921569,0.772549}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.000000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.000000}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{4.920783in}{2.710847in}}%
+\pgfpathcurveto{\pgfqpoint{4.845314in}{3.081273in}}{\pgfqpoint{4.646345in}{3.415353in}}{\pgfqpoint{4.356591in}{3.658158in}}%
+\pgfpathcurveto{\pgfqpoint{4.066837in}{3.900963in}}{\pgfqpoint{3.703099in}{4.038413in}}{\pgfqpoint{3.325181in}{4.047909in}}%
+\pgfpathlineto{\pgfqpoint{3.283199in}{2.377212in}}%
+\pgfpathlineto{\pgfqpoint{4.920783in}{2.710847in}}%
+\pgfpathclose%
+\pgfusepath{fill}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetmiterjoin%
+\definecolor{currentfill}{rgb}{0.800000,0.921569,0.772549}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.000000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.000000}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{3.325181in}{4.047909in}}%
+\pgfpathcurveto{\pgfqpoint{3.003205in}{4.056000in}}{\pgfqpoint{2.685652in}{3.970844in}}{\pgfqpoint{2.410925in}{3.802739in}}%
+\pgfpathcurveto{\pgfqpoint{2.136197in}{3.634635in}}{\pgfqpoint{1.915835in}{3.390643in}}{\pgfqpoint{1.776488in}{3.100270in}}%
+\pgfpathlineto{\pgfqpoint{3.283199in}{2.377212in}}%
+\pgfpathlineto{\pgfqpoint{3.325181in}{4.047909in}}%
+\pgfpathclose%
+\pgfusepath{fill}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetmiterjoin%
+\definecolor{currentfill}{rgb}{0.701961,0.803922,0.890196}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.000000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.000000}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{1.776488in}{3.100270in}}%
+\pgfpathcurveto{\pgfqpoint{1.661774in}{2.861227in}}{\pgfqpoint{1.605576in}{2.598282in}}{\pgfqpoint{1.612553in}{2.333231in}}%
+\pgfpathcurveto{\pgfqpoint{1.619531in}{2.068180in}}{\pgfqpoint{1.689486in}{1.808556in}}{\pgfqpoint{1.816618in}{1.575880in}}%
+\pgfpathlineto{\pgfqpoint{3.283199in}{2.377212in}}%
+\pgfpathlineto{\pgfqpoint{1.776488in}{3.100270in}}%
+\pgfpathclose%
+\pgfusepath{fill}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetmiterjoin%
+\definecolor{currentfill}{rgb}{0.984314,0.705882,0.682353}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.000000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.000000}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{1.816618in}{1.575880in}}%
+\pgfpathcurveto{\pgfqpoint{1.883171in}{1.454076in}}{\pgfqpoint{1.964640in}{1.341036in}}{\pgfqpoint{2.059142in}{1.239374in}}%
+\pgfpathcurveto{\pgfqpoint{2.153643in}{1.137712in}}{\pgfqpoint{2.260442in}{1.048218in}}{\pgfqpoint{2.377069in}{0.972961in}}%
+\pgfpathlineto{\pgfqpoint{3.283199in}{2.377212in}}%
+\pgfpathlineto{\pgfqpoint{1.816618in}{1.575880in}}%
+\pgfpathclose%
+\pgfusepath{fill}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetmiterjoin%
+\definecolor{currentfill}{rgb}{0.996078,0.850980,0.650980}%
+\pgfsetfillcolor{currentfill}%
+\pgfsetlinewidth{0.000000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.000000}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{2.377069in}{0.972961in}}%
+\pgfpathcurveto{\pgfqpoint{2.629435in}{0.810115in}}{\pgfqpoint{2.921094in}{0.718273in}}{\pgfqpoint{3.221233in}{0.707136in}}%
+\pgfpathcurveto{\pgfqpoint{3.521372in}{0.696000in}}{\pgfqpoint{3.819036in}{0.765977in}}{\pgfqpoint{4.082776in}{0.909673in}}%
+\pgfpathcurveto{\pgfqpoint{4.346516in}{1.053370in}}{\pgfqpoint{4.566705in}{1.265541in}}{\pgfqpoint{4.720082in}{1.523771in}}%
+\pgfpathcurveto{\pgfqpoint{4.873459in}{1.782002in}}{\pgfqpoint{4.954424in}{2.076866in}}{\pgfqpoint{4.954424in}{2.377212in}}%
+\pgfpathlineto{\pgfqpoint{3.283199in}{2.377212in}}%
+\pgfpathlineto{\pgfqpoint{2.377069in}{0.972961in}}%
+\pgfpathclose%
+\pgfusepath{fill}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=5.112272in,y=2.561641in,left,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont Méthodes num.}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=4.280875in,y=2.477810in,,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont 3.2\%}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=4.463930in,y=3.786253in,left,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont Phys. Maths}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=3.927234in,y=3.145780in,,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont 21.4\%}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=2.323697in,y=3.945292in,right,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont Chimie Orga. 1}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=2.759835in,y=3.232528in,,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont 18.3\%}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=1.445489in,y=2.328833in,right,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont Vulga.}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=2.280812in,y=2.350823in,,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont 15.1\%}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=1.936736in,y=1.125590in,right,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont Hist. des Sciences}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=2.548765in,y=1.694509in,,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont 7.9\%}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=4.162733in,y=0.762919in,left,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont Théorie des groupes}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=3.762945in,y=1.496689in,,]{\sffamily\fontsize{10.000000}{12.000000}\selectfont 34.1\%}%
+\end{pgfscope}%
+\end{pgfpicture}%
+\makeatother%
+\endgroup%

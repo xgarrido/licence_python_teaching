@@ -6,6 +6,11 @@
 #+LATEX_CLASS: python-slide
 
 * Librarie =matplotlib=
+** Sommaire
+:PROPERTIES:
+:BEAMER_ENV: fullframe
+:END:
+#+TOC: headlines
 ** =matplotlib= ?
 
 #+ATTR_BEAMER: :overlay +-
@@ -22,7 +27,6 @@
 - Tous les aspects d'une figure (taille, position,...) peuvent être contrôlés
   d'un point de vue /programmatique/ \to *reproductibilité* des figures et des
   résultats scientifiques
-
 ** Installation & importation de =matplotlib=
 
 #+ATTR_BEAMER: :overlay +-
@@ -131,7 +135,6 @@
 
 #+ATTR_LATEX: :width 1.1\linewidth
 [[file:figures/mpl.pdf]]
-
 * /Kozmetix/ sous =matplotlib=
 ** Titre
 :PROPERTIES:
@@ -1372,6 +1375,35 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
      ...:     bar.set_facecolor(plt.cm.viridis(r/10))
      ...:     bar.set_alpha(0.5)
 #+END_SRC
+** Autres modes de représentation
+#+BEAMER: \framesubtitle{\emph{Polar \& Pie charts}}
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_pie.pdf}
+  \end{center}
+#+END_SRC
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: labels = "Méthodes num.", "Phys. Maths", \
+                   "Chimie Orga. 1", "Vulga.",     \
+                   "Hist. des Sciences", "Théorie des groupes"
+  In [3]: percent = np.array([4.2, 28.1, 24.0, 19.8, 10.4, 44.8])
+
+  In [4]: plt.pie(percent, labels=labels, autopct="%1.1f%%",
+                  colors=plt.cm.Pastel1(percent))
+  In [5]: plt.axis("equal")
+#+END_SRC
+
 ** /Subplot/
 
 - =matplotlib= permet une gestion relativement aisée du placement des figures et
