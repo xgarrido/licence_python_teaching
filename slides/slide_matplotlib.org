@@ -1282,6 +1282,96 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
     \includegraphics<2>[width=1.1\linewidth]{figures/mpl_3dcontour1.pdf}
   \end{center}
 #+END_SRC
+** Autres modes de représentation
+#+BEAMER: \framesubtitle{\emph{Polar \& Pie charts}}
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_polar0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_polar1.pdf}
+  \end{center}
+#+END_SRC
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: ax = plt.axes(projection="polar")
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [3]: r = np.arange(0, 2, 0.01)
+  In [4]: theta = 2 * np.pi * r
+
+  In [5]: ax.plot(theta, r)
+  In [6]: ax.set_rmax(2)
+  In [7]: ax.set_rticks([0.5, 1, 1.5, 2])
+#+END_SRC
+** Autres modes de représentation
+#+BEAMER: \framesubtitle{\emph{Polar \& Pie charts}}
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_polar3.pdf}
+  \end{center}
+#+END_SRC
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+    In [2]: ax = plt.axes(projection="polar")
+    In [3]: N = 150
+    In [4]: r = 2 * np.random.rand(N)
+    In [5]: theta = 2 * np.pi * np.random.rand(N)
+    In [6]: area = 200 * r**2
+
+    In [7]: ax.scatter(theta, r, c=theta, s=area, alpha=0.75)
+#+END_SRC
+** Autres modes de représentation
+#+BEAMER: \framesubtitle{\emph{Polar \& Pie charts}}
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_polar2.pdf}
+  \end{center}
+#+END_SRC
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: ax = plt.axes(projection="polar")
+  In [3]: N = 20
+  In [4]: theta = np.linspace(0.0, 2 * np.pi, N)
+  In [5]: radii = 10 * np.random.rand(N)
+  In [6]: width = np.pi / 4 * np.random.rand(N)
+
+  In [7]: bars = ax.bar(theta, radii, width=width)
+
+  In [8]: for r, bar in zip(radii, bars):
+     ...:     bar.set_facecolor(plt.cm.viridis(r/10))
+     ...:     bar.set_alpha(0.5)
+#+END_SRC
 ** /Subplot/
 
 - =matplotlib= permet une gestion relativement aisée du placement des figures et
@@ -1535,7 +1625,7 @@ où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
   \end{center}
 #+END_SRC
 
-** COMMENT Goodies
+** COMMENT /Goodies/
 *** css
 *** basemap
 *** xkcd
