@@ -701,6 +701,9 @@
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
+\pgftext[x=4.998390in,y=3.993477in,left,base]{\sffamily\fontsize{10.000000}{12.000000}\selectfont iris}%
+\end{pgfscope}%
+\begin{pgfscope}%
 \pgfsetbuttcap%
 \pgfsetmiterjoin%
 \definecolor{currentfill}{rgb}{0.121569,0.466667,0.705882}%
@@ -711,15 +714,15 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetstrokeopacity{0.500000}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{4.317631in}{3.993477in}}%
-\pgfpathlineto{\pgfqpoint{4.595408in}{3.993477in}}%
-\pgfpathlineto{\pgfqpoint{4.595408in}{4.090699in}}%
-\pgfpathlineto{\pgfqpoint{4.317631in}{4.090699in}}%
+\pgfpathmoveto{\pgfqpoint{4.568417in}{3.789620in}}%
+\pgfpathlineto{\pgfqpoint{4.846195in}{3.789620in}}%
+\pgfpathlineto{\pgfqpoint{4.846195in}{3.886842in}}%
+\pgfpathlineto{\pgfqpoint{4.568417in}{3.886842in}}%
 \pgfpathclose%
 \pgfusepath{fill}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[x=4.706520in,y=3.993477in,left,base]{\sffamily\fontsize{10.000000}{12.000000}\selectfont iris setosa}%
+\pgftext[x=4.957306in,y=3.789620in,left,base]{\sffamily\fontsize{10.000000}{12.000000}\selectfont setosa}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -732,15 +735,15 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetstrokeopacity{0.500000}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{4.317631in}{3.789620in}}%
-\pgfpathlineto{\pgfqpoint{4.595408in}{3.789620in}}%
-\pgfpathlineto{\pgfqpoint{4.595408in}{3.886842in}}%
-\pgfpathlineto{\pgfqpoint{4.317631in}{3.886842in}}%
+\pgfpathmoveto{\pgfqpoint{4.568417in}{3.585762in}}%
+\pgfpathlineto{\pgfqpoint{4.846195in}{3.585762in}}%
+\pgfpathlineto{\pgfqpoint{4.846195in}{3.682985in}}%
+\pgfpathlineto{\pgfqpoint{4.568417in}{3.682985in}}%
 \pgfpathclose%
 \pgfusepath{fill}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[x=4.706520in,y=3.789620in,left,base]{\sffamily\fontsize{10.000000}{12.000000}\selectfont iris versicolor}%
+\pgftext[x=4.957306in,y=3.585762in,left,base]{\sffamily\fontsize{10.000000}{12.000000}\selectfont versicolor}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -753,15 +756,15 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetstrokeopacity{0.500000}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{4.317631in}{3.585763in}}%
-\pgfpathlineto{\pgfqpoint{4.595408in}{3.585763in}}%
-\pgfpathlineto{\pgfqpoint{4.595408in}{3.682985in}}%
-\pgfpathlineto{\pgfqpoint{4.317631in}{3.682985in}}%
+\pgfpathmoveto{\pgfqpoint{4.568417in}{3.381905in}}%
+\pgfpathlineto{\pgfqpoint{4.846195in}{3.381905in}}%
+\pgfpathlineto{\pgfqpoint{4.846195in}{3.479127in}}%
+\pgfpathlineto{\pgfqpoint{4.568417in}{3.479127in}}%
 \pgfpathclose%
 \pgfusepath{fill}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[x=4.706520in,y=3.585763in,left,base]{\sffamily\fontsize{10.000000}{12.000000}\selectfont iris virginica}%
+\pgftext[x=4.957306in,y=3.381905in,left,base]{\sffamily\fontsize{10.000000}{12.000000}\selectfont virginica}%
 \end{pgfscope}%
 \end{pgfpicture}%
 \makeatother%

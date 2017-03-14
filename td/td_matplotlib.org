@@ -231,6 +231,11 @@ nombreuses techniques de classification automatique en /machine learning/.
 - Représenter dans un diagramme (largeur des sépales /vs./ longueur des sépales),
   la largeur des pétales ainsi que l'espèce de fleur d'iris considérée
 
+- Représenter l'ensemble des combinaisons possibles de données (largeur des
+  sépales /vs./ longueur des sépales, largeur des sépales /vs./ largeur des
+  pétales...), les figures situées dans la diagonale devant correspondre aux
+  distributions normalisées des différentes grandeurs.
+
 ** Correction                                                   :correction:
 
 #+BEGIN_SRC python -n :tangle /tmp/iris.py
@@ -289,6 +294,40 @@ nombreuses techniques de classification automatique en /machine learning/.
 | [[file:figures/petal_length.pdf]] | [[file:figures/petal_width.pdf]] |
 
 [[file:figures/iris.pdf]]
+
+#+BEGIN_SRC python -n
+  # Changement de taille de police uniquement pour cette figure
+  with plt.rc_context({"font.size": 5}):
+
+        # Définition d'une grille de sous-figures
+        fig, ax = plt.subplots(len(labels), len(labels),
+                               sharex="col", sharey="row",
+                               figsize=(1.5*len(labels), 1.5*len(labels)))
+
+        for l1, d1 in labels.items():
+            i1 = list(labels.keys()).index(l1)
+            for l2, d2 in labels.items():
+                i2 = list(labels.keys()).index(l2)
+                for key, name in iris.items():
+                    sc = (species == key)
+                    if l1 == l2:
+                        ax[i1, i2].hist(d1[sc], alpha=0.5, bins=10, normed=True)
+                    else:
+                        ax[i1, i2].scatter(d2[sc], d1[sc], s=5, alpha=0.5)
+            ax[-1, i1].set_xlabel(l1)
+            ax[i1, 0].set_ylabel(l1)
+
+        # Création d'une légende à partir d'un scatter plot vide
+        for key, name in iris.items():
+            plt.scatter([], [], label=name)
+            plt.legend(title="iris", bbox_to_anchor=(1, len(iris)/2+1), loc="upper left")
+        fig.subplots_adjust(right=0.9)
+
+
+    plt.show()
+#+END_SRC
+
+[[file:figures/iris_all.pdf]]
 
 * Footnotes
 

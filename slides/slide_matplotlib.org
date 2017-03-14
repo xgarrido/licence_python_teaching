@@ -886,7 +886,7 @@ sans échapper les caractères précédés de =\=
 #+BEAMER: \vskip+17pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [1]: data = np.loadtxt("pv_2016_2017.tsv")
+  In [1]: data = np.loadtxt("data/pv_2016_2017.tsv")
 
   In [2]: men_mask   = (data[:,-1] == 0)
   In [3]: women_mask = (data[:,-1] == 1)
@@ -897,8 +897,10 @@ sans échapper les caractères précédés de =\=
   In [6]: dx = 0.4
   In [7]: x = np.arange(5)
   In [8]: plt.bar(x-dx/2, men_means[:-1], dx)
-  In [9]: plt.bar(x+dx/2, women_means[:-1], dx, "pink")
-  #+END_SRC
+  In [9]: plt.bar(x+dx/2, women_means[:-1], dx, color="pink")
+  In[10]: plt.xticks(x,
+          ["OPP", "Maths", "Méca. Ana.", "MQ1", "Anglais"])
+#+END_SRC
 
 *** Figure
 :PROPERTIES:
@@ -919,7 +921,49 @@ sans échapper les caractères précédés de =\=
 #+BEAMER: \vskip+17pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [1]: data = np.loadtxt("pv_2016_2017.tsv")
+  In [1]: data = np.loadtxt("data/pv_2016_2017.tsv")
+
+  In [2]: men_mask   = (data[:,-1] == 0)
+  In [3]: women_mask = (data[:,-1] == 1)
+
+  In [4]: men_means   = np.mean(data[men_mask], axis=0)
+  In [5]: women_means = np.mean(data[women_mask], axis=0)
+
+  In [6]: men_errs   = np.std(data[men_mask], axis=0) \
+                      /np.sqrt(np.sum(men_mask))
+  In [7]: women_errs = np.std(data[women_mask], axis=0) \
+                      /np.sqrt(np.sum(women_mask))
+
+  In [8]: dx = 0.4
+  In [9]: x = np.arange(5)
+  In[10]: plt.bar(x-dx/2, men_means[:-1], dx,
+                  yerr=men_errs[:-1])
+  In[11]: plt.bar(x+dx/2, women_means[:-1], dx, color="pink",
+                  yerr=women_errs[:-1])
+  In[12]: plt.xticks(x,
+          ["OPP", "Maths", "Méca. Ana.", "MQ1", "Anglais"])
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_bar0bis.pdf}
+  \end{center}
+#+END_SRC
+** Histogramme 1D
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+BEAMER: \vskip+17pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: data = np.loadtxt("data/pv_2016_2017.tsv")
 
   In [2]: men_mask   = (data[:,-1] == 0)
   In [3]: women_mask = (data[:,-1] == 1)
@@ -930,7 +974,9 @@ sans échapper les caractères précédés de =\=
   In [6]: dx = 0.4
   In [7]: x = np.arange(5)
   In [8]: plt.barh(x-dx/2, men_means[:-1], dx)
-  In [9]: plt.barh(x+dx/2, women_means[:-1], dx, "pink")
+  In [9]: plt.barh(x+dx/2, women_means[:-1], dx, color="pink")
+  In[10]: plt.yticks(x,
+          ["OPP", "Maths", "Méca. Ana.", "MQ1", "Anglais"])
 #+END_SRC
 
 *** Figure
@@ -987,7 +1033,7 @@ sans échapper les caractères précédés de =\=
 #+END_SRC
 
 #+BEAMER: \vskip-20pt
-**** Python code
+*** Python code
 :PROPERTIES:
 :BEAMER_COL: 0.55
 :END:
@@ -1003,15 +1049,15 @@ sans échapper les caractères précédés de =\=
   In [4]: X, Y = np.meshgrid(x, y)
   In [5]: Z = f(X, Y)
 
-  In [6]: contours = plt.contour(X, Y, Z, 3, colors='black')
+  In [6]: contours = plt.contour(X, Y, Z, 3, colors="black")
   In [7]: plt.clabel(contours, inline=True, fontsize=8)
 
-  In [8]: plt.imshow(Z, extent=[0, 5, 0, 5], origin='lower',
-                     cmap='RdGy', alpha=0.5)
+  In [8]: plt.imshow(Z, extent=[0, 5, 0, 5], origin="lower",
+                     cmap="RdGy", alpha=0.5)
   In [9]: plt.colorbar();
 #+END_SRC
 
-**** Color map
+*** Color map
 :PROPERTIES:
 :BEAMER_COL: 0.55
 :END:
@@ -1021,6 +1067,42 @@ sans échapper les caractères précédés de =\=
 [[file:figures/mpl_contour.pdf]]
 #+BEAMER: }
 
+** Image 2D
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: img = plt.imread("./data/puzo_patrick.png")
+#+END_SRC
+
+#+BEAMER: \vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: plt.imshow(img)
+  In [3]: plt.title("P. Puzo après le partiel d'EM")
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: plt.scatter(725, 1000, c="red", s=1000)
+  In [5]: plt.title("P. Puzo après son anniversaire")
+#+END_SRC
+
+*** Color map
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/puzo_patrick0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/puzo_patrick1.pdf}
+  \end{center}
+#+END_SRC
 ** Figure 3D
 *** Python code
 :PROPERTIES:
@@ -1422,11 +1504,10 @@ où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
   # Set up the axes with gridspec
   plt.figure(figsize=(6, 6))
   grid = plt.GridSpec(4, 4, hspace=0, wspace=0)
-  main_ax = plt.subplot(grid[:-1, 1:])
-  y_hist = plt.subplot(grid[:-1, 0],
-                       xticklabels=[], sharey=main_ax)
-  x_hist = plt.subplot(grid[-1, 1:],
-                       yticklabels=[], sharex=main_ax)
+  main_ax = plt.subplot(grid[:-1, 1:], xticklabels=[],
+                        yticklabels=[])
+  y_hist = plt.subplot(grid[:-1, 0], xticklabels=[])
+  x_hist = plt.subplot(grid[-1, 1:], yticklabels=[])
 
   # scatter points on the main axes
   main_ax.plot(x, y, "ok", markersize=3, alpha=0.2)
@@ -1718,3 +1799,11 @@ où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
      ...:    fig.canvas.draw_idle()
   In[27]: radio.on_clicked(update_color)
 #+END_SRC
+** Interface graphique sous =matplotlib=
+
+- API Documentation : http://matplotlib.org/api/widgets_api.html
+
+- Exemples & démo. : http://matplotlib.org/examples/widgets/index.html
+
+- Pour rappel, les exemples proposés à la préparation à l'aggrégation à
+  Montrouge : http://poisson.ens.fr/Ressources/index.php
