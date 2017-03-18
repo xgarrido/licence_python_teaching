@@ -41,6 +41,9 @@
   #+BEGIN_SRC python
     In [1]: import matplotlib as mpl
     In [2]: import matplotlib.pyplot as plt
+
+    In [3]: mpl.__version__
+    Out[3]: '2.0.0'
   #+END_SRC
 
 ** Comment afficher vos figures : =show()= or not =show()=
@@ -78,7 +81,7 @@
 
 - Affichage depuis la console =ipython=
   #+BEAMER: \vskip5pt
-  #+BEGIN_SRC python -n
+  #+BEGIN_SRC python
     In [1]: %matplotlib
     Using matplotlib backend: TkAgg
 
@@ -237,6 +240,12 @@
                      color=(1.0,0.2,0.3))
   #+END_SRC
 
+- Couleur du cycle =C0-9=
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In[13]: plt.plot(x, np.sin(x - 5), color="C4")
+  #+END_SRC
+
 *** Figure
 :PROPERTIES:
 :BEAMER_COL: 0.5
@@ -249,6 +258,7 @@
     \includegraphics<3>[width=1.1\linewidth]{figures/mpl_color2.pdf}
     \includegraphics<4>[width=1.1\linewidth]{figures/mpl_color3.pdf}
     \includegraphics<5>[width=1.1\linewidth]{figures/mpl_color4.pdf}
+    \includegraphics<6>[width=1.1\linewidth]{figures/mpl_color5.pdf}
   \end{center}
 #+END_SRC
 
@@ -269,8 +279,8 @@
 #+BEGIN_SRC python
   In [6]: plt.plot(x, np.sin(x), "p",
      ...:          markersize=15,
-     ...:          markerfacecolor='pink',
-     ...:          markeredgecolor='gray',
+     ...:          markerfacecolor="pink",
+     ...:          markeredgecolor="gray",
      ...:          markeredgewidth=2)
 #+END_SRC
 
@@ -563,7 +573,7 @@ sans échapper les caractères précédés de =\=
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [1]: r = np.linspace(0, 5, 100)
-  In [2]: plt.plot(r, np.pi*r**2, color="blue")
+  In [2]: plt.plot(r, np.pi*r**2, color="C0")
 #+END_SRC
 
 #+BEAMER: \pause\vskip-1pt
@@ -571,7 +581,7 @@ sans échapper les caractères précédés de =\=
 #+BEGIN_SRC python
   In [3]: ax = plt.gca()
   In [4]: for label in ax.get_yticklabels():
-     ...:     label.set_color("blue")
+     ...:     label.set_color("C0")
 #+END_SRC
 
 #+BEAMER: \pause\vskip-1pt
@@ -583,10 +593,10 @@ sans échapper les caractères précédés de =\=
 #+BEAMER: \pause\vskip-1pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [6]: plt.plot(r, 4/3*np.pi*r**3, color="red")
+  In [6]: plt.plot(r, 4/3*np.pi*r**3, color="C1")
   In [7]: ax = plt.gca()
   In [8]: for label in ax.get_yticklabels():
-     ...:     label.set_color("red")
+     ...:     label.set_color("C1")
 #+END_SRC
 
 ** /Kozmetix/ sous =matplotlib=
@@ -1266,9 +1276,9 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
   #+BEAMER: \pause\vskip-1pt
   #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
-    In[10]: ax.contour(X, Y, Z, zdir='z', offset=+1)
-    In[11]: ax.contour(X, Y, Z, zdir='y', offset=-7)
-    In[12]: ax.contour(X, Y, Z, zdir='x', offset=+7)
+    In[10]: ax.contour(X, Y, Z, zdir="z", offset=+1)
+    In[11]: ax.contour(X, Y, Z, zdir="y", offset=-7)
+    In[12]: ax.contour(X, Y, Z, zdir="x", offset=+7)
     In[13]: ax.set_zlim3d(-1, 1)
     In[14]: ax.set_ylim3d(-7, 7)
     In[15]: ax.set_xlim3d(-7, 7)
@@ -1426,7 +1436,7 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
 #+END_SRC
 
 #+BEAMER: \small\vskip+5pt
-où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
+avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
 
 *** Figure
 :PROPERTIES:
@@ -1537,7 +1547,8 @@ où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
 #+BEAMER: \pause\vskip-1pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [5]: fig, ax = plt.subplots(2, 3, sharex="col", sharey="row")
+  In [5]: fig, ax = plt.subplots(2, 3, sharex="col",
+                                 sharey="row")
   In [6]: for i in range(2):
      ...:     for j in range(3):
      ...:         ax[i, j].text(0.5, 0.5, str((i, j)),
@@ -1618,6 +1629,48 @@ où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
   import numpy as np
   import matplotlib.pyplot as plt
 
+  x = np.linspace(0, 10, 100)
+  dy = 0.4
+  y = np.sin(x) + dy * np.random.randn(100)
+
+  grid = plt.GridSpec(4, 1, hspace=0, wspace=0)
+
+  main = plt.subplot(grid[0:3], xticklabels=[], xlim=[0, 10])
+  main.plot(x, np.sin(x), "r")
+  main.errorbar(x, y, yerr=dy, fmt="ok")
+  main.set_ylabel(r"$y$")
+
+  dev = plt.subplot(grid[3], xlim=[0, 10])
+  dev.errorbar(x, y - np.sin(x), yerr=dy, fmt="ok")
+  dev.plot([0, 10], [0, 0], "--r")
+  dev.set_ylabel(r"$y-y_\mathrm{model}$")
+  dev.set_xlabel(r"$\theta$")
+
+  plt.show()
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_subplot15.pdf}
+  \end{center}
+#+END_SRC
+
+** /Subplot/
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python -n
+  import numpy as np
+  import matplotlib.pyplot as plt
+
   # Create some normally distributed data
   mean = [0, 0]
   cov = [[1, 1], [1, 2]]
@@ -1653,9 +1706,23 @@ où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
 
 #+BEGIN_SRC latex
   \begin{center}
-    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_subplot14.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_subplot14.pdf}
   \end{center}
 #+END_SRC
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+- L'outil =Basemap= permet la représentation de données géographiques : divers
+  modes de projection, données topographiques...
+
+- L'installation de /Basemap/ est compliquée par l'absence de module dans
+  =pip=. Pour plus d'information /cf./ [[https://matplotlib.org/basemap/users/installing.html#installation][guide d'installation]]
+
+- Importation du module =Basemap=
+  #+BEGIN_SRC python
+    In [1]: from mpl_toolkits.basemap import Basemap
+  #+END_SRC
 
 ** COMMENT /Goodies/
 *** css
