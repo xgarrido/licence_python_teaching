@@ -97,7 +97,7 @@
 
 * Fonctions discontinues@@latex:\protect@@[fn:19d5b0088c02b452]
 
-- Représenter la fonction d'Heaviside $\Theta(x)$ définie
+- Représenter la fonction d'Heaviside $\Theta(x)$ définie par
   #+BEGIN_SRC latex
     \begin{align*}
       \left\{
