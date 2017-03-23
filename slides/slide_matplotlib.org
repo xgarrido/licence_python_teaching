@@ -1414,6 +1414,11 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
   In [5]: plt.axis("equal")
 #+END_SRC
 
+#+BEGIN_COMMENT
+Création d'un donut
+https://medium.com/@krishnakummar/donut-chart-with-python-matplotlib-d411033c960b#.kilzpdf8y
+#+END_COMMENT
+
 ** /Subplot/
 
 - =matplotlib= permet une gestion relativement aisée du placement des figures et
@@ -1576,7 +1581,7 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
 
 *** Python code
 :PROPERTIES:
-:BEAMER_COL: 0.52
+:BEAMER_COL: 0.55
 :END:
 
 #+ATTR_LATEX: :options fontsize=\scriptsize
@@ -1621,7 +1626,7 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
 ** /Subplot/
 *** Python code
 :PROPERTIES:
-:BEAMER_COL: 0.52
+:BEAMER_COL: 0.55
 :END:
 
 #+ATTR_LATEX: :options fontsize=\scriptsize
@@ -1663,7 +1668,7 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
 ** /Subplot/
 *** Python code
 :PROPERTIES:
-:BEAMER_COL: 0.52
+:BEAMER_COL: 0.55
 :END:
 
 #+ATTR_LATEX: :options fontsize=\scriptsize
@@ -1710,9 +1715,10 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
   \end{center}
 #+END_SRC
 
-** /Goodies/
+** COMMENT /Goodies/
 #+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
 
+#+ATTR_BEAMER: :overlay +-
 - L'outil =Basemap= permet la représentation de données géographiques : divers
   modes de projection, données topographiques...
 
@@ -1725,10 +1731,244 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
   #+END_SRC
 
 ** COMMENT /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: from mpl_toolkits.basemap import Basemap
+
+  In [2]: m = Basemap(projection="ortho", resolution=None,
+                      lat_0=48.78, lon_0=2.34)
+  In [3]: m.bluemarble(scale=0.2)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: m.shadedrelief(scale=0.2)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [5]: kwargs = dict(color="gray", linewidth=0.1,
+                        dashes=(None, None))
+
+  In [6]: m.drawmeridians(np.linspace(-180, 180, 13), **kwargs)
+  In [7]: m.drawparallels(np.linspace(-90, 90, 13), **kwargs)
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_basemap0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_basemap1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_basemap2.pdf}
+  \end{center}
+#+END_SRC
+
+** COMMENT /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: from mpl_toolkits.basemap import Basemap
+  In [2]: m = Basemap(projection="cyl", resolution=None)
+  In [3]: m.shadedrelief(scale=0.2)
+#+END_SRC
+
+#+BEAMER: \vspace{-1.5cm}
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 1.1
+:END:
+
+[[file:figures/mpl_basemap3.pdf]]
+
+** COMMENT /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+- Plusieurs modes de projection
+  - projection cylindrique : =cyl=, Mercator (=merc=), /cylindrical equal area/ (=cea=)
+  - projection pseudo-cylindrique : Mollweide (=moll=), sinusoïdale (=sinu=),
+    Robinson (=robin=)
+  - projection en perspective : orthographique (=ortho=), gnomonique (=gnom=),
+    stéréographique (=stere=)
+  - projection conique : conique conforme de Lambert (=lcc=), ...
+  - plus d'information : http://matplotlib.org/basemap/users/mapsetup.html
+
+** COMMENT /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+- Plusieurs modes de projection
+  - projection cylindrique : =cyl=, Mercator (=merc=), /cylindrical equal area/ (=cea=)
+  - projection pseudo-cylindrique : Mollweide (=moll=), sinusoïdale (=sinu=),
+    Robinson (=robin=)
+  - projection en perspective : orthographique (=ortho=), gnomonique (=gnom=),
+    stéréographique (=stere=)
+  - projection conique : conique conforme de Lambert (=lcc=), ...
+  - plus d'information : http://matplotlib.org/basemap/users/mapsetup.html
+
+** COMMENT /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+- Limites physiques (côtières, contientales...)
+  - =drawcoastlines()= : affiche les limites côtières
+  - =drawrivers()= : affiche les rivières, cours d'eau
+  - =fillcontinents()= : change la couleur des continents (et des lacs)
+
+- Limites politiques
+  - =drawcountries()= : affiche les frontières des pays
+  - =drawstates()= : affiche les états américains
+
+- Caractérisitiques de cartes
+  - =drawparallels()= : affiche les latitudes
+  - =drawmeridians()= : affiche les longitudes
+  - =drawgreatcircle()= : affiche un cercle entre deux points
+  - =drawmapscale()= : affiche une échelle linéaire
+
+- Fonds de cartes
+  - =bluemarble()= : fond issu de la NASA
+  - =shadedrelief()= : fond en relief
+  - =etopo()= : fond selon le relevé topographique [[https://www.ngdc.noaa.gov/mgg/global/][=etopo=]]
+
+** COMMENT /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: for res in ["l", "h"]:
+     ...:     m = Basemap(projection="gnom", lat_0=57.3, lon_0=-6.2,
+     ...:                 width=90000, height=120000, resolution=res)
+     ...:     m.drawcoastlines()
+     ...:     m.fillcontinents()
+     ...:     plt.set_title("résolution='{0}'".format(res));
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.25\linewidth]{figures/mpl_basemap_low.pdf}
+    \includegraphics<2>[width=1.25\linewidth]{figures/mpl_basemap_high.pdf}
+  \end{center}
+#+END_SRC
+
+** COMMENT /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+- Afficher des données sur cartes :
+
+  - =contour()/contourf()= : dessiner des contours ou des contours remplis
+  - =imshow()= : affiche une image
+  - =plot()/scatter()= : représentation graphique sous forme de lignes et/ou marqueurs
+  - =quiver()= : représente des vectors
+  - =barbs()= : représentation des vents
+
+** COMMENT /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+- Densité de population dans l'état de Californie
+
+  #+BEAMER: \vskip+5pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    # 1. Extract data
+    import pandas as pd
+    cities = pd.read_csv("./data/california_cities.csv")
+
+    lat = cities["latd"].values
+    lon = cities["longd"].values
+    population = cities["population_total"].values
+    area = cities["area_total_km2"].values
+  #+END_SRC
+
+** COMMENT /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  # 2. Draw the map background
+  import matplotlib.pyplot as plt
+  fig = plt.figure(figsize=(8, 8))
+
+  from mpl_toolkits.basemap import Basemap
+  m = Basemap(projection="lcc", resolution="h",
+              lat_0=37.5, lon_0=-119,
+              width=1E6, height=1.2E6)
+  m.shadedrelief()
+  m.drawcoastlines(color="gray")
+  m.drawcountries(color="gray")
+  m.drawstates(color="gray")
+#+END_SRC
+
+#+BEAMER: \pause\pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  # 3. Scatter city data, with color reflecting
+  # population and size reflecting area
+  import numpy as np
+  m.scatter(lon, lat, latlon=True,
+            c=np.log10(population), s=area,
+            cmap="Reds", alpha=0.5)
+#+END_SRC
+
+#+BEAMER: \pause\pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  # 4. Create colorbar and legend
+  plt.colorbar(label=r"$\log_{10}(\mathrm{population})$")
+  plt.clim(3, 7)
+
+  for a in [100, 300, 500]:
+      plt.scatter([], [], c="k", alpha=0.5, s=a,
+                  label=str(a) + " km$^2$")
+  plt.legend(scatterpoints=1, frameon=False,
+             labelspacing=1, loc="lower left")
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \vspace{-1cm}
+    \includegraphics<2-3>[width=1.1\linewidth]{figures/mpl_california0.pdf}
+    \includegraphics<4-5>[width=1.1\linewidth]{figures/mpl_california1.pdf}
+    \includegraphics<6->[width=1.1\linewidth]{figures/mpl_california2.pdf}
+  \end{center}
+#+END_SRC
+
+** COMMENT /Goodies/
 *** css
 *** basemap
 *** xkcd
-* Interaction avec =matplotlib=
+* COMMENT Interaction avec =matplotlib=
 ** Titre
 :PROPERTIES:
 :BEAMER_ENV: fullframe
