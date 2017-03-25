@@ -1,0 +1,53 @@
+%% Creator: Matplotlib, PGF backend
+%%
+%% To include the figure in your LaTeX document, write
+%%   \input{<filename>.pgf}
+%%
+%% Make sure the required packages are loaded in your preamble
+%%   \usepackage{pgf}
+%%
+%% Figures using additional raster images can only be included by \input if
+%% they are in the same directory as the main LaTeX file. For loading figures
+%% from other directories you can use the `import` package
+%%   \usepackage{import}
+%% and then include the figures with
+%%   \import{<path to file>}{<filename>.pgf}
+%%
+%% Matplotlib used the following preamble
+%%   \usepackage{fontspec}
+%%   \setmainfont{DejaVu Serif}
+%%   \setsansfont{DejaVu Sans}
+%%   \setmonofont{DejaVu Sans Mono}
+%%
+\begingroup%
+\makeatletter%
+\begin{pgfpicture}%
+\pgfpathrectangle{\pgfpointorigin}{\pgfqpoint{8.500000in}{5.400000in}}%
+\pgfusepath{use as bounding box, clip}%
+\begin{pgfscope}%
+\pgfsetbuttcap%
+\pgfsetmiterjoin%
+\pgfsetlinewidth{0.000000pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.000000}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{8.500000in}{0.000000in}}%
+\pgfpathlineto{\pgfqpoint{8.500000in}{5.400000in}}%
+\pgfpathlineto{\pgfqpoint{0.000000in}{5.400000in}}%
+\pgfpathclose%
+\pgfusepath{}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfpathrectangle{\pgfqpoint{0.170000in}{0.649851in}}{\pgfqpoint{8.160000in}{4.100299in}} %
+\pgfusepath{clip}%
+\pgfsys@transformshift{0.190299in}{0.670149in}%
+\pgftext[left,bottom]{\pgfimage[interpolate=true,width=8.120000in,height=4.060000in]{healpy_1024-img0.png}}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgftext[x=4.250000in,y=4.833483in,,base]{\sffamily\fontsize{12.000000}{14.400000}\selectfont \(\displaystyle 12\times1024^2 = 12582912\) pixels}%
+\end{pgfscope}%
+\end{pgfpicture}%
+\makeatother%
+\endgroup%

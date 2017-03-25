@@ -6,6 +6,11 @@
 #+LATEX_CLASS: python-slide
 
 * Librarie =matplotlib=
+** Sommaire
+:PROPERTIES:
+:BEAMER_ENV: fullframe
+:END:
+#+TOC: headlines
 ** =matplotlib= ?
 
 #+ATTR_BEAMER: :overlay +-
@@ -22,7 +27,6 @@
 - Tous les aspects d'une figure (taille, position,...) peuvent être contrôlés
   d'un point de vue /programmatique/ \to *reproductibilité* des figures et des
   résultats scientifiques
-
 ** Installation & importation de =matplotlib=
 
 #+ATTR_BEAMER: :overlay +-
@@ -37,6 +41,9 @@
   #+BEGIN_SRC python
     In [1]: import matplotlib as mpl
     In [2]: import matplotlib.pyplot as plt
+
+    In [3]: mpl.__version__
+    Out[3]: '2.0.0'
   #+END_SRC
 
 ** Comment afficher vos figures : =show()= or not =show()=
@@ -74,7 +81,7 @@
 
 - Affichage depuis la console =ipython=
   #+BEAMER: \vskip5pt
-  #+BEGIN_SRC python -n
+  #+BEGIN_SRC python
     In [1]: %matplotlib
     Using matplotlib backend: TkAgg
 
@@ -131,7 +138,6 @@
 
 #+ATTR_LATEX: :width 1.1\linewidth
 [[file:figures/mpl.pdf]]
-
 * /Kozmetix/ sous =matplotlib=
 ** Titre
 :PROPERTIES:
@@ -234,6 +240,12 @@
                      color=(1.0,0.2,0.3))
   #+END_SRC
 
+- Couleur du cycle =C0-9=
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In[13]: plt.plot(x, np.sin(x - 5), color="C4")
+  #+END_SRC
+
 *** Figure
 :PROPERTIES:
 :BEAMER_COL: 0.5
@@ -246,6 +258,7 @@
     \includegraphics<3>[width=1.1\linewidth]{figures/mpl_color2.pdf}
     \includegraphics<4>[width=1.1\linewidth]{figures/mpl_color3.pdf}
     \includegraphics<5>[width=1.1\linewidth]{figures/mpl_color4.pdf}
+    \includegraphics<6>[width=1.1\linewidth]{figures/mpl_color5.pdf}
   \end{center}
 #+END_SRC
 
@@ -266,8 +279,8 @@
 #+BEGIN_SRC python
   In [6]: plt.plot(x, np.sin(x), "p",
      ...:          markersize=15,
-     ...:          markerfacecolor='pink',
-     ...:          markeredgecolor='gray',
+     ...:          markerfacecolor="pink",
+     ...:          markeredgecolor="gray",
      ...:          markeredgewidth=2)
 #+END_SRC
 
@@ -560,7 +573,7 @@ sans échapper les caractères précédés de =\=
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [1]: r = np.linspace(0, 5, 100)
-  In [2]: plt.plot(r, np.pi*r**2, color="blue")
+  In [2]: plt.plot(r, np.pi*r**2, color="C0")
 #+END_SRC
 
 #+BEAMER: \pause\vskip-1pt
@@ -568,7 +581,7 @@ sans échapper les caractères précédés de =\=
 #+BEGIN_SRC python
   In [3]: ax = plt.gca()
   In [4]: for label in ax.get_yticklabels():
-     ...:     label.set_color("blue")
+     ...:     label.set_color("C0")
 #+END_SRC
 
 #+BEAMER: \pause\vskip-1pt
@@ -580,10 +593,10 @@ sans échapper les caractères précédés de =\=
 #+BEAMER: \pause\vskip-1pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [6]: plt.plot(r, 4/3*np.pi*r**3, color="red")
+  In [6]: plt.plot(r, 4/3*np.pi*r**3, color="C1")
   In [7]: ax = plt.gca()
   In [8]: for label in ax.get_yticklabels():
-     ...:     label.set_color("red")
+     ...:     label.set_color("C1")
 #+END_SRC
 
 ** /Kozmetix/ sous =matplotlib=
@@ -1263,9 +1276,9 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
   #+BEAMER: \pause\vskip-1pt
   #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
-    In[10]: ax.contour(X, Y, Z, zdir='z', offset=+1)
-    In[11]: ax.contour(X, Y, Z, zdir='y', offset=-7)
-    In[12]: ax.contour(X, Y, Z, zdir='x', offset=+7)
+    In[10]: ax.contour(X, Y, Z, zdir="z", offset=+1)
+    In[11]: ax.contour(X, Y, Z, zdir="y", offset=-7)
+    In[12]: ax.contour(X, Y, Z, zdir="x", offset=+7)
     In[13]: ax.set_zlim3d(-1, 1)
     In[14]: ax.set_ylim3d(-7, 7)
     In[15]: ax.set_xlim3d(-7, 7)
@@ -1282,6 +1295,130 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
     \includegraphics<2>[width=1.1\linewidth]{figures/mpl_3dcontour1.pdf}
   \end{center}
 #+END_SRC
+** Autres modes de représentation
+#+BEAMER: \framesubtitle{\emph{Polar \& Pie charts}}
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_polar0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_polar1.pdf}
+  \end{center}
+#+END_SRC
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: ax = plt.axes(projection="polar")
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [3]: r = np.arange(0, 2, 0.01)
+  In [4]: theta = 2 * np.pi * r
+
+  In [5]: ax.plot(theta, r)
+  In [6]: ax.set_rmax(2)
+  In [7]: ax.set_rticks([0.5, 1, 1.5, 2])
+#+END_SRC
+** Autres modes de représentation
+#+BEAMER: \framesubtitle{\emph{Polar \& Pie charts}}
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_polar3.pdf}
+  \end{center}
+#+END_SRC
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+    In [2]: ax = plt.axes(projection="polar")
+    In [3]: N = 150
+    In [4]: r = 2 * np.random.rand(N)
+    In [5]: theta = 2 * np.pi * np.random.rand(N)
+    In [6]: area = 200 * r**2
+
+    In [7]: ax.scatter(theta, r, c=theta, s=area, alpha=0.75)
+#+END_SRC
+** Autres modes de représentation
+#+BEAMER: \framesubtitle{\emph{Polar \& Pie charts}}
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_polar2.pdf}
+  \end{center}
+#+END_SRC
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.52
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: ax = plt.axes(projection="polar")
+  In [3]: N = 20
+  In [4]: theta = np.linspace(0.0, 2 * np.pi, N)
+  In [5]: radii = 10 * np.random.rand(N)
+  In [6]: width = np.pi / 4 * np.random.rand(N)
+
+  In [7]: bars = ax.bar(theta, radii, width=width)
+
+  In [8]: for r, bar in zip(radii, bars):
+     ...:     bar.set_facecolor(plt.cm.viridis(r/10))
+     ...:     bar.set_alpha(0.5)
+#+END_SRC
+** Autres modes de représentation
+#+BEAMER: \framesubtitle{\emph{Polar \& Pie charts}}
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_pie.pdf}
+  \end{center}
+#+END_SRC
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: labels = "Méthodes num.", "Phys. Maths", \
+                   "Chimie Orga. 1", "Vulga.",     \
+                   "Hist. des Sciences", "Théorie des groupes"
+  In [3]: percent = np.array([4.2, 28.1, 24.0, 19.8, 10.4, 44.8])
+
+  In [4]: plt.pie(percent, labels=labels, autopct="%1.1f%%",
+                  colors=plt.cm.Pastel1(percent))
+  In [5]: plt.axis("equal")
+#+END_SRC
+
+#+BEGIN_COMMENT
+Création d'un donut
+https://medium.com/@krishnakummar/donut-chart-with-python-matplotlib-d411033c960b#.kilzpdf8y
+#+END_COMMENT
+
 ** /Subplot/
 
 - =matplotlib= permet une gestion relativement aisée du placement des figures et
@@ -1304,7 +1441,7 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
 #+END_SRC
 
 #+BEAMER: \small\vskip+5pt
-où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
+avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
 
 *** Figure
 :PROPERTIES:
@@ -1415,7 +1552,8 @@ où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
 #+BEAMER: \pause\vskip-1pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [5]: fig, ax = plt.subplots(2, 3, sharex="col", sharey="row")
+  In [5]: fig, ax = plt.subplots(2, 3, sharex="col",
+                                 sharey="row")
   In [6]: for i in range(2):
      ...:     for j in range(3):
      ...:         ax[i, j].text(0.5, 0.5, str((i, j)),
@@ -1443,7 +1581,7 @@ où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
 
 *** Python code
 :PROPERTIES:
-:BEAMER_COL: 0.52
+:BEAMER_COL: 0.55
 :END:
 
 #+ATTR_LATEX: :options fontsize=\scriptsize
@@ -1488,7 +1626,49 @@ où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
 ** /Subplot/
 *** Python code
 :PROPERTIES:
-:BEAMER_COL: 0.52
+:BEAMER_COL: 0.55
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python -n
+  import numpy as np
+  import matplotlib.pyplot as plt
+
+  x = np.linspace(0, 10, 100)
+  dy = 0.4
+  y = np.sin(x) + dy * np.random.randn(100)
+
+  grid = plt.GridSpec(4, 1, hspace=0, wspace=0)
+
+  main = plt.subplot(grid[0:3], xticklabels=[], xlim=[0, 10])
+  main.plot(x, np.sin(x), "r")
+  main.errorbar(x, y, yerr=dy, fmt="ok")
+  main.set_ylabel(r"$y$")
+
+  dev = plt.subplot(grid[3], xlim=[0, 10])
+  dev.errorbar(x, y - np.sin(x), yerr=dy, fmt="ok")
+  dev.plot([0, 10], [0, 0], "--r")
+  dev.set_ylabel(r"$y-y_\mathrm{model}$")
+  dev.set_xlabel(r"$\theta$")
+
+  plt.show()
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_subplot15.pdf}
+  \end{center}
+#+END_SRC
+
+** /Subplot/
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.55
 :END:
 
 #+ATTR_LATEX: :options fontsize=\scriptsize
@@ -1531,15 +1711,352 @@ où =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial*
 
 #+BEGIN_SRC latex
   \begin{center}
-    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_subplot14.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_subplot14.pdf}
   \end{center}
 #+END_SRC
 
-** COMMENT Goodies
+** /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+#+ATTR_BEAMER: :overlay +-
+- L'outil =Basemap= permet la représentation de données géographiques : divers
+  modes de projection, données topographiques...
+
+- L'installation de /Basemap/ est compliquée par l'absence de module dans
+  =pip=. Pour plus d'information /cf./ [[https://matplotlib.org/basemap/users/installing.html#installation][guide d'installation]]
+
+- Importation du module =Basemap=
+  #+BEGIN_SRC python
+    In [1]: from mpl_toolkits.basemap import Basemap
+  #+END_SRC
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: from mpl_toolkits.basemap import Basemap
+
+  In [2]: m = Basemap(projection="ortho", resolution=None,
+                      lat_0=48.78, lon_0=2.34)
+  In [3]: m.bluemarble(scale=0.2)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: m.shadedrelief(scale=0.2)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [5]: kwargs = dict(color="gray", linewidth=0.1,
+                        dashes=(None, None))
+
+  In [6]: m.drawmeridians(np.linspace(-180, 180, 13), **kwargs)
+  In [7]: m.drawparallels(np.linspace(-90, 90, 13), **kwargs)
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_basemap0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_basemap1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_basemap2.pdf}
+  \end{center}
+#+END_SRC
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: from mpl_toolkits.basemap import Basemap
+  In [2]: m = Basemap(projection="cyl", resolution=None)
+  In [3]: m.shadedrelief(scale=0.2)
+#+END_SRC
+
+#+BEAMER: \vspace{-1.5cm}
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 1.1
+:END:
+
+[[file:figures/mpl_basemap3.pdf]]
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+- Plusieurs modes de projection
+  - projection cylindrique : =cyl=, Mercator (=merc=), /cylindrical equal area/ (=cea=)
+  - projection pseudo-cylindrique : Mollweide (=moll=), sinusoïdale (=sinu=),
+    Robinson (=robin=)
+  - projection en perspective : orthographique (=ortho=), gnomonique (=gnom=),
+    stéréographique (=stere=)
+  - projection conique : conique conforme de Lambert (=lcc=), ...
+  - plus d'information : http://matplotlib.org/basemap/users/mapsetup.html
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+- Plusieurs modes de projection
+  - projection cylindrique : =cyl=, Mercator (=merc=), /cylindrical equal area/ (=cea=)
+  - projection pseudo-cylindrique : Mollweide (=moll=), sinusoïdale (=sinu=),
+    Robinson (=robin=)
+  - projection en perspective : orthographique (=ortho=), gnomonique (=gnom=),
+    stéréographique (=stere=)
+  - projection conique : conique conforme de Lambert (=lcc=), ...
+  - plus d'information : http://matplotlib.org/basemap/users/mapsetup.html
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+- Limites physiques (côtières, contientales...)
+  - =drawcoastlines()= : affiche les limites côtières
+  - =drawrivers()= : affiche les rivières, cours d'eau
+  - =fillcontinents()= : change la couleur des continents (et des lacs)
+
+- Limites politiques
+  - =drawcountries()= : affiche les frontières des pays
+  - =drawstates()= : affiche les états américains
+
+- Caractérisitiques de cartes
+  - =drawparallels()= : affiche les latitudes
+  - =drawmeridians()= : affiche les longitudes
+  - =drawgreatcircle()= : affiche un cercle entre deux points
+  - =drawmapscale()= : affiche une échelle linéaire
+
+- Fonds de cartes
+  - =bluemarble()= : fond issu de la NASA
+  - =shadedrelief()= : fond en relief
+  - =etopo()= : fond selon le relevé topographique [[https://www.ngdc.noaa.gov/mgg/global/][=etopo=]]
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: for res in ["l", "h"]:
+     ...:     m = Basemap(projection="gnom", lat_0=57.3, lon_0=-6.2,
+     ...:                 width=90000, height=120000, resolution=res)
+     ...:     m.drawcoastlines()
+     ...:     m.fillcontinents()
+     ...:     plt.set_title("résolution='{0}'".format(res));
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.25\linewidth]{figures/mpl_basemap_low.pdf}
+    \includegraphics<2>[width=1.25\linewidth]{figures/mpl_basemap_high.pdf}
+  \end{center}
+#+END_SRC
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+- Afficher des données sur cartes :
+
+  - =contour()/contourf()= : dessiner des contours ou des contours remplis
+  - =imshow()= : affiche une image
+  - =plot()/scatter()= : représentation graphique sous forme de lignes et/ou marqueurs
+  - =quiver()= : représente des vectors
+  - =barbs()= : représentation des vents
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+- Densité de population dans l'état de Californie
+
+  #+BEAMER: \vskip+5pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    # 1. Extract data
+    import pandas as pd
+    cities = pd.read_csv("./data/california_cities.csv")
+
+    lat = cities["latd"].values
+    lon = cities["longd"].values
+    population = cities["population_total"].values
+    area = cities["area_total_km2"].values
+  #+END_SRC
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  # 2. Draw the map background
+  import matplotlib.pyplot as plt
+  fig = plt.figure(figsize=(8, 8))
+
+  from mpl_toolkits.basemap import Basemap
+  m = Basemap(projection="lcc", resolution="h",
+              lat_0=37.5, lon_0=-119,
+              width=1E6, height=1.2E6)
+  m.shadedrelief()
+  m.drawcoastlines(color="gray")
+  m.drawcountries(color="gray")
+  m.drawstates(color="gray")
+#+END_SRC
+
+#+BEAMER: \pause\pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  # 3. Scatter city data, with color reflecting
+  # population and size reflecting area
+  import numpy as np
+  m.scatter(lon, lat, latlon=True,
+            c=np.log10(population), s=area,
+            cmap="Reds", alpha=0.5)
+#+END_SRC
+
+#+BEAMER: \pause\pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  # 4. Create colorbar and legend
+  plt.colorbar(label=r"$\log_{10}(\mathrm{population})$")
+  plt.clim(3, 7)
+
+  for a in [100, 300, 500]:
+      plt.scatter([], [], c="k", alpha=0.5, s=a,
+                  label=str(a) + " km$^2$")
+  plt.legend(scatterpoints=1, frameon=False,
+             labelspacing=1, loc="lower left")
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \vspace{-1cm}
+    \includegraphics<2-3>[width=1.1\linewidth]{figures/mpl_california0.pdf}
+    \includegraphics<4-5>[width=1.1\linewidth]{figures/mpl_california1.pdf}
+    \includegraphics<6->[width=1.1\linewidth]{figures/mpl_california2.pdf}
+  \end{center}
+#+END_SRC
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Cartes du ciel avec \texttt{healpy}}
+
+- *=healpy=* est l'implémentation Python du programme de pixelisation [[http://healpix.sourceforge.net/][HEALPix]]
+
+- Le programme HEALPix permet d'échantillonner/pixeliser une sphère de telle
+  sorte à ce que chaque pixel couvre la même surface
+
+#+BEAMER: \pause
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.4
+:END:
+
+- La sphère est ainsi découpée en 12 \times N_{/side/}^{2} pixels où N_{/side/} est
+  une puissance de 2
+
+- Installation & importation
+  #+BEAMER: \vskip+5pt
+  #+BEGIN_SRC shell
+    $ pip install healpy
+  #+END_SRC
+  #+BEAMER: \vskip+5pt
+  #+BEGIN_SRC python
+    In [1]: import healpy as hp
+  #+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+ATTR_LATEX: :width 0.7\linewidth
+[[file:data/healpix.jpg]]
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Cartes du ciel avec \texttt{healpy}}
+
+#+BEGIN_SRC python
+  In [1]: import healpy as hp
+
+  In [2]: for n in np.arange(12):
+     ...:     hp.mollview(np.random.randn(12*2**(2*n)), cbar=False,
+                          title=r"$12\times%i^2 = %i$ pixels" % (2**n, 12*2**(2*n)))
+#+END_SRC
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<2>[width=0.8\linewidth]{figures/healpy_1.pdf}
+    \includegraphics<3>[width=0.8\linewidth]{figures/healpy_2.pdf}
+    \includegraphics<4>[width=0.8\linewidth]{figures/healpy_4.pdf}
+    \includegraphics<5>[width=0.8\linewidth]{figures/healpy_8.pdf}
+    \includegraphics<6>[width=0.8\linewidth]{figures/healpy_16.pdf}
+    \includegraphics<7>[width=0.8\linewidth]{figures/healpy_32.pdf}
+    \includegraphics<8>[width=0.8\linewidth]{figures/healpy_64.pdf}
+    \includegraphics<9>[width=0.8\linewidth]{figures/healpy_128.pdf}
+    \includegraphics<10>[width=0.8\linewidth]{figures/healpy_256.pdf}
+    \includegraphics<11>[width=0.8\linewidth]{figures/healpy_512.pdf}
+    \includegraphics<12>[width=0.8\linewidth]{figures/healpy_1024.pdf}
+    \includegraphics<13>[width=0.8\linewidth]{figures/healpy_2048.pdf}
+  \end{center}
+#+END_SRC
+
+** /Goodies/
+#+BEAMER: \framesubtitle{Cartes du ciel avec \texttt{healpy}}
+
+- Cartes CMB en libre accès sur [[http://pla.esac.esa.int/pla/index.html][/Planck Legacy Archive/]]
+
+  #+BEGIN_SRC python
+    In [1]: import healpy as hp
+
+    In [2]: map = hp.read_map("COM_CMB_IQU-smica-field-Int_2048_R2.01_full.fits")
+
+    In [3]: hp.mollview(map*1e6, title="", min=-500, max=+500, unit="µK")
+  #+END_SRC
+  #+BEAMER: \pause\vskip-1pt
+  #+BEGIN_SRC python
+    In [4]: hp.mollzoom(map*1e6, title="", min=-500, max=+500, unit="µK")
+  #+END_SRC
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=0.7\linewidth]{figures/planck_map.pdf}
+    \includegraphics<2>[width=0.8\linewidth]{figures/planck_zoom.pdf}
+  \end{center}
+#+END_SRC
+
+** COMMENT /Goodies/
 *** css
 *** basemap
 *** xkcd
-* Interaction avec =matplotlib=
+* COMMENT Interaction avec =matplotlib=
 ** Titre
 :PROPERTIES:
 :BEAMER_ENV: fullframe

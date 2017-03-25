@@ -9,6 +9,7 @@
 *.tex*
 *.toc
 *.sty
+*.auxlock
 *latex.d*
 td_*.pdf
 slide_*.pdf

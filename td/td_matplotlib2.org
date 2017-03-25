@@ -1,0 +1,302 @@
+#+TITLE:  Librairie =matplotlib=
+#+AUTHOR: Xavier Garrido
+#+DATE:   02/03/2017
+#+OPTIONS: toc:nil ^:{}
+#+LATEX_HEADER: \setcounter{chapter}{6}
+
+* Higgs en \gamma\gamma
+
+Le 4 juillet 2012, les expériences ATLAS et CMS, menées au Grand collisionneur
+de hadrons (LHC), ont annoncé qu’elles avaient toutes deux observé une nouvelle
+particule dont la masse se situait dans la région des 126 GeV. Cette particule
+présente des caractéristiques compatibles avec celles du boson de Higgs prédit
+par le Modèle standard. Le boson de Higgs, tel que le décrit ce modèle, est la
+manifestation la plus simple du mécanisme de Brout-Englert-Higgs qui permet,
+notamment, d'expliquer théoriquement la masse des particules élémentaires.
+
+Le 8 octobre 2013, le prix Nobel de physique a été attribué conjointement à
+François Englert et à Peter Higgs « pour la découverte théorique d’un mécanisme
+contribuant à notre compréhension de l’origine de la masse des particules
+subatomiques, une théorie qui s’est confirmée récemment, lorsque les expériences
+ATLAS et CMS, menées au Grand collisionneur de hadrons du CERN, ont découvert la
+particule prédite. »
+
+Pour détecter le boson de Higgs, les physiciens des expériences ATLAS et CMS
+étudient notamment la désintégration de cette particule en une paire de photons
+\gamma. On peut alors mesurer le nombre d'événements comprenant uniquement deux
+photons et le comparer à un modèle dans lequel le boson de Higgs n'existe
+pas. Une différence significative entre données et modèle signe alors
+l'existence d'une nouvelle particule.
+
+Les données [[https://goo.gl/8Nc0jn][=higgs-gg.csv=]] représentent les résultats obtenus par l'expérience
+ATLAS au cours des années 2011/2012. Dans ce fichier, figure en première colonne
+l'énergie des deux photons exprimée en GeV, le nombre de paire di-photons
+observées en deuxième colonne et l'incertitude sur ce nombre en troisième
+colonne. Dans cet exercice, on cherche à reproduire la figure ci-dessous publiée
+dans [[https://arxiv.org/abs/1207.7214][/Phys. Rev. Letter B716/ (2012)]] et annonçant la découverte d'une nouvelle
+particule.
+
+[[file:figures/higgs_gg.pdf]]
+
+- Représenter le nombre d'événements di-photons en fonction de l'énergie. On
+  oubliera pas d'intituler les axes de cette figure afin d'y faire figurer toute
+  information pertinente.
+
+- Représenter le modèle suivant
+  #+BEGIN_SRC latex
+    \begin{align*}
+      y_\text{modèle} = -1.668\,10^{-2}x^4 + 7.697x^3 + -1208.9x^2 + 6.527\,10^{4}
+    \end{align*}
+  #+END_SRC
+  Calculer la valeur du $\chi^2$ où
+
+  #+BEGIN_SRC latex
+    \begin{align*}
+      \chi^2=\sum_i\frac{\left(y_i-y_\text{modèle}(x_i)\right)^2}{\sigma_{y_i}^2}
+    \end{align*}
+  #+END_SRC
+
+  et la diviser par le nombre de degrés de liberté qui correspond au nombre de
+  points expérimentaux moins le nombre de paramètres du modèle. Pour
+  information, une valeur de \chi^{2}/ndof voisine de 1 démontre l'adéquation
+  statistique entre données et modèle.
+
+- Représenter dans une sous figure, la différence entre le modèle et les données
+  puis normaliser cette différence par rapport à l'erreur sur chacun des points
+  expérimentaux. Une découverte en physique des particules est établie lorsque
+  le nombre d'écart-type \sigma entre données expérimentales et modèle est
+  supérieur à 5. Isoler graphiquement les points expérimentaux pour lesquels la
+  déviation est supérieure à 3\sigma. Déterminer enfin la valeur maximale de
+  cette déviation en nombre de \sigma et affirmer ou non avoir découvert le
+  boson de Higgs. Le cas échéant, donner la masse de cette particule.
+
+** Correction                                                   :correction:
+
+#+BEGIN_SRC python :tangle /tmp/higgs.py :results output
+  import numpy as np
+  data = np.loadtxt("./data/higgs-gg.csv", delimiter=",")
+
+  x, y, yerr = data.T
+
+  import matplotlib.pyplot as plt
+
+  grid = plt.GridSpec(4, 1, hspace=0, wspace=0)
+
+  main = plt.subplot(grid[0:3], xticklabels=[])
+  main.errorbar(x, y, yerr=yerr, fmt=".k", label="ATLAS data")
+  main.set_ylabel(r"Nombre d'événements $H\to\gamma\gamma$")
+
+  # "Theoritical model" = 4th order polynomial
+  def model(x, parameters=[6.527e4, -1208.9, 7.697, -1.668e-2]):
+      y = 0.0
+      for i, p in enumerate(parameters):
+        y += p*np.power(x, i)
+      return y
+
+  xmodel = np.linspace(105, 160, 100)
+  main.plot(xmodel, model(xmodel), "-r", label="modèle polynomial")
+
+  # Plot deviation
+  sub = plt.subplot(grid[3])
+  dev = (y - model(x))/yerr
+  sub.errorbar(x, dev, fmt=".k")
+  sub.set_ylabel(r"$\frac{y-y_\mathrm{modèle}}{\sigma}$ [$\sigma$]")
+  sub.set_xlabel(r"$m_{\gamma\gamma}$ [MeV]")
+
+  # Calculate chi2/ndf and add it to legend
+  chi2n = np.sum(dev**2)/(len(dev)-4)
+  main.plot([], [], linestyle="None", label=r"$\chi^2/$ndf = {0:.2f}".format(chi2n))
+  main.legend()
+
+  mask = (dev > 3)
+  sub.scatter(x[mask], dev[mask], edgecolors="red", c="none", s=100)
+
+  print("Masse du boson de Higgs = {} GeV".format(x[mask][0]))
+
+  # Fit with a 4th order polynomial
+  parameters = np.polyfit(x, y, 3)
+  fit = np.poly1d(parameters)
+  print("Best parameters : " + str(parameters))
+
+  plt.show()
+#+END_SRC
+
+#+RESULTS:
+: Masse du boson de Higgs = 126.0 GeV
+: Best parameters : [ -1.66824264e-02   7.69724379e+00  -1.20891766e+03   6.52746509e+04]
+
+[[file:figures/mpl_higgs_gg.pdf]]
+
+* À la découverte des planètes extrasolaires
+
+Le fichier [[https://goo.gl/JIwUzH][=planets.csv=]] contient des informations relatives aux planètes
+extrasolaires depuis la première découverte en 1989. Le document fait notamment
+référence aux techniques de découverte de ces objets (première colonne) et
+recense les informations glanées par leurs découvreurs : période orbitale en
+jours (colonne 3), masse de la planète (colonne 4), distance à l'objet en années
+lumières (colonne 5) et année de découverte (colonne 6). Dans cet exercice, on
+utilisera le module =pandas= plus à même de traiter des fichiers de données mélant
+données numériques et alphanumériques. L'installation de ce module se fait /via/
+=pip install pandas= et on le chargera dans un script python ou dans
+l'interpréteur =ipython= par le biais de
+#+BEGIN_SRC python
+  import pandas as pd
+#+END_SRC
+On s'aidera finalement du code ci-dessous pour charger le fichier en mémoire
+puis exploiter chacune des différentes colonnes
+#+BEGIN_SRC python
+  data = pd.read_csv("planets.csv")
+
+  methods = data["method"].values
+  years = data["year"].values
+#+END_SRC
+
+La "clé" utilisée par =pandas= (dans l'exemple ci-dessus =method= et =year=) se réfère
+à la première ligne du fichier qui indique le nom des champs.
+
+- Représenter le nombre de planètes découvertes en fonction du temps. Modifier
+  l'abscisse de la figure de telle sorte à indiquer chaque année et s'assurer
+  que chaque donnée est bien centrée par rapport à l'année. Typiquement la
+  "barre" dénombrant le nombre de planètes découvertes en 2015 doit être centrée
+  sur l'abscisse 2015.
+
+- Représenter cette même information tout en indiquant la technique utilisée
+  pour la découverte. /Indication/ : on pourra se servir de la fonction =histogram=
+  de =numpy=.
+
+- Dénombrer le nombre total de découverte par méthodes puis, pour les deux
+  principales, représenter la variation de la période orbitale en fonction de la
+  distance à la planète. Finalement, ajouter à la figure précédente, deux
+  sous-figures, présentant les distributions de période orbitale et de distance
+  pour chacune des deux méthodes. Les trois représentations doivent figurer sur
+  la même figure et conclure quant aux caractéristiques des objets extrasolaires
+  mis en évidence par chacune des deux méthodes.
+
+** Correction                                                   :correction:
+
+*** COMMENT Avec =numpy=
+#+BEGIN_SRC python
+  import numpy as np
+
+  methods = np.genfromtxt("data/planets.csv", delimiter=",", usecols=0)
+  data = np.genfromtxt("data/planets.csv", delimiter=",", usecols=(1,2,3,4,5))
+
+  years = data[:, 4]
+
+  import matplotlib.pyplot as plt
+
+  plt.figure()
+  plt.hist(years[years == 2005], align="left")
+
+  plt.figure()
+  plt.hist(years, align="left", range=(1990, 2015), bins=25)
+  plt.ylabel("nombre de planètes extrasolaires découvertes")
+  plt.xticks(np.arange(1990, 2015), fontsize=10, rotation=90)
+  plt.grid()
+
+  plt.figure()
+  for idx, method in enumerate(np.unique(methods)):
+        h, _ = np.histogram(years[methods == method], range=(1990, 2015), bins=25)
+
+  plt.show()
+#+END_SRC
+
+*** Avec =pandas=
+
+#+BEGIN_SRC python :results output :tangle /tmp/planets.py
+  import pandas as pd
+
+  data = pd.read_csv("data/planets.csv")
+
+  years = data["year"].values
+  methods = data["method"].values
+  orbital_period = data["orbital_period"].values
+  distance = data["distance"].values
+
+  import numpy as np
+  import matplotlib.pyplot as plt
+
+  plt.figure()
+  plt.hist(years[years == 2005], align="left")
+
+  # Total distribution of planets per year
+  plt.figure()
+  plt.hist(years, align="left", range=(1990, 2015), bins=25)
+  plt.ylabel("nombre de planètes extrasolaires")
+  plt.xticks(np.arange(1990, 2015), fontsize=10, rotation=90)
+  plt.grid()
+
+  # Distribution of planets discovered per year and per method
+  plt.figure()
+  for idx, method in enumerate(np.unique(methods)):
+      h, bins = np.histogram(years[methods == method], range=(1990, 2015), bins=25)
+      plt.bar(bins[:-1], h, label=method)
+      plt.legend()
+
+  # Orbital period versus distance
+  plt.figure(figsize=(6, 6))
+  grid = plt.GridSpec(4, 4, hspace=0, wspace=0)
+  main = plt.subplot(grid[:-1, 1:], xticklabels=[], yticklabels=[],
+                     xscale="log", yscale="log")
+
+  selected_methods = ["Radial Velocity", "Transit"]
+  for method in selected_methods:
+      mask = (methods == method)
+      x , y = distance[mask], orbital_period[mask]
+      nonan = (~np.isnan(x) & ~np.isnan(y))
+      main.plot(x[nonan], y[nonan], "o", alpha=0.5, label=method)
+  main.legend(ncol=2, bbox_to_anchor=(0.5, 1.05), loc="center")
+
+  xlims = main.get_xlim()
+  x_hist = plt.subplot(grid[-1, 1:], yticklabels=[],
+                       xlim=xlims, xscale="log", xlabel=r"distance [light years]")
+  x_hist.invert_yaxis()
+
+  ylims = main.get_ylim()
+  y_hist = plt.subplot(grid[:-1, 0], xticklabels=[],
+                       ylim=ylims, yscale="log", ylabel=r"orbital period [days]")
+  y_hist.invert_xaxis()
+
+  kwargs = dict(alpha=0.5, histtype="stepfilled")
+  for method in selected_methods:
+      mask = (methods == method)
+      x , y = distance[mask], orbital_period[mask]
+      nonan = (~np.isnan(x) & ~np.isnan(y))
+      x_hist.hist(x[nonan], orientation="vertical", **kwargs,
+                  bins=np.logspace(np.log10(xlims[0]), np.log10(xlims[1]), 50))
+      y_hist.hist(y[nonan], orientation="horizontal", **kwargs,
+                  bins=np.logspace(np.log10(ylims[0]), np.log10(ylims[1]), 50))
+
+  plt.show()
+#+END_SRC
+
+[[file:figures/planet_hist.pdf]]
+
+[[file:figures/planet_methods.pdf]]
+
+[[file:figures/planet_period.pdf]]
+
+* COMMENT Degrade Planck temperature map
+* COMMENT Pie charts and polar charts for disk usage
+
+http://matplotlib.org/examples/pylab_examples/polar_demo.html
+
+Le rayon est proportionnel à la taille, l'angle devant être 2\pi / nombre de
+dossier
+
+* COMMENT Git commit
+
+- récupérer les commit de matplotlib sour la forme
+
+| Nom | jour | nombre de modif|
+
+- Représenter la distribution du nombre de commit par utilisateur en triant les
+  résultats
+
+- Représenter le nombre de commit en fonction du temps
+
+* Twitter parlementaires et parainages présidentielles
+
+https://github.com/regardscitoyens/twitter-parlementaires
+
+https://presidentielle2017.conseil-constitutionnel.fr/les-parrainages/tous-les-parrainages/

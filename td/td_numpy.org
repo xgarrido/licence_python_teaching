@@ -94,8 +94,8 @@
 
 - Télécharger le fichier [[https://goo.gl/LnXGOe][=seattle2014.csv=]] qui contient pour chaque jour de
   l'année 2014 (colonne 1), la hauteur des précipitations exprimé en dixième de
-  millimètres (colonne 2) ainsi que les températures minimale (colonne 3) et
-  maximale (colonne 4), exprimées en dixième de degrés Celsius, à Seattle.
+  millimètres (colonne 2) ainsi que les températures maximale (colonne 3) et
+  minimale (colonne 4), exprimées en dixième de degrés Celsius, à Seattle.
 
 - Charger l'ensemble des données dans un tableau =numpy= en prenant bien garde au
   caractère délimitant chaque champ puis, après avoir converti la hauteur des
