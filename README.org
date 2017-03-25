@@ -308,7 +308,7 @@ Add a new tag =correction=
         pdflatex, or xelatex as appropriate, using latexmk."
      (when (org-export-derived-backend-p backend 'latex)
        (let ((texcmd)))
-       (setq texcmd "jobname=$(basename %f | sed 's/\.tex//');latexmk -8bit -xelatex -shell-escape -quiet %f && mkdir -p latex.d && mv ${jobname}.* latex.d/. && mv latex.d/${jobname}.{org,tex,pdf,fdb_latexmk,aux,toc} .")
+       (setq texcmd "jobname=$(basename %f | sed 's/\.tex//');latexmk -8bit -xelatex -shell-escape -quiet %f ; mkdir -p latex.d ; mv ${jobname}.* latex.d/. ; mv latex.d/${jobname}.{org,tex,pdf,fdb_latexmk,aux,toc} .")
        (setq org-latex-pdf-process (list texcmd))))
   (org-add-hook 'org-export-before-processing-hook 'python-latexmk-cmd)
 #+END_SRC
