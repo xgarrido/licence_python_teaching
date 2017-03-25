@@ -1961,6 +1961,7 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
     \includegraphics<2-3>[width=1.1\linewidth]{figures/mpl_california0.pdf}
     \includegraphics<4-5>[width=1.1\linewidth]{figures/mpl_california1.pdf}
     \includegraphics<6->[width=1.1\linewidth]{figures/mpl_california2.pdf}
+<<<<<<< HEAD
   \end{center}
 #+END_SRC
 
