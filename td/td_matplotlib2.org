@@ -276,10 +276,12 @@ La "clé" utilisée par =pandas= (dans l'exemple ci-dessus =method= et =year=) s
 
 [[file:figures/planet_period.pdf]]
 
-<<<<<<< HEAD
+
 * COMMENT Degrade Planck temperature map
-=======
->>>>>>> 857805a6fb0de0cbf4c1b0a4dbef9e92d09de361
+
+- Resolution de COBE 7°, WMAP 33 fois meilleure et Planck 3 fois meilleure que WMAP
+
+
 * COMMENT Pie charts and polar charts for disk usage
 
 http://matplotlib.org/examples/pylab_examples/polar_demo.html
@@ -297,12 +299,9 @@ dossier
   résultats
 
 - Représenter le nombre de commit en fonction du temps
-<<<<<<< HEAD
 
 * Twitter parlementaires et parainages présidentielles
 
 https://github.com/regardscitoyens/twitter-parlementaires
 
 https://presidentielle2017.conseil-constitutionnel.fr/les-parrainages/tous-les-parrainages/
-=======
->>>>>>> 857805a6fb0de0cbf4c1b0a4dbef9e92d09de361

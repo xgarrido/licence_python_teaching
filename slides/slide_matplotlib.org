@@ -2053,9 +2053,161 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
   \end{center}
 #+END_SRC
 
+** /Goodies/
+#+BEAMER: \framesubtitle{\emph{Kozmetix} suite et fin}
+
+- Depuis la version =2.0=, =matplotlib= permet de modifier l'apparence et le style
+  des figures
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: import matplotlib.pyplot as plt
+  In [2]: plt.style.use("classic")
+
+  In [3]: import numpy as np
+  In [4]: x = np.random.randn(1000)
+  In [5]: plt.hist(x)
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_style0.pdf}
+  \end{center}
+#+END_SRC
+
+** /Goodies/
+#+BEAMER: \framesubtitle{\emph{Kozmetix} suite et fin}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python -n
+  # Use a gray background
+  ax = plt.axes(facecolor="#E6E6E6")
+  ax.set_axisbelow(True)
+
+  # Draw solid white grid lines
+  ax.grid(color="w", linestyle="solid")
+
+  # Hide axis spines
+  for spine in ax.spines.values():
+      spine.set_visible(False)
+
+  # Hide top and right ticks
+  ax.xaxis.tick_bottom()
+  ax.yaxis.tick_left()
+
+  # Lighten ticks and labels
+  ax.tick_params(colors="gray", direction="out")
+  for tick in ax.get_xticklabels():
+      tick.set_color("gray")
+  for tick in ax.get_yticklabels():
+      tick.set_color("gray")
+
+  # Control face and edge color of histogram
+  ax.hist(x, edgecolor="#E6E6E6", color="#EE6666");
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_style1.pdf}
+  \end{center}
+#+END_SRC
+
+** /Goodies/
+#+BEAMER: \framesubtitle{\emph{Kozmetix} suite et fin}
+
+- L'apparence et le style des figures peuvent être définis dans un script ou
+  dans une session =ipython= /via/ la fonction *=rc=* pour /runtime configuration/
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [6]: from matplotlib import cycler
+  In [7]: colors = cycler("color",
+                          ["#EE6666", "#3388BB", "#9988DD",
+                           "#EECC55", "#88BB44", "#FFBBBB"])
+  In [8]: plt.rc("axes", facecolor="#E6E6E6", edgecolor="none",
+                 axisbelow=True, grid=True, prop_cycle=colors)
+  In [9]: plt.rc("grid", color="w", linestyle="solid")
+  In[10]: plt.rc("xtick", direction="out", color="gray")
+  In[11]: plt.rc("ytick", direction="out", color="gray")
+  In[12]: plt.rc("patch", edgecolor="#E6E6E6")
+  In[13]: plt.rc("lines", linewidth=2)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[14]: plt.hist(x)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In[15]: for i in range(4):
+    ...:     plt.plot(np.random.rand(10))
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \vspace{-0.5cm}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_style2.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_style3.pdf}
+  \end{center}
+#+END_SRC
+
+** /Goodies/
+#+BEAMER: \framesubtitle{\emph{Kozmetix} suite et fin}
+
+- Les préférences d'apparence peuvent être également définies de façon globale
+  dans le fichier de configuration *=matplotlibrc=* du répertoire
+  #+BEAMER: \vskip+5pt
+  #+BEGIN_SRC python
+    In [1]: import matplotlib
+    In [2]: matplotlib.get_configdir()
+  #+END_SRC
+  #+BEAMER: \vskip+5pt
+
+  Exemple de fichier de configuration (/cf./ [[http://matplotlib.org/users/customizing.html][lien]] pour plus de détails)
+  #+BEAMER: \vskip+5pt
+  #+BEGIN_SRC python
+    axes.prop_cycle : cycler("color",
+                             ["#EE6666", "#3388BB", "#9988DD",
+                              "#EECC55", "#88BB44", "#FFBBBB"])
+    axes.facecolor  : "#E6E6E6"
+    axes.edgecolor  : "none"
+  #+END_SRC
+
 ** COMMENT /Goodies/
 *** css
-*** basemap
 *** xkcd
 * COMMENT Interaction avec =matplotlib=
 ** Titre
