@@ -2365,7 +2365,6 @@ _Résolution angulaire de Planck !_
 :BEAMER_COL: 0.55
 :END:
 
-#+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [1]: import matplotlib.pyplot as plt
   In [2]: import numpy as np
@@ -2374,10 +2373,27 @@ _Résolution angulaire de Planck !_
 #+END_SRC
 
 #+BEAMER: \pause\vskip-1pt
-#+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [5]: plt.style.use("classic")
   In [6]: plt.hist(x)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+BEGIN_SRC python
+  In [7]: with plt.style.context(("classic")):
+     ...:     plt.hist(x)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+BEGIN_SRC python
+  In [8]: plt.style.available
+  Out[8]:
+  ['seaborn-white',
+   'bmh',
+   'seaborn-dark',
+   'seaborn-talk',
+   'seaborn-colorblind',
+   ...
 #+END_SRC
 
 *** Figure
@@ -2388,6 +2404,7 @@ _Résolution angulaire de Planck !_
 #+BEGIN_SRC latex
   \begin{center}
     \includegraphics<1>[width=1.1\linewidth]{figures/mpl_style0.pdf}
+    \includegraphics<2->[width=1.1\linewidth]{figures/mpl_style1.pdf}
   \end{center}
 #+END_SRC
 
@@ -2434,7 +2451,7 @@ _Résolution angulaire de Planck !_
 
 #+BEGIN_SRC latex
   \begin{center}
-    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_style1.pdf}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_style2.pdf}
   \end{center}
 #+END_SRC
 
@@ -2464,7 +2481,7 @@ _Résolution angulaire de Planck !_
   In[13]: plt.rc("lines", linewidth=2)
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \vskip-1pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In[14]: plt.hist(x)
@@ -2485,8 +2502,8 @@ _Résolution angulaire de Planck !_
 #+BEGIN_SRC latex
   \begin{center}
     \vspace{-0.5cm}
-    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_style2.pdf}
-    \includegraphics<3>[width=1.1\linewidth]{figures/mpl_style3.pdf}
+    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_style3.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_style4.pdf}
   \end{center}
 #+END_SRC
 
@@ -2536,22 +2553,22 @@ _Résolution angulaire de Planck !_
     In [1]: import matplotlib.pyplot as plt
     In [2]: plt.style.use("python_l3")
   #+END_SRC
-  #+BEAMER: \vskip+5pt
 
-  ou, de façon temporaire
-  #+BEAMER: \vskip+5pt
-  #+BEGIN_SRC python
-    In [1]: import matplotlib.pyplot as plt
-    In [2]: with plt.style.context(("python_l3")):
-       ...:     plt.plot(np.random.rand(10))
-  #+END_SRC
+** /Goodies/
+#+BEAMER: \framesubtitle{\emph{Kozmetix} suite et fin}
+
+#+ATTR_LATEX: :width 0.65\linewidth
+[[file:figures/ballmer_peak.png]]
+
+#+BEAMER:\scriptsize\hfill$^\dagger$
+[[http://xkcd.com/323/][xkcd comic]]
 
 ** /Goodies/
 #+BEAMER: \framesubtitle{\emph{Kozmetix} suite et fin}
 
 *** Python code
 :PROPERTIES:
-:BEAMER_COL: 0.52
+:BEAMER_COL: 0.6
 :END:
 
 #+ATTR_LATEX: :options fontsize=\scriptsize
@@ -2583,12 +2600,160 @@ _Résolution angulaire de Planck !_
 :BEAMER_COL: 0.5
 :END:
 
+# #+ATTR_LATEX: :options [10][-white][\centering][5][7]
+# #+BEGIN_CBOX
+# [[file:figures/mpl_xkcd.pdf]]
+# #+END_CBOX
+
+** /Goodies/
+#+BEAMER: \framesubtitle{\emph{Kozmetix} suite et fin}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: import matplotlib.pyplot as plt
+  In [2]: import numpy as np
+
+  In [3]: plt.figure(figsize=(8,4))
+  In [4]: plt.xkcd()
+  In [5]: def f(x, mu1=0.0, sig1=0.05, mu2=0.14, sig2=0.003):
+     ...:     return np.exp(-np.power(x-mu1,2)/(2*sig1*sig1)) \
+     ...:     + 3*np.exp(-np.power(x-mu2, 2)/(2*sig2*sig2))
+
+  In [6]: x = np.linspace(0, 0.28, 10000)
+  In [7]: plt.plot(x, f(x), "red", alpha=0.75)
+
+  In [8]: plt.xticks(np.arange(0, 0.27, 0.02))
+  In [9]: plt.yticks([])
+  In[10]: plt.gca().spines["right"].set_color("none")
+  In[11]: plt.gca().spines["top"].set_color("none")
+  In[12]: plt.xlabel("blood alcohol concentration (%)")
+  In[13]: plt.ylabel("programming\n skill", rotation=0)
+  In[14]: plt.gca().yaxis.set_label_coords(-0.15, 0.5)
+  In[15]: plt.tight_layout()
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+ATTR_LATEX: :options [10][-white][\centering][5][8]
+#+BEGIN_CBOX
+[[file:figures/mpl_xkcd.pdf]]
+#+END_CBOX
+
+** =matplotlib= et la programmation orientée objet
+
+- Historiquement, =matplotlib= a été développée comme un clone de =MATLAB= afin de
+  faciliter la conversion des utilisateurs de =MATLAB=
+
+- L'interface =pyplot= (=plt=) fournit ainsi des commandes identiques à celles de
+  =MATLAB=
+
+#+BEAMER: \vspace{-0.5cm}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: import numpy as np
+  In [2]: x = np.linspace(0, 10, 100)
+
+  In [3]: import matplotlib.pyplot as plt
+  In [4]: plt.figure()
+
+  In [5]: plt.subplot(2, 1, 1)
+  In [6]: plt.plot(x, np.sin(x))
+
+  In [7]: plt.subplot(2, 1, 2)
+  In [8]: plt.plot(x, np.cos(x))
+#+END_SRC
+
+#+BEAMER: \pause
+#+BEGIN_REMARK
+Comment accéder à la première sous-figure une fois la seconde affichée ?
+#+END_REMARK
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
 #+BEGIN_SRC latex
   \begin{center}
-    \includegraphics<1>[width=1.1\linewidth]{figures/mpl_xkcd.pdf}
+    \includegraphics<1->[width=1.1\linewidth]{figures/mpl_poo0.pdf}
   \end{center}
 #+END_SRC
 
-** COMMENT /Goodies/
-*** css
-*** xkcd
+** =matplotlib= et la programmation orientée objet
+
+- L'interface "orientée objet" fournit un accès simple aux différents éléments
+  d'une figure
+
+#+BEAMER: \vspace{-0.5cm}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: import numpy as np
+  In [2]: x = np.linspace(0, 10, 100)
+
+  In [3]: import matplotlib.pyplot as plt
+  In [4]: fig, ax = plt.subplots(2)
+
+  In [5]: ax[0].plot(x, np.sin(x))
+  In [6]: ax[1].plot(x, np.cos(x))
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1->[width=1.1\linewidth]{figures/mpl_poo0.pdf}
+  \end{center}
+#+END_SRC
+** =matplotlib= et la programmation orientée objet
+
+- L'interface "orientée objet" fournit un accès simple aux différents éléments
+  d'une figure
+
+#+BEAMER: \pause
+
+- Certaines fonctions de l'interface =pyplot= sont toutefois légèrement
+  différentes
+
+  - =plt.xlabel()= \to =ax.set_xlabel()=
+  - =plt.ylabel()= \to =ax.set_ylabel()=
+  - =plt.xlim()= \to =ax.set_xlim()=
+  - =plt.ylim()= \to =ax.set_ylim()=
+  - =plt.title()= \to =ax.set_title()=
+
+#+BEAMER: \pause
+
+- L'avantage avec l'interface =Axes= réside dans la possibilité d'assigner un
+  certain nombre de champ /via/ la méthode =set=
+
+  #+BEAMER: \vskip+5pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [3]: ax = plt.axes()
+    In [4]: ax.plot(x, np.sin(x))
+    In [5]: ax.set(xlim=(0, 10), ylim=(-2, 2),
+                   xlabel="x", ylabel="sin(x)",
+                   title="A Simple Plot");
+  #+END_SRC
