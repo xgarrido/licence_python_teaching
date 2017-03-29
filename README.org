@@ -858,15 +858,16 @@ called within =postamble= part of [[Template settings]]
   \setbeamercolor{buc_upper}{fg=white,bg=blue}
   \setbeamercolor{buc_lower}{fg=blue,bg=white}
 
-  \setbeamercolor{-wred}{fg=white,bg=red!10}
+  \setbeamercolor{-wred}{fg=white,bg=red}
   \setbeamercolor{-red}{fg=red,bg=red!10}
-  \setbeamercolor{-wgreen}{fg=white,bg=green!10}
+  \setbeamercolor{-wgreen}{fg=white,bg=green}
   \setbeamercolor{-green}{fg=green,bg=green!10}
-  \setbeamercolor{-wblue}{fg=white,bg=blue!10}
+  \setbeamercolor{-wblue}{fg=white,bg=blue}
   \setbeamercolor{-blue}{fg=blue,bg=blue!10}
-  \setbeamercolor{-worange}{fg=white,bg=orange!10}
+  \setbeamercolor{-worange}{fg=white,bg=orange}
   \setbeamercolor{-orange}{fg=orange,bg=orange!10}
   \setbeamercolor{-wgray}{fg=white,bg=gray}
+  \setbeamercolor{-gray}{fg=gray,bg=white}
   \setbeamercolor{-white}{fg=blue,bg=white}
   \setbeamercolor{-hidden}{fg=white,bg=white}
   \setbeamercolor{-transparent}{fg=gray!30}
