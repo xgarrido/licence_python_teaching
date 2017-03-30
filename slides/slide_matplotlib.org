@@ -1715,7 +1715,7 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
   \end{center}
 #+END_SRC
 
-* COMMENT Interaction avec =matplotlib=
+* Interaction avec =matplotlib=
 ** Titre
 :PROPERTIES:
 :BEAMER_ENV: fullframe
@@ -1995,6 +1995,116 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
 \titlepage
 #+END_EXPORT
 
+** =matplotlib= et la programmation orientée objet
+
+- Historiquement, =matplotlib= a été développée comme un clone de =MATLAB= afin de
+  faciliter la conversion des utilisateurs de =MATLAB=
+
+- L'interface =pyplot= (=plt=) fournit ainsi des commandes identiques à celles de
+  =MATLAB=
+
+#+BEAMER: \vspace{-0.5cm}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: import numpy as np
+  In [2]: x = np.linspace(0, 10, 100)
+
+  In [3]: import matplotlib.pyplot as plt
+  In [4]: plt.figure()
+
+  In [5]: plt.subplot(2, 1, 1)
+  In [6]: plt.plot(x, np.sin(x))
+
+  In [7]: plt.subplot(2, 1, 2)
+  In [8]: plt.plot(x, np.cos(x))
+#+END_SRC
+
+#+BEAMER: \pause
+#+BEGIN_REMARK
+Comment accéder à la première sous-figure une fois la seconde affichée ?
+#+END_REMARK
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1->[width=1.1\linewidth]{figures/mpl_poo0.pdf}
+  \end{center}
+#+END_SRC
+
+** =matplotlib= et la programmation orientée objet
+
+- L'interface "orientée objet" fournit un accès simple aux différents éléments
+  d'une figure
+
+#+BEAMER: \vspace{-0.5cm}
+
+*** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: import numpy as np
+  In [2]: x = np.linspace(0, 10, 100)
+
+  In [3]: import matplotlib.pyplot as plt
+  In [4]: fig, ax = plt.subplots(2)
+
+  In [5]: ax[0].plot(x, np.sin(x))
+  In [6]: ax[1].plot(x, np.cos(x))
+#+END_SRC
+
+*** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1->[width=1.1\linewidth]{figures/mpl_poo0.pdf}
+  \end{center}
+#+END_SRC
+** =matplotlib= et la programmation orientée objet
+
+- L'interface "orientée objet" fournit un accès simple aux différents éléments
+  d'une figure
+
+#+BEAMER: \pause
+
+- Certaines fonctions de l'interface =pyplot= sont toutefois légèrement
+  différentes
+
+  - =plt.xlabel()= \to =ax.set_xlabel()=
+  - =plt.ylabel()= \to =ax.set_ylabel()=
+  - =plt.xlim()= \to =ax.set_xlim()=
+  - =plt.ylim()= \to =ax.set_ylim()=
+  - =plt.title()= \to =ax.set_title()=
+
+#+BEAMER: \pause
+
+- L'avantage avec l'interface =Axes= réside dans la possibilité d'assigner un
+  certain nombre de champ /via/ la méthode =set=
+
+  #+BEAMER: \vskip+5pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [3]: ax = plt.axes()
+    In [4]: ax.plot(x, np.sin(x))
+    In [5]: ax.set(xlim=(0, 10), ylim=(-2, 2),
+                   xlabel="x", ylabel="sin(x)",
+                   title="A Simple Plot");
+  #+END_SRC
 ** /Goodies/
 #+BEAMER: \framesubtitle{Données géographiques avec \texttt{Basemap}}
 
@@ -2646,114 +2756,3 @@ _Résolution angulaire de Planck !_
 #+BEGIN_CBOX
 [[file:figures/mpl_xkcd.pdf]]
 #+END_CBOX
-
-** =matplotlib= et la programmation orientée objet
-
-- Historiquement, =matplotlib= a été développée comme un clone de =MATLAB= afin de
-  faciliter la conversion des utilisateurs de =MATLAB=
-
-- L'interface =pyplot= (=plt=) fournit ainsi des commandes identiques à celles de
-  =MATLAB=
-
-#+BEAMER: \vspace{-0.5cm}
-
-*** Python code
-:PROPERTIES:
-:BEAMER_COL: 0.55
-:END:
-
-#+ATTR_LATEX: :options fontsize=\scriptsize
-#+BEGIN_SRC python
-  In [1]: import numpy as np
-  In [2]: x = np.linspace(0, 10, 100)
-
-  In [3]: import matplotlib.pyplot as plt
-  In [4]: plt.figure()
-
-  In [5]: plt.subplot(2, 1, 1)
-  In [6]: plt.plot(x, np.sin(x))
-
-  In [7]: plt.subplot(2, 1, 2)
-  In [8]: plt.plot(x, np.cos(x))
-#+END_SRC
-
-#+BEAMER: \pause
-#+BEGIN_REMARK
-Comment accéder à la première sous-figure une fois la seconde affichée ?
-#+END_REMARK
-
-*** Figure
-:PROPERTIES:
-:BEAMER_COL: 0.5
-:END:
-
-#+BEGIN_SRC latex
-  \begin{center}
-    \includegraphics<1->[width=1.1\linewidth]{figures/mpl_poo0.pdf}
-  \end{center}
-#+END_SRC
-
-** =matplotlib= et la programmation orientée objet
-
-- L'interface "orientée objet" fournit un accès simple aux différents éléments
-  d'une figure
-
-#+BEAMER: \vspace{-0.5cm}
-
-*** Python code
-:PROPERTIES:
-:BEAMER_COL: 0.55
-:END:
-
-#+ATTR_LATEX: :options fontsize=\scriptsize
-#+BEGIN_SRC python
-  In [1]: import numpy as np
-  In [2]: x = np.linspace(0, 10, 100)
-
-  In [3]: import matplotlib.pyplot as plt
-  In [4]: fig, ax = plt.subplots(2)
-
-  In [5]: ax[0].plot(x, np.sin(x))
-  In [6]: ax[1].plot(x, np.cos(x))
-#+END_SRC
-
-*** Figure
-:PROPERTIES:
-:BEAMER_COL: 0.5
-:END:
-
-#+BEGIN_SRC latex
-  \begin{center}
-    \includegraphics<1->[width=1.1\linewidth]{figures/mpl_poo0.pdf}
-  \end{center}
-#+END_SRC
-** =matplotlib= et la programmation orientée objet
-
-- L'interface "orientée objet" fournit un accès simple aux différents éléments
-  d'une figure
-
-#+BEAMER: \pause
-
-- Certaines fonctions de l'interface =pyplot= sont toutefois légèrement
-  différentes
-
-  - =plt.xlabel()= \to =ax.set_xlabel()=
-  - =plt.ylabel()= \to =ax.set_ylabel()=
-  - =plt.xlim()= \to =ax.set_xlim()=
-  - =plt.ylim()= \to =ax.set_ylim()=
-  - =plt.title()= \to =ax.set_title()=
-
-#+BEAMER: \pause
-
-- L'avantage avec l'interface =Axes= réside dans la possibilité d'assigner un
-  certain nombre de champ /via/ la méthode =set=
-
-  #+BEAMER: \vskip+5pt
-  #+ATTR_LATEX: :options fontsize=\scriptsize
-  #+BEGIN_SRC python
-    In [3]: ax = plt.axes()
-    In [4]: ax.plot(x, np.sin(x))
-    In [5]: ax.set(xlim=(0, 10), ylim=(-2, 2),
-                   xlabel="x", ylabel="sin(x)",
-                   title="A Simple Plot");
-  #+END_SRC
