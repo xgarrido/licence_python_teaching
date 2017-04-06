@@ -45,7 +45,7 @@ particule.
 - Représenter le modèle suivant
   #+BEGIN_SRC latex
     \begin{align*}
-      y_\text{modèle} = -1.668\,10^{-2}x^4 + 7.697x^3 + -1208.9x^2 + 6.527\,10^{4}
+      y_\text{modèle} = -1.668\,10^{-2}x^3 + 7.697x^2 + -1208.9x + 6.527\,10^{4}
     \end{align*}
   #+END_SRC
   Calculer la valeur du $\chi^2$ où
@@ -276,6 +276,68 @@ La "clé" utilisée par =pandas= (dans l'exemple ci-dessus =method= et =year=) s
 
 [[file:figures/planet_period.pdf]]
 
+* Interface graphique
+
+Reprendre l'exercice sur la variation du nombre de noyaux de carbone 11 en
+ajoutant à la représentation initiale, trois /sliders/ respectivement $n_i$,
+$T_{1/2}$ et $t_0$ et faire en sorte que la figure se reconstruise à chaque
+nouvelle valeur de ces paramètres.
+
+** Correction                                                   :correction:
+
+#+BEGIN_SRC python -n :tangle /tmp/nc11.py
+  import numpy as np
+
+  # Définition des constantes du problème
+  ni  = 3e8   # noyaux/s
+  T12 = 20.36 # min
+  t0  = 3     # hours
+
+  def n(t, ni=ni, t0=t0, T12=T12):
+      T12 /= 60  # hours
+      ni *= 3600 # noyaux/h
+      l = np.log(2)/T12
+      conds = [t <= t0, t > t0]
+      funcs = [lambda t: ni/l*(1-np.exp(-l*t)),
+               lambda t: ni/l*(1-np.exp(-l*t0))*np.exp(-l*(t-t0))]
+      return np.piecewise(t, conds, funcs)
+
+  t = np.linspace(0, 10, 1000) #hours
+
+  import matplotlib.pyplot as plt
+  fig, ax = plt.subplots()
+  l, = plt.plot(t, n(t))
+  plt.xlabel("temps [heures]")
+  plt.ylabel(r"$n(^{11}\mathrm{C})$")
+
+  # Définition des sous-figures où afficher les sliders
+  axni  = plt.axes([0.25, 0.10, 0.65, 0.03])
+  axt12 = plt.axes([0.25, 0.15, 0.65, 0.03])
+  axt0  = plt.axes([0.25, 0.20, 0.65, 0.03])
+
+  plt.subplots_adjust(bottom=0.35)
+
+  from matplotlib.widgets import Slider
+  sni = Slider(axni, r"$n_i [\times10^8]\mathrm{/s}$", 1, 10, valinit=ni/1e8)
+  st12 = Slider(axt12, r"$T_{1/2}$ [min]", 1, 60, valinit=T12)
+  st0 = Slider(axt0, r"$t_{0}$ [h]", 1, 10, valinit=t0)
+
+  def update(val):
+      nx = n(t, sni.val*1e8, st0.val, st12.val)
+      l.set_ydata(nx)
+      ax.set_ylim(ax.get_ylim()[0], 1.1*np.max(nx))
+      fig.canvas.draw_idle()
+
+  sni.on_changed(update)
+  st12.on_changed(update)
+  st0.on_changed(update)
+
+  plt.show()
+#+END_SRC
+
+
+[[file:figures/carbon11_gui.png]]
+
 
 * COMMENT Degrade Planck temperature map
 
@@ -300,7 +362,7 @@ dossier
 
 - Représenter le nombre de commit en fonction du temps
 
-* Twitter parlementaires et parainages présidentielles
+* COMMENT Twitter parlementaires et parainages présidentielles
 
 https://github.com/regardscitoyens/twitter-parlementaires
 
