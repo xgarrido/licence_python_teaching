@@ -239,7 +239,7 @@ _Ressources disponibles sur dokeos [[http://formation.u-psud.fr][http://formatio
 * Bibliographie \faBookmark
 
 - /Open Classrooms/ : [[https://openclassrooms.com/courses/apprenez-a-programmer-en-python][Apprenez à programmer en Python]]
-- [[https://inforef.be/swi/python.htm][Apprendre à programmer en Python]], Gérard Swinnen, éd. Eyrolles
+- [[https://github.com/jakevdp/PythonDataScienceHandbook][*Python Data Science Handbook*]]
 - [[http://www.scipy-lectures.org/index.html][*Scipy Lectures Notes*]]
 - [[https://github.com/jrjohansson/scientific-python-lectures][*Scientific Python Lectures*]]
 - ...
