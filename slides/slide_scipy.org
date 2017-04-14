@@ -1,0 +1,82 @@
+#+TITLE:  _=scipy=_ : librairie pour la programmation scientifique
+#+AUTHOR: Xavier Garrido
+#+DATE:   13/04/2017
+#+OPTIONS: toc:nil ^:{} author:nil
+#+STARTUP:     beamer
+#+LATEX_CLASS: python-slide
+
+* =scipy= ?
+
+- Le module =scipy= vise à unifier et fédérer un ensemble de bibliothèques Python
+  à usage scientifique
+
+- =scipy= s'appuie sur =numpy= en utilisant les objets de type tableaux et fournit
+  des algorithmes scientifiques optimisés :
+
+  #+ATTR_BEAMER: :overlay +-
+  - Fonctions spéciales (fonction de Bessel, loi de distribution,...)
+  - Algorithmes d'intégration, d'interpolation et d'optimisation
+  - Algèbre linéaire (résolution équations linéaires, valeurs/vecteur propres)
+  - Traitement du signal et des images (transformé de Fourier, convolution,...)
+
+* Installation & importation de =scipy=
+
+#+ATTR_BEAMER: :overlay +-
+- Installation /via/ =pip=
+  #+BEAMER: \vskip5pt
+  #+BEGIN_SRC shell-session
+    $ pip install scipy
+  #+END_SRC
+
+- Convention d'importation : l'ensemble des modules =scipy= peuvent être importés
+  individuellement
+  #+BEAMER: \vskip+5pt
+  #+BEGIN_SRC python
+    In [1]: import scipy.linalg as la
+  #+END_SRC
+
+* *=scipy.special=* : fonctions spéciales
+
+- Fonctions de Bessel :
+  $x^2\frac{\text{d}^2y}{\text{d}x^2}+x\frac{\text{d}y}{\text{d}x}+(x^2-\alpha^2)y=0$
+
+  - Fonctions de Bessel de première espèce $J_n$
+  - Fonctions de Bessel de seconde espèce $Y_n$
+
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.55
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: from scipy.special import jn, yn
+
+  In [2]: x = np.linspace(0, 10, 100)
+  In [3]: for n in range(4):
+     ...:     plt.plot(x, jn(n, x), label=r"$J_%d(x)$" % n)
+  In [4]: plt.legend()
+  #+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [5]: for n in range(4):
+     ...:     plt.plot(x, yn(n, x), label=r"$Y_%d(x)$" % n)
+  In [6]: plt.legend()
+#+END_SRC
+
+- Pour découvrir l'ensemble des fonctions spéciales offertes par =scipy=
+  https://docs.scipy.org/doc/scipy/reference/special.html
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/scipy_jn.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_yn.pdf}
+  \end{center}
+#+END_SRC
