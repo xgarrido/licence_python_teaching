@@ -32,7 +32,7 @@
   individuellement
   #+BEAMER: \vskip+5pt
   #+BEGIN_SRC python
-    In [1]: import scipy.linalg as la
+    In [1]: import scipy.linalg as linalg
   #+END_SRC
 
 * *=scipy.special=* : fonctions spéciales
@@ -66,8 +66,13 @@
   In [6]: plt.legend()
 #+END_SRC
 
-- Pour découvrir l'ensemble des fonctions spéciales offertes par =scipy=
-  https://docs.scipy.org/doc/scipy/reference/special.html
+- Pour découvrir l'ensemble des [[https://docs.scipy.org/doc/scipy/reference/special.html][fonctions spéciales]] offertes par =scipy=
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [7]: from scipy import special
+  In [8]: special?
+#+END_SRC
 
 ** Figure
 :PROPERTIES:
@@ -80,3 +85,211 @@
     \includegraphics<2>[width=1.1\linewidth]{figures/scipy_yn.pdf}
   \end{center}
 #+END_SRC
+* *=scipy.integrate=* : intégration de fonctions
+
+- L'intégration numérique de $\int_a^bf(x)\text{d}x$ peut se faire /via/ le module
+  =scipy.integrate= :
+  - *=quad=* calcule une intégrale simple
+  - *=dblquad=* calcule une intégrale double
+  - *=tplquad=* calcule une intégrale triple
+  - *=nquad=* calcule une intégrale à $n$ dimensions
+
+#+BEAMER: \pause
+
+- Exemple $\int_{-\infty}^{+\infty}\exp(-x^2)\text{d}x = \sqrt\pi$
+  #+BEAMER: \vskip+5pt
+  #+BEGIN_SRC python
+    In [1]: import scipy.integrate as integrate
+
+    In [2]: val, abserr = integrate.quad(lambda x : np.exp(-x**2), -np.inf, +np.inf)
+    In [3]: print("I =", val, "+/-", abserr)
+    I = 1.7724538509055159 +/- 1.4202636780944923e-08
+  #+END_SRC
+
+* *=scipy.integrate=* : intégration de fonctions
+
+- Exemple d'intégration avec passage de paramètre : $I(a,b)=\int_{0}^{1}(ax^2+b)\text{d}x$
+  #+BEAMER: \vskip+5pt
+  #+BEGIN_SRC python
+    In [1]: import scipy.integrate as integrate
+
+    In [2]: def integrand(x, a, b):
+       ...:     return a*x**2+b
+    In [3]: a = 2
+    In [4]: b = 1
+    In [5]: integrate.quad(integrand, 0, 1, args=(a, b))
+    Out[7]: (1.6666666666666667, 1.8503717077085944e-14)
+  #+END_SRC
+
+* *=scipy.integrate=* : intégration de fonctions
+
+- Exemple d'intégrale multiple
+  #+BEGIN_SRC latex
+    \begin{align*}
+      I_n=\int_0^\infty\int_1^\infty\frac{e^{-xt}}{t^n}\text{d}t\text{d}x=\frac{1}{n}
+    \end{align*}
+  #+END_SRC
+
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [1]: def I(n):
+       ...:     from scipy.integrate import dblquad
+       ...:     return dblquad(lambda t, x: np.exp(-x*t)/t**n, 0, np.inf, lambda x: 1, lambda x: np.inf)
+
+    In [2]: I(4)[0], I(4)[0]-1/4
+    Out[2]: (0.2500000000043577, 4.357680882804971e-12)
+
+    In [3]: I(100)[0], I(100)[0]-1/100
+    Out[3]: (0.010000000000118046, 1.1804619781674575e-13)
+  #+END_SRC
+
+  #+BEAMER: \pause\vskip-1pt
+  #+ATTR_LATEX: :options fontsize=\scriptsize
+  #+BEGIN_SRC python
+    In [4]: def I(n):
+       ...:     from scipy.integrate import nquad
+       ...:     return nquad(lambda t, x: np.exp(-x*t)/t**n, [[1, np.inf], [0, np.inf]])
+  #+END_SRC
+* *=scipy.integrate=* : résolution d'équations différentielles ordinaires
+
+#+ATTR_BEAMER: :overlay +-
+- =scipy= fournit l'interface *=odeint=* pour résoudre les EDO en plus de l'interface
+  =ode=, plus complète mais plus subtile
+
+- Une équation différentielle ordinaire peut s'écrire sous la forme *$y'=f(y, t)$*
+  où *$y = [y_1(t), y_2(t),\ldots, y_n(t)]$* et *$f$ est une fonction fournissant
+  les dérivées des fonctions $y_i(t)$*
+
+- La résolution /via/ la fonction =odeint= implique la connaissance de $f$ et des
+  conditions initiales $y(0)$
+
+  #+BEAMER: \vskip+5pt
+  #+BEGIN_SRC python
+    y_t = odeint(f, y_0, t)
+  #+END_SRC
+  #+BEAMER: \vskip+5pt
+
+  où =t= est un vecteur =numpy= correspondant à l'échantillonnage en temps et =y_t=
+  contient, en chaque temps =t=, une colonne pour chaque solution $y_i(t)$
+
+* *=scipy.integrate=* : résolution d'équations différentielles ordinaires
+#+BEAMER: \framesubtitle{\href{http://en.wikipedia.org/wiki/Double_pendulum}{Mouvement du double pendule}}
+
+** Equations
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{align*}
+    \dot{\theta}_1&=\frac{6}{m\ell^2}\times\frac{2p_{\theta_1}-3\cos(\theta_1-\theta_2)p_{\theta_2}}{16-9\cos^2(\theta_1-\theta_2)}\\
+    \dot{\theta}_2&=\frac{6}{m\ell^2}\times\frac{8p_{\theta_2}-3\cos(\theta_1-\theta_2)p_{\theta_1}}{16-9\cos^2(\theta_1-\theta_2)}\\
+    \dot{p}_{\theta_1}&=-\frac{1}{2}m\ell^2\left[\dot{\theta}_1\dot{\theta}_2\sin(\theta_1-\theta_2)+3\frac{g}{\ell}\sin\theta_1\right]\\
+    \dot{p}_{\theta_2}&=-\frac{1}{2}m\ell^2\left[-\dot{\theta}_1\dot{\theta}_2\sin(\theta_1-\theta_2)+\frac{g}{\ell}\sin\theta_2\right]
+  \end{align*}
+#+END_SRC
+
+où $p_{\theta_i}$ sont les impulsions des barycentres $(x_1, y_1)$ et $(x_2,
+y_2)$.
+
+On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
+
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+[[file:figures/dbl_pendulum.pdf]]
+* *=scipy.integrate=* : résolution d'équations différentielles ordinaires
+#+BEAMER: \framesubtitle{\href{http://en.wikipedia.org/wiki/Double_pendulum}{Mouvement du double pendule}}
+
+#+BEAMER: \scriptsize
+#+BEGIN_SRC latex
+  \begin{align*}
+    \dot{y}_1&=\frac{6}{m\ell^2}\times\frac{2y_3-3\cos(y_1-y_2)y_4}{16-9\cos^2(y_1-y_2)}\\
+    \dot{y}_2&=\frac{6}{m\ell^2}\times\frac{8y_4-3\cos(y_1-y_2)y_3}{16-9\cos^2(y_1-y_2)}\\
+    \dot{y}_3&=-\frac{1}{2}m\ell^2\left[\dot{y}_1\dot{y}_2\sin(y_1-y_2)+3\frac{g}{\ell}\sin y_1\right]\\
+    \dot{y}_4&=-\frac{1}{2}m\ell^2\left[-\dot{y}_1\dot{y}_2\sin(y_1-y_2)+\frac{g}{\ell}\sin y_2\right]\\
+  \end{align*}
+#+END_SRC
+
+#+BEAMER: \pause
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: def dy(y, t):
+     ...:     g, l, m = 9.82, 0.5, 0.1
+     ...:     y1, y2, y3, y4 = y[0], y[1], y[2], y[3]
+     ...:
+     ...:     dy1 = 6.0/m/l**2*(2*y3 - 3*np.cos(y1-y2)*y4)/(16 - 9*np.cos(y1-y2)**2)
+     ...:     dy2 = 6.0/m/l**2*(8*y4 - 3*np.cos(y1-y2)*y3)/(16 - 9*np.cos(y1-y2)**2)
+     ...:     dy3 = -0.5*m*l**2*(+dy1*dy2*np.sin(y1-y2) + 3*(g/l)*np.sin(y1))
+     ...:     dy4 = -0.5*m*l**2*(-dy1*dy2*np.sin(y1-y2) + 1*(g/l)*np.sin(y2))
+     ...:
+     ...:     return [dy1, dy2, dy3, dy4]
+#+END_SRC
+
+* *=scipy.integrate=* : résolution d'équations différentielles ordinaires
+#+BEAMER: \framesubtitle{\href{http://en.wikipedia.org/wiki/Double_pendulum}{Mouvement du double pendule}}
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: g, l, m = 9.82, 0.5, 0.1
+  In [2]: def dy(y, t):
+     ...:     y1, y2, y3, y4 = y[0], y[1], y[2], y[3]
+     ...:
+     ...:     dy1 = 6.0/m/l**2*(2*y3 - 3*np.cos(y1-y2)*y4)/(16 - 9*np.cos(y1-y2)**2)
+     ...:     dy2 = 6.0/m/l**2*(8*y4 - 3*np.cos(y1-y2)*y3)/(16 - 9*np.cos(y1-y2)**2)
+     ...:     dy3 = -0.5*m*l**2*(+dy1*dy2*np.sin(y1-y2) + 3*(g/l)*np.sin(y1))
+     ...:     dy4 = -0.5*m*l**2*(-dy1*dy2*np.sin(y1-y2) + 1*(g/l)*np.sin(y2))
+     ...:
+     ...:     return [dy1, dy2, dy3, dy4]
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: # Conditions initiales
+  In [3]: y0 = [np.pi/4, np.pi/2, 0, 0]
+
+  In [4]: # Échantilonnage du temps
+  In [5]: t = np.linspace(0, 10, 250)
+
+  In [6]: # Résolution des équations différentielles
+  In [7]: from scipy.integrate import odeint
+  In [8]: y = odeint(dy, y0, t)
+#+END_SRC
+
+* *=scipy.integrate=* : résolution d'équations différentielles ordinaires
+#+BEAMER: \framesubtitle{\href{http://en.wikipedia.org/wiki/Double_pendulum}{Mouvement du double pendule}}
+
+** Python
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [9]: t1, t2 = y[:, 0], y[:, 1]
+  In[10]: fig, ax = plt.subplots(2, 1, figsize=(5,7))
+  In[11]: ax[0].plot(t, t1, label=r"$\theta_1$")
+  In[12]: ax[0].plot(t, t2, label=r"$\theta_2$")
+  In[13]: ax[0].set(xlabel=r"$t$ [s]",
+                    ylabel=r"$\theta$ [rad]")
+  In[14]: ax[0].legend()
+
+  In[15]: x1, y1 = l*np.sin(t1), -l*np.cos(t1)
+  In[16]: x2, y2 = x1 + l*np.sin(t2), y1 - l*np.cos(t2)
+  In[17]: ax[1].plot(x1, y1, label=r"$(x_1, y_1)$")
+  In[18]: ax[1].plot(x2, y2, label=r"$(x_2, y_2)$")
+  In[19]: ax[1].set(xlabel=r"$x$", ylabel=r"$y$")
+  In[20]: ax[1].legend()
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+[[file:figures/scipy_dbl_pendulum1.pdf]]
