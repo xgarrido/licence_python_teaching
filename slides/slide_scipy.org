@@ -272,19 +272,19 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [9]: t1, t2 = y[:, 0], y[:, 1]
-  In[10]: fig, ax = plt.subplots(2, 1, figsize=(5,7))
-  In[11]: ax[0].plot(t, t1, label=r"$\theta_1$")
-  In[12]: ax[0].plot(t, t2, label=r"$\theta_2$")
-  In[13]: ax[0].set(xlabel=r"$t$ [s]",
-                    ylabel=r"$\theta$ [rad]")
-  In[14]: ax[0].legend()
+  In [10]: fig, ax = plt.subplots(2, 1, figsize=(5,7))
+  In [11]: ax[0].plot(t, t1, label=r"$\theta_1$")
+  In [12]: ax[0].plot(t, t2, label=r"$\theta_2$")
+  In [13]: ax[0].set(xlabel=r"$t$ [s]",
+                     ylabel=r"$\theta$ [rad]")
+  In [14]: ax[0].legend()
 
-  In[15]: x1, y1 = l*np.sin(t1), -l*np.cos(t1)
-  In[16]: x2, y2 = x1 + l*np.sin(t2), y1 - l*np.cos(t2)
-  In[17]: ax[1].plot(x1, y1, label=r"$(x_1, y_1)$")
-  In[18]: ax[1].plot(x2, y2, label=r"$(x_2, y_2)$")
-  In[19]: ax[1].set(xlabel=r"$x$", ylabel=r"$y$")
-  In[20]: ax[1].legend()
+  In [15]: x1, y1 = l*np.sin(t1), -l*np.cos(t1)
+  In [16]: x2, y2 = x1 + l*np.sin(t2), y1 - l*np.cos(t2)
+  In [17]: ax[1].plot(x1, y1, label=r"$(x_1, y_1)$")
+  In [18]: ax[1].plot(x2, y2, label=r"$(x_2, y_2)$")
+  In [19]: ax[1].set(xlabel=r"$x$", ylabel=r"$y$")
+  In [20]: ax[1].legend()
 #+END_SRC
 
 ** Figure
@@ -293,3 +293,144 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
 :END:
 
 [[file:figures/scipy_dbl_pendulum1.pdf]]
+
+* *=scipy.integrate=* : résolution d'équations différentielles ordinaires
+#+BEAMER: \framesubtitle{\href{http://en.wikipedia.org/wiki/Double_pendulum}{Mouvement du double pendule}}
+
+** Python
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python -n
+  fig = plt.figure()
+  ax = fig.add_subplot(111, autoscale_on=False,
+                       xlim=(-1, 1), ylim=(-1.2, 0.2))
+  ax.grid()
+
+  pendule, = ax.plot([], [], "ok-", lw=2)
+  mvt1, = ax.plot([], [], c="C0")
+  mvt2, = ax.plot([], [], c="C1")
+  text = ax.text(0.05, 0.9, "", transform=ax.transAxes)
+
+  def animate(i):
+      thisx = [0, x1[i], x2[i]]
+      thisy = [0, y1[i], y2[i]]
+
+      pendule.set_data(thisx, thisy)
+      mvt1.set_data(x1[:i], y1[:i])
+      mvt2.set_data(x2[:i], y2[:i])
+      text.set_text("temps = %.1f s" % (i*0.04))
+      return pendule, mvt1, mvt2, text
+
+  ani = animation.FuncAnimation(fig, animate, np.arange(1, len(y)),
+                                interval=25, blit=True)
+  ani.save("double_pendulum.mp4", fps=15)
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \animategraphics[autoplay,loop, width=\linewidth]{50}{pendulum/pendulum}{001}{249}
+#+END_SRC
+* *=scipy.integrate=* : résolution d'équations différentielles ordinaires
+#+BEAMER: \framesubtitle{\href{http://en.wikipedia.org/wiki/Damping}{Oscillateur harmonique amorti}}
+
+#+BEGIN_SRC latex
+  \begin{align*}
+    \frac{\text{d}^2x}{\text{d}t^2}+2\zeta\omega_0\frac{\text{d}x}{\text{d}t}+\omega_0^2x=0
+  \end{align*}
+#+END_SRC
+
+
+** Python
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+BEAMER: \scriptsize
+- On pose $p = \frac{\text{d}x}{\text{d}t}$
+  #+BEGIN_SRC latex
+    \begin{align*}
+      \frac{\text{d}p}{\text{d}t}&=-2\zeta\omega_0p-\omega_0^2x\\
+      \frac{\text{d}x}{\text{d}t}&=p
+    \end{align*}
+  #+END_SRC
+
+#+BEAMER: \pause
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: def dy(y, t, zeta, w0):
+     ...:     x, p = y[0], y[1]
+     ...:
+     ...:     dx = p
+     ...:     dp = -2 * zeta * w0 * p - w0**2 * x
+     ...:     return [dx, dp]
+  In [2]: y0 = [1.0, 0.0]
+  In [3]: t = np.linspace(0, 10, 1000)
+  In [4]: w0 = 2*np.pi*1.0
+  In [5]: from scipy.integrate import odeint
+  In [6]: y1 = odeint(dy, y0, t, args=(0.0, w0))
+  In [7]: y2 = odeint(dy, y0, t, args=(0.2, w0))
+  In [8]: y3 = odeint(dy, y0, t, args=(1.0, w0))
+  In [9]: y4 = odeint(dy, y0, t, args=(5.0, w0))
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<3>[width=1.1\linewidth]{figures/scipy_oha.pdf}
+  \end{center}
+#+END_SRC
+* *=scipy.interpolate=* : interpolation numérique
+** Python
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: def f(x):
+     ...:     return np.sin(x)
+
+  In [2]: n = np.arange(0, 10)
+  In [3]: y_meas = f(n) + 0.1*np.random.randn(n.size)
+#+END_SRC
+
+#+BEAMER: \pause\pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: from scipy.interpolate import interp1d
+  In [5]: linear_interpolation = interp1d.(n, y_meas)
+  In [6]: yinterp1 = linear_interpolation(np.linspace(0, 9, 100))
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [7]: cubic_interpolation = interp1d.(n, y_meas, kind="cubic")
+  In [8]: yinterp2 = cubic_interpolation(np.linspace(0, 9, 100))
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/scipy_interpolation0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_interpolation1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/scipy_interpolation2.pdf}
+    \includegraphics<4>[width=1.1\linewidth]{figures/scipy_interpolation3.pdf}
+  \end{center}
+#+END_SRC
