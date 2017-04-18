@@ -410,14 +410,14 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [4]: from scipy.interpolate import interp1d
-  In [5]: linear_interpolation = interp1d.(n, y_meas)
+  In [5]: linear_interpolation = interp1d(n, y_meas)
   In [6]: yinterp1 = linear_interpolation(np.linspace(0, 9, 100))
 #+END_SRC
 
 #+BEAMER: \pause\vskip-1pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [7]: cubic_interpolation = interp1d.(n, y_meas, kind="cubic")
+  In [7]: cubic_interpolation = interp1d(n, y_meas, kind="cubic")
   In [8]: yinterp2 = cubic_interpolation(np.linspace(0, 9, 100))
 #+END_SRC
 
@@ -432,5 +432,121 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
     \includegraphics<2>[width=1.1\linewidth]{figures/scipy_interpolation1.pdf}
     \includegraphics<3>[width=1.1\linewidth]{figures/scipy_interpolation2.pdf}
     \includegraphics<4>[width=1.1\linewidth]{figures/scipy_interpolation3.pdf}
+  \end{center}
+#+END_SRC
+* *=scipy.optimize=* : Recherche d'/extrema/ d'une fonction
+
+- L'objectif de l'optimisation est de trouver les /minima/ (ou /maxima/) d'une
+  fonction
+
+- Domaine d'étude très actif en mathématiques/informatique notamment pour les
+  problèmes multi-variables
+
+** Python
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: def f(x):
+     ...:     return 4*x**3 + (x-2)**2 + x**4
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: from scipy.optimize import fmin
+  In [3]: fmin(f, x0=-2)
+  Optimization terminated successfully.
+           Current function value: -3.506641
+           Iterations: 15
+           Function evaluations: 30
+  Out[3]: array([-2.67294922])
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: fmin(f, x0=0)
+  Optimization terminated successfully.
+           Current function value: 2.804988
+           Iterations: 23
+           Function evaluations: 46
+  Out[4]: array([ 0.469625])
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/scipy_min0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_min1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/scipy_min2.pdf}
+  \end{center}
+#+END_SRC
+* *=scipy.optimize=* : Recherche des racines d'une fonction
+
+** Python
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: def f(x):
+     ...:     return np.tan(2*np.pi*x) - 1/x
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [2]: x = np.linspace(0, 3, 1000)
+  In [3]: plt.plot(x, f(x))
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: y[abs(y) > 50] = np.nan
+#+END_SRC
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [5]: plt.ylim(-5, +5)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: from scipy.optimize import fsolve
+  In [5]: fsolve(f, x0=0.1)
+  Out[5]: array([ 0.21612385])
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [6]: fsolve(f, np.arange(0.1, 3, 0.5))
+  Out[6]:
+  array([ 0.21612385,  0.6574377 ,  1.116265  ,  1.58938086,  2.071577  ,
+          2.55928414])
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_root0.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/scipy_root1.pdf}
+    \includegraphics<4>[width=1.1\linewidth]{figures/scipy_root2.pdf}
+    \includegraphics<5>[width=1.1\linewidth]{figures/scipy_root3.pdf}
+    \includegraphics<6>[width=1.1\linewidth]{figures/scipy_root4.pdf}
   \end{center}
 #+END_SRC
