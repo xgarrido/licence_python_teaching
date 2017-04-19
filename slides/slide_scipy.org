@@ -7,16 +7,16 @@
 
 * =scipy= ?
 
+#+ATTR_BEAMER: :overlay +-
 - Le module =scipy= vise à unifier et fédérer un ensemble de bibliothèques Python
   à usage scientifique
 
 - =scipy= s'appuie sur =numpy= en utilisant les objets de type tableaux et fournit
   des algorithmes scientifiques optimisés :
 
-  #+ATTR_BEAMER: :overlay +-
-  - Fonctions spéciales (fonction de Bessel, loi de distribution,...)
-  - Algorithmes d'intégration, d'interpolation et d'optimisation
   - Algèbre linéaire (résolution équations linéaires, valeurs/vecteur propres)
+  - Fonctions spéciales (fonction de Bessel, loi de distribution,...)
+  - Algorithmes d'interpolation, d'intégration et d'optimisation
   - Traitement du signal et des images (transformé de Fourier, convolution,...)
 
 * Installation & importation de =scipy=
@@ -33,6 +33,77 @@
   #+BEAMER: \vskip+5pt
   #+BEGIN_SRC python
     In [1]: import scipy.linalg as linalg
+  #+END_SRC
+
+* *=scipy.linalg=* : algèbre linéaire
+
+- Le module =scipy.linalg= inclut diverses fonctions dont
+  - les opérations matricielles (inversion de matrices, calcul de déterminant)
+  - résolution d'équations linéaires $Ax=b$
+  - recherche de valeurs/vecteurs propres
+  - pivot de Gauss, décomposition en valeurs singulières, ...
+
+#+BEGIN_SRC python
+  In [1]: from scipy import linalg
+
+  In [2]: A = np.random.rand(2, 2)
+  In [3]: A
+  Out[3]:
+  array([[ 0.38005786,  0.06901768],
+         [ 0.86144407,  0.03601743]])
+
+  In [4]: linalg.det(A)
+  Out[4]: -0.045766161972959955
+
+  In [5]: linalg.inv(A)*linalg.det(A)
+  Out[5]:
+  array([[ 0.03601743, -0.06901768],
+         [-0.86144407,  0.38005786]])
+#+END_SRC
+
+* *=scipy.linalg=* : algèbre linéaire
+
+- Résolution d'équation linéaire $Ax=b$
+
+  #+BEAMER: \vskip+5pt
+  #+BEGIN_SRC python
+    In [1]: from scipy import linalg
+
+    In [2]: A = np.random.rand(3, 3)
+    In [3]: b = np.random.rand(3)
+
+    In [4]: x = linalg.solve(A, b)
+
+    In [5]: x
+    Out[5]: array([ 0.61826973,  0.09161294, -0.35492909])
+
+    In [6]: np.dot(A, x) - b
+    Out[6]: array([ 0.,  0.,  0.])
+  #+END_SRC
+
+* *=scipy.linalg=* : algèbre linéaire
+
+- Recherche de valeurs/vecteur propres $Av_n=\lambda_nv_n$ où $v_n$ est le
+  $n$^{ième} vecteur propre et $\lambda_n$ la $n$^{ième} valeur propre
+
+  #+BEAMER: \vskip+5pt
+  #+BEGIN_SRC python
+    In [1]: from scipy import linalg
+
+    In [2]: evals, evecs = linalg.eig(A)
+
+    In [3]: evals
+    Out[3]: array([ 1.89774095+0.j, -0.27128129+0.j,  0.34921006+0.j])
+
+    In [4]: evecs
+    Out[4]:
+    array([[-0.52832832, -0.7845609 ,  0.06535214],
+           [-0.49359384,  0.58672007, -0.51283945],
+           [-0.69082147,  0.2005586 ,  0.85599345]])
+
+    In [5]: n = 1
+    In [6]: linalg.norm(np.dot(A, evecs[:,n]) - evals[n]*evecs[:,n])
+    Out[6]: 5.8191634490868685e-16
   #+END_SRC
 
 * *=scipy.special=* : fonctions spéciales
@@ -85,6 +156,49 @@
     \includegraphics<2>[width=1.1\linewidth]{figures/scipy_yn.pdf}
   \end{center}
 #+END_SRC
+* *=scipy.interpolate=* : interpolation numérique
+** Python
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: def f(x):
+     ...:     return np.sin(x)
+
+  In [2]: n = np.arange(0, 10)
+  In [3]: y_meas = f(n) + 0.1*np.random.randn(n.size)
+#+END_SRC
+
+#+BEAMER: \pause\pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: from scipy.interpolate import interp1d
+  In [5]: linear_interpolation = interp1d(n, y_meas)
+  In [6]: yinterp1 = linear_interpolation(np.linspace(0, 9, 100))
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [7]: cubic_interpolation = interp1d(n, y_meas, kind="cubic")
+  In [8]: yinterp2 = cubic_interpolation(np.linspace(0, 9, 100))
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/scipy_interpolation0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_interpolation1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/scipy_interpolation2.pdf}
+    \includegraphics<4>[width=1.1\linewidth]{figures/scipy_interpolation3.pdf}
+  \end{center}
+#+END_SRC
 * *=scipy.integrate=* : intégration de fonctions
 
 - L'intégration numérique de $\int_a^bf(x)\text{d}x$ peut se faire /via/ le module
@@ -105,7 +219,6 @@
     In [3]: print("I =", val, "+/-", abserr)
     I = 1.7724538509055159 +/- 1.4202636780944923e-08
   #+END_SRC
-
 * *=scipy.integrate=* : intégration de fonctions
 
 - Exemple d'intégration avec passage de paramètre : $I(a,b)=\int_{0}^{1}(ax^2+b)\text{d}x$
@@ -120,7 +233,6 @@
     In [5]: integrate.quad(integrand, 0, 1, args=(a, b))
     Out[7]: (1.6666666666666667, 1.8503717077085944e-14)
   #+END_SRC
-
 * *=scipy.integrate=* : intégration de fonctions
 
 - Exemple d'intégrale multiple
@@ -171,7 +283,6 @@
 
   où =t= est un vecteur =numpy= correspondant à l'échantillonnage en temps et =y_t=
   contient, en chaque temps =t=, une colonne pour chaque solution $y_i(t)$
-
 * *=scipy.integrate=* : résolution d'équations différentielles ordinaires
 #+BEAMER: \framesubtitle{\href{http://en.wikipedia.org/wiki/Double_pendulum}{Mouvement du double pendule}}
 
@@ -293,7 +404,6 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
 :END:
 
 [[file:figures/scipy_dbl_pendulum1.pdf]]
-
 * *=scipy.integrate=* : résolution d'équations différentielles ordinaires
 #+BEAMER: \framesubtitle{\href{http://en.wikipedia.org/wiki/Double_pendulum}{Mouvement du double pendule}}
 
@@ -391,34 +501,27 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
     \includegraphics<3>[width=1.1\linewidth]{figures/scipy_oha.pdf}
   \end{center}
 #+END_SRC
-* *=scipy.interpolate=* : interpolation numérique
+* *=scipy.fftpack=* : transformé de Fourier
 ** Python
 :PROPERTIES:
 :BEAMER_COL: 0.6
 :END:
 
+#+BEAMER: \pause
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [1]: def f(x):
-     ...:     return np.sin(x)
+  In [1]: from scipy.fftpack import fft, fftfreq
 
-  In [2]: n = np.arange(0, 10)
-  In [3]: y_meas = f(n) + 0.1*np.random.randn(n.size)
-#+END_SRC
-
-#+BEAMER: \pause\pause\vskip-1pt
-#+ATTR_LATEX: :options fontsize=\scriptsize
-#+BEGIN_SRC python
-  In [4]: from scipy.interpolate import interp1d
-  In [5]: linear_interpolation = interp1d(n, y_meas)
-  In [6]: yinterp1 = linear_interpolation(np.linspace(0, 9, 100))
+  In [2]: F = fft(y2[:, 0])
+  In [3]: w = fftfreq(t.size, t[1]-t[0])
+  In [4]: plt.plot(w, np.abs(F))
 #+END_SRC
 
 #+BEAMER: \pause\vskip-1pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [7]: cubic_interpolation = interp1d(n, y_meas, kind="cubic")
-  In [8]: yinterp2 = cubic_interpolation(np.linspace(0, 9, 100))
+  In [5]: mask = w > 0
+  In [6]: plt.plot(w[mask], np.abs(F[mask]))
 #+END_SRC
 
 ** Figure
@@ -428,13 +531,56 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
 
 #+BEGIN_SRC latex
   \begin{center}
-    \includegraphics<1>[width=1.1\linewidth]{figures/scipy_interpolation0.pdf}
-    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_interpolation1.pdf}
-    \includegraphics<3>[width=1.1\linewidth]{figures/scipy_interpolation2.pdf}
-    \includegraphics<4>[width=1.1\linewidth]{figures/scipy_interpolation3.pdf}
+    \includegraphics<1>[width=1.1\linewidth]{figures/scipy_fft0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_fft1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/scipy_fft2.pdf}
   \end{center}
 #+END_SRC
-* *=scipy.optimize=* : Recherche d'/extrema/ d'une fonction
+* *=scipy.ndimage=* : traitement d'images
+** Python
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: import scipy.ndimage as ndimage
+
+  In [2]: img = ndimage.imread("../data/puzo_patrick.png")
+  In [3]: plt.imshow(img)
+  In [4]: plt.axis("off")
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [5]: img_flou = ndimage.gaussian_filter(img, sigma=10)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [6]: fig, ax = plt.subplots(2,2)
+  In [7]: ax[1, 0].imshow(img[:,:,0], cmap=plt.cm.Reds)
+  In [8]: ax[0, 1].imshow(img[:,:,1], cmap=plt.cm.Greens)
+  In [9]: ax[1, 1].imshow(img[:,:,2], cmap=plt.cm.Blues)
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/scipy_ndimage0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_ndimage1.pdf}
+    %% \includegraphics<3>[width=1.1\linewidth]{figures/scipy_ndimage2.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/scipy_ndimage3.pdf}
+  \end{center}
+#+END_SRC
+
+* *=scipy.optimize=* : recherche d'/extrema/ d'une fonction
 
 - L'objectif de l'optimisation est de trouver les /minima/ (ou /maxima/) d'une
   fonction
@@ -459,9 +605,9 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
   In [2]: from scipy.optimize import fmin
   In [3]: fmin(f, x0=-2)
   Optimization terminated successfully.
-           Current function value: -3.506641
-           Iterations: 15
-           Function evaluations: 30
+       Current function value: -3.506641
+       Iterations: 15
+       Function evaluations: 30
   Out[3]: array([-2.67294922])
 #+END_SRC
 
@@ -470,9 +616,9 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
 #+BEGIN_SRC python
   In [4]: fmin(f, x0=0)
   Optimization terminated successfully.
-           Current function value: 2.804988
-           Iterations: 23
-           Function evaluations: 46
+       Current function value: 2.804988
+       Iterations: 23
+       Function evaluations: 46
   Out[4]: array([ 0.469625])
 #+END_SRC
 
@@ -488,7 +634,13 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
     \includegraphics<3>[width=1.1\linewidth]{figures/scipy_min2.pdf}
   \end{center}
 #+END_SRC
-* *=scipy.optimize=* : Recherche des racines d'une fonction
+* *=scipy.optimize=* : recherche des racines d'une fonction
+
+#+BEGIN_SRC latex
+  \begin{align*}
+    f(x_0) = tan(2\pi x_0) - \frac{1}{x_0} = 0
+  \end{align*}
+#+END_SRC
 
 ** Python
 :PROPERTIES:
@@ -499,11 +651,6 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
 #+BEGIN_SRC python
   In [1]: def f(x):
      ...:     return np.tan(2*np.pi*x) - 1/x
-#+END_SRC
-
-#+BEAMER: \pause\vskip-1pt
-#+ATTR_LATEX: :options fontsize=\scriptsize
-#+BEGIN_SRC python
   In [2]: x = np.linspace(0, 3, 1000)
   In [3]: plt.plot(x, f(x))
 #+END_SRC
@@ -512,28 +659,24 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [4]: y[abs(y) > 50] = np.nan
-#+END_SRC
-#+BEAMER: \pause\vskip-1pt
-#+ATTR_LATEX: :options fontsize=\scriptsize
-#+BEGIN_SRC python
   In [5]: plt.ylim(-5, +5)
 #+END_SRC
 
 #+BEAMER: \pause\vskip-1pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [4]: from scipy.optimize import fsolve
-  In [5]: fsolve(f, x0=0.1)
-  Out[5]: array([ 0.21612385])
+  In [6]: from scipy.optimize import fsolve
+  In [7]: fsolve(f, x0=0.1)
+  Out[7]: array([ 0.21612385])
 #+END_SRC
 
 #+BEAMER: \pause\vskip-1pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [6]: fsolve(f, np.arange(0.1, 3, 0.5))
-  Out[6]:
-  array([ 0.21612385,  0.6574377 ,  1.116265  ,  1.58938086,  2.071577  ,
-          2.55928414])
+  In [8]: fsolve(f, x0=np.arange(0.1, 3, 0.5))
+  Out[8]:
+  array([ 0.21612385,  0.6574377 ,  1.116265  ,
+          1.58938086,  2.071577  ,  2.55928414])
 #+END_SRC
 
 ** Figure
@@ -543,10 +686,152 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
 
 #+BEGIN_SRC latex
   \begin{center}
-    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_root0.pdf}
-    \includegraphics<3>[width=1.1\linewidth]{figures/scipy_root1.pdf}
-    \includegraphics<4>[width=1.1\linewidth]{figures/scipy_root2.pdf}
-    \includegraphics<5>[width=1.1\linewidth]{figures/scipy_root3.pdf}
-    \includegraphics<6>[width=1.1\linewidth]{figures/scipy_root4.pdf}
+    \vspace{-0.5cm}
+    \includegraphics<1>[width=1.1\linewidth]{figures/scipy_root0.pdf}
+    %% \includegraphics<2>[width=1.1\linewidth]{figures/scipy_root1.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_root2.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/scipy_root3.pdf}
+    \includegraphics<4>[width=1.1\linewidth]{figures/scipy_root4.pdf}
+  \end{center}
+#+END_SRC
+
+* *=scipy.optimize=* : ajustement d'un modèle/fonction à des données
+
+- L'ajustement consiste *à minimiser* une quantité caractérisant le niveau
+  d'accord entre données expérimentales et modèle "théorique"
+
+- Exemple de fonction à minimiser
+  #+BEGIN_SRC latex
+    \begin{align*}
+      \chi^2(p_0,\ldots,p_n) = \sum_i^N \frac{\left(y_i^\text{data}-y^\text{model}(x_i|p_0,\ldots,p_n)\right)^2}{\sigma_{y_i^\text{data}}^2}
+    \end{align*}
+  #+END_SRC
+  où $p_0,\ldots,p_n$ sont les $n$ paramètres du modèle.
+
+* *=scipy.optimize=* : ajustement d'un modèle/fonction à des données
+
+** Python
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: def f(x, a, b, c):
+     ...:     return a*np.exp(-b*x) + c
+
+  In [2]: a, b, c = 2.5, 1.3, 0.5
+  In [3]: xdata = np.linspace(0, 4, 25)
+  In [4]: dy = 0.2
+  In [5]: ydata = f(xdata, a, b, c) +  dy*np.random.randn(xdata.size)
+#+END_SRC
+
+#+BEAMER: \pause\pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [6]: from scipy.optimize import curve_fit
+  In [7]: popt, pcov = curve_fit(f, xdata, ydata,
+                                 sigma=np.full_like(ydata, dy))
+  In [8]: popt
+  Out[8]: array([ 2.28680731,  1.21827861,  0.45424157])
+
+  In [9]: x = np.linspace(0, 4, 100)
+  In[10]: plt.plot(x, f(x, *popt))
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [11]: pcov
+  Out[11]:
+  array([[ 0.01681475,  0.00513406, -0.00182363],
+         [ 0.00513406,  0.0254771 ,  0.00788938],
+         [-0.00182363,  0.00788938,  0.00433422]])
+#+END_SRC
+
+#+BEAMER: \pause\pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [12]: np.sqrt(np.diag(pcov))
+  Out[12]: array([ 0.16549342,  0.190719  ,  0.09236422])
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \vspace{-0.5cm}
+    \includegraphics<1>[width=1.1\linewidth]{figures/scipy_fit0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_fit1.pdf}
+    \includegraphics<3>[width=1.1\linewidth]{figures/scipy_fit2.pdf}
+    \only<4>{
+      \begin{align*}
+      \left(
+      \begin{array}{cccc}
+        \sigma_{p_0}^2&\sigma_{p_0p_1}&\cdots&\sigma_{p_0p_n}\\
+        \sigma_{p_1p_0}&\sigma_{p_1}^2&\cdots&\sigma_{p_1p_n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \sigma_{p_np_0}&\cdots&\cdots&\sigma_{p_n}^2
+      \end{array}
+      \right)
+      \end{align*}
+    }
+    \includegraphics<5-6>[width=\linewidth]{figures/scipy_fit3.pdf}
+    \includegraphics<7>[width=1.1\linewidth]{figures/scipy_fit4.pdf}
+  \end{center}
+#+END_SRC
+* *=scipy.stats=* : distributions, fonctions & tests statistiques
+
+** Python
+:PROPERTIES:
+:BEAMER_COL: 0.6
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: from scipy import stats
+
+  In [2]: normal = stats.norm()
+  In [3]: ax[0].hist(normal.rvs(1000), bins=50)
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [4]: x = np.linspace(-5, 5, 100)
+  In [5]: ax[1].plot(x, normal.pdf(x))
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [6]: ax[2].plot(x, normal.cdf(x))
+#+END_SRC
+
+#+BEAMER: \pause\vskip-1pt
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [7]: normal.mean(), normal.std(), normal.var()
+  Out[7]: (0.0, 1.0, 1.0)
+
+  In [8]: t_statistic, p_value = stats.ttest_ind(normal.rvs(1000),
+                                                 normal.rvs(1000))
+  In [9]: t_statistic, p_value
+  Out[9]: (0.026897392679505635, 0.97854425922146115)
+#+END_SRC
+
+** Figure
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+BEGIN_SRC latex
+  \begin{center}
+    \includegraphics<1>[width=1.1\linewidth]{figures/scipy_norm0.pdf}
+    \includegraphics<2>[width=1.1\linewidth]{figures/scipy_norm1.pdf}
+    \includegraphics<3->[width=1.1\linewidth]{figures/scipy_norm2.pdf}
   \end{center}
 #+END_SRC
