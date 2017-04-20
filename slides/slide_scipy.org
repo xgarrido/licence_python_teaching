@@ -14,10 +14,10 @@
 - =scipy= s'appuie sur =numpy= en utilisant les objets de type tableaux et fournit
   des algorithmes scientifiques optimisés :
 
-  - Algèbre linéaire (résolution équations linéaires, valeurs/vecteur propres)
+  - Algèbre linéaire (résolution d'équations linéaires, valeurs/vecteur propres)
   - Fonctions spéciales (fonction de Bessel, loi de distribution,...)
   - Algorithmes d'interpolation, d'intégration et d'optimisation
-  - Traitement du signal et des images (transformé de Fourier, convolution,...)
+  - Traitement du signal et des images (transformée de Fourier, convolution,...)
 
 * Installation & importation de =scipy=
 
@@ -42,6 +42,8 @@
   - résolution d'équations linéaires $Ax=b$
   - recherche de valeurs/vecteurs propres
   - pivot de Gauss, décomposition en valeurs singulières, ...
+
+#+BEAMER: \pause
 
 #+BEGIN_SRC python
   In [1]: from scipy import linalg
@@ -501,7 +503,7 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
     \includegraphics<3>[width=1.1\linewidth]{figures/scipy_oha.pdf}
   \end{center}
 #+END_SRC
-* *=scipy.fftpack=* : transformé de Fourier
+* *=scipy.fftpack=* : transformations de Fourier
 ** Python
 :PROPERTIES:
 :BEAMER_COL: 0.6
