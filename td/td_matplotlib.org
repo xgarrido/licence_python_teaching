@@ -29,6 +29,9 @@
   visible y compris au niveau des zones de recouvrement
 
 ** Correction                                                   :correction:
+:PROPERTIES:
+:HEADER-ARGS: :tangle scripts/seattle2.py
+:END:
 
 #+BEGIN_SRC python -n
   import numpy as np
@@ -137,7 +140,7 @@
 ** Correction                                                   :correction:
 
 #+LATEX: \begin{tabular}{lc}\begin{minipage}{0.5\linewidth}
-#+BEGIN_SRC python -n
+#+BEGIN_SRC python -n :tangle scripts/heaviside.py
   def heaviside(x):
       return 0.5 * (np.sign(x) + 1)
 
@@ -157,7 +160,7 @@
 [[file:figures/heaviside.pdf]]
 #+LATEX: \end{minipage}\end{tabular}
 
-#+BEGIN_SRC python -n
+#+BEGIN_SRC python -n :tangle scripts/nc11.py
   import numpy as np
 
   # Définition des constantes du problème
@@ -237,8 +240,11 @@ nombreuses techniques de classification automatique en /machine learning/.
   distributions normalisées des différentes grandeurs.
 
 ** Correction                                                   :correction:
+:PROPERTIES:
+:HEADER-ARGS: :tangle scripts/iris.py
+:END:
 
-#+BEGIN_SRC python -n :tangle /tmp/iris.py
+#+BEGIN_SRC python -n
   import numpy as np
 
   data = np.loadtxt("./data/iris.csv", delimiter=",")
@@ -268,9 +274,9 @@ nombreuses techniques de classification automatique en /machine learning/.
           d = data[species == key]
           w = np.ones_like(d)/len(d)
           plt.hist(d, **style, label=name, range=r, weights=w)
-      plt.xlabel(xlabel)
-      plt.ylabel("probabilité")
-      plt.legend()
+          plt.xlabel(xlabel)
+          plt.ylabel("probabilité")
+          plt.legend()
 
   # Diagrammes longueur vs. largeur sépales
   plt.figure()
@@ -284,9 +290,8 @@ nombreuses techniques de classification automatique en /machine learning/.
   for key, name in iris.items():
       rgba = color(key/2)
       plt.scatter([], [],c=rgba, alpha=0.2, label=name)
-  plt.legend()
+      plt.legend()
 
-  plt.show()
 #+END_SRC
 
 #+ATTR_LATEX: :align p{0.5\textwidth}p{0.5\textwidth}
@@ -298,33 +303,30 @@ nombreuses techniques de classification automatique en /machine learning/.
 #+BEGIN_SRC python -n
   # Changement de taille de police uniquement pour cette figure
   with plt.rc_context({"font.size": 5}):
-
         # Définition d'une grille de sous-figures
         fig, ax = plt.subplots(len(labels), len(labels),
                                sharex="col", sharey="row",
                                figsize=(1.5*len(labels), 1.5*len(labels)))
 
         for l1, d1 in labels.items():
-            i1 = list(labels.keys()).index(l1)
-            for l2, d2 in labels.items():
-                i2 = list(labels.keys()).index(l2)
-                for key, name in iris.items():
-                    sc = (species == key)
-                    if l1 == l2:
-                        ax[i1, i2].hist(d1[sc], alpha=0.5, bins=10, normed=True)
-                    else:
-                        ax[i1, i2].scatter(d2[sc], d1[sc], s=5, alpha=0.5)
-            ax[-1, i1].set_xlabel(l1)
-            ax[i1, 0].set_ylabel(l1)
+              i1 = list(labels.keys()).index(l1)
+              for l2, d2 in labels.items():
+                    i2 = list(labels.keys()).index(l2)
+                    for key, name in iris.items():
+                          sc = (species == key)
+                          if l1 == l2:
+                                ax[i1, i2].hist(d1[sc], alpha=0.5, bins=10, normed=True)
+                          else:
+                                ax[i1, i2].scatter(d2[sc], d1[sc], s=5, alpha=0.5)
+                                ax[-1, i1].set_xlabel(l1)
+                                ax[i1, 0].set_ylabel(l1)
 
         # Création d'une légende à partir d'un scatter plot vide
         for key, name in iris.items():
-            plt.scatter([], [], label=name)
-            plt.legend(title="iris", bbox_to_anchor=(1, len(iris)/2+1), loc="upper left")
-        fig.subplots_adjust(right=0.9)
-
-
-    plt.show()
+              plt.scatter([], [], label=name)
+              plt.legend(title="iris", bbox_to_anchor=(1, len(iris)/2+1), loc="upper left")
+              fig.subplots_adjust(right=0.9)
+  plt.show()
 #+END_SRC
 
 [[file:figures/iris_all.pdf]]

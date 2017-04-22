@@ -72,7 +72,7 @@ particule.
 
 ** Correction                                                   :correction:
 
-#+BEGIN_SRC python :tangle /tmp/higgs.py :results output
+#+BEGIN_SRC python :tangle scripts/higgs.py :results output
   import numpy as np
   data = np.loadtxt("./data/higgs-gg.csv", delimiter=",")
 
@@ -90,7 +90,7 @@ particule.
   def model(x, parameters=[6.527e4, -1208.9, 7.697, -1.668e-2]):
       y = 0.0
       for i, p in enumerate(parameters):
-        y += p*np.power(x, i)
+          y += p*np.power(x, i)
       return y
 
   xmodel = np.linspace(105, 160, 100)
@@ -203,7 +203,7 @@ La "clé" utilisée par =pandas= (dans l'exemple ci-dessus =method= et =year=) s
 
 *** Avec =pandas=
 
-#+BEGIN_SRC python :results output :tangle /tmp/planets.py
+#+BEGIN_SRC python :results output :tangle scripts/planets.py
   import pandas as pd
 
   data = pd.read_csv("data/planets.csv")
@@ -285,7 +285,7 @@ nouvelle valeur de ces paramètres.
 
 ** Correction                                                   :correction:
 
-#+BEGIN_SRC python -n :tangle /tmp/nc11.py
+#+BEGIN_SRC python -n :tangle scripts/nc11_gui.py
   import numpy as np
 
   # Définition des constantes du problème

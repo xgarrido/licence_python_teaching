@@ -42,7 +42,7 @@ séance à l'aide de la commande =source=.
   #+END_SRC
 
 -
-  #+BEGIN_SRC python :tangle /tmp/test_euler_project.py
+  #+BEGIN_SRC python :tangle scripts/test_euler_project.py
     import euler_project as ep
 
     # To generate random integer values
@@ -97,7 +97,7 @@ séance à l'aide de la commande =source=.
 
 1) Ci-dessous la classe =Particle=
 
-   #+BEGIN_SRC python :tangle /tmp/particle.py
+   #+BEGIN_SRC python :tangle scripts/particle.py
      class Particle:
          def __init__(self, name=None, mass=None, charge=None):
              self.name = name
@@ -111,7 +111,7 @@ séance à l'aide de la commande =source=.
 
    et son fichier test
 
-   #+BEGIN_SRC python :tangle /tmp/test_particle.py
+   #+BEGIN_SRC python :tangle scripts/test_particle.py
      import particle
 
      # Create an empty list of particles
@@ -126,7 +126,7 @@ séance à l'aide de la commande =source=.
 
 2) Classe =Point=
 
-   #+BEGIN_SRC python :tangle /tmp/point.py
+   #+BEGIN_SRC python :tangle scripts/point.py
      class Point:
           def __init__(self, x=None, y=None):
                self.x = x
@@ -139,7 +139,7 @@ séance à l'aide de la commande =source=.
 
    Classe =Vector2D=
 
-   #+BEGIN_SRC python :tangle /tmp/vector2d.py
+   #+BEGIN_SRC python :tangle scripts/vector2d.py
      class Vector2D:
          def __init__(self, point1=None, point2=None):
              self.point1 = point1
@@ -154,7 +154,7 @@ séance à l'aide de la commande =source=.
 
    Fichier test des deux précédentes classes
 
-   #+BEGIN_SRC python :tangle /tmp/test_vector2d.py
+   #+BEGIN_SRC python :tangle scripts/test_vector2d.py
      import point as p
      point1 = p.Point(3,4)
      point2 = p.Point(2,7)

@@ -127,7 +127,7 @@ commande =source=.
 
 Fichier =euler_project.py=
 
-#+BEGIN_SRC python -n :tangle /tmp/euler_project.py
+#+BEGIN_SRC python -n :tangle scripts/euler_project.py
   """
   Module for Euler projects
 
