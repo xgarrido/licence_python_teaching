@@ -98,6 +98,8 @@
 
 [[file:figures/seattle2014_temp_hist.pdf]]
 
+[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=9189955faffd4a00c99ac87ae7bc3432][Télécharger la solution]]
+
 * Fonctions discontinues@@latex:\protect@@[fn:19d5b0088c02b452]
 
 - Représenter la fonction d'Heaviside $\Theta(x)$ définie par
@@ -154,6 +156,7 @@
 
   plt.show()
 #+END_SRC
+[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=781c6ad0f36c9a70b79c0d4e81640bef][Télécharger la solution]]
 #+LATEX: \end{minipage}&
 
 #+LATEX: \begin{minipage}{0.5\linewidth}
@@ -185,6 +188,7 @@
 
   plt.show()
 #+END_SRC
+[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=3d206142d8154da27cdf04df6dec519a][Télécharger la solution]]
 
 [[file:figures/carbon11.pdf]]
 
@@ -330,6 +334,8 @@ nombreuses techniques de classification automatique en /machine learning/.
 #+END_SRC
 
 [[file:figures/iris_all.pdf]]
+
+[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=64e8d42590693b3c6d949d0411ede333][Télécharger la solution]]
 
 * Footnotes
 

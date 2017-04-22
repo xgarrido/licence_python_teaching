@@ -127,6 +127,8 @@ particule.
 
 [[file:figures/mpl_higgs_gg.pdf]]
 
+[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=f9773d1ab0ac86bf978e56a57a933e25][Télécharger la solution]]
+
 * À la découverte des planètes extrasolaires
 
 Le fichier [[https://goo.gl/JIwUzH][=planets.csv=]] contient des informations relatives aux planètes
@@ -276,6 +278,8 @@ La "clé" utilisée par =pandas= (dans l'exemple ci-dessus =method= et =year=) s
 
 [[file:figures/planet_period.pdf]]
 
+[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=f51bb19a010f9f8d69bced6b87fe8b8c][Télécharger la solution]]
+
 * Interface graphique
 
 Reprendre l'exercice sur la variation du nombre de noyaux de carbone 11 en
@@ -338,6 +342,7 @@ nouvelle valeur de ces paramètres.
 
 [[file:figures/carbon11_gui.png]]
 
+[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=895bc18cbd425c90cbb6cbb8f0986a70][Télécharger la solution]]
 
 * COMMENT Degrade Planck temperature map
 

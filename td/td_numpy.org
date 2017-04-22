@@ -66,6 +66,8 @@
     print(M)
   #+END_SRC
 
+[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=ca57174417a91df160a81971c2c57db1][Télécharger les solutions]]
+
 * Fonctions universelles
 
 - Créer un tableau à une dimension contenant 1 million de valeurs aléatoires
@@ -186,3 +188,5 @@
 #+END_SRC
 
 [[file:figures/seattle2014_prcp.pdf]]
+
+[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=aeda87c5e7063d0451fa9f1c90e656a6][Télécharger la solution]]
