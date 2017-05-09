@@ -164,17 +164,19 @@ we execute a hook before parsing file to change =CBOX= into =cbox=.
       (replace-regexp-in-string "\\\\begin{CBOX}"     "\\\\begin{cbox}"
       (replace-regexp-in-string "\\\\begin{QUESTION}" "\\\\begin{question}"
       (replace-regexp-in-string "\\\\begin{REMARK}"   "\\\\begin{remark}"
+      (replace-regexp-in-string "\\\\begin{OPINION}"  "\\\\begin{opinion}"
       (replace-regexp-in-string "\\\\begin{ABSTRACT}" "\\\\begin{abstract}"
       (replace-regexp-in-string "\\\\begin{PROMPT}"   "\\\\begin{prompt}"
-                              contents)))))))
+                              contents))))))))
   (defun latex::downcase-end-filter (contents backend info)
     (when (org-export-derived-backend-p backend 'latex)
       (replace-regexp-in-string "\\\\end{CBOX}"     "\\\\end{cbox}"
       (replace-regexp-in-string "\\\\end{QUESTION}" "\\\\end{question}"
       (replace-regexp-in-string "\\\\end{REMARK}"   "\\\\end{remark}"
+      (replace-regexp-in-string "\\\\end{OPINION}"  "\\\\end{opinion}"
       (replace-regexp-in-string "\\\\end{ABSTRACT}" "\\\\end{abstract}"
       (replace-regexp-in-string "\\\\end{PROMPT}"   "\\\\end{prompt}"
-                              contents)))))))
+                              contents))))))))
   (add-to-list 'org-export-filter-final-output-functions 'latex::downcase-begin-filter)
   (add-to-list 'org-export-filter-final-output-functions 'latex::downcase-end-filter)
 #+END_SRC
@@ -301,7 +303,7 @@ Add a new tag =correction=
         pdflatex, or xelatex as appropriate, using latexmk."
      (when (org-export-derived-backend-p backend 'latex)
        (let ((texcmd)))
-       (setq texcmd "jobname=$(basename %f | sed 's/\.tex//');latexmk -8bit -xelatex -shell-escape -quiet %f ; mkdir -p latex.d ; mv ${jobname}.* latex.d/. ; mv latex.d/${jobname}.{org,tex,pdf,fdb_latexmk,aux,toc} .")
+       (setq texcmd "jobname=$(basename %f | sed 's/\.tex//');latexmk -8bit -xelatex -shell-escape -quiet %f ; mkdir -p latex.d ; mv ${jobname}.* latex.d/. ; mv latex.d/${jobname}.{org,tex,pdf,fdb_latexmk,aux,toc,py} .")
        (setq org-latex-pdf-process (list texcmd))))
   (org-add-hook 'org-export-before-processing-hook 'python-latexmk-cmd)
 #+END_SRC
@@ -401,6 +403,10 @@ each =tikzpicture=. =tikz/external= looks if the pdf exist and if not, export it
 #+BEGIN_SRC latex
   \RequirePackage{xspace}
 #+END_SRC
+****** =nicefrac= package
+#+BEGIN_SRC latex
+  \RequirePackage{nicefrac}
+#+END_SRC
 **** Lectures/class style
 :PROPERTIES:
 :HEADER-ARGS: :tangle lecture-style.sty
@@ -423,15 +429,22 @@ each =tikzpicture=. =tikz/external= looks if the pdf exist and if not, export it
   \DeclareBoolOption[false]{book}
   \DeclareBoolOption[false]{python_teaching_lectures}
   \DeclareBoolOption[false]{python_teaching_classes}
+  \DeclareBoolOption[false]{novc}
   \ProcessKeyvalOptions*
 #+END_SRC
 ****** Parsing options
 Here we parse result of =ProcessKeyvalOptions= done previously in order to set
-different booleans used in the nex section.
+different booleans used in the next section.
 #+BEGIN_SRC latex
   \RequirePackage{ifthen}
   \newboolean{has_driver_name}
   \setboolean{has_driver_name}{false}
+  \newboolean{novc}%
+  \setboolean{novc}{false}%
+  \ifthenelse{\boolean{ls@novc}}{
+    \setboolean{novc}{true}
+  }{}
+
   \ifthenelse{\boolean{ls@python_teaching_lectures}}{
     \setboolean{has_driver_name}{true}
   }{}
@@ -666,8 +679,10 @@ layout)
   fi
 #+END_SRC
 #+BEGIN_SRC latex :noweb yes
-  \RequirePackage{prelim2e}
-  <<vc-status()>>
+  \ifthenelse{\boolean{novc}}{}{
+    \RequirePackage{prelim2e}
+    <<vc-status()>>
+  }
 #+END_SRC
 ****** New environment
 ******* Remark
@@ -738,10 +753,18 @@ layout)
     leftmargin=0.7em,%
   ]{correction}
 #+END_SRC
+******* Appréciation
+#+BEGIN_SRC latex
+  \newenvironment{opinion}
+                 {\begin{quote}\color{red}\faPencil\itshape\bfseries}
+                 {\end{quote}}
+#+END_SRC
+
 ****** New command
 #+BEGIN_SRC latex
   \newcommand{\Cpp}{\mbox{C\vspace{.5em}\protect\raisebox{.2ex}{\footnotesize++~}}}
   \newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+  \newcommand{\uline}[1]{\textcolor{blue!75}{#1}}
 #+END_SRC
 ****** Postamble
 #+BEGIN_SRC latex
