@@ -20,10 +20,10 @@ outils de représentation et d'interface graphiques_*, éléments incontournable
 l'analyse scientifique.
 #+END_QUOTE
 
-#+BEAMER: \pause\hspace{+6cm}
-/Xavier Garrido, il y a ~ 48 heures.../
+#+BEAMER: \pause\hspace{+8cm}
+/Xavier Garrido/
 
-* La représentation graphique /aka plotting/
+* La représentation graphique
 
 L'art de présenter des données numériques sous forme graphique
 
@@ -31,6 +31,7 @@ L'art de présenter des données numériques sous forme graphique
 #+BEAMER: \framesubtitle{Découverte de la première onde gravitationnelle, \href{http://arxiv.org/abs/1602.03837}{Phys. Rev. Lett. 116, 2016}}
 
 #+BEGIN_CENTER
+#+ATTR_LATEX: :width 0.8\linewidth
 [[file:figures/ligo_og.pdf]]
 #+END_CENTER
 
@@ -58,7 +59,7 @@ L'art de présenter des données numériques sous forme graphique
 * L'art de la représentation graphique (3/3)
 #+BEAMER: \framesubtitle{Découverte du boson de Higgs, \href{https://arxiv.org/abs/1207.7214}{Phys. Lett. B716, 2012}}
 
-#+ATTR_LATEX: :options [12][lwuc][][1][3]
+#+ATTR_LATEX: :options [11][lwuc][][1][3]
 #+BEGIN_CBOX
 [[file:figures/higgs_gg.pdf]]
 #+END_CBOX
@@ -66,12 +67,12 @@ L'art de présenter des données numériques sous forme graphique
 * L'art de la représentation graphique (3/3)
 #+BEAMER: \framesubtitle{Découverte du boson de Higgs, \href{https://arxiv.org/abs/1207.7214}{Phys. Lett. B716, 2012}}
 
-#+ATTR_LATEX: :options [12][lwuc][][1][3]
+#+ATTR_LATEX: :options [11][lwuc][][1][3]
 #+BEGIN_CBOX
 [[file:figures/higgs_gg.pdf]]
 #+END_CBOX
 
-#+ATTR_LATEX: :options [12][lwuc][][5][5.8]
+#+ATTR_LATEX: :options [11][lwuc][][5][5.8]
 #+BEGIN_CBOX
 [[file:figures/higgs_gg_p0.pdf]]
 #+END_CBOX
@@ -83,7 +84,7 @@ L'[[https://root.cern.ch/rainbow-color-map][art]] de présenter des données num
 - outil puissant de la publication scientifique
 - vecteur essentiel de la communication publique
 
-* L'interface graphique /aka Graphical User Interface/
+* L'interface graphique
 
 L'art de faire interagir l'utilisateur avec les données graphiques
 
@@ -115,19 +116,19 @@ leçons
 
 * Déroulement de l'option Python au second semestre
 
-*Option du second semestre*, 10h30 à 12h30, salle informatique
+*Option du second semestre*, 13h30 à 15h30, salle informatique
 
 #+BEAMER: \setbeamercovered{transparent}
 
-- *Bases de la programmation en Python (~ 4 séances)*
+- *Bases de la programmation en Python (~ 3 séances)*
   - environnement Python (=ipython=, =pip=, =venv=)
   - type de données (containeurs), bloc conditionnel, boucles =for=
   - fonctions et initiation à la programmation orientée objet
-  - gestion & manipulation données numériques (=numpy=)
 
 #+BEAMER: \pause
 
-- *Représentation graphique avec =matplotlib= (3-4 séances)*
+- *Représentation graphique avec =matplotlib= (3 -- 4 séances)*
+  - gestion & manipulation données numériques (=numpy=)
   - création de figures, /subplots/, axes
   - histogramme, courbe de niveau, 3D
 
