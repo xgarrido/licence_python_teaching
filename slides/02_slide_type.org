@@ -312,8 +312,8 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 
 #+BEAMER: \pause
 
-- Rien n'empêche en revanche, utiliser des noms de variables identiques à
-  certaines fonctions du Python
+- Rien n'empêche en revanche, d'utiliser des noms de variables identiques à certaines fonctions du
+  Python
 
   #+BEAMER: \vskip5pt
   #+BEGIN_SRC python

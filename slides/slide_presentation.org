@@ -1,5 +1,6 @@
 #+TITLE:  Programmation en Python
 #+AUTHOR: Xavier Garrido
+#+EMAIL: xavier.garrido@u-psud.fr
 #+DATE:   01/09/2015
 #+OPTIONS: toc:nil ^:{}
 #+STARTUP:     beamer

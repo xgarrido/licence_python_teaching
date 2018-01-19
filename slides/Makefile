@@ -21,4 +21,4 @@ all: $(files_pdf)
 # @rm -f ../*.sty
 
 clean:
-	@rm -rf	latex.d *.tex *.pdf *.fdb* *.vrb *.toc *.aux *.fls *.snm *.nav *.log *.out *~
+	@rm -rf	latex.d *.tex *.pdf *.fdb* *.vrb *.toc *.aux *.fls *.snm *.nav *.log *.out *~ _minted*
