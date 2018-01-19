@@ -152,7 +152,6 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 [[file:figures/planck_skymap.jpg]]
 #+END_CBOX
 
-
 * Option « Programmation en Python »
 
 #+ATTR_LATEX: :options [100][-none][][1.25][2]
@@ -207,7 +206,7 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 
     \newcommand{\closedDirectory}[1]{\faFolderO #1}
     \newcommand{\openedDirectory}[1]{\faFolderOpenO #1}
-    \newcommand{\pdfFile}[1]{\faFilePdfO #1}
+    \newcommand{\pdfFile}[1]{\faFileO #1}
 
     \tikzstyle{every node}=[anchor=west]
     \tikzstyle{selected}=[draw=blue,rounded corners,fill=blue!30,blue]
