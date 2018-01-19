@@ -2045,7 +2045,12 @@ up. Practically, everything can be done within this section.
 #+BEGIN_SRC latex
   \setbeamerfont{title}{series=\bfseries, size=\Large}
   \setbeamerfont{frametitle}{series=\bfseries}
-  \setbeamertemplate{frametitle}{\vskip+10pt\hfill\insertframetitle\\\hfill\small\insertframesubtitle}
+  \setbeamertemplate{frametitle}{%
+    \flushright%
+    \insertframetitle\par%
+    \ifx\insertframesubtitle\@empty\else
+    \footnotesize\insertframesubtitle\par\fi}
+  %% \setbeamertemplate{frametitle}{\vskip+10pt\hfill\insertframetitle\\ \flushright\small\insertframesubtitle}
   \renewcommand{\insertprefixtitle}{{\color{gray}\small\textbf{Option « Programmation en Python »\\}}}
 #+END_SRC
 ****** =quote= environment
