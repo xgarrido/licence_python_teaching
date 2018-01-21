@@ -23,14 +23,12 @@
 
 #+ATTR_BEAMER: :overlay +-
 - Installation /via/ =pip=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC shell-session
-    $ pip install scipy
+    @\prompt@ pip install scipy
   #+END_SRC
 
 - Convention d'importation : l'ensemble des modules =scipy= peuvent être importés
   individuellement
-  #+BEAMER: \vskip+5pt
   #+BEGIN_SRC python
     In [1]: import scipy.linalg as linalg
   #+END_SRC
@@ -66,8 +64,6 @@
 * *=scipy.linalg=* : algèbre linéaire
 
 - Résolution d'équation linéaire $Ax=b$
-
-  #+BEAMER: \vskip+5pt
   #+BEGIN_SRC python
     In [1]: from scipy import linalg
 
@@ -88,7 +84,6 @@
 - Recherche de valeurs/vecteur propres $Av_n=\lambda_nv_n$ où $v_n$ est le
   $n$^{ième} vecteur propre et $\lambda_n$ la $n$^{ième} valeur propre
 
-  #+BEAMER: \vskip+5pt
   #+BEGIN_SRC python
     In [1]: from scipy import linalg
 
@@ -131,7 +126,7 @@
   In [4]: plt.legend()
   #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [5]: for n in range(4):
@@ -173,7 +168,7 @@
   In [3]: y_meas = f(n) + 0.1*np.random.randn(n.size)
 #+END_SRC
 
-#+BEAMER: \pause\pause\vskip-1pt
+#+BEAMER: \pause\pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [4]: from scipy.interpolate import interp1d
@@ -181,7 +176,7 @@
   In [6]: yinterp1 = linear_interpolation(np.linspace(0, 9, 100))
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [7]: cubic_interpolation = interp1d(n, y_meas, kind="cubic")
@@ -213,7 +208,6 @@
 #+BEAMER: \pause
 
 - Exemple $\int_{-\infty}^{+\infty}\exp(-x^2)\text{d}x = \sqrt\pi$
-  #+BEAMER: \vskip+5pt
   #+BEGIN_SRC python
     In [1]: import scipy.integrate as integrate
 
@@ -224,7 +218,6 @@
 * *=scipy.integrate=* : intégration de fonctions
 
 - Exemple d'intégration avec passage de paramètre : $I(a,b)=\int_{0}^{1}(ax^2+b)\text{d}x$
-  #+BEAMER: \vskip+5pt
   #+BEGIN_SRC python
     In [1]: import scipy.integrate as integrate
 
@@ -257,7 +250,7 @@
     Out[3]: (0.010000000000118046, 1.1804619781674575e-13)
   #+END_SRC
 
-  #+BEAMER: \pause\vskip-1pt
+  #+BEAMER: \pause\vskip-18pt
   #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
     In [4]: def I(n):
@@ -277,11 +270,9 @@
 - La résolution /via/ la fonction =odeint= implique la connaissance de $f$ et des
   conditions initiales $y(0)$
 
-  #+BEAMER: \vskip+5pt
   #+BEGIN_SRC python
     y_t = odeint(f, y_0, t)
   #+END_SRC
-  #+BEAMER: \vskip+5pt
 
   où =t= est un vecteur =numpy= correspondant à l'échantillonnage en temps et =y_t=
   contient, en chaque temps =t=, une colonne pour chaque solution $y_i(t)$
@@ -306,7 +297,6 @@ où $p_{\theta_i}$ sont les impulsions des barycentres $(x_1, y_1)$ et $(x_2,
 y_2)$.
 
 On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
-
 
 ** Figure
 :PROPERTIES:
@@ -360,18 +350,18 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
      ...:     return [dy1, dy2, dy3, dy4]
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [2]: # Conditions initiales
-  In [3]: y0 = [np.pi/4, np.pi/2, 0, 0]
+  In [3]: # Conditions initiales
+  In [4]: y0 = [np.pi/4, np.pi/2, 0, 0]
 
-  In [4]: # Échantilonnage du temps
-  In [5]: t = np.linspace(0, 10, 250)
+  In [5]: # Échantilonnage du temps
+  In [6]: t = np.linspace(0, 10, 250)
 
-  In [6]: # Résolution des équations différentielles
-  In [7]: from scipy.integrate import odeint
-  In [8]: y = odeint(dy, y0, t)
+  In [7]: # Résolution des équations différentielles
+  In [8]: from scipy.integrate import odeint
+  In [9]: y = odeint(dy, y0, t)
 #+END_SRC
 
 * *=scipy.integrate=* : résolution d'équations différentielles ordinaires
@@ -384,20 +374,20 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
 
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
-  In [9]: t1, t2 = y[:, 0], y[:, 1]
-  In [10]: fig, ax = plt.subplots(2, 1, figsize=(5,7))
-  In [11]: ax[0].plot(t, t1, label=r"$\theta_1$")
-  In [12]: ax[0].plot(t, t2, label=r"$\theta_2$")
-  In [13]: ax[0].set(xlabel=r"$t$ [s]",
+  In [10]: t1, t2 = y[:, 0], y[:, 1]
+  In [11]: fig, ax = plt.subplots(2, 1, figsize=(5,7))
+  In [12]: ax[0].plot(t, t1, label=r"$\theta_1$")
+  In [13]: ax[0].plot(t, t2, label=r"$\theta_2$")
+  In [14]: ax[0].set(xlabel=r"$t$ [s]",
                      ylabel=r"$\theta$ [rad]")
-  In [14]: ax[0].legend()
+  In [15]: ax[0].legend()
 
-  In [15]: x1, y1 = l*np.sin(t1), -l*np.cos(t1)
-  In [16]: x2, y2 = x1 + l*np.sin(t2), y1 - l*np.cos(t2)
-  In [17]: ax[1].plot(x1, y1, label=r"$(x_1, y_1)$")
-  In [18]: ax[1].plot(x2, y2, label=r"$(x_2, y_2)$")
-  In [19]: ax[1].set(xlabel=r"$x$", ylabel=r"$y$")
-  In [20]: ax[1].legend()
+  In [16]: x1, y1 = l*np.sin(t1), -l*np.cos(t1)
+  In [17]: x2, y2 = x1 + l*np.sin(t2), y1 - l*np.cos(t2)
+  In [18]: ax[1].plot(x1, y1, label=r"$(x_1, y_1)$")
+  In [19]: ax[1].plot(x2, y2, label=r"$(x_2, y_2)$")
+  In [20]: ax[1].set(xlabel=r"$x$", ylabel=r"$y$")
+  In [21]: ax[1].legend()
 #+END_SRC
 
 ** Figure
@@ -519,7 +509,7 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
   In [4]: plt.plot(w, np.abs(F))
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [5]: mask = w > 0
@@ -553,13 +543,13 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
   In [4]: plt.axis("off")
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [5]: img_flou = ndimage.gaussian_filter(img, sigma=10)
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [6]: fig, ax = plt.subplots(2,2)
@@ -601,7 +591,7 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
      ...:     return 4*x**3 + (x-2)**2 + x**4
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [2]: from scipy.optimize import fmin
@@ -613,7 +603,7 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
   Out[3]: array([-2.67294922])
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [4]: fmin(f, x0=0)
@@ -657,14 +647,14 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
   In [3]: plt.plot(x, f(x))
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [4]: y[abs(y) > 50] = np.nan
   In [5]: plt.ylim(-5, +5)
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [6]: from scipy.optimize import fsolve
@@ -672,7 +662,7 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
   Out[7]: array([ 0.21612385])
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [8]: fsolve(f, x0=np.arange(0.1, 3, 0.5))
@@ -728,7 +718,7 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
   In [5]: ydata = f(xdata, a, b, c) +  dy*np.random.randn(xdata.size)
 #+END_SRC
 
-#+BEAMER: \pause\pause\vskip-1pt
+#+BEAMER: \pause\pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [6]: from scipy.optimize import curve_fit
@@ -741,7 +731,7 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
   In[10]: plt.plot(x, f(x, *popt))
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [11]: pcov
@@ -751,7 +741,7 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
          [-0.00182363,  0.00788938,  0.00433422]])
 #+END_SRC
 
-#+BEAMER: \pause\pause\vskip-1pt
+#+BEAMER: \pause\pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [12]: np.sqrt(np.diag(pcov))
@@ -800,20 +790,20 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
   In [3]: ax[0].hist(normal.rvs(1000), bins=50)
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [4]: x = np.linspace(-5, 5, 100)
   In [5]: ax[1].plot(x, normal.pdf(x))
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [6]: ax[2].plot(x, normal.cdf(x))
 #+END_SRC
 
-#+BEAMER: \pause\vskip-1pt
+#+BEAMER: \pause\vskip-18pt
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In [7]: normal.mean(), normal.std(), normal.var()
