@@ -11,5 +11,7 @@
 *.sty
 *.auxlock
 *latex.d*
-td_*.pdf
-slide_*.pdf
+*_td_*.pdf
+*_slide_*.pdf
+slide*.pdf
+slides/_minted*
