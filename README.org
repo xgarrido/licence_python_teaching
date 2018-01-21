@@ -8,7 +8,7 @@ Fundamental Physics at the University of Paris Sud. It provides slides, courses
 as well as exercices and piece of code to give an introduction of Python
 programming.
 
-* COMMENT Installation
+* Installation
 
 You will need special =orgmode= settings to translate the =org= files into =pdf=
 documents. All the needed code is embedded within this file in the next
@@ -16,7 +16,7 @@ sections. There is no need to detangle this file since emacs will do it when you
 will use the Makefile in the corresponding directories. So, next step will be to
 do =make= within the different directories.
 
-* Orgmode settings
+* COMMENT Orgmode settings
 :PROPERTIES:
 :HEADER-ARGS: :tangle README.el
 :END:
