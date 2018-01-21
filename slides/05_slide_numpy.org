@@ -21,13 +21,11 @@
 
 #+ATTR_BEAMER: :overlay +-
 - Installation /via/ =pip=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC shell-session
-    $ pip install numpy
+    @\prompt@ pip install numpy
   #+END_SRC
 
 - Convention d'importation
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: import numpy as np
   #+END_SRC
@@ -37,7 +35,6 @@
 - Documentation de référence du module http://docs.scipy.org/
 
 - Aide interactive
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: np.array?
          1 Docstring:
@@ -47,7 +44,7 @@
          5 ...
   #+END_SRC
 
-  #+BEAMER: \pause\vskip5pt
+  #+BEAMER: \pause
   #+BEGIN_SRC python
     In [2]: np.lookfor("create array")
          1 Search results for 'create array'
@@ -62,16 +59,14 @@
 
 - À partir d'une liste de valeurs
   - Vecteur
-    #+BEAMER: \vskip5pt
     #+BEGIN_SRC python
       In [2]: v = np.array([0, 1, 2, 3])
       In [3]: v
       Out[3]: array([0, 1, 2, 3])
     #+END_SRC
-    #+BEAMER: \vskip5pt\pause
+    #+BEAMER: \pause
 
   - Matrice 2\times2
-    #+BEAMER: \vskip5pt
     #+BEGIN_SRC python
       In [4]: M = np.array([[0, 1], [2, 3]])
       In [5]: M
@@ -80,7 +75,7 @@
              [2, 3]])
     #+END_SRC
 
-    #+BEAMER: \pause\vskip5pt
+    #+BEAMER: \pause
     #+BEGIN_SRC python
       In [6]: type(v), type(M)
       Out[6]: (numpy.ndarray, numpy.ndarray)
@@ -147,13 +142,12 @@ http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
 * Pourquoi =numpy= ?
 
 - Démonstration
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: %timeit [i**2 for i in range(1000)]
     1000 loops, best of 3: 403 us per loop
   #+END_SRC
 
-  #+BEAMER: \pause\vskip5pt
+  #+BEAMER: \pause
   #+BEGIN_SRC python
     In [3]: a = np.arange(1000)
     In [4]: %timeit a**2
@@ -166,7 +160,6 @@ http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
 - Le type de données numériques est défini à la création du tableau
 
 - Vecteur d'entiers
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: v = np.array([0, 1, 2, 3])
     In [2]: v
@@ -177,7 +170,6 @@ http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
   #+END_SRC
 
 - Vecteur de nombres flottants
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: v = np.array([0., 1., 2., 3.])
     In [2]: v.dtype
@@ -185,7 +177,6 @@ http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
   #+END_SRC
 
 - ou en forçant le type de données \footnotesize(=float=, =int=, =bool=, 16, 32, 64 bits)
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: v = np.array([0, 1, 2, 3], dtype=np.float)
     In [2]: v.dtype
@@ -198,7 +189,6 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 
 #+ATTR_BEAMER: :overlay +-
 - Fonction =arange= \equiv =range=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: np.arange(10)
     Out[1]: array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
@@ -206,10 +196,8 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
     In [2]: np.arange(0, 10, step=2)
     Out[2]: array([0, 2, 4, 6, 8])
   #+END_SRC
-  #+BEAMER: \vskip5pt
 
 - Fonctions =linspace/logspace=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: np.linspace(0, 10, num=5)
     Out[1: array([  0. ,   2.5,   5. ,   7.5,  10. ])
@@ -224,7 +212,6 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 
 #+ATTR_BEAMER: :overlay +-
 - Vecteurs, matrices avec valeurs par défaut
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: np.zeros(10)
     Out[1]: array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
@@ -251,7 +238,6 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 * Création de tableau (suite)
 
 - Générateurs aléatoires =rand/randint/randn=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: np.random.rand(3)
     Out[1]: array([ 0.21401051,  0.19514481,  0.92647823])
@@ -267,7 +253,6 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
   #+BEGIN_REMARK
   Un générateur aléatoire n'est par définition pas aléatoire dans une machine
   déterministe qu'est un ordinateur !
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: np.random.seed(1234)
   #+END_SRC
@@ -302,7 +287,6 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 
 #+ATTR_BEAMER: :overlay +-
 - L'utilisation de l'opérateur =[]= est similaire à celle des listes
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = np.random.randint(10, size=5)
     In [2]: x
@@ -311,10 +295,8 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
     In [3]: x[0], x[3], x[-1]
     Out[3]: (8, 6, 0)
   #+END_SRC
-  #+BEAMER: \vskip5pt
 
 - Pour les tableaux à $n$ dimensions
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = np.random.randint(10, size=(3, 4))
     In [2]: x
@@ -331,7 +313,6 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 
 - Comme pour les listes qui sont des objets /mutables/, il est possible d'assigner
   une valeur en spécifiant l'indice
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [4]: x[0, 0] = 12
     In [5]: x
@@ -344,7 +325,6 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 #+BEAMER: \pause
 #+BEGIN_REMARK
 Le type de données numériques stockées est fixé à la création du tableau
-#+BEAMER: \vskip5pt
 #+BEGIN_SRC python
   In [6]: x[0, 0] = 3.1415
   In [7]: x
@@ -359,7 +339,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 
 - Comme pour les listes, il est possible d'utiliser la syntaxe =[start:stop:step]=
   pour sélectionner un sous espace vectoriel
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x
     Out[1]:
@@ -367,23 +346,18 @@ Le type de données numériques stockées est fixé à la création du tableau
            [9, 8, 2, 0],
            [0, 5, 5, 4]])
   #+END_SRC
-  #+BEAMER: \vskip5pt
   #+ATTR_BEAMER: :overlay +-
   - Sélection d'une ligne
-    #+BEAMER: \vskip5pt
     #+BEGIN_SRC python
       In [2]: x[0]
       Out[2]: array([[3, 3, 6, 4])
     #+END_SRC
-    #+BEAMER: \vskip5pt
 
   - *Sélection d'une colonne*
-    #+BEAMER: \vskip5pt
     #+BEGIN_SRC python
       In [2]: x[:, 0], x[:, 1]
       Out[2]: (array([3, 9, 0]), array([3, 8, 5]))
     #+END_SRC
-    #+BEAMER: \vskip5pt
 
 * Sélection par indice
 
@@ -393,7 +367,7 @@ Le type de données numériques stockées est fixé à la création du tableau
 - Toute modification opérée sur le sous espace vectoriel est reportée dans la
   matrice globale
 
-  #+BEAMER: \pause\vskip5pt
+  #+BEAMER: \pause
   #+BEGIN_SRC python
     In [1]: x
     Out[1]:
@@ -418,7 +392,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 * Sélection par indice
 
 - Pour réaliser une copie d'un sous espace vectoriel, on utilisera la méthode =copy()=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [2]: xx = x[:2, :2].copy()
     In [3]: xx
@@ -438,7 +411,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 
 - *Grâce à l'homogénéité des tableaux de =numpy=*, il est possible de réaliser des
   opérations mathématiques \neq listes Python
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: l = [1, 2, 3, 4]
     In [2]: l+5
@@ -456,7 +428,6 @@ Le type de données numériques stockées est fixé à la création du tableau
   opérations mathématiques
 
 - Opérateurs binaires
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = np.arange(4)
     In [2]: x
@@ -481,7 +452,6 @@ Le type de données numériques stockées est fixé à la création du tableau
   opérations mathématiques
 
 - Opérateurs unaires
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = np.arange(4)
 
@@ -502,7 +472,6 @@ Le type de données numériques stockées est fixé à la création du tableau
   universelles* (ou /ufuncs/) opérant sur des tableaux
 
 - Fonctions trigonométriques
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: theta = np.linspace(0, np.pi, 3)
 
@@ -515,7 +484,6 @@ Le type de données numériques stockées est fixé à la création du tableau
     In [4]: np.tan(theta)
     Out[4]: array([  0.00000000e+00,   1.63312394e+16,  -1.22464680e-16])
   #+END_SRC
-  #+BEAMER: \vskip5pt
 
 - Autres fonctions : =np.exp(), np.power(), np.log(), np.log10(),...=
 
@@ -523,7 +491,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 
 #+ATTR_BEAMER: :overlay +-
 - Somme des éléments d'un tableau
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = np.random.rand(100)
 
@@ -533,11 +500,9 @@ Le type de données numériques stockées est fixé à la création du tableau
     In [3]: np.sum(x)
     Out[3]: 50.394482884150314
   #+END_SRC
-  #+BEAMER: \vskip5pt
 
 - Toutefois, la formulation =np.sum()= propre à =numpy= présente l'avantage d'être
   nettement plus rapide (code compilé) en plus d'être plus générale
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [4]: big_array = np.random.rand(1000000)
 
@@ -552,7 +517,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 
 #+ATTR_BEAMER: :overlay +-
 - Somme des éléments d'un tableau : méthode =sum=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: M = np.random.randint(10, (3, 4))
     In [2]: M
@@ -564,18 +528,14 @@ Le type de données numériques stockées est fixé à la création du tableau
     In [3]: np.sum(M), M.sum()
     Out[3]: (55, 55)
   #+END_SRC
-  #+BEAMER: \vskip5pt
 
 - Somme colonne par colonne
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [4]: M.sum(axis=0)
     Out[4]: array([18,  7, 15, 15])
   #+END_SRC
-  #+BEAMER: \vskip5pt
 
 - Somme ligne par ligne
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [5]: M.sum(axis=1)
     Out[5]: array([19, 16, 20])
@@ -601,7 +561,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 * Opérations algébriques
 
 - Multiplication de matrices
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: M = np.ones(shape=(3,3))
     In [2]: M
@@ -626,7 +585,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 * Opérations algébriques
 
 - Transposition de matrices
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: M = np.random.randint(5, size=(3,3))
     In [2]: M
@@ -645,7 +603,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 * Opérations algébriques
 
 - Conversion d'un vecteur vers une matrice
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: v = np.arange(4)
     In [2]: v
@@ -712,7 +669,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 
 - En plus des opérateurs et fonctions mathématiques, =numpy= fournit également les
   opérateurs de comparaison opérant sur les éléments d'un tableau
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = np.array([1, 2, 3, 4, 5])
 
@@ -729,7 +685,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 * Opérations logiques
 
 - =numpy= fournit également les méthodes =any= et =all=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [5]: np.any(x > 10)
     Out[5]: False
@@ -742,7 +697,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 
 - Il est finalement possible de dénombrer le nombre de valeurs d'un tableau
   satisfaisant à une ou des conditions
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [7]: np.sum(x > 3)
     Out[7]: 2
@@ -756,7 +710,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 - Les opérations de comparaison sur des tableaux retournent un tableau de
   booléens qui peut servir à la sélection d'éléments du tableau
 
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = np.random.randint(0, 10, 10)
     In [2]: x
@@ -802,7 +755,6 @@ Le type de données numériques stockées est fixé à la création du tableau
 * Entrées/sorties de =numpy=
 
 - =numpy= permet de charger un fichier texte dans un objet de type =ndarray=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: cat /tmp/results.tsv
     # id        OPP    MQ1     MA
@@ -822,11 +774,9 @@ Le type de données numériques stockées est fixé à la création du tableau
 
 #+ATTR_BEAMER: :overlay +-
 - =numpy= permet également de sauvegarder un tableau dans un fichier texte
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [4]: np.savetxt("/tmp/results2.tsv", results)
   #+END_SRC
-  #+BEAMER: \vskip5pt
 
 - le module [[http://pandas.pydata.org/][=pandas=]] est toutefois bien mieux adapté à la lecture de fichier
   contenant des données numériques
