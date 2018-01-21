@@ -11,7 +11,7 @@
 - En raison du *typage dynamique*, Python permet de déclarer des variables sans en
   préciser le type (entier, nombre flottant, ...)
 
-#+BEAMER: \pause\vskip5pt
+#+BEAMER: \pause
 #+BEGIN_SRC python
   In [1]: i = 2
 
@@ -20,7 +20,7 @@
   In [3]: s = "Une noisette, j'la casse entre mes fesses tu vois... JCVD"
 #+END_SRC
 
-#+BEAMER:\pause\vskip5pt
+#+BEAMER:\pause
 #+BEGIN_SRC python
   In [4]: %whos
   Variable   Type     Data/Info
@@ -44,7 +44,6 @@ Affectation multiples /cf./ cours http://python.developpez.com/cours/apprendre-p
 - La fonction *=type=* permet d'accéder au type d'une variable
 
 - *Nombre entier*
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: i = 2
     In [2]: type(i)
@@ -52,7 +51,6 @@ Affectation multiples /cf./ cours http://python.developpez.com/cours/apprendre-p
   #+END_SRC
 
 - *Nombre flottant*
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = 10.5
     In [2]: type(x)
@@ -63,7 +61,6 @@ Affectation multiples /cf./ cours http://python.developpez.com/cours/apprendre-p
 
 #+ATTR_BEAMER: :overlay +-
 - *Nombre complexe*
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: z = 1.5 + 0.5j
     In [2]: type(z)
@@ -76,7 +73,6 @@ Affectation multiples /cf./ cours http://python.developpez.com/cours/apprendre-p
 
 #+BEGIN_REMARK
 On notera que le nombre complexe $i$ est noté =j= ou =J= en Python
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: j = 5
 
@@ -91,7 +87,6 @@ On notera que le nombre complexe $i$ est noté =j= ou =J= en Python
 * Type fondamentaux
 
 - *Nombre complexe*
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: z = 1.5 + 0.5j
     In [2]: type(z)
@@ -103,7 +98,6 @@ On notera que le nombre complexe $i$ est noté =j= ou =J= en Python
   #+END_SRC
 
 - *Booléen*
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: b = 3 > 4
     In [2]: type(b)
@@ -115,7 +109,6 @@ On notera que le nombre complexe $i$ est noté =j= ou =J= en Python
 * Conversion explicite
 
 - Nombre entier \to nombre flottant
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: i = 2
     In [2]: i
@@ -127,7 +120,6 @@ On notera que le nombre complexe $i$ est noté =j= ou =J= en Python
 
 #+BEAMER: \pause
 - Nombre entier \to booléen
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: b = bool(i)
     In [2]: b
@@ -146,7 +138,6 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
 * Conversion explicite
 
 - Nombre entier \to nombre complexe
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: z = complex(i)
     In [2]: z
@@ -155,7 +146,6 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
 
 #+BEAMER: \pause
 - Nombre complexe \to nombre flottant
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: z = 1.5 + 0.5j
     In [2]: x = float(z.imag)
@@ -166,7 +156,6 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
 * Opérations & comparaisons
 
 - Opérations arithmétiques =+=, =-=, =*=, =/=, =//= division entière, =**= puissance, =%= modulo
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: 1 + 2, 1 - 2, 1 * 2, 1 / 2
     Out[1]: (3, -1, 2, 0)
@@ -202,7 +191,6 @@ Attention à la division dans Python 3.X
 * Opérations & comparaisons
 
 - Opérations arithmétiques (suite) :  =+==, =-==, =*==, =/==, =%==, =**==
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = 1.0
     In [2]: x = x + 1.5
@@ -220,7 +208,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 * Opérations & comparaisons
 
 - Opérations booléennes : =and=, =or= et =not=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: True and False
     Out[1]: False
@@ -235,7 +222,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 * Opérations & comparaisons
 
 - Opérateur de comparaison : =>=, =<=, =>==, =<==, ====, =!==
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: 2 > 1, 2 < 1
     Out[1]: (True, False)
@@ -254,7 +240,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 
 - Python autorise *l'affectation simultanée* d'une même valeur à plusieurs
   variables
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = y = 1.0
 
@@ -265,7 +250,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
   #+BEAMER: \pause
 
 - Python permet également *l'affectation en parallèle* de plusieurs variables
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x, y = 1.0, 1.0
 
@@ -293,7 +277,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
   plus clair et le plus explicite possible pour le développeur comme pour un
   lecteur non averti
 
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: planck_constant = 6.626e-34 # J.s
     In [2]: pc = 6.626e-34              # J.s
@@ -315,7 +298,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 - Rien n'empêche en revanche, d'utiliser des noms de variables identiques à certaines fonctions du
   Python
 
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: type = 666
     In [2]: type(666)
@@ -413,7 +395,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 - Python offre la possibilité de former des /expressions/ dont l'évaluation est
   soumise à une condition
 
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = 2.0
 
@@ -431,7 +412,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
   propose la clause *=while=*
 
 - Suite de Syracuse
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [3]: n = 27
     In [4]: while n != 1:
@@ -452,7 +432,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 
 - Pour répéter un certain nombre de fois un bloc d'instructions, on utilisera la
   construction suivante
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     for variable in objet:
         bloc de commandes
@@ -461,7 +440,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 #+BEAMER: \pause
 
 - Exemple :
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: for c in "abcdef":
        ...:     print(c)
@@ -477,7 +455,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 * Boucles =for=
 
 - Autres exemples:
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: for i in range(4):
        ...:     print(i)
@@ -488,7 +465,7 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
        3
   #+END_SRC
 
-  #+BEAMER: \pause \vskip15pt
+  #+BEAMER: \pause
   #+BEGIN_SRC python
     In [1]: for i in range(-4, 4, 2):
        ...:     print(i)
@@ -503,7 +480,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 
 - Pour quitter une boucle =for= en cours d'exécution, on utilisera l'instruction
   *=break=*
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: for i in range(-4,4,2):
        ...:     if i == 0:
@@ -518,7 +494,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 
 - S'il s'agit de passer outre le bloc d'instruction suivant, on utilisera
   l'instruction *=continue=*
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: for i in range(-4,4,2):
        ...:     if i == 0:
@@ -534,7 +509,6 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 
 - S'il s'agit de passer outre le bloc d'instruction suivant, on utilisera
   l'instruction *=continue=*
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: for i in range(-4,4,2):
        ...:     if i == 0:
