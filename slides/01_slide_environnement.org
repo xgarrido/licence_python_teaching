@@ -17,22 +17,20 @@
 * Environnements virtuels
 
 - Déclaration d'un environnement virtuel
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC shell-session
-    $ python3.5 -m venv ~/python.d/my_python_env
+    @\prompt@ python3.5 -m venv ~/python.d/my_python_env
 
-    $ ls ~/python.d/my_python_env
+    @\prompt@ ls ~/python.d/my_python_env
     bin  include  lib  lib64  pip-selfcheck.json  pyvenv.cfg  share
   #+END_SRC
 
 #+BEAMER: \pause
 
 - Chargement de l'environnement virtuel
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC shell-session
-    $ source ~/python.d/my_python_env/bin/activate
+    @\prompt@ source ~/python.d/my_python_env/bin/activate
 
-    $ which python
+    @\prompt@ which python
     ~/python.d/my_python_env/bin/python
   #+END_SRC
 
@@ -79,49 +77,43 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 * Gestionnaire de modules =pip=
 
 - Installation d'un module
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC shell-session
-    $ pip install matplotlib
+    @\prompt@ pip install matplotlib
   #+END_SRC
 
 #+BEAMER: \pause
 
 - Installation d'une version donnée d'un module
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC shell-session
-    $ pip install matplotlib==1.5.0
+    @\prompt@ pip install matplotlib==1.5.0
   #+END_SRC
 
 #+BEAMER: \pause
 
 - Suppression d'un module
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC shell-session
-    $ pip uninstall matplotlib
+    @\prompt@ pip uninstall matplotlib
   #+END_SRC
 
 #+BEAMER: \pause
 
 - Mise à jour d'un module
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC shell-session
-    $ pip install matplotlib --upgrade
+    @\prompt@ pip install matplotlib --upgrade
   #+END_SRC
 
 * Gestionnaire de modules =pip=
 
 - Liste des modules installés
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC shell-session
-    $ pip freeze
+    @\prompt@ pip freeze
   #+END_SRC
 
 #+BEAMER: \pause
 
 - Liste des modules pouvant être mis à jour
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC shell-session
-    $ pip list --outdated
+    @\prompt@ pip list --outdated
   #+END_SRC
 
 - Documentation de =pip= et de ses commandes [[https://pip.pypa.io][https://pip.pypa.io]]
@@ -129,9 +121,8 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 * Interpréteurs =python=
 
 - Interpréteur standard @@beamer:\onslide<2->{$\to$ utilisation limitée}@@
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
-    $ python
+    @\prompt@ python
     Python 3.5.2 (default, Oct 14 2016, 12:54:53)
     [GCC 6.2.1 20160916 (Red Hat 6.2.1-2)] on linux
     Type "help", "copyright", "credits" or "license" for more information.
@@ -152,15 +143,13 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 * Interpréteur =ipython=
 
 - Installation /via/ =pip=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC shell-session
-    $ pip install ipython
+    @\prompt@ pip install ipython
   #+END_SRC
 
 - Utilisation de =ipython=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
-    $ ipython
+    @\prompt@ ipython
     Python 3.5.2 (default, Oct 14 2016, 12:54:53)
     Type "copyright", "credits" or "license" for more information.
 
@@ -177,7 +166,6 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 * Interpréteur =ipython=
 
 - Premier programme =python= : /"Hello world"/
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: print("Hello world")
     Hello world
@@ -186,7 +174,6 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 #+BEAMER: \pause
 
 - Obtenir de l'aide /via/ l'opérateur =?=
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [2]: print?
     Docstring:
@@ -203,7 +190,6 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 * Interpréteur =ipython=
 
 - Historique des commandes
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = 10
 
@@ -215,7 +201,6 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 #+BEAMER: \pause
 
 - Auto-complétion
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = 10
 
@@ -229,7 +214,6 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =%=
 
 - =%whos= : afficher un résumé des variables déclarées
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: x = 10
 
@@ -240,7 +224,6 @@ Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =
   #+END_SRC
 
 - =%timeit= : évalue le temps moyen d'exécution d'un code
-  #+BEAMER: \vskip5pt
   #+BEGIN_SRC python
     In [1]: %timeit x = 10
     10000000 loops, best of 3: 13.7 ns per loop
@@ -250,7 +233,6 @@ Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =
 
 =ipython= fournit enfin des alias vers les commandes unix standards
 
-#+BEAMER: \vskip5pt
 #+BEGIN_SRC python
   In [1]: alias
   Total number of aliases: 16

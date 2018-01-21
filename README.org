@@ -82,8 +82,9 @@ Code fragments are syntax highlighted using [[https://code.google.com/p/minted/]
           ("fontsize" "\\footnotesize")
           ("samepage" "")
           ("mathescape" "")
-          ("xrightmargin" "0.5cm")
-          ("xleftmargin"  "0.5cm")
+          ("escapeinside" "@@")
+          ("xrightmargin" "0.cm")
+          ("xleftmargin"  "0.cm")
           ("bgcolor" "solarizedbg")
           ))
 #+END_SRC
@@ -2049,7 +2050,7 @@ up. Practically, everything can be done within this section.
     \flushright%
     \insertframetitle\par%
     \ifx\insertframesubtitle\@empty\else
-    \footnotesize\insertframesubtitle\par\fi}
+    \vskip+3pt\color{gray!75}\footnotesize\faHandORight\xspace\insertframesubtitle\par\fi}
   %% \setbeamertemplate{frametitle}{\vskip+10pt\hfill\insertframetitle\\ \flushright\small\insertframesubtitle}
   \renewcommand{\insertprefixtitle}{{\color{gray}\small\textbf{Option « Programmation en Python »\\}}}
 #+END_SRC
@@ -2079,9 +2080,9 @@ up. Practically, everything can be done within this section.
 #+END_SRC
 ****** Minted lexer
 #+BEGIN_SRC latex
-    %% \usemintedstyle{upsud}
-  \renewcommand{\theFancyVerbLine}{\ttfamily \textcolor[HTML]{93A1A1}{\scriptsize\oldstylenums{\arabic{FancyVerbLine}}}}
+  \renewcommand{\theFancyVerbLine}{\ttfamily \textcolor{gray}{\scriptsize\oldstylenums{\arabic{FancyVerbLine}}}}
   \usemintedstyle{solarizedlight}
+  \newcommand{\prompt}{\color{orange}{\faTerminal}}
 #+END_SRC
 
 ****** Postamble
