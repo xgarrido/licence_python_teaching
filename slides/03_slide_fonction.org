@@ -35,13 +35,11 @@ intégrées au langage Python
 
 #+ATTR_BEAMER: :overlay +-
 - Chaîne de caractères délimitée par des guillemets
- #+BEAMER:\vskip5pt
  #+BEGIN_SRC python
     In [1]: "Une noisette, j'la casse entre mes fesses tu vois... JCVD"
   #+END_SRC
 
 - Chaîne de caractères délimitée par de simples apostrophes
- #+BEAMER:\vskip5pt
  #+BEGIN_SRC python
    In [1]: 'Une noisette, j'la casse entre mes fesses tu vois... JCVD'
      File "<ipython-input-17-39c8b67fd376>", line 1
@@ -50,7 +48,6 @@ intégrées au langage Python
    SyntaxError: invalid syntax
  #+END_SRC
 
- #+BEAMER:\vskip5pt
  #+BEGIN_SRC python
    In [2]: 'Une noisette, j\'la casse entre mes fesses tu vois... JCVD'
  #+END_SRC
@@ -59,20 +56,17 @@ intégrées au langage Python
 #+BEAMER: \framesubtitle{Apostrophe, guillemets \& triple guillemets}
 
 - Chaîne de caractères délimitée par des guillemets
- #+BEAMER:\vskip5pt
  #+BEGIN_SRC python
     In [1]: "Une noisette, j'la casse entre mes fesses tu vois... JCVD"
   #+END_SRC
 
 - Chaîne de caractères délimitée par de simples apostrophes
- #+BEAMER:\vskip5pt
  #+BEGIN_SRC python
    In [2]: 'Une noisette, j\'la casse entre mes fesses tu vois... JCVD'
  #+END_SRC
 
 - Chaîne de caractères délimitée par des triples guillemets \to *documentation de
   fonctions*
- #+BEAMER:\vskip5pt
  #+BEGIN_SRC python
    In [3]: """Une noisette,
    j'la casse entre mes fesses tu vois...
@@ -85,7 +79,7 @@ intégrées au langage Python
 - Les méthodes ou fonctions membres associées aux objets de type =str= sont
   accessibles par le biais de *l'opérateur =.=*
 
-  #+BEAMER:\pause\vskip5pt
+  #+BEAMER:\pause
   #+BEGIN_SRC python
     In [1]: question = "Qu'est-ce qu'un chat qui travaille à la SNCF ?"
 
@@ -93,7 +87,7 @@ intégrées au langage Python
     Out[2]: "QU'EST-CE QU'UN CHAT QUI TRAVAILLE À LA SNCF ?"
   #+END_SRC
 
-  #+BEAMER:\pause\vskip5pt
+  #+BEAMER:\pause
   #+BEGIN_SRC python
     In [3]: reponse = "un cheminou"
 
@@ -112,7 +106,6 @@ intégrées au langage Python
 #+BEAMER: \framesubtitle{Parcours \& sélection de chaînes}
 
 - Parcours par indice : =str[indice]=
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
 
@@ -130,7 +123,6 @@ intégrées au langage Python
 #+BEAMER: \framesubtitle{Parcours \& sélection de chaînes}
 
 - Sélection de sous-chaînes : =str[début:fin:pas]=
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
 
@@ -157,7 +149,6 @@ intégrées au langage Python
 #+BEAMER: \framesubtitle{Parcours \& sélection de chaînes}
 
 - Remplacement de sous-chaînes :
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
 
@@ -181,7 +172,6 @@ intégrées au langage Python
 
 #+ATTR_BEAMER: :overlay +-
 - Remplacement de sous-chaînes :
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
     In [2]: id(citation)
@@ -194,7 +184,6 @@ intégrées au langage Python
 
 - Pour le remplacement de sous-chaînes, on tirera profit de la méthode =replace=
   associée aux méthodes =index= et =find=
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
     In [2]: citation = citation.replace("Chuck Norris", "Patrick Puzo")
@@ -205,7 +194,6 @@ intégrées au langage Python
 
 #+ATTR_BEAMER: :overlay +-
 - Vérification de présence :
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
     In [2]: "Chuck" in citation
@@ -216,7 +204,6 @@ intégrées au langage Python
   #+END_SRC
 
 - Concaténation :
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
     In [2]: citation + "Mais seulement " + str(1) + " fois jusqu'à moins l'infini."
@@ -229,7 +216,6 @@ intégrées au langage Python
 #+BEAMER: \framesubtitle{Format et \emph{Formatage}}
 
 - Utilisation des formats de données du C[fn:20089b4921487a8]
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: "Un entier: %i; un nombre flottant: %f; une chaîne : %s" % (1, 0.1, "toto")
     Out[1]: 'Un entier: 1; un nombre flottant: 0.100000; une chaîne : toto'
@@ -244,7 +230,6 @@ intégrées au langage Python
 #+BEAMER: \framesubtitle{Format et \emph{Formatage}}
 
 - Utilisation de la méthode =format=[fn:14f65e5336818de0]
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: canevas = "Nom: {}, prénom: {}, date de naissance: {}"
 
@@ -252,7 +237,7 @@ intégrées au langage Python
     Out[2]: 'Nom: Van Rossum, prénom: Guido, date de naissance: 31/01/1956'
   #+END_SRC
 
-  #+BEAMER:\pause\vskip5pt
+  #+BEAMER:\pause
   #+BEGIN_SRC python
     In [1]: canevas = "Nom: {nom}, prénom: {prenom}, date de naissance: {date}"
 
@@ -260,7 +245,7 @@ intégrées au langage Python
     Out[2]: 'Nom: Van Rossum, prénom: Guido, date de naissance: 31/01/1956'
   #+END_SRC
 
-  #+BEAMER:\pause\vskip5pt
+  #+BEAMER:\pause
   #+BEGIN_SRC python
     In [1]: canevas = "L'année {0:d} s'écrit {0:b} en binaire et {0:x} en héxadécimal"
 
@@ -276,7 +261,6 @@ intégrées au langage Python
   types*
 
 - Initialisation d'une liste
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: l = []
 
@@ -296,7 +280,6 @@ intégrées au langage Python
 
 #+ATTR_BEAMER: :overlay +-
 - Conversion en liste
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: l = list(range(4))
     In [2]: l
@@ -308,7 +291,6 @@ intégrées au langage Python
   #+END_SRC
 
 - Initialisation d'une liste "en compréhension"
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: l = [x**2 for x in range(4)]
     In [2]: l
@@ -323,7 +305,6 @@ intégrées au langage Python
 #+BEAMER: \framesubtitle{Manipulation d'une liste}
 
 - Accès par indice
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: kebab = ["salade", "tomates", "oignons", "sauce blanche"]
 
@@ -352,7 +333,6 @@ intégrées au langage Python
 #+BEAMER: \framesubtitle{Manipulation d'une liste}
 
 - Ajout & suppression d'éléments
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: kebab = ["salade", "tomates", "oignons", "sauce blanche"]
 
@@ -379,7 +359,6 @@ intégrées au langage Python
 
 #+ATTR_BEAMER: :overlay +-
 - Parcourir une liste
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: kebab = ["salade", "tomates", "oignons", "sauce blanche"]
 
@@ -392,7 +371,6 @@ intégrées au langage Python
   #+END_SRC
 
 - Parcourir une liste en conservant l'indice
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: kebab = ["salade", "tomates", "oignons", "sauce blanche"]
 
@@ -411,7 +389,6 @@ intégrées au langage Python
 #+BEAMER: \framesubtitle{Manipulation d'une liste}
 
 - Tri de listes
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: kebab = ["salade", "tomates", "oignons", "sauce blanche"]
 
@@ -431,7 +408,6 @@ intégrées au langage Python
 * Les /tuples/
 
 - Un /tuple/ correspond à *une liste /immutable/*
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: kebab = ("salade", "tomates", "oignons", "sauce blanche")
 
@@ -458,7 +434,6 @@ intégrées au langage Python
 - Le seul moyen d’accéder à une valeur particulière est par l’intermédiaire de
   sa clé
 
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: tel = {"emmanuelle": 5752, "sébastien": 5578}
 
@@ -486,7 +461,6 @@ intégrées au langage Python
 - Le seul moyen d’accéder à une valeur particulière est par l’intermédiaire de
   sa clé
 
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: tel = {"emmanuelle": 5752, "sébastien": 5578, 'francis': 5915}
 
@@ -524,7 +498,6 @@ intégrées au langage Python
 #+BEAMER: \framesubtitle{Déclaration de fonctions}
 
 - Fonction sans argument et sans valeur de retour
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: def dummy():
        ...:     print("Fonction 'dummy'")
@@ -543,7 +516,6 @@ Par défaut, la valeur de retour d'une fonction est =None=
 #+BEAMER: \framesubtitle{Déclaration de fonctions}
 
 - Fonction *avec argument et valeur de retour*
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: def aire_disque(rayon):
        ...:     return 3.14 * rayon**2
@@ -565,7 +537,6 @@ Par défaut, la valeur de retour d'une fonction est =None=
 #+BEAMER: \framesubtitle{Déclaration de fonctions}
 
 - Fonction *avec argument par défaut et valeur de retour*
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: def aire_disque(rayon=10.0):
        ...:     return 3.14 * rayon**2
@@ -585,7 +556,6 @@ Par défaut, la valeur de retour d'une fonction est =None=
 #+BEAMER: \framesubtitle{Déclaration de fonctions}
 
 - Fonction *retournant plusieurs valeurs*
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: def decomposer(entier, diviseur):
        ...:     return entier // diviseur, entier % diviseur
@@ -602,7 +572,7 @@ Par défaut, la valeur de retour d'une fonction est =None=
 - Les fonctions \lambda sont des fonctions dites *anonymes* /i.e./ sans nom
   pouvant être appliquée "à la volée" dans une expression
 
-  #+BEAMER:\pause\vskip5pt
+  #+BEAMER:\pause
   #+BEGIN_SRC python
     In [1]: f = lambda x : x**2
     In [2]: f(2)
@@ -616,7 +586,6 @@ Par défaut, la valeur de retour d'une fonction est =None=
 * Les fonctions
 #+BEAMER: \framesubtitle{Documentation}
 
-#+BEAMER:\pause\vskip5pt
 #+BEGIN_SRC python
   In [1]: def dummy():
      ...:     """Cette fonction ne sert strictement à rien.
@@ -647,7 +616,7 @@ Pour plus de détails sur les us et coutumes en matière de documentation /cf./
   2) un élément dans une séquence (liste, dictionnaires)
   3) passées comme argument à une autre fonction
 
-  #+BEAMER:\pause\vskip5pt
+  #+BEAMER:\pause
   #+BEGIN_SRC python
     In [1]: ad = aire_disque
 
@@ -662,7 +631,7 @@ Pour plus de détails sur les us et coutumes en matière de documentation /cf./
     Out[5]: (157.0, 0.0)
   #+END_SRC
 
-* Conclusion culturelle
+* COMMENT Conclusion culturelle
 
 #+BEGIN_QUOTE
 Google, c'est le seul endroit où tu peux taper Chuck Norris...
