@@ -43,7 +43,6 @@
   syntaxique...)
 
 - Exemple =citation.py=
- #+BEAMER:\vskip5pt
  #+BEGIN_SRC python -n
    citation = "Une noisette, j'la casse entre mes fesses tu vois... JCVD"
    for word in citation.split():
@@ -53,14 +52,11 @@
 * Scripts =python=
 
 - Le script peut être lancé depuis le terminal /via/ la commande
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     $ python citation.py
   #+END_SRC
 
-  #+BEAMER:\vskip5pt
   ou directement dans l'interpréteur =ipython= en faisant
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: %run citation.py
 
@@ -74,7 +70,6 @@
   *ensemble de fonctions* pouvant être utilisées par différents scripts
 
 - Exemple =jcvd_collection.py=
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python -n :tangle /tmp/jcvd_collection.py
     """
        A file with a lot of JCVD inside
@@ -98,25 +93,20 @@
   l'importer* soit dans un script ou soit dans l'interpréteur
   #+ATTR_BEAMER: :overlay +-
   1) Importation de base
-     #+BEAMER:\vskip5pt
      #+BEGIN_SRC python
        In [1]: import jcvd_collection
        In [2]: jcvd_collection.quote1()
        Quand tu prends confiance en la confiance tu deviens confiant.
      #+END_SRC
-     #+BEAMER:\vskip5pt
 
   2) Importation à l'aide d'un nom raccourci
-     #+BEAMER:\vskip5pt
      #+BEGIN_SRC python
        In [1]: import jcvd_collection as jcvd
        In [2]: jcvd.quote1()
        Quand tu prends confiance en la confiance tu deviens confiant.
      #+END_SRC
-     #+BEAMER:\vskip5pt
 
   3) Importation spécifique d'une fonction
-     #+BEAMER:\vskip5pt
      #+BEGIN_SRC python
        In [1]: from jcvd_collection import quote1
        In [2]: quote1()
@@ -128,7 +118,6 @@
 #+BEGIN_REMARK
 Lors de l'importation, le module est mis _en cache_ et il faut donc le recharger
 pour que les modifications soient prises en compte
-#+BEAMER:\vskip5pt
 #+BEGIN_SRC python
   In [1]: import importlib
   In [2]: importlib.reload(jcvd_collection)
@@ -138,7 +127,6 @@ pour que les modifications soient prises en compte
 * Modules =python=
 
 - La fonction =help= permet d'accéder à la documentation du module
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: help(jcvd_collection)
   #+END_SRC
@@ -151,7 +139,6 @@ pour que les modifications soient prises en compte
   2) dans les répertoires définis au sein de la variable d'environnement
      =PYTHONPATH=
   3) dans l'ensemble des répertoires référencés par =sys.path=
-     #+BEAMER:\vskip5pt
      #+BEGIN_SRC python
        In [1]: import sys
        In [2]: sys.path
@@ -170,7 +157,6 @@ pour que les modifications soient prises en compte
 - Il est possible de faire cohabiter au sein d'un même fichier un script et un
   module
 
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python -n
     def quote0():
         print("Une noisette, j'la casse entre mes fesses tu vois...")
@@ -244,7 +230,6 @@ virtuelle.
 * Programmation orientée objet
 
 - Déclaration d'un objet/classe =Student=
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python -n
     class Student:
         def __init__(self, name):
@@ -264,7 +249,6 @@ virtuelle.
 * Programmation orientée objet
 
 - Création d'un objet de type =Student=
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python -n
     student0 = Student("Patrick Puzo")
     student0.set_age(50)
@@ -276,7 +260,6 @@ virtuelle.
 #+ATTR_BEAMER: :overlay +-
 - Les exceptions sont la conséquence d'erreurs fonctionnelles
   - erreur lors d'un résultat indéfini
-     #+BEAMER:\vskip5pt
      #+BEGIN_SRC python
        In [1]: 0/0
        ---------------------------------------------------------------------------
@@ -286,10 +269,8 @@ virtuelle.
 
        ZeroDivisionError: division by zero
      #+END_SRC
-     #+BEAMER:\vskip5pt
 
   - erreur typographique dans le nom d'une fonction
-     #+BEAMER:\vskip5pt
      #+BEGIN_SRC python
        In [1]: import jcvd_collection
        In [2]: quot1()
@@ -305,7 +286,6 @@ virtuelle.
 
 - Pour "attraper" les exceptions avant qu'elles ne causent l'arrêt du programme,
   on utilise les instructions *=try/except=*
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: while True:
        ...:     try:
@@ -322,7 +302,6 @@ virtuelle.
 * Gestion des exceptions en Python
 
 - Pour "lever" une exception, on utilise l'instruction *=raise=*...
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: def achilles_arrow(x):
        ...:    if abs(x - 1) < 1e-3:
@@ -334,7 +313,6 @@ virtuelle.
 
   #+BEAMER:\pause
 - ... pour mieux pouvoir la récupérer dans un second bloc
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [18]: x = 0
     In [19]: while True:
@@ -352,7 +330,6 @@ virtuelle.
 
 - La fonction intégrée *=print=* permet d'afficher à l'écran n'importe quelle chaîne
   de caractères
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: print("Qu'est qu'un chat qui voit dans le futur ?")
   #+END_SRC
@@ -361,7 +338,6 @@ virtuelle.
 
 - La fonction intégrée *=input=* permet de récupérer une saisie clavier sous la
   forme d'une chaîne de caractères
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [2]: reponse = input("Réponse ? ")
   #+END_SRC
@@ -370,7 +346,6 @@ virtuelle.
 
 - L'écriture dans un fichier se fait nécessairement par le biais de chaîne de
   caractères
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: f = open("QA.txt", "w")
     In [2]: f.write("Qu'est qu'un chat qui voit dans le futur ?")
@@ -380,7 +355,6 @@ virtuelle.
 * Entrées/sorties
 
 - La lecture dans un fichier peut se faire de la façon suivante...
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: f = open("QA.txt", "r")
     In [2]: s = f.read()
@@ -392,7 +366,6 @@ virtuelle.
 #+BEAMER: \pause
 
 - ...ou en lisant le fichier ligne par ligne
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: with open("QA.txt", "r") as f:
        ...:     for line in f:
@@ -407,19 +380,16 @@ virtuelle.
 #+BEAMER: \framesubtitle{Module \texttt{os} : interaction avec le système d'exploitation}
 
 - Importation du module =os=
- #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: import os
   #+END_SRC
 
 - Récupérer le nom du répertoire courant
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: os.getcwd()
   #+END_SRC
 
 - Lister les fichiers présents dans le répertoire courant
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: os.listdir(os.curdir)
   #+END_SRC
@@ -428,7 +398,6 @@ virtuelle.
 #+BEAMER: \framesubtitle{Module \texttt{os} : interaction avec le système d'exploitation}
 
 - Créer un répertoire
- #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: os.mkdir("junkdir")
 
@@ -437,7 +406,6 @@ virtuelle.
   #+END_SRC
 
 - Renommer et supprimer un répertoire
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: os.rename("junkdir", "foodir")
 
@@ -447,7 +415,6 @@ virtuelle.
   #+END_SRC
 
 - Supprimer un fichier
-  #+BEAMER:\vskip5pt
   #+BEGIN_SRC python
     In [1]: os.remove("junk.txt")
   #+END_SRC
