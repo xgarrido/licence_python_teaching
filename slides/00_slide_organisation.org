@@ -212,7 +212,7 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
     \tikzstyle{selected}=[draw=blue,rounded corners,fill=blue!30,blue]
     \tikzstyle{optional}=[dashed,fill=gray!50]
 
-    \node {\openedDirectory{Informatique}}
+    \node {\openedDirectory{Option -- Python}}
     child { node {\closedDirectory{cours}}}
     %%   child { node[xshift=-20pt] {\pdfFile{annexe\_compilation}}}
     %% }
