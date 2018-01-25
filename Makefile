@@ -23,7 +23,7 @@ html: pdf
 	@rm -f README.el *.sty
 
 publish: html
-	@tar czvf /tmp/org-python-publish.tar.gz doc/html
+	@(cd doc/html; tar czvf /tmp/org-python-publish.tar.gz .)
 	@git checkout gh-pages
 	@tar xzvf /tmp/org-python-publish.tar.gz
 	@if [ -n "`git status --porcelain`" ]; then git commit -am "update doc" && git push; fi
