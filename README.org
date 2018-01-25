@@ -2062,80 +2062,45 @@ up. Practically, everything can be done within this section.
 #+BEGIN_SRC emacs-lisp
   (require 'ox-html)
 #+END_SRC
-*** Building html preamble
-:PROPERTIES:
-:HEADER-ARGS: :results none
-:END:
-
-#+TBLNAME: lecture_list
-|---+----------------------------+------------------------------------------------------|
-| + | lecture_pointeur           | Pointeurs, références & allocation dynamique         |
-| + | lecture_fonction           | Rappels sur les fonctions                            |
-| + | lecture_specificite_c++    | Les spécificités du C++                              |
-| + | lecture_struct_class       | Structures et classes                                |
-| + | lecture_encapsulation      | Encapsulation des données                            |
-| + | lecture_constructeur       | Notions de constructeur et de destructeur            |
-| + | lecture_amitie             | Fonctions et classes amies                           |
-| + | lecture_surcharge          | Surcharge d'opérateur                                |
-| + | lecture_heritage           | Héritage                                             |
-| + | lecture_template           | Notions de patrons de fonctions et de classes        |
-| + | lecture_librairie_standard | Introduction à la librairie standard STL             |
-| + | annexe_compilation         | Compilation et directives de préprocesseur           |
-| + | annexe_convention_ecriture | Convention d'écriture et organisation des programmes |
-| + | annexe_cout_cin            | Écriture/lecture sur l'entrée/sortie standard        |
-| + | annexe_variable_statique   | Les membres données statiques                        |
-| + | annexe_enum_typedef        | Utilisation de enum et de typedef                    |
-|---+----------------------------+------------------------------------------------------|
+*** Building list of lectures/TD
 
 #+TBLNAME: td_list
-|---+------------------------+------------------------------------|
-| + | td_pointeur_fonction   | Compilation, pointeur & références |
-| + | td_specificite_c++     | Spécificités du C++                |
-| + | td_classes             | Classes en C++                     |
-| + | td_classe_complexe     | Fraction de nombres complexes      |
-| + | td_nombre_aleatoire    | Constructeur & destructeurs        |
-| + | td_surcharge_operateur | Surcharge d'opérateur              |
-| + | td_polymorphisme       | Polymorphisme & classe abstraite   |
-| + | td_blackjack           | Jeu du blackjack                   |
-|---+------------------------+------------------------------------|
+|---+---------------------+-------------------------------------------------------------|
+| + | 01_td_environnement | <code>venv</code>, <code>pip</code> et <code>ipython</code> |
+| + | 02_td_type          | Variables, structure conditionnelle et autres boucles       |
+| + | 03_td_fonction      | Containers et fonctions                                     |
+| + | 04_td_module        | Modules et POO                                              |
+| + | 05_td_numpy         | Librairie <code>numpy</code>                                |
+| + | 06_td_matplotlib    | Librairie <code>matplotlib</code> (1<sup>ère</sup> partie)  |
+| + | 07_td_matplotlib2   | Librairie <code>matplotlib</code> (2<sup>ème</sup> partie)  |
+|---+---------------------+-------------------------------------------------------------|
 
 #+TBLNAME: slide_list
-|---+------------------------+---------------------------------------------------------|
-| + | slide_compilation      | Compilation & Directives de préprocesseur               |
-| + | slide_pointeur         | Pointeurs, Références & Allocation Dynamique de Mémoire |
-| + | slide_specificite_c++  | Spécificités du C++ (indépendantes de la POO)           |
-| + | slide_struct_class     | Structures & Classes                                    |
-| + | slide_encapsulation    | Encapsulation des données                               |
-| + | slide_constructeur     | Constructeur & Destructeur de classe                    |
-| + | slide_copie            | Copie d'objets                                          |
-| + | slide_amitie_surcharge | Amitié & Surcharge d'opérateur                          |
-| + | slide_heritage_1       | Héritage (Partie 1)                                     |
-| + | slide_heritage_2       | Héritage (Partie 2)                                     |
-| + | slide_template         | Patrons de fonctions et de classes                      |
-| + | slide_STL              | Introduction à la librairie standard                    |
-|---+------------------------+---------------------------------------------------------|
+|---+------------------------+-------------------------------------------------------------------|
+| + | 01_slide_environnement | L'environnement Python                                            |
+| + | 02_slide_type          | Variable, structure conditionnelle et autres boucles              |
+| + | 03_slide_fonction      | Containers et autres fonctions                                    |
+| + | 04_slide_module        | Scripts/modules, programmation orientée objet & exceptions        |
+| + | 05_slide_numpy         | numpy : librairie pour le calcul scientifique                     |
+| + | 06_slide_matplotlib    | matplotlib : librairie pour la représentation graphique           |
+| + | 07_slide_scipy         | <code>scipy</code> : librairie pour la programmation scientifique |
+|---+------------------------+-------------------------------------------------------------------|
 
-#+NAME: html-preamble
-#+HEADERS: :var list=""
-#+BEGIN_SRC shell :tangle no :results output
+#+NAME: generate-list
+#+BEGIN_SRC shell :tangle no :results output :var list=slide_list
   hr=true
   tag=true
-  for f in $list
-  do
-      if [ $f == '+' ]; then
-          if $tag; then preamble+='</a>'; else preamble+='</aa>';fi
-          preamble+='<a href=\"'
+  for f in ${=list}; do
+      if [[ $f == "+" ]]; then
+          if $tag; then preamble+="</a></li>\n"; else preamble+="</aa></li>\n";fi
+          preamble+="<li><a href=\""
           tag=true
-      elif [ $f == '-' ]; then
-          if $tag; then preamble+='</a>'; else preamble+='</aa>';fi
-          preamble+='<aa>'
+      elif [[ $f == "-" ]]; then
+          if $tag; then preamble+="</a></li>\n"; else preamble+="</aa></li>\n";fi
+          preamble+="<li><aa>"
           tag=false
-      elif [[ $f == *lecture_* || $f == *slide_* || $f == *td_* ]]; then
-          if $tag; then preamble+=$f'.html\">';fi
-      elif [[ $f == *annexe_* ]]; then
-          if $hr; then preamble+='\"></a><hr/><a href=\"';fi
-          if $tag; then preamble+=$f'.html\">';fi
-          hr=false
+      elif [[ $f == *slide_* || $f == *td_* ]]; then
+          if $tag; then preamble+="pdf/"$f".pdf\">";fi
       else
           preamble+=$f' '
       fi
@@ -2143,227 +2108,141 @@ up. Practically, everything can be done within this section.
   if $tag; then preamble+='</a>';else preamble+='</aa>';fi
   echo -ne $preamble
 #+END_SRC
+
+*** Generate postamble
+#+NAME: generate-postamble
+#+BEGIN_SRC shell :tangle no :results output
+  cvs_path=$(git config --get remote.origin.url | sed -e 's#git@github.com:#https://github.com/#' -e 's#\.git##')
+  cvs_version=$(LC_MESSAGES=en git --no-pager log -1 HEAD --date=short --pretty=format:'commit <a href=\"url/commit/%H\">%h</a> - %ad' \
+                    | sed "s#url#"${cvs_path}"#")
+  cvs_branch=$(git branch | grep '*' | awk '{print $2}')
+  cvs_version="<i class=\"fab fa-github-alt\"></i> version control - ${cvs_version}"
+  echo ${cvs_version}
+#+END_SRC
+
 *** Building index page
 :PROPERTIES:
-:HEADER-ARGS: :tangle index.html
+:HEADER-ARGS: :mkdirp yes :tangle doc/html/index.html
 :END:
-#+BEGIN_SRC html
-  <?xml version="1.0" encoding="utf-8"?>
+
+#+BEGIN_SRC html :noweb yes
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
     <head>
-      <title>Cours de C++ du Master 1 Physique Fondamentale, Université Paris Sud</title>
+      <title>Cours de Python - Licence 3 Physique Fondamentale, Université Paris Sud</title>
       <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-      <link rel="stylesheet" href="./doc/stylesheets/styles.css">
-      <link rel="stylesheet" href="./doc/stylesheets/org-pygments.css">
-      <style media="screen" type="text/css">
-        #preamble {
-        text-transform:none;
-        text-align:left;
-        font-size:20px;
-        width:200px;
-        }
-      </style>
+      <link rel="stylesheet" href="./stylesheets/styles.css"/>
+      <link rel="stylesheet" href="./stylesheets/org-pygments.css"/>
+      <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     </head>
     <body>
-      <div id="preamble" class="status">
-        <a href="./doc/lectures/lecture_pointeur.html">Fiches C++<small>Cours écrits</small></a>
-        <a href="./doc/slides/slide_compilation.html">Transparents C++<small>Présentations orales</small></a>
-        <a href="./doc/td/td_pointeur_fonction.html">Travaux Dirigés<small>Exercices de C++</small></a>
+      <div id="preamble">
+        <p><img src="cover.png" alt="cover.png"/></p>
       </div>
       <div id="content">
-        <h1 class="title">Cours de C++ du Master 1 Physique Fondamentale, Université Paris Sud</h1><hr/>
+        <h1> Cours de Python - Licence 3 Physique Fondamentale</h1>
+        <hr/>
         <p>
-          Ce site regroupe les documents écrits relatifs au cours de C++ du Master
-          1 de Physique Fondamentale de l'Université Paris-Sud. Ce cours contient :
-          <li><a href="./doc/lectures/lecture_pointeur.html">un cours écrit sous forme de fiches</a></li>
-          <li><a href="./doc/slides/slide_compilation.html">les transparents de cours</a></li>
-          <li><a href="./doc/td/td_pointeur_fonction.html">un ensemble d'exercices</a></li>
+          Ce site regroupe les documents écrits relatifs au cours de Python de la Licence 3 de
+          Physique Fondamentale de l'Université Paris-Sud. Les différents supports sont accessibles
+          au format <code>pdf</code> en suivant les liens ci-dessous.
         </p>
 
         <p>
-          Les différents supports sont accessibles <i>via</i> les liens
-          hypertextes situés à la gauche de cette page.
+          <h2>Transparents de cours</h2>
+          <<generate-list(list=slide_list)>>
         </p>
+
         <p>
-          Historiquement, ces fiches de cours ont été initialement rédigées par
-          Mathieu Loumaigne, moniteur à l'Université Paris-Sud puis, reprises et
-          enrichies par,
-          successivement, <a href="mailto:xavier.garrido@upsud.fr">Xavier
-          Garrido</a> et Yann Leprince.
+          <h2>Exercices</h2>
+          <<generate-list(list=td_list)>>
         </p>
+      </div>
+
+      <div id="postamble" class="status">
+        <<generate-postamble()>>
       </div>
     </body>
   </html>
 #+END_SRC
-*** Define =org-project=
-#+BEGIN_SRC emacs-lisp :noweb yes
-  (unless (boundp 'org-publish-project-alist)
-    (setq org-publish-project-alist nil))
-
-  (setq org-html-style-default "")
-  (setq org-html-htmlize-output-type 'css)
-
-  (let* ((this-dir (file-name-directory (or load-file-name buffer-file-name))))
-    (add-to-list
-     'org-publish-project-alist
-     `("python-lectures"
-       :base-directory ,(expand-file-name "lectures" this-dir)
-       :recursive t
-       :exclude "README.org"
-       :html-extension "html"
-       :base-extension "org"
-       :publishing-directory ,(expand-file-name "doc/lectures" this-dir)
-       :publishing-function org-html-publish-to-html
-       :section-numbers nil
-       :time-stamp-file nil
-       :html-head "<link rel=\"stylesheet\" href=\"../stylesheets/styles.css\">
-                   <link rel=\"stylesheet\" href=\"../stylesheets/org-pygments.css\">"
-       :html-preamble "<<html-preamble(lecture_list)>>
-                      <hr/>
-                      <a href=\"../../index.html\">Retour menu principal</a>"
-       :html-postamble nil))
-    (add-to-list
-     'org-publish-project-alist
-     `("python-td"
-       :base-directory ,(expand-file-name "td" this-dir)
-       :recursive t
-       :exclude "README.org"
-       :html-extension "html"
-       :base-extension "org"
-       :publishing-directory ,(expand-file-name "doc/td" this-dir)
-       :publishing-function org-html-publish-to-html
-       :section-numbers nil
-       :time-stamp-file nil
-       :html-head "<link rel=\"stylesheet\" href=\"../stylesheets/styles.css\">
-                   <link rel=\"stylesheet\" href=\"../stylesheets/org-pygments.css\">"
-       :html-preamble "<<html-preamble(td_list)>>
-                       <hr/>
-                       <a href=\"../../index.html\">Retour menu principal</a>"
-       :html-postamble nil))
-    (add-to-list
-     'org-publish-project-alist
-     `("python-slides"
-       :base-directory ,(expand-file-name "slides" this-dir)
-       :recursive t
-       :exclude "README.org"
-       :html-extension "html"
-       :base-extension "org"
-       :publishing-directory ,(expand-file-name "doc/slides" this-dir)
-       :publishing-function org-html-publish-to-html
-       :section-numbers nil
-       :time-stamp-file nil
-       :html-head "<link rel=\"stylesheet\" href=\"../stylesheets/styles.css\">
-                   <link rel=\"stylesheet\" href=\"../stylesheets/org-pygments.css\">"
-       :html-preamble "<<html-preamble(slide_list)>>
-                       <hr/>
-                       <a href=\"../../index.html\">Retour menu principal</a>"
-       :html-postamble nil))
-    (add-to-list
-     'org-publish-project-alist
-     `("python-images"
-       :base-directory ,this-dir
-       :base-extension "svg\\|png\\|jpg\\|gif\\|"
-       :publishing-directory ,(expand-file-name "doc" this-dir)
-       :recursive t
-       :exclude "doc/*"
-       :publishing-function org-publish-attachment))
-     )
-#+END_SRC
-*** Markup filters
-#+BEGIN_SRC emacs-lisp
-  (defun html::python-filter-link (contents backend info)
-    (when (eq backend 'html)
-      (replace-regexp-in-string ".pdf" ".html" contents)))
-  (add-to-list 'org-export-filter-link-functions 'html::python-filter-link)
-  (defun html::python-filter-headline (contents backend info)
-    (when (eq backend 'html)
-      (replace-regexp-in-string "</h1>" "</h1><hr/>"
-      (replace-regexp-in-string "class=\"PROMPT\"" "class=\"prompt\""
-      (replace-regexp-in-string "Footnotes:" "Notes :" contents)))))
-  (add-to-list 'org-export-filter-final-output-functions 'html::python-filter-headline)
-  (defun html::python-filter-empty-field (backend)
-    (when (eq backend 'html)
-      (delete-matching-lines "<empty>")))
-  (add-to-list 'org-export-before-parsing-hook 'html::python-filter-empty-field)
-#+END_SRC
-*** Publish =python= project
-#+BEGIN_SRC emacs-lisp
-  (defun org-publish-python ()
-    (progn
-      (org-publish-project "python-lectures" 'force)
-      (org-publish-project "python-td"       'force)
-      (org-publish-project "python-slides"   'force)
-      (org-publish-project "python-images"   'force)))
-#+END_SRC
-
-*** Define a =by-backend= macro to deal with =tikzpicture= inclusion
-#+BEGIN_SRC emacs-lisp
-  (require 'cl)
-  (setq org-babel-latex-htlatex "htlatex")
-  (defmacro by-backend (&rest body)
-    `(case org-export-current-backend ,@body))
-  ;; (defmacro by-backend (&rest body)
-  ;;   `(case (if (boundp 'backend) (org-export-backend-name backend) nil) ,@body))
-#+END_SRC
 *** CSS stylesheets
 **** Main stylesheets
 :PROPERTIES:
-:HEADER-ARGS: :mkdirp yes :tangle doc/stylesheets/styles.css
+:HEADER-ARGS: :mkdirp yes :tangle doc/html/stylesheets/styles.css
 :END:
 ***** Google fonts
 #+BEGIN_SRC css
   @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+  @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700);
   @import url(https://fonts.googleapis.com/css?family=Inconsolata);
-  @import url(https://fonts.googleapis.com/css?family=Lobster);
 #+END_SRC
-
 ***** Main =css= definitions
+****** Body
 #+BEGIN_SRC css
   body {
-      width:860px;
-      margin:0 auto;
-      padding:50px;
-      font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      color:#777777;
-      font-weight:300;
+      width: 800px;
+      margin: 0 auto;
+      padding: 50px;
+      color: #555555;
+      font-family: 'Open Sans';
+      font-size: 10pt;
+      /*font: 14px/1.5 Lato, sans-serif;
+      font-weight: 300;*/
   }
+#+END_SRC
 
+****** Headline
+#+BEGIN_SRC css
   h1, h2, h3, h4, h5, h6 {
-      color:#222222;
-      margin:0 0 20px;
-  }
-
-  p, ul, ol, table, pre, dl {
-      margin:0 0 20px;
+      font-family: "Yanone Kaffeesatz", sans-serif;
+      margin:0 0 10px;
   }
 
   h1, h2, h3 {
+      color:#777777;
       line-height:1.1;
   }
 
   h1 {
-      /*font-family:Lobster;*/
-      font-size:28px;
+      margin: 0 0 10px;
+      padding: 0;
+      font-size: 300%;
   }
 
   h2 {
-      color:#393939;
+      font-size: 200%;
   }
 
-  h3, h4, h5, h6 {
-      color:#494949;
+  h3 {
+      font-size: 175%;
   }
 
+  h4, h5, h6 {
+      font-size: 150%;
+  }
+#+END_SRC
+
+Headline with custom id =hidden= are going to be hidden. In this way, I can use
+headline trees but hide their content in the resulting html.
+#+BEGIN_SRC css
+  #hidden {
+      display: none;
+  }
+#+END_SRC
+
+****** Link
+#+BEGIN_SRC css
   a {
-      color:#3399cc;
-      font-weight:400;
+      color: #0D4A70;
       text-decoration:none;
+      text-shadow : 0 0 0 #0D4A70;
+      /* font-weight: 900; */
   }
 
   a:hover {
-      color:#006699;
+      opacity:0.75;
   }
 
   a small {
@@ -2374,18 +2253,25 @@ up. Practically, everything can be done within this section.
   }
 
   a:hover small {
-      color:#777777;
+      opacity:0.75;
+  }
+#+END_SRC
+
+****** Code, cite, table, image, tag
+#+BEGIN_SRC css
+  p, ul, ol, table, pre, dl {
+      /*margin:0 0 20px;*/
   }
 
-  blockquote, .remark {
+  blockquote {
       border-left:1px solid #e5e5e5;
       margin:0;
       padding:0 0 0 20px;
       font-style:italic;
   }
 
-  code, pre, .prompt {
-      font-family:Inconsolata, Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
+  code, pre {
+      font-family:Inconsolata;
       color:#777777;
       font-size:12px;
   }
@@ -2414,33 +2300,37 @@ up. Practically, everything can be done within this section.
       overflow-x: auto;
   }
 
-  .prompt {
-      margin-bottom:15px;
-      padding:8px 15px;
-      background: #777777;
-      color:#e5e5e5;
-      border-radius:5px;
-      border:1px solid #e5e5e5;
-      overflow-x: auto;
+  cite {
+      font-style: normal;
   }
-
-  .prompt p {
-      margin:0;
-  }
-
-  .prompt p:before {
-      content: "$";
+  .tag {
+       display:inline-block;
+       white-space:no-wrap;
+       background:#67ad00;
+       color:#ffffff;
+       float: right;
+       font-size:.6em;
+       line-height:1.5em;
+       border:1px solid #e5e5e5;
+       -webkit-border-radius:0.4em;
+       -moz-border-radius:0.4em;
+       -ms-border-radius:0.4em;
+       -o-border-radius:0.4em;
+       border-radius:0.4em;
+       padding:0 .3em;
+       margin:-1px 0
   }
 
   table {
       width:80%;
       border-collapse:collapse;
-      margin-left: auto;
-      margin-right: auto;
+      margin-left:auto;
+      margin-right:auto;
+      margin-top: 20px;
   }
 
   .table-number {
-      font-weight: bold;
+      font-weight:700;
   }
 
   th, td {
@@ -2460,111 +2350,31 @@ up. Practically, everything can be done within this section.
 
   img {
       max-width:100%;
-      display:block;
-      margin-left:auto;
-      margin-right:auto;
+  }
+
+  img.hidden {
+      display: none;
   }
 
   .figure {
       text-align: center;
   }
 
-  header {
-      width:270px;
-      float:left;
-      position:fixed;
-  }
-
-  header ul {
-      list-style:none;
-      height:40px;
-
-      padding:0;
-
-      background: #eee;
-      background: -moz-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
-      background: -webkit-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
-      background: -o-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
-      background: -ms-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
-      background: linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
-
-      border-radius:5px;
-      border:1px solid #d2d2d2;
-      box-shadow:inset #fff 0 1px 0, inset rgba(0,0,0,0.03) 0 -1px 0;
-      width:270px;
-  }
-
-  header li {
-      width:89px;
-      float:left;
-      border-right:1px solid #d2d2d2;
-      height:40px;
-  }
-
-  header li:first-child a {
-      border-radius:5px 0 0 5px;
-  }
-
-  header li:last-child a {
-      border-radius:0 5px 5px 0;
-  }
-
-  header ul a {
-      line-height:1;
-      font-size:11px;
-      color:#999999;
-      display:block;
-      text-align:center;
-      padding-top:6px;
-      height:34px;
-  }
-
-  header ul a:hover {
-      color:#999999;
-      background: -moz-linear-gradient(top, #fff 0%, #ddd 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#ddd));
-      background: -webkit-linear-gradient(top, #fff 0%,#ddd 100%);
-      background: -o-linear-gradient(top, #fff 0%,#ddd 100%);
-      background: -ms-linear-gradient(top, #fff 0%,#ddd 100%);
-      background: linear-gradient(top, #fff 0%,#ddd 100%);
-  }
-
-  header ul a:active {
-      -webkit-box-shadow: inset 0px 2px 2px 0px #ddd;
-      -moz-box-shadow: inset 0px 2px 2px 0px #ddd;
-      box-shadow: inset 0px 2px 2px 0px #ddd;
-  }
-
-  strong {
-      color:#222222;
+  .figure-number {
       font-weight:700;
   }
-
-  header ul li + li {
-      width:88px;
-      border-left:1px solid #fff;
-  }
-
-  header ul li + li + li {
-      border-right:none;
-      width:89px;
-  }
-
-  header ul a strong {
-      font-size:14px;
-      display:block;
-      color:#222222;
-  }
-
+#+END_SRC
+****** Misc. (bold, =hr= style)
+#+BEGIN_SRC css
   #content {
       width:600px;
       float:right;
       padding-bottom:50px;
-      /* border:1px solid #e5e5e5; */
-      /* border-width:1px 0;       */
-      /* padding:20px 0;           */
-      /* margin:0 0 20px;          */
+  }
+
+  strong {
+      color:#222;
+      font-weight:700;
   }
 
   small {
@@ -2575,113 +2385,24 @@ up. Practically, everything can be done within this section.
       border:0;
       background:#e5e5e5;
       height:1px;
-      margin:0 0 20px;
-  }
-
-  header {
-      width:270px;
-      float:left;
-      position:fixed;
-  }
-
-  header ul {
-      list-style:none;
-      height:40px;
-
-      padding:0;
-
-      background: #eeeeee;
-      background: -moz-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
-      background: -webkit-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
-      background: -o-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
-      background: -ms-linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
-      background: linear-gradient(top, #f8f8f8 0%,#dddddd 100%);
-
-      border-radius:5px;
-      border:1px solid #d2d2d2;
-      box-shadow:inset #fff 0 1px 0, inset rgba(0,0,0,0.03) 0 -1px 0;
-      width:270px;
-  }
-
-  header li {
-      width:89px;
-      float:left;
-      border-right:1px solid #d2d2d2;
-      height:40px;
-  }
-
-  header li:first-child a {
-      border-radius:5px 0 0 5px;
-  }
-
-  header li:last-child a {
-      border-radius:0 5px 5px 0;
-  }
-
-  header ul a {
-      line-height:1;
-      font-size:11px;
-      color:#999999;
-      display:block;
-      text-align:center;
-      padding-top:6px;
-      height:34px;
-  }
-
-  header ul a:hover {
-      color:#999999;
-      background: -moz-linear-gradient(top, #fff 0%, #ddd 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#ddd));
-      background: -webkit-linear-gradient(top, #fff 0%,#ddd 100%);
-  }
-
-  #preamble {
-      font-size:0.8em;
-      text-transform:uppercase;
-      float:left;
-      margin-left:0em;
-      width:20em;
-      text-align:right;
-      position:fixed;
-  }
-
-  #preamble hr {
       margin:0 0 0px;
   }
 
-  #preamble a {
-      display:block;
-      padding:0.2em 1em;
-      color:#3399cc;
-  }
-
-  #preamble a:hover {
-      background-color:#39c;
-      text-decoration:none;
-      color:#f9f9f9;
-      -webkit-transition:color .2s linear;
-  }
-
-  #preamble aa {
-      display:block;
-      padding:0.2em 1em;
-      color:#999999;
-  }
-
-  #preamble aa:hover {
-      background-color:none;
-      text-decoration:none;
-  }
-
   .center {
-      text-align : center;
+      text-align:center;
+  }
+
+  .underline {
+      font-weight: bold;
   }
 
   .footpara {
       display: inline;
   }
+#+END_SRC
 
+****** Scrollbars
+#+BEGIN_SRC css
   .scrollbar-container {
       position: absolute;
       top: 0; bottom: 0; left: 0; right: 0;
@@ -2691,7 +2412,6 @@ up. Practically, everything can be done within this section.
       overflow: auto;
       background-color: whiteSmoke;
   }
-
   .scrollbar-container .inner {
       height: 2011px;
       width: 1985px;
@@ -2699,21 +2419,49 @@ up. Practically, everything can be done within this section.
       background-color: white;
       font-family: sans-serif;
   }
-
   ::-webkit-scrollbar {
       background: transparent;
   }
-
   ::-webkit-scrollbar-thumb {
       background-color: rgba(0, 0, 0, 0.2);
       border: solid whiteSmoke 4px;
       border-radius:15px;
   }
-
   ::-webkit-scrollbar-thumb:hover {
       background-color: rgba(0, 0, 0, 0.3);
   }
+#+END_SRC
 
+****** Header
+Nothing for the time being...
+****** Footer
+#+BEGIN_SRC css
+  footer {
+      width:270px;
+      float:left;
+      position:fixed;
+      bottom:50px;
+  }
+#+END_SRC
+
+****** Preamble, postamble
+#+BEGIN_SRC css
+  #preamble {
+      float:left;
+      margin-top:-2em;
+      margin-left:-10em;
+      position:fixed;
+      width:20em;
+  }
+  #postamble {
+      clear: both;
+      text-align: center;
+      font-size:10px;
+  }
+#+END_SRC
+
+****** Adapting media source
+#+BEGIN_SRC css
   @media print, screen and (max-width: 960px) {
 
       body {
@@ -2779,9 +2527,10 @@ up. Practically, everything can be done within this section.
   }
 #+END_SRC
 
+
 **** Org source code styles
 :PROPERTIES:
-:HEADER-ARGS: :mkdirp yes :tangle doc/stylesheets/org-pygments.css
+:HEADER-ARGS: :mkdirp yes :tangle doc/html/stylesheets/org-pygments.css
 :END:
 
 #+BEGIN_SRC css

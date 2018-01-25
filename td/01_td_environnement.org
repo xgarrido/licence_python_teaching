@@ -99,14 +99,13 @@ lors de ce premier exercice.
 
 6)
 
-   #+BEGIN_SRC python
+   #+BEGIN_SRC ipython
      In [2]: print("Bonjour tout le monde")
-     Bonjour tout le monde
    #+END_SRC
 
 7)
 
-   #+BEGIN_SRC python
+   #+BEGIN_SRC ipython
      In [3]: x1 = 10
 
      In [4]: x2 = 10.0
@@ -116,7 +115,7 @@ lors de ce premier exercice.
 
 8)
 
-   #+BEGIN_SRC python
+   #+BEGIN_SRC ipython
      In [6]: x1.real
      Out[6]: 10
 
@@ -130,7 +129,7 @@ lors de ce premier exercice.
 9) On pourra utiliser soit la commande =input?=, propre à l'interprêteur =ipython=,
    soit l'aide intéractive /i.e./ =help(input)=
 
-   #+BEGIN_SRC python
+   #+BEGIN_SRC ipython
      In [9]: input?
      Signature: input(prompt=None, /)
      Docstring:
