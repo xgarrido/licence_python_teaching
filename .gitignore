@@ -15,3 +15,5 @@
 *_slide_*.pdf
 slide*.pdf
 slides/_minted*
+doc/
+td/_minted*
