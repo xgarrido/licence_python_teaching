@@ -100,7 +100,7 @@
 
 [[https://owncloud.lal.in2p3.fr/public.php?service=files&t=9189955faffd4a00c99ac87ae7bc3432][Télécharger la solution]]
 
-* Fonctions discontinues@@latex:\protect@@[fn:19d5b0088c02b452]
+* Fonctions discontinues
 
 - Représenter la fonction d'Heaviside $\Theta(x)$ définie par
   #+BEGIN_SRC latex
@@ -114,17 +114,16 @@
     \end{align*}
   #+END_SRC
 
-- Le noyau radioactif de\nbsp^{11}C est un émetteur \beta^{+} utilisé lors de
-  tomographie par émission de positrons. La réaction permettant la production de
-  cet élement est la suivante
+- Le noyau radioactif de\nbsp^{11}C est un émetteur \beta^{+} utilisé lors de tomographie par
+  émission de positrons. La réaction permettant la production de cet élement est la suivante
   #+BEGIN_SRC latex
     \begin{align*}
       p + ^{14}_{7}\text{N}\rightarrow ^{11}_{6}\text{C}+\alpha
     \end{align*}
   #+END_SRC
-  En tenant compte du taux de production de\nbsp^{11}C par irradiation et du
-  nombre de noyaux se désintégrant, on peut montrer que le nombre de noyaux
-  de\nbsp^{11}C au cours du temps s'exprime de la façon suivante
+  En tenant compte du taux de production de\nbsp^{11}C par irradiation et du nombre de noyaux se
+  désintégrant, on peut montrer que le nombre de noyaux de\nbsp^{11}C au cours du temps s'exprime de
+  la façon suivante
   #+BEGIN_SRC latex
     \begin{align*}
       \left\{
@@ -135,9 +134,9 @@
         \right.
     \end{align*}
   #+END_SRC
-  où $\lambda=\frac{\ln2}{T_{1/2}}$ et $T_{1/2}$ = 20.36 minutes. $n_i$
-  correspond au taux d'irradition et est égal à 3 10^{8} noyaux/s. Représenter
-  $n(t)$ pour $t_0$ = 3 heures.
+  où $\lambda=\frac{\ln2}{T_{1/2}}$ et $T_{1/2}$ = 20.36 minutes. $n_i$ correspond au taux
+  d'irradition et est égal à 3 10^{8} noyaux/s. Représenter $n(t)$ pour $t_0$ = 3
+  heures[fn:19d5b0088c02b452].
 
 ** Correction                                                   :correction:
 
