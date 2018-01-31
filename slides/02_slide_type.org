@@ -86,17 +86,6 @@ On notera que le nombre complexe $i$ est noté =j= ou =J= en Python
 
 * Type fondamentaux
 
-- *Nombre complexe*
-  #+BEGIN_SRC python
-    In [1]: z = 1.5 + 0.5j
-    In [2]: type(z)
-    Out[2]: complex
-    In [3]: z.real
-    Out[3]: 1.5
-    In [4]: z.imag
-    Out[4]: 0.5
-  #+END_SRC
-
 - *Booléen*
   #+BEGIN_SRC python
     In [1]: b = 3 > 4
