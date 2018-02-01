@@ -18,6 +18,7 @@ langage a été baptisé ainsi en hommage à la troupe de comiques les *« Monty
 Python »*.
 #+END_QUOTE
 
+#+COMMENT: Python v1.0.0 https://groups.google.com/forum/?hl=en#!topic/comp.lang.misc/_QUzdEGFwCo
 * Langage Python : pourquoi ?
 
 #+ATTR_LATEX: :width 0.55\linewidth
