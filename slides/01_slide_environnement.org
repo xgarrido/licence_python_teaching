@@ -231,6 +231,22 @@ Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =
 
 * Interpréteur =ipython=
 
+Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =%=
+
+- =%history= : affiche l'historique des commandes tapées depuis la session courante de =ipython=
+  #+BEGIN_SRC python
+    In [1]: x = 10
+
+    In [2]: %history
+    x = 10
+    %history
+  #+END_SRC
+
+  La commande =%history -g= vous retournera l'ensemble des commandes saisies depuis la toute première
+  session =ipython=.
+
+* Interpréteur =ipython=
+
 =ipython= fournit enfin des alias vers les commandes unix standards
 
 #+BEGIN_SRC python
