@@ -1,0 +1,83 @@
+# -*- eval: (setenv "PYTHONPATH" (concat default-directory "lib")) -*-
+#+TITLE:  Librairie =scipy=
+#+AUTHOR: Xavier Garrido
+#+DATE:   07/02/2018
+#+OPTIONS: toc:nil ^:{}
+#+LATEX_HEADER: \setcounter{chapter}{7}
+
+* À la recherche des ondes gravitationnelles
+
+** Importation des libraires scientifiques
+#+BEGIN_SRC ipython :session :results none
+  import numpy as np
+  %matplotlib inline
+  import matplotlib.pyplot as plt
+#+END_SRC
+
+** Importation de la librairie pour la lecture des données LIGO
+#+BEGIN_SRC ipython :session :results none
+  import readligo as rl
+#+END_SRC
+
+** Déclaration des propriétés de l'événement
+:PROPERTIES:
+:HEADER-ARGS: :results none
+:END:
+
+*** Nom de l'événement
+#+BEGIN_SRC ipython :session
+  event_name = "GW150914"
+#+END_SRC
+
+*** Fichiers associés à l'événement
+Les détections ont été réalisées par deux détecteurs :
+- =H1= correspond au détecteur d'Hanford situé dans l'état de Washington,
+- =L1= correspond au détecteur de Livingston situé dans l'état de Louisiane.
+
+#+BEGIN_SRC ipython :session
+  fn_H1 = "data/H-H1_LOSC_4_V2-1126259446-32.hdf5"
+  fn_L1 = "data/L-L1_LOSC_4_V2-1126259446-32.hdf5"
+#+END_SRC
+
+*** COMMENT Autres propriétés
+#+BEGIN_COMMENT
+"fs"          : 4096,
+"tevent"      : 1126259462.44,
+"utcevent"    : "2015-09-14T09:50:45.44",
+"m1"          : 41.743,
+"m2"          : 29.237,
+"a1"          : 0.355,
+"a2"          : -0.769,
+"approx"      : "lalsim.SEOBNRv2",
+"fband"       : [43.0,300.0],
+"f_min"       : 10.0
+#+END_COMMENT
+
+** Lecture des événements
+La fonction =loaddata= de la librairie =readligo= permet de récupérer la déformée (/strain/) en fonction
+du temps
+#+BEGIN_SRC ipython :session :results raw
+  strain_H1, time_H1, _ = rl.loaddata(fn_H1)
+  strain_L1, time_L1, _ = rl.loaddata(fn_L1)
+#+END_SRC
+
+** Premier aperçu des données temporelles
+#+BEGIN_SRC ipython :session :session :results raw drawer
+  tevent = 1126259462.44
+  t = time_H1
+  dt = 5 #sec
+  idxt = np.where((t >= tevent-dt) & (t < tevent+dt))
+
+  plt.plot(t[idxt]-tevent, strain_H1[idxt], label="H1 strain")
+  plt.plot(t[idxt]-tevent, strain_L1[idxt], label="L1 strain")
+  plt.title("Événement " + event_name)
+  plt.xlabel("temps (s) depuis " + str(tevent))
+  plt.ylabel("strain [no unit]")
+  plt.legend()
+#+END_SRC
+
+#+RESULTS:
+:results:
+: <matplotlib.legend.Legend at 0x7f161396d8d0>
+[[file:./obipy-resources/4562AEc.png]]
+:end:
