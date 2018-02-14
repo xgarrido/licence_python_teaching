@@ -348,7 +348,6 @@ nouvelle valeur de ces paramètres.
 
 - Resolution de COBE 7°, WMAP 33 fois meilleure et Planck 3 fois meilleure que WMAP
 
-
 * COMMENT Pie charts and polar charts for disk usage
 
 http://matplotlib.org/examples/pylab_examples/polar_demo.html

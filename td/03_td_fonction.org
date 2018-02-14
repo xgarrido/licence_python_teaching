@@ -111,7 +111,7 @@ commande =source=.
 
 * Modularité
 
-- Dans un fichier intitulé =euler_project.py=, reprener les différentes
+- Dans un fichier intitulé =euler_project.py=, reprenez les différentes
   solutions aux projets Euler résolus jusqu'à présent et isoler ces solutions
   dans des fonctions dont le nom correspondra au numéro du projet préfixé du
   terme =euler=. Documenter chacune de ces fonctions puis résoudre les 587
