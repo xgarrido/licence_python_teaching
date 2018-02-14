@@ -351,7 +351,7 @@ intégrées au langage Python
 
     In [8]: kebab.insert(3, "harissa")
     In [9]: kebab
-    Out[9]: ['tomates', 'sauce blanche', 'salade', 'harissa', 'oignons']
+    Out[9]: ['salade', 'tomates', 'oignons', 'harissa', 'sauce blanche', 'frites', 'coca']
   #+END_SRC
 
 * Les listes
@@ -382,7 +382,7 @@ intégrées au langage Python
     3 sauce blanche
 
     In [3]: for idx, item in enumerate(kebab):
-       ...:     print(idx, kebab[idx])
+       ...:     print(idx, item)
   #+END_SRC
 
 * Les listes
