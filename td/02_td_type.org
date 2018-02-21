@@ -194,7 +194,8 @@ commande =source=.
        #+END_SRC
 6)
    #+BEGIN_SRC python
-     i = 1; p = 1
+     import math
+     i = p = 1
      while abs(2*p - math.pi) > 1e-7:
          p *= 4*i**2/(4*i**2-1)
          i += 1

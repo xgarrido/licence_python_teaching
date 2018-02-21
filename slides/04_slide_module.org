@@ -53,7 +53,7 @@
 
 - Le script peut être lancé depuis le terminal /via/ la commande
   #+BEGIN_SRC python
-    $ python citation.py
+    @\prompt@ python citation.py
   #+END_SRC
 
   ou directement dans l'interpréteur =ipython= en faisant

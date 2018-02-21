@@ -280,14 +280,15 @@ La "clé" utilisée par =pandas= (dans l'exemple ci-dessus =method= et =year=) s
 
 [[https://owncloud.lal.in2p3.fr/public.php?service=files&t=f51bb19a010f9f8d69bced6b87fe8b8c][Télécharger la solution]]
 
-* Interface graphique
+* Interfaces graphiques
 
+** Production de\nbsp^{11}C
 Reprendre l'exercice sur la variation du nombre de noyaux de carbone 11 en
 ajoutant à la représentation initiale, trois /sliders/ respectivement $n_i$,
 $T_{1/2}$ et $t_0$ et faire en sorte que la figure se reconstruise à chaque
 nouvelle valeur de ces paramètres.
 
-** Correction                                                   :correction:
+*** Correction                                                 :correction:
 
 #+BEGIN_SRC python -n :tangle scripts/nc11_gui.py
   import numpy as np
@@ -343,6 +344,77 @@ nouvelle valeur de ces paramètres.
 [[file:figures/carbon11_gui.png]]
 
 [[https://owncloud.lal.in2p3.fr/public.php?service=files&t=895bc18cbd425c90cbb6cbb8f0986a70][Télécharger la solution]]
+
+** Distribution spatiale de photons émis depuis une source en mouvement
+On peut montrer (/cf./ TD Relativité) que la distribution de photons émis depuis une source en
+mouvement relativiste s'écrit
+#+BEGIN_SRC latex
+  \begin{align*}
+    \frac{\text{d} N}{N_0}&=f(\theta)\cdot\frac{\text{d}\Omega}{4\pi}\\
+    &=\frac{1-\beta^2}{(1-\beta\cos\theta)^2}\cdot\frac{\text{d}\Omega}{4\pi}
+  \end{align*}
+#+END_SRC
+où $\theta$ est l'angle zénithal et $\text{d}\Omega=\sin\theta\text{d}\theta\text{d}\phi$ dans le
+référentiel statique de l'observateur. Représenter la fonction $f(\theta)$ en représentation polaire
+puis ajouter un /slider/ permettant de faire varier la vitesse $\beta=\frac{V}{c}$ de la source par
+rapport à l'observateur.
+
+*** Correction                                                 :correction:
+
+#+BEGIN_SRC ipython :session :results raw drawer :exports none
+  %matplotlib inline
+  %config InlineBackend.figure_format = "svg"
+  import numpy as np
+  def f(theta, beta):
+        return (1-beta**2)/(1-beta*np.cos(theta))**2
+
+  r = np.arange(0, 1, 0.0001)
+  theta = 2*np.pi*r
+
+  import matplotlib.pyplot as plt
+  ax = plt.subplot(111, projection="polar")
+  for beta in [0, 0.5, 0.8, 0.9]:
+        ax.plot(theta, f(theta, beta), label=r"$\beta$={}".format(beta))
+  ax.set_rticks([])
+  ax.legend()
+  # plt.savefig("./figures/photons_distribution.pdf")
+#+END_SRC
+
+#+RESULTS:
+:results:
+: <matplotlib.legend.Legend at 0x7ff3a6a3db38>
+[[file:./obipy-resources/1526azm.svg]]
+:end:
+
+** Bon anniversaire
+*** Correction                                                 :correction:
+#+BEGIN_SRC ipython :session :results raw drawer
+  import matplotlib.pyplot as plt
+  import numpy as np
+
+  def trajectory(beta=0, distance=0):
+      return [0, distance, 0], [0, distance/beta, 2*distance/beta]
+
+  distance = 4 # a.l
+  x, y = trajectory(beta=4/5, distance=distance)
+
+  plt.figure(figsize=(6,8))
+  plt.plot(x, y, "-o")
+  plt.plot([0, 2*distance], [0, 2*distance], "--", color="C3")
+  plt.xlim(0, 2*distance)
+  plt.ylim(0)
+  plt.xlabel(r"$x^1$ = distance [a.l.]")
+  plt.ylabel(r"$x^0$ = ct [années]")
+  plt.text(distance*1.75, distance*1.80, "cône de lumière", color="C3", rotation=45, ha="center", va="center")
+  plt.fill_between([0, 2*distance], [0, 2*distance], color="lightgray")
+  plt.yticks(np.arange(10))
+  plt.grid()
+#+END_SRC
+
+#+RESULTS:
+:results:
+[[file:./obipy-resources/1792NUg.png]]
+:end:
 
 * COMMENT Degrade Planck temperature map
 

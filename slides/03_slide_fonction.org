@@ -440,7 +440,7 @@ intégrées au langage Python
     In [2]: tel["francis"] = 5915
     In [3]: tel
     Out[3]: {'sébastien': 5578, 'francis': 5915, 'emmanuelle': 5752}
-    In [4]: tel['sébastien']
+    In [4]: tel["sébastien"]
     Out[4]: 5578
 
     In [5]: tel.keys()
