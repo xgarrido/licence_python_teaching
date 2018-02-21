@@ -73,7 +73,7 @@ d'échantillonage =fs= et la longueur de chaque segment =nperseg = 4*fs=/.
 ** Spectrogrammes des signaux
 
 On peut également visualiser la puissance du signal à l'aide d'un spectrogramme dans l'espace
-fréquence --temps. À l'aide de la fonction =specgram= de =matplotlib=, représenter le sepctrogramme pour
+fréquence--temps. À l'aide de la fonction =specgram= de =matplotlib=, représenter le spectrogramme pour
 chaque signaux à \pm 5 secondes autour du temps supposé de l'événement. On utilisera sans plus de
 justification, les paramètres suivants pour le spectrogramme :
 
