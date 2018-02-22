@@ -10,11 +10,11 @@
 :BEAMER_ENV: fullframe
 :END:
 
-- *Modularité du code : script/modules*
+- Modularité du code : script/modules
 
-- *Notion de programmation orientée objet*
+- Notion de programmation orientée objet
 
-- *Gestion des exceptions en Python*
+- Gestion des exceptions en Python
 
 - Entrées/sorties
 
@@ -253,6 +253,8 @@ virtuelle.
     student = Student("Patrick Puzo")
     student.set_age(50)
     student.set_mark(0.0)
+
+    print("Résultat de {} : {}/20".format(student.name, student.mark))
   #+END_SRC
 
 * Gestion des exceptions en Python
