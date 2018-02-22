@@ -250,9 +250,9 @@ virtuelle.
 
 - Création d'un objet de type =Student=
   #+BEGIN_SRC python -n
-    student0 = Student("Patrick Puzo")
-    student0.set_age(50)
-    student0.set_mark(0.0)
+    student = Student("Patrick Puzo")
+    student.set_age(50)
+    student.set_mark(0.0)
   #+END_SRC
 
 * Gestion des exceptions en Python
