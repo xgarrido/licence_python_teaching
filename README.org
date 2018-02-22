@@ -2116,7 +2116,7 @@ up. Practically, everything can be done within this section.
   cvs_version=$(LC_MESSAGES=en git --no-pager log -1 HEAD --date=short --pretty=format:'commit <a href="url/commit/%H">%h</a> - %ad' \
                     | sed "s#url#"${cvs_path}"#")
   cvs_branch=$(git branch | grep '*' | awk '{print $2}')
-  cvs_version="<i class=\"fab fa-github-alt\"></i> version control - ${cvs_version}"
+  cvs_version="<i class=\"fab fa-github-alt\"></i> ${cvs_version}"
   echo ${cvs_version}
 #+END_SRC
 
