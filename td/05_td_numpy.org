@@ -4,7 +4,16 @@
 #+OPTIONS: toc:nil ^:{}
 #+LATEX_HEADER: \setcounter{chapter}{4}
 
-* Création de matrices
+#+COMMENT: https://www.machinelearningplus.com/101-numpy-exercises-python/
+
+* Création/manipulation de tableaux
+
+- Créer un vecteur contenant les nombres entiers de 0 à 9 puis n'afficher que les valeurs paires de
+  ce vecteur. Remplacer ensuite ces valeurs paires par -1.
+
+- Créer un vecteur de 20 valeurs flottantes réparties uniformément entre 1 et 50. À l'aide de la
+  fonction =where= de =numpy=, remplacer les valeurs inférieures à 10 par 10 et celle supérieure à 30
+  par 30.
 
 - Créer les matrices suivantes en respectant le type et en 3 opérations maximum
   #+BEGIN_SRC latex
@@ -27,8 +36,7 @@
   #+END_SRC
   Dans le second cas, on pourra s'aider de la méthode =diag=
 
-- En utilisant la méthode =tile=, reproduire la matrice suivante à l'aide d'une
-  seule commande
+- En utilisant la méthode =tile=, reproduire la matrice suivante à l'aide d'une seule commande
   #+BEGIN_SRC latex
     \begin{align*}
       \begin{bmatrix}
@@ -48,6 +56,20 @@
 -
   #+BEGIN_SRC python
     import numpy as np
+    v = np.arange(0, 10)
+    v[v%2 == 1] = -1
+  #+END_SRC
+
+-
+  #+BEGIN_SRC ipython
+    import numpy as np
+    v = np.random.uniform(1, 50, 20)
+    v = np.where(v < 10, 10, np.where(v > 30, 30, v))
+  #+END_SRC
+
+-
+  #+BEGIN_SRC python
+    import numpy as np
     M = np.ones((4,4))
     M[2,3] = 2
     M[3,1] = 6
@@ -55,6 +77,7 @@
   #+END_SRC
 
   #+BEGIN_SRC python
+    import numpy as np
     M = np.diag([2, 3, 4, 5, 6], k=-1)
     M = M[:, :5]
     print(M)
@@ -62,6 +85,7 @@
 
 -
   #+BEGIN_SRC python
+    import numpy as np
     M = np.tile([[4,3], [2, 1]], (2, 3))
     print(M)
   #+END_SRC
@@ -70,14 +94,14 @@
 
 * Fonctions universelles
 
-- Créer un tableau à une dimension contenant 1 million de valeurs aléatoires
-  comprises entre 1 et 100
+- Créer un tableau à une dimension contenant 1 million de valeurs aléatoires comprises entre 1 et
+  100
 
-- Créer une fonction =invert= qui retournera un second tableau résultat de
-  l'opération d'inversion du premier tableau
+- Créer une fonction =inverse= qui retournera un second tableau résultat de l'opération d'inversion du
+  premier tableau
 
-- À l'aide de la fonction intégrée =%timeit= de l'interpréteur =ipython=, estimer le
-  temps moyen nécessaire à l'exécution de la fonction =inverse=
+- À l'aide de la fonction intégrée =%timeit= de l'interpréteur =ipython=, estimer le temps moyen
+  nécessaire à l'exécution de la fonction =inverse=
 
 - Estimer ce même temps d'exécution, en utilisant l'opérateur division
 
@@ -102,16 +126,15 @@
 
 * Sale temps sur Seattle
 
-- Télécharger le fichier [[https://goo.gl/LnXGOe][=seattle2014.csv=]] qui contient pour chaque jour de
-  l'année 2014 (colonne 1), la hauteur des précipitations exprimé en dixième de
-  millimètres (colonne 2) ainsi que les températures maximale (colonne 3) et
-  minimale (colonne 4), exprimées en dixième de degrés Celsius, à Seattle.
+- Télécharger le fichier [[https://owncloud.lal.in2p3.fr/index.php/s/HlLjdrv0C9lLYl9][=seattle2014.csv=]] qui contient pour chaque jour de l'année 2014 (colonne
+  1), la hauteur des précipitations exprimé en dixième de millimètres (colonne 2) ainsi que les
+  températures maximale (colonne 3) et minimale (colonne 4), exprimées en dixième de degrés Celsius,
+  à Seattle.
 
-- Charger l'ensemble des données dans un tableau =numpy= en prenant bien garde au
-  caractère délimitant chaque champ puis, après avoir converti la hauteur des
-  précipitations en centimètres et les températures en degré Celsius, calculer
-  les valeurs suivantes sur chacune des données du fichier (hauteur des
-  précipitations, $T_\text{min}$ et $T_\text{max}$) :
+- Charger l'ensemble des données dans un tableau =numpy= en prenant bien garde au caractère délimitant
+  chaque champ puis, après avoir converti la hauteur des précipitations en centimètres et les
+  températures en degré Celsius, calculer les valeurs suivantes sur chacune des données du fichier
+  (hauteur des précipitations, $T_\text{min}$ et $T_\text{max}$) :
   1) moyenne, médiane et écart type
   2) valeurs minimale et maximale
   3) les quantiles à 25% et 75%
@@ -120,11 +143,11 @@
 
 - Calculer la hauteur totale d'eau tombée à Seattle en 2014
 
-- Dénombrer le nombre total de jours dans l'année pendant lesquels il a plu à
-  Seattle et déterminer combien de ces jours étaient pairs
+- Dénombrer le nombre total de jours dans l'année pendant lesquels il a plu à Seattle et déterminer
+  combien de ces jours étaient pairs
 
-- Représenter la distribution de la hauteur des précipitations à l'aide de la
-  méthode =hist= de =matplotlib.pyplot=
+- Représenter la distribution de la hauteur des précipitations à l'aide de la méthode =hist= de
+  =matplotlib.pyplot=
 
 ** Correction                                                   :correction:
 

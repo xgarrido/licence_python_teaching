@@ -25,7 +25,7 @@ séance à l'aide de la commande =source=.
 
 ** Correction                                                   :correction:
 
-- On ajoutera à la fin du fichier [[https://owncloud.lal.in2p3.fr/public.php?service=files&t=baedb6648606a160667164cb66719fff][=euler_project.py=]], les lignes suivantes
+- On ajoutera à la fin du fichier  [[https://owncloud.lal.in2p3.fr/index.php/s/IzfFFXrKuTeQMeF][=euler_project.py=]], les lignes suivantes
 
   #+BEGIN_SRC python
     projects = {1 : euler001, 2 : euler002, 6 : euler006, 16 : euler016, 25 : euler025}
@@ -41,7 +41,7 @@ séance à l'aide de la commande =source=.
             break
   #+END_SRC
 
-- [[https://owncloud.lal.in2p3.fr/public.php?service=files&t=f7b0da7f8e0b6eb5f08652a9c77b8aef][Fichier test]]
+- [[https://owncloud.lal.in2p3.fr/index.php/s/VnyLgCXkTo5kS0r][Fichier test]]
   #+BEGIN_SRC python :tangle scripts/test_euler_project.py
     import euler_project as ep
 
@@ -95,7 +95,7 @@ séance à l'aide de la commande =source=.
 
 ** Correction                                                   :correction:
 
-1) Ci-dessous la classe [[https://owncloud.lal.in2p3.fr/public.php?service=files&t=18aa1a916040f08907c4affb31d6b09f][=Particle=]]
+1) Ci-dessous la classe [[https://owncloud.lal.in2p3.fr/index.php/s/J7vGM9WVJgWMqUO][=Particle=]]
 
    #+BEGIN_SRC python :tangle scripts/particle.py
      class Particle:
@@ -109,7 +109,7 @@ séance à l'aide de la commande =source=.
                                                                                        self.charge)
    #+END_SRC
 
-   et son [[https://owncloud.lal.in2p3.fr/public.php?service=files&t=663f53ca4efc9c1ee3bf3afb9120ec6d][fichier test]]
+   et son [[https://owncloud.lal.in2p3.fr/index.php/s/n9dD83qJdEi9rtg][fichier test]]
 
    #+BEGIN_SRC python :tangle scripts/test_particle.py
      import particle
@@ -124,7 +124,7 @@ séance à l'aide de la commande =source=.
          print(p)
    #+END_SRC
 
-2) Classe [[https://owncloud.lal.in2p3.fr/public.php?service=files&t=55537c0acad930f6d4057d9f50d5786b][=Point=]]
+2) Classe [[https://owncloud.lal.in2p3.fr/index.php/s/VnyLgCXkTo5kS0r][=Point=]]
 
    #+BEGIN_SRC python :tangle scripts/point.py
      class Point:
@@ -137,7 +137,7 @@ séance à l'aide de la commande =source=.
                return Point(self.x+other.x, self.y+other.y)
    #+END_SRC
 
-   Classe [[https://owncloud.lal.in2p3.fr/public.php?service=files&t=5ae22f0c2121473b00197db3875d8dc1][=Vector2D=]]
+   Classe [[https://owncloud.lal.in2p3.fr/index.php/s/95lVALxaaisaXEv][=Vector2D=]]
 
    #+BEGIN_SRC python :tangle scripts/vector2d.py
      class Vector2D:
@@ -152,7 +152,7 @@ séance à l'aide de la commande =source=.
              return "point1 : {}, point2 : {}".format(self.point1, self.point2)
    #+END_SRC
 
-   [[https://owncloud.lal.in2p3.fr/public.php?service=files&t=9d6fbe5c580c5d2ecc5047c2a20f5f30][Fichier test]] des deux précédentes classes
+   [[https://owncloud.lal.in2p3.fr/index.php/s/T8vcv18yCRozS3y][Fichier test]] des deux précédentes classes
 
    #+BEGIN_SRC python :tangle scripts/test_vector2d.py
      import point as p

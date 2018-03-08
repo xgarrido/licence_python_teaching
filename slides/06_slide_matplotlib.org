@@ -618,7 +618,7 @@ sans échapper les caractères précédés de =\=
 
   In [6]: plt.title("Variation de la fonction sinus")
   In [7]: plt.xlabel(r"$\theta$")
-  In [8]: plt.ylabel(r"$\cos\theta$")
+  In [8]: plt.ylabel(r"$\sin\theta$")
 #+END_SRC
 
 ** /Kozmetix/ sous =matplotlib=
