@@ -225,7 +225,7 @@ son algorithme d'analyse discriminante linéaire à même de séparer les 3 esp�
 de fleur d'iris. Ces données sont devenues depuis un cas typique pour de
 nombreuses techniques de classification automatique en /machine learning/.
 
-- Télécharger le fichier [[https://goo.gl/8IjB9o][=iris.csv=]] qui contient la longueur et la largeur des
+- Télécharger le fichier [[https://owncloud.lal.in2p3.fr/index.php/s/Z7bymhD4przBPZc][=iris.csv=]] qui contient la longueur et la largeur des
   sépales en cm (colonne 1 et 2), la longueur et la largeur des pétales en cm
   (colonne 3 et 4) ainsi qu'une dernière colonne dont la valeur, 0, 1 ou 2, est
   relative à l'espèce de la fleur d'iris (0 = /iris setosa/, 1 = /iris versicolor/,

@@ -396,7 +396,7 @@ rapport à l'observateur.
 [[file:./obipy-resources/1526BuJ.svg]]
 :end:
 
-** Bon anniversaire
+** COMMENT Bon anniversaire
 *** Correction                                                 :correction:
 #+BEGIN_SRC ipython :session :results raw drawer :tangle scripts/bon_anniversaire.py
   %matplotlib inline

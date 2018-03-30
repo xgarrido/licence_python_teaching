@@ -1,4 +1,3 @@
-%matplotlib inline
 import numpy as np
 def f(theta, beta):
       return (1-beta**2)/(1-beta*np.cos(theta))**2
@@ -8,7 +7,7 @@ theta = 2*np.pi*r
 
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots(subplot_kw={"projection": "polar"})
-plt.subplots_adjust(bottom=0.25, left=0.25)
+plt.subplots_adjust(bottom=0.25, left=0.15)
 
 l, = ax.plot(theta, f(theta, beta=0))
 ax.set_rticks([])
@@ -24,3 +23,5 @@ axbeta = plt.axes([0.15, 0.10, 0.75, 0.03])
 from matplotlib.widgets import Slider
 sbeta = Slider(axbeta, r"$\beta$", 0, 0.999999, valinit=0)
 sbeta.on_changed(update)
+
+plt.show()
