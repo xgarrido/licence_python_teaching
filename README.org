@@ -721,6 +721,12 @@ layout)
         \endlist}
 #+END_SRC
 
+******* verbatim
+#+BEGIN_SRC latex
+  %% \def\@xobeysp{\mbox{}\space}
+  \def\verbatim@font{\color{gray}\normalfont\ttfamily\raggedright\leftskip\@totalleftmargin\small}
+#+END_SRC
+
 ******* Correction
 #+BEGIN_SRC latex
   \RequirePackage[framemethod=tikz]{mdframed}
@@ -2073,6 +2079,7 @@ up. Practically, everything can be done within this section.
 | + | 05_td_numpy         | Librairie <code>numpy</code>                                |
 | + | 06_td_matplotlib    | Librairie <code>matplotlib</code> (1<sup>ère</sup> partie)  |
 | + | 07_td_matplotlib2   | Librairie <code>matplotlib</code> (2<sup>ème</sup> partie)  |
+| + | 08_td_scipy         | Librairie <code>scipy</code>                                |
 |---+---------------------+-------------------------------------------------------------|
 
 #+TBLNAME: slide_list
