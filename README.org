@@ -2078,7 +2078,7 @@ up. Practically, everything can be done within this section.
 | + | 04_td_module        | Modules et POO                                              |
 | + | 05_td_numpy         | Librairie <code>numpy</code>                                |
 | + | 06_td_matplotlib    | Librairie <code>matplotlib</code> (1<sup>ère</sup> partie)  |
-| + | 07_td_matplotlib2   | Librairie <code>matplotlib</code> (2<sup>ème</sup> partie)  |
+| + | 07_td_matplotlib    | Librairie <code>matplotlib</code> (2<sup>ème</sup> partie)  |
 | + | 08_td_scipy         | Librairie <code>scipy</code>                                |
 |---+---------------------+-------------------------------------------------------------|
 
