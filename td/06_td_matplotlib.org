@@ -292,7 +292,7 @@ nombreuses techniques de classification automatique en /machine learning/.
   color = plt.cm.get_cmap("viridis")
   for key, name in iris.items():
       rgba = color(key/2)
-      plt.scatter([], [],c=rgba, alpha=0.2, label=name)
+      plt.scatter([], [], c=rgba, alpha=0.2, label=name)
       plt.legend()
 
 #+END_SRC
