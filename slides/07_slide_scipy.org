@@ -233,7 +233,7 @@
 - Exemple d'intégrale multiple
   #+BEGIN_SRC latex
     \begin{align*}
-      I_n=\int_0^\infty\int_1^\infty\frac{e^{-xt}}{t^n}\text{d}t\text{d}x=\frac{1}{n}
+      I_n=\int_{x=0}^\infty\int_{t=1}^\infty\frac{e^{-xt}}{t^n}\text{d}t\text{d}x=\frac{1}{n}
     \end{align*}
   #+END_SRC
 
@@ -241,7 +241,7 @@
   #+BEGIN_SRC python
     In [1]: def I(n):
        ...:     from scipy.integrate import dblquad
-       ...:     return dblquad(lambda t, x: np.exp(-x*t)/t**n, 0, np.inf, lambda x: 1, lambda x: np.inf)
+       ...:     return dblquad(lambda t, x: np.exp(-x*t)/t**n, 0, np.inf, lambda t: 1, lambda t: np.inf)
 
     In [2]: I(4)[0], I(4)[0]-1/4
     Out[2]: (0.2500000000043577, 4.357680882804971e-12)
@@ -260,22 +260,21 @@
 * *=scipy.integrate=* : résolution d'équations différentielles ordinaires
 
 #+ATTR_BEAMER: :overlay +-
-- =scipy= fournit l'interface *=odeint=* pour résoudre les EDO en plus de l'interface
-  =ode=, plus complète mais plus subtile
+- =scipy= fournit l'interface *=odeint=* pour résoudre les EDO en plus de l'interface =ode=, plus complète
+  mais plus subtile
 
-- Une équation différentielle ordinaire peut s'écrire sous la forme *$y'=f(y, t)$*
-  où *$y = [y_1(t), y_2(t),\ldots, y_n(t)]$* et *$f$ est une fonction fournissant
-  les dérivées des fonctions $y_i(t)$*
+- Une équation différentielle ordinaire peut s'écrire sous la forme *$y'=f(y, t)$* où *$y = [y_1(t),
+  y_2(t),\ldots, y_n(t)]$* et *$f$ est une fonction fournissant les dérivées des fonctions $y_i(t)$*
 
-- La résolution /via/ la fonction =odeint= implique la connaissance de $f$ et des
-  conditions initiales $y(0)$
+- La résolution /via/ la fonction =odeint= implique la connaissance de $f$ et des conditions initiales
+  $y(0)$
 
   #+BEGIN_SRC python
     y_t = odeint(f, y_0, t)
   #+END_SRC
 
-  où =t= est un vecteur =numpy= correspondant à l'échantillonnage en temps et =y_t=
-  contient, en chaque temps =t=, une colonne pour chaque solution $y_i(t)$
+  où =t= est un vecteur =numpy= correspondant à l'échantillonnage (temps, position,...) et =y_t= contient,
+  pour chaque échantillon =t=, une colonne pour chaque solution\nbsp$y_i(t)$
 * *=scipy.integrate=* : résolution d'équations différentielles ordinaires
 #+BEAMER: \framesubtitle{\href{http://en.wikipedia.org/wiki/Double_pendulum}{Mouvement du double pendule}}
 
@@ -356,7 +355,7 @@ On pose $y=[\theta_1,\theta_2,p_{\theta_1},p_{\theta_2}]$
   In [3]: # Conditions initiales
   In [4]: y0 = [np.pi/4, np.pi/2, 0, 0]
 
-  In [5]: # Échantilonnage du temps
+  In [5]: # Échantillonnage du temps
   In [6]: t = np.linspace(0, 10, 250)
 
   In [7]: # Résolution des équations différentielles
