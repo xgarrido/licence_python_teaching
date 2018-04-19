@@ -7,7 +7,7 @@ theta = 2*np.pi*r
 
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots(subplot_kw={"projection": "polar"})
-plt.subplots_adjust(bottom=0.25, left=0.15)
+plt.subplots_adjust(bottom=0.25)
 
 l, = ax.plot(theta, f(theta, beta=0))
 ax.set_rticks([])

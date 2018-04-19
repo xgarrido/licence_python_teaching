@@ -98,7 +98,7 @@
 
 [[file:figures/seattle2014_temp_hist.pdf]]
 
-[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=9189955faffd4a00c99ac87ae7bc3432][Télécharger la solution]]
+[[https://owncloud.lal.in2p3.fr/index.php/s/TpDj3tFRVxxvqUQ][Télécharger la solution]]
 
 * Fonctions discontinues
 
@@ -155,7 +155,7 @@
 
   plt.show()
 #+END_SRC
-[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=781c6ad0f36c9a70b79c0d4e81640bef][Télécharger la solution]]
+[[https://owncloud.lal.in2p3.fr/index.php/s/XqSMy9Be9ZhVKJp][Télécharger la solution]]
 #+LATEX: \end{minipage}&
 
 #+LATEX: \begin{minipage}{0.5\linewidth}
@@ -187,7 +187,7 @@
 
   plt.show()
 #+END_SRC
-[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=3d206142d8154da27cdf04df6dec519a][Télécharger la solution]]
+[[https://owncloud.lal.in2p3.fr/index.php/s/Bx7VTlsWvKYE05G][Télécharger la solution]]
 
 [[file:figures/carbon11.pdf]]
 
@@ -334,7 +334,7 @@ nombreuses techniques de classification automatique en /machine learning/.
 
 [[file:figures/iris_all.pdf]]
 
-[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=64e8d42590693b3c6d949d0411ede333][Télécharger la solution]]
+[[https://owncloud.lal.in2p3.fr/index.php/s/JyxFTWPPxBB5jCK][Télécharger la solution]]
 
 * Footnotes
 

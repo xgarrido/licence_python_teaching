@@ -67,7 +67,7 @@ nouvelle valeur de ces paramètres.
 
 [[file:figures/carbon11_gui.png]]
 
-[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=895bc18cbd425c90cbb6cbb8f0986a70][Télécharger la solution]]
+[[https://owncloud.lal.in2p3.fr/index.php/s/ONZpE9tdRLvKCPJ][Télécharger la solution]]
 
 ** Distribution spatiale de photons émis depuis une source en mouvement
 On peut montrer (/cf./ TD Relativité) que la distribution de photons émis depuis une source en
@@ -85,8 +85,7 @@ rapport à l'observateur.
 
 *** Correction                                                 :correction:
 
-#+BEGIN_SRC ipython :session :results raw drawer :exports none :tangle scripts/photons_gui.py
-  %matplotlib inline
+#+BEGIN_SRC python -n :tangle scripts/photons_gui.py
   import numpy as np
   def f(theta, beta):
         return (1-beta**2)/(1-beta*np.cos(theta))**2
@@ -96,7 +95,7 @@ rapport à l'observateur.
 
   import matplotlib.pyplot as plt
   fig, ax = plt.subplots(subplot_kw={"projection": "polar"})
-  plt.subplots_adjust(bottom=0.25, left=0.25)
+  plt.subplots_adjust(bottom=0.25)
 
   l, = ax.plot(theta, f(theta, beta=0))
   ax.set_rticks([])
@@ -112,13 +111,13 @@ rapport à l'observateur.
   from matplotlib.widgets import Slider
   sbeta = Slider(axbeta, r"$\beta$", 0, 0.999999, valinit=0)
   sbeta.on_changed(update)
+
+  plt.show()
 #+END_SRC
 
-#+RESULTS:
-:results:
-: 0
-[[file:./obipy-resources/1526BuJ.svg]]
-:end:
+[[file:figures/photons_gui.png]]
+
+[[https://owncloud.lal.in2p3.fr/index.php/s/cdm3kCLv1qPLKak][Télécharger la solution]]
 
 ** COMMENT Bon anniversaire
 *** Correction                                                 :correction:
@@ -292,10 +291,11 @@ particule.
 
 [[file:figures/mpl_higgs_gg.pdf]]
 
-[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=f9773d1ab0ac86bf978e56a57a933e25][Télécharger la solution]]
+[[https://owncloud.lal.in2p3.fr/index.php/s/0u7iKiSksnGQrGJ][Télécharger la solution]]
+
 * À la découverte des planètes extrasolaires
 
-Le fichier [[https://goo.gl/JIwUzH][=planets.csv=]] contient des informations relatives aux planètes
+Le fichier [[https://owncloud.lal.in2p3.fr/index.php/s/VhgDvSljdzftZ2c][=planets.csv=]] contient des informations relatives aux planètes
 extrasolaires depuis la première découverte en 1989. Le document fait notamment
 référence aux techniques de découverte de ces objets (première colonne) et
 recense les informations glanées par leurs découvreurs : période orbitale en
@@ -442,7 +442,7 @@ La "clé" utilisée par =pandas= (dans l'exemple ci-dessus =method= et =year=) s
 
 [[file:figures/planet_period.pdf]]
 
-[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=f51bb19a010f9f8d69bced6b87fe8b8c][Télécharger la solution]]
+[[https://owncloud.lal.in2p3.fr/index.php/s/fFGtGWHVKr1T9Qu][Télécharger la solution]]
 * COMMENT Degrade Planck temperature map
 
 - Resolution de COBE 7°, WMAP 33 fois meilleure et Planck 3 fois meilleure que WMAP
