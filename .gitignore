@@ -17,3 +17,6 @@ slide*.pdf
 slides/_minted*
 doc/
 td/_minted*
+/README.el
+/notes/
+.ipynb*
