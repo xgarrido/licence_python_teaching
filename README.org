@@ -80,7 +80,6 @@ Code fragments are syntax highlighted using [[https://code.google.com/p/minted/]
   (setq org-latex-minted-options
         '(;;("frame" "lines")
           ("fontsize" "\\footnotesize")
-          ("samepage" "")
           ("mathescape" "")
           ("escapeinside" "@@")
           ("xrightmargin" "0.cm")
@@ -279,7 +278,6 @@ Add a new tag =correction=
       (setq org-latex-minted-options
             '(;;("frame" "lines")
               ("fontsize" "\\footnotesize")
-              ("samepage" "")
               ("mathescape" "")
               ("xrightmargin" "0.5cm")
               ("xleftmargin"  "0.5cm")
