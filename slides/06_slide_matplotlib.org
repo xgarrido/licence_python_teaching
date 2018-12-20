@@ -1840,7 +1840,7 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
 
   In [5]: import matplotlib.pyplot as plt
   In [6]: fig, ax = plt.subplots()
-  In [7]: l, = plt.plot(t, signal(t))
+  In [7]: lines, = plt.plot(t, signal(t))
 #+END_SRC
 
 #+BEAMER: \pause\vskip-18pt
@@ -1899,7 +1899,7 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In[14]: def update(val):
-     ...:     l.set_ydata(signal(t, samp.val, sfreq.val))
+     ...:     lines.set_ydata(signal(t, samp.val, sfreq.val))
      ...:     fig.canvas.draw_idle()
 
   In[15]: sfreq.on_changed(update)
