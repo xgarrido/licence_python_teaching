@@ -525,8 +525,8 @@ In [1]: import pickle
 
 In [2]: l = [1, None, "Stan"]
 
-In [3]: pickle.dump(l, file("test.pkl", "w"))
+In [3]: pickle.dump(l, open("test.pkl", "wb"))
 
-In [4]: pickle.load(file("test.pkl"))
+In [4]: pickle.load(open("test.pkl", "rb"))
 Out[4]: [1, None, "Stan"]
 #+END_SRC
