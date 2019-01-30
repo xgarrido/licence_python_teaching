@@ -337,7 +337,7 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 - *l'indentation (4 espaces ou une tabulation) délimite le bloc de condition*
 - dans =ipython=, appuyer sur =Entrée= deux fois pour exécuter le bloc
 
-* Structure conditionnelle
+* COMMENT Structure conditionnelle
 
 ** =if= python
 :PROPERTIES:
