@@ -71,8 +71,7 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 
 #+BEAMER: \pause
 
-- Liste des libraries consultables sur le site [[https://pypi.python.org/pypi][/Python Package Index/]] (96 537
-  paquets)
+- Liste des libraries consultables sur le site [[https://pypi.python.org/pypi][/Python Package Index/]] (165 845 paquets)
 
 * Gestionnaire de modules =pip=
 

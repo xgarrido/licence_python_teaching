@@ -85,16 +85,16 @@ lesquelles
 
   - pas un cours de *programmation numérique/algorithmie* \to cours de C du L3
     Physique Fondamentale
-  - pas un cours de *méthodes numériques* \to option « Méthodes numériques » du L3
-    de Physique Fondamentale
+  - pas un cours de *méthodes numériques*
   - *une simple initiation* à la programmation Python
+# \to option « Méthodes numériques » du L3 de Physique Fondamentale
 
 #+BEAMER: \pause
 
 #+BEGIN_REMARK
 _Python 2 ou Python 3 ?_
 
-En 2008, Python 3 a été officiellement lancé. Quelques (vielles) librairies
+En 2008, Python 3 a été officiellement lancé. Quelques (vieilles) librairies
 scientifiques ne fonctionnent pas encore sous Python 3 mais c'est de plus en
 plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 #+END_REMARK
@@ -180,7 +180,7 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 
 #+ATTR_LATEX: :options [100][-none][][1.25][10]
 #+BEGIN_CBOX
-- *=Scipy= : bibliothèques scientifiques*
+- *=scipy= : bibliothèques scientifiques*
   - Algèbre linéaire
   - Transformé de Fourier
   - Optimisation & ajustement de fonction
