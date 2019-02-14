@@ -313,17 +313,15 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 :BEAMER_COL: 0.5
 :END:
 #+BEGIN_SRC python
-  In [1]: test1 = False
-     ...: test2 = False
+  In [1]: galette = True
+     ...: neige = True
      ...:
-     ...: if test1:
-     ...:     print("test1 est True")
-     ...:
-     ...: elif test2:
-     ...:     print("test2 est True")
-     ...:
+     ...: if neige:
+     ...:     print("Pas de galette !")
+     ...: elif galette:
+     ...:     print("Galette !")
      ...: else:
-     ...:     print("test1 & test2 sont False")
+     ...:     print("Pas de neige, pas de galette")
 #+END_SRC
 
 ** Description
