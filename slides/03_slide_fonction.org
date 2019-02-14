@@ -429,7 +429,7 @@ intégrées au langage Python
 * Les dictionnaires
 
 - Les dictionnaires sont des structures *mutables*, non ordonnées, formées
-  d’enregistrements du type *=clé:valeur=*
+  d’enregistrements de type *=clé:valeur=*
 
 - Le seul moyen d’accéder à une valeur particulière est par l’intermédiaire de
   sa clé
@@ -456,7 +456,7 @@ intégrées au langage Python
 * Les dictionnaires
 
 - Les dictionnaires sont des structures *mutables*, non ordonnées, formées
-  d’enregistrements du type *=clé:valeur=*
+  d’enregistrements de type *=clé:valeur=*
 
 - Le seul moyen d’accéder à une valeur particulière est par l’intermédiaire de
   sa clé
