@@ -5,17 +5,15 @@
 #+LATEX_HEADER: \setcounter{chapter}{2}
 
 #+BEGIN_REMARK
-On n'oubliera pas et on commencera donc ce second TD, en chargeant
-l'environnement virtuel défini lors de la première séance à l'aide de la
-commande =source=.
+On n'oubliera pas et on commencera donc ce second TD, en chargeant l'environnement virtuel défini
+lors de la première séance à l'aide de la commande =source=.
 #+END_REMARK
 
 * Utilisation des /containers/ de Python
 
-1) Reprendre le Projet Euler n°1 dont l'objet est le calcul de la somme des
-   entiers divisibles par 3 ou par 5 dans l'intervalle $[0,N[$ *en utilisant une
-   liste établie "en compréhension"*. On s'aidera de la fonction intégrée =sum=
-   pour calculer la somme.
+1) Reprendre le Projet Euler n°1 dont l'objet est le calcul de la somme des entiers divisibles par 3
+   ou par 5 dans l'intervalle $[0,N[$ *en utilisant une liste établie "en compréhension"*. On s'aidera
+   de la fonction intégrée =sum= pour calculer la somme.
 
 2) Projet Euler n°6 : Calculer le résultat de la formule suivante
    #+BEGIN_SRC latex
@@ -25,28 +23,25 @@ commande =source=.
    #+END_SRC
    où $n$ sera saisi par l'utilisateur.
 
-3) On s'aidera des méthodes =join= et =split= de la classe =str=. Demander à
-   l'utilisateur de saisir une chaîne de caractères puis
+3) On s'aidera des méthodes =join= et =split= de la classe =str=. Demander à l'utilisateur de saisir une
+   chaîne de caractères puis
    1) renvoyer une chaîne telle qu'un lecteur l'aurait lue de droite à gauche
    2) renvoyer une chaîne où le premier mot devient le dernier, le second mot
       devient l'avant dernier, ...
    3) renvoyer la chaîne de caractères saisie sans les voyelles
 
-4) Demander à l'utilisateur de saisir son nom, prénom et âge sur une seule ligne
-   et en utilisant le caractère =,= comme séparateur de champ.
+4) Demander à l'utilisateur de saisir son nom, prénom et âge sur une seule ligne et en utilisant le
+   caractère virgule comme séparateur de champ.
 
-   1) Présenter le résultat sous la forme "Votre nom et prénom sont XXX XXX et
-      vous êtes agé(e) de XXX" en n'oubliant pas les majuscules aux noms
-      propres.
-   2) Créer ensuite un dictionnaire indexé sur le nom de la personne et
-      conservant son âge.
+   1) Présenter le résultat sous la forme "Votre nom et prénom sont XXX XXX et vous êtes agé(e) de
+      XXX" en n'oubliant pas les majuscules aux noms propres.
+   2) Créer ensuite un dictionnaire indexé sur le nom de la personne et conservant son âge.
 
-5) Demander à plusieurs utilisateurs de saisir nom, prénom et âge en utilisant
-   toujours le caractère =,= comme séparateur de champ et stocker chacune des
-   chaînes dans une liste. On terminera la saisie en entrant le caractère
-   =$=. Construire un dictionnaire toujours indexé sur le nom mais qui
-   conservera le prénom et l'âge de la personne. Présenter finalement chacune
-   des entrées du dictionnaire sous une forme intelligible.
+5) Demander à plusieurs utilisateurs de saisir nom, prénom et âge en utilisant toujours le caractère
+   =,= comme séparateur de champ et stocker chacune des chaînes dans une liste. On terminera la saisie
+   en entrant le caractère =$=. Construire un dictionnaire toujours indexé sur le nom mais qui
+   conservera le prénom et l'âge de la personne. Présenter finalement chacune des entrées du
+   dictionnaire sous une forme intelligible.
 
 ** Correction                                                   :correction:
 
