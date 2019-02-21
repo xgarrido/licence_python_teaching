@@ -1943,7 +1943,7 @@ Redefine footnote template for beamer
 #+BEGIN_SRC latex
   \defbeamertemplate*{footnote}{custom}
                      {
-                       \hfill\parbox{5.5cm}{\raggedleft
+                       \hfill\parbox{6.5cm}{\raggedleft
                          \tiny
                          \parindent 1em\noindent%
                          \hbox to 1em{\hfil\insertfootnotemark}\insertfootnotetext%
