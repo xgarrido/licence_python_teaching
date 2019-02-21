@@ -193,8 +193,11 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
     In [1]: np.arange(10)
     Out[1]: array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
-    In [2]: np.arange(0, 10, step=2)
+    In [2]: np.arange(0, 10, 2)
     Out[2]: array([0, 2, 4, 6, 8])
+
+    In [3]: np.arange(0, 1, step=0.1)
+    Out[3]: array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
   #+END_SRC
 
 - Fonctions =linspace/logspace=
@@ -610,6 +613,13 @@ Le type de données numériques stockées est fixé à la création du tableau
 
     In [3]: v[:, np.newaxis]
     Out[3]:
+    array([[0],
+           [1],
+           [2],
+           [3]])
+
+    In [4]: v.reshape(4, 1)
+    Out[4]:
     array([[0],
            [1],
            [2],
