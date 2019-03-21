@@ -400,7 +400,7 @@
     \includegraphics<1>[width=1.1\linewidth]{figures/mpl_limit0.pdf}
     \includegraphics<2>[width=1.1\linewidth]{figures/mpl_limit1.pdf}
     \includegraphics<3>[width=1.1\linewidth]{figures/mpl_limit2.pdf}
-    \includegraphics<4-5>[width=1.1\linewidth]{figures/mpl_limit3.pdf}
+    \includegraphics<4>[width=1.1\linewidth]{figures/mpl_limit3.pdf}
   \end{center}
 #+END_SRC
 
@@ -441,11 +441,13 @@
 
 #+BEGIN_SRC latex
   \begin{center}
-    \includegraphics<1>[width=0.6\linewidth]{figures/mpl_ticks0.pdf}
-    \includegraphics<2>[width=0.6\linewidth]{figures/mpl_ticks1.pdf}
+    \includegraphics<1>[width=0.6\linewidth]{figures/mpl_ticks-1.pdf}
+    \includegraphics<2>[width=0.6\linewidth]{figures/mpl_ticks0.pdf}
+    \includegraphics<3>[width=0.6\linewidth]{figures/mpl_ticks1.pdf}
   \end{center}
 #+END_SRC
 
+#+BEAMER: \pause
 #+ATTR_LATEX: :options fontsize=\scriptsize
 #+BEGIN_SRC python
   In[11]: plt.xticks([0, np.pi/2, np.pi, 3*np.pi/2, 2*np.pi, 5*np.pi/2, 3*np.pi])
