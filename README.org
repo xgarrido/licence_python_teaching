@@ -370,8 +370,7 @@ customize the highlighted source code output using =fancyvrb=.
 #+END_SRC
 ****** Font Awesome
 #+BEGIN_SRC latex
-  \IfFileExists{"$TEXMFHOME/tex/latex/commonstuff/font-awesome.sty"}{\RequirePackage{font-awesome}}{}%
-  %% \IfFileExists{"$TEXMFHOME/tex/latex/commonstuff/font-awesome-ext.sty"}{\RequirePackage{font-awesome-ext}}{}%
+  \RequirePackage{fontawesome5}
 #+END_SRC
 ****** graphics package
 #+BEGIN_SRC latex
@@ -471,7 +470,7 @@ different booleans used in the next section.
     pagebackref
   }
   \let\orighref\href
-  \renewcommand{\href}[2]{\orighref{#1}{#2\,\scalebox{0.75}{\faExternalLink}}}
+  \renewcommand{\href}[2]{\orighref{#1}{#2\,\scalebox{0.75}{\faExternalLink*}}}
 #+END_SRC
 
 ***** Template settings
@@ -837,7 +836,7 @@ different booleans used in the nex section.
     pagebackref
   }
   \let\orighref\href
-  \renewcommand{\href}[2]{\orighref{#1}{#2\,\scalebox{0.75}{\faExternalLink}}}
+  \renewcommand{\href}[2]{\orighref{#1}{#2\,\scalebox{0.75}{\faExternalLink*}}}
 #+END_SRC
 ******* Sans math
 #+BEGIN_SRC latex
