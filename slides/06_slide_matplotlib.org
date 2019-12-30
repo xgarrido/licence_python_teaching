@@ -18,15 +18,13 @@
 
 - Étroitement liée à =numpy= et =scipy=
 
-- Grande variété de *format de sortie (=png=, =pdf=, =svg=, =eps=, =pgf=)*
-  ainsi que support de *\LaTeX* pour le texte
+- Grande variété de *format de sortie (=png=, =pdf=, =svg=, =eps=, =pgf=)* ainsi que support de *\LaTeX* pour le
+  texte
 
-- /Graphical User Interface/ pour l'exploration interactive des figures (zoom,
-  sélection,...)
+- /Graphical User Interface/ pour l'exploration interactive des figures (zoom, sélection,...)
 
-- Tous les aspects d'une figure (taille, position,...) peuvent être contrôlés
-  d'un point de vue /programmatique/ \to *reproductibilité* des figures et des
-  résultats scientifiques
+- Tous les aspects d'une figure (taille, position,...) peuvent être contrôlés d'un point de vue
+  /programmatique/ \to *reproductibilité* des figures et des résultats scientifiques
 ** Installation & importation de =matplotlib=
 
 #+ATTR_BEAMER: :overlay +-
