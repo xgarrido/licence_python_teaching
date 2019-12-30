@@ -205,9 +205,9 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
     edge from parent path={([xshift=8pt]\tikzparentnode.south west) |- (\tikzchildnode.west)},%
     line width=0.75pt]
 
-    \newcommand{\closedDirectory}[1]{\faFolderO #1}
-    \newcommand{\openedDirectory}[1]{\faFolderOpenO #1}
-    \newcommand{\pdfFile}[1]{\faFileO #1}
+    \newcommand{\closedDirectory}[1]{\faFolder[regular] #1}
+    \newcommand{\openedDirectory}[1]{\faFolderOpen[regular] #1}
+    \newcommand{\pdfFile}[1]{\faFile[regular] #1}
 
     \tikzstyle{every node}=[anchor=west]
     \tikzstyle{selected}=[draw=blue,rounded corners,fill=blue!30,blue]
