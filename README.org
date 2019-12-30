@@ -2018,7 +2018,7 @@ up. Practically, everything can be done within this section.
     \flushright%
     \insertframetitle\par%
     \ifx\insertframesubtitle\@empty\else
-    \vskip+3pt\color{gray!75}\footnotesize\faHandORight\xspace\insertframesubtitle\par\fi}
+    \vskip+3pt\color{gray!75}\footnotesize\faHandPointRight[regular]\xspace\xspace\insertframesubtitle\par\fi}
   %% \setbeamertemplate{frametitle}{\vskip+10pt\hfill\insertframetitle\\ \flushright\small\insertframesubtitle}
   \renewcommand{\insertprefixtitle}{{\color{gray}\small\textbf{Option « Programmation en Python »\\}}}
 #+END_SRC
