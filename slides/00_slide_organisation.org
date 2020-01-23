@@ -4,9 +4,9 @@
 #+OPTIONS: toc:nil ^:{}
 #+STARTUP:     beamer
 #+LATEX_CLASS: python-slide
-#+BEAMER_HEADER: \institute{Laboratoire de l'Accélérateur Linéaire, Orsay}
+#+BEAMER_HEADER: \institute{IJC Lab, bâtiment 200, Orsay}
 
-* Langage Python
+* Langage Python \faPython
 
 #+BEGIN_QUOTE
 Python est un langage de programmation, dont la première version est sortie en
@@ -101,7 +101,7 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 
 * Option « Programmation en Python »
 
-#+ATTR_LATEX: :options [100][-none][][1.25][2]
+#+ATTR_LATEX: :options [100][-none][][1.25][3]
 #+BEGIN_CBOX
 - *Bases de la programmation en Python*
   - environnement Python (=venv=, =pip=, =ipython=)
@@ -112,7 +112,7 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 
 * Option « Programmation en Python »
 
-#+ATTR_LATEX: :options [100][-none][][1.25][2]
+#+ATTR_LATEX: :options [100][-none][][1.25][3]
 #+BEGIN_CBOX
 - *Bases de la programmation en Python*
   - environnement Python (=venv=, =pip=, =ipython=)
@@ -121,7 +121,7 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
   - gestion & manipulation données numériques (=numpy=)
 #+END_CBOX
 
-#+ATTR_LATEX: :options [100][-none][][1.25][5.5]
+#+ATTR_LATEX: :options [100][-none][][1.25][6.5]
 #+BEGIN_CBOX
 - *Représentation graphique avec =matplotlib=*
   - création de figures, /subplots/, axes, légendes
@@ -155,7 +155,7 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 
 * Option « Programmation en Python »
 
-#+ATTR_LATEX: :options [100][-none][][1.25][2]
+#+ATTR_LATEX: :options [100][-none][][1.25][3]
 #+BEGIN_CBOX
 - *Bases de la programmation en Python*
   - environnement Python (=venv=, =pip=, =ipython=)
@@ -164,28 +164,18 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
   - gestion & manipulation données numériques (=numpy=)
 #+END_CBOX
 
-#+ATTR_LATEX: :options [100][-none][][1.25][5.5]
+#+ATTR_LATEX: :options [100][-none][][1.25][6.5]
 #+BEGIN_CBOX
 - *Représentation graphique avec =matplotlib=*
   - création de figures, /subplots/, axes, légendes
   - histogramme, courbe de niveau, 3D
 #+END_CBOX
 
-#+ATTR_LATEX: :options [100][-none][][1.25][7.75]
+#+ATTR_LATEX: :options [100][-none][][1.25][8.75]
 #+BEGIN_CBOX
 - *Interface graphique*
   - utilisation des /widgets/ de =matplotlib=
   - applications directes aux TD Méca. Quan., EM, Phys. Stat.
-#+END_CBOX
-
-#+ATTR_LATEX: :options [100][-none][][1.25][10]
-#+BEGIN_CBOX
-- *=scipy= : bibliothèques scientifiques*
-  - Algèbre linéaire
-  - Transformé de Fourier
-  - Optimisation & ajustement de fonction
-  - Outils statistiques & Générateurs aléatoires
-  - Interpolation, intégration numérique, traitement du signal...
 #+END_CBOX
 
 * Notes/transparents de cours \faArchive

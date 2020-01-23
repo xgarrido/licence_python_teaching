@@ -4,40 +4,50 @@
 #+OPTIONS: toc:nil ^:{}
 #+LATEX_HEADER: \setcounter{chapter}{0}
 
+#+BEGIN_REMARK
+L'installation de paquets /via/ la commande =pip= n'est, semble-t-il, pas possible depuis l'installation
+informatique du bâtiment 625. Afin de réaliser les 5 premières questions du premier exercice, le
+plus "simple" est de se connecter à votre compte /via/ =ssh=
+
+#+BEGIN_PROMPT
+ssh prenom.nom@tp-ssh1.dep-informatique.u-psud.fr
+#+END_PROMPT
+
+Une fois dans la nouvelle session, vous pourrez alors réaliser les commandes d'installation de
+paquets. À partir de la question 6), vous pourrez finalement revenir à votre session locale en vous
+déconnectant et en n'oubliant pas de "sourcer" votre nouvel environnement virtuel.
+#+END_REMARK
+
 * L'écosystème Python
 
-1) Définir un environnement virtuel que l'on placera dans le répertoire
-   =~/option_python=.
+1) Définir un environnement virtuel que l'on placera dans le répertoire =~/option_python=.
 
-2) Charger ce nouvel environnement et s'assurer que la commande =python= pointe
-   bien vers le répertoire =bin= du répertoire =~/option_python=.
+2) Charger ce nouvel environnement et s'assurer que la commande =python= pointe bien vers le
+   répertoire =bin= du répertoire =~/option_python=.
 
-3) Lister les modules actuellement installés puis suivre les recommendations
-   issues de la précédente commande.
+3) Lister les modules actuellement installés puis suivre les recommendations issues de la précédente
+   commande.
 
-4) Installer la version =1.5.2= de la librarie =matplotlib= puis mettre à jour cette
-   dernière.
+4) Installer la version =1.5.2= de la librarie =matplotlib= puis mettre à jour cette dernière.
 
-5) Installer l'interpréteur =ipython= et l'utiliser pour vérifier que
-   l'installation de =matplotlib= a été correctement réalisée en
-   important la librairie /via/ la commande
+5) Installer l'interpréteur =ipython= et l'utiliser pour vérifier que l'installation de =matplotlib= a
+   été correctement réalisée en important la librairie /via/ la commande
 
    #+BEGIN_SRC python
      import matplotlib
    #+END_SRC
 
-6) Afficher la chaîne de caractères ="Bonjour tout le monde"=
+6) Afficher la chaîne de caractères ="sleon une édtue de l'Uvinertisé de Cmabrigde"=
 
-7) Définir une première variable =x1= égale à 10 et une seconde =x2= égale à
-   10.0. Afficher le statut des variables.
+7) Définir une première variable =x1= égale à 10 et une seconde =x2= égale à 10.0. Afficher le statut
+   des variables.
 
-8) Afficher la partie réelle puis la partie imaginaire de =x1=. Afficher la taille
-   en bits de =x1=. Lors des différentes opérations, on pourra se servir de
-   l'auto-complétion et de la commande d'aide =?= pour accéder à la documentation
-   de chaque commande.
+8) Afficher la partie réelle puis la partie imaginaire de =x1=. Afficher la taille en bits de =x1=. Lors
+   des différentes opérations, on pourra se servir de l'auto-complétion et de la commande d'aide =?=
+   pour accéder à la documentation de chaque commande.
 
-9) Afficher la documentation de la fonction =input= puis se servir de cette
-   fonction pour demander à l'utilisateur la saisie d'un nombre =y=.
+9) Afficher la documentation de la fonction =input= puis se servir de cette fonction pour demander à
+   l'utilisateur la saisie d'un nombre =y=.
 
 #+BEGIN_REMARK
 Dans toute la suite de cette option et notamment lors des prochains exercices,
