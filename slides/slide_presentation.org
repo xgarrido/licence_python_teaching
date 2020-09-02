@@ -1,5 +1,5 @@
 #+TITLE:  Programmation en Python
-#+AUTHOR: Xavier Garrido
+#+AUTHOR: Xavier Garrido \orighref{mailto:xavier.garrido@universite-paris-saclay.fr}{\faEnvelope}
 #+EMAIL: xavier.garrido@u-psud.fr
 #+DATE:   01/09/2015
 #+OPTIONS: toc:nil ^:{}
@@ -7,7 +7,7 @@
 #+LATEX_CLASS: python-slide
 #+LATEX_CLASS_OPTIONS: [aspectratio=32,9pt]
 #+LATEX_HEADER_EXTRA: \hypersetup{colorlinks=false}
-#+BEAMER_HEADER: \institute{Laboratoire de l'Accélérateur Linéaire, Orsay}
+#+BEAMER_HEADER: \institute{IJCLab, bâtiment 200, Orsay}
 #+BEAMER_HEADER: \setbeamercovered{invisible}
 
 * Introduction
@@ -20,9 +20,6 @@ Plus qu'une initiation au langage Python, cette option propose de découvrir *_l
 outils de représentation et d'interface graphiques_*, éléments incontournables de
 l'analyse scientifique.
 #+END_QUOTE
-
-#+BEAMER: \pause\hspace{+8cm}
-/Xavier Garrido/
 
 * La représentation graphique
 
@@ -114,6 +111,7 @@ leçons
 - Mécanique Quantique : Effet tunnel
 - Optique : Diffraction par $N$ fentes
 - Thermodynamique : Isothermes de Van der Waals
+- ... 188 programmes python
 
 * Déroulement de l'option Python au second semestre
 
@@ -129,7 +127,7 @@ leçons
 #+BEAMER: \pause
 
 - *Représentation graphique avec =matplotlib= (3 -- 4 séances)*
-  - gestion & manipulation données numériques (=numpy=)
+  - *gestion & manipulation données numériques (=numpy=)*
   - création de figures, /subplots/, axes
   - histogramme, courbe de niveau, 3D
 
@@ -137,4 +135,4 @@ leçons
 
 - *Interface graphique (~ 4 séances)*
   - utilisation des /widgets/ de =matplotlib=
-  - applications directes aux TD Relativité, EM
+  - applications aux TD Relativité, EM

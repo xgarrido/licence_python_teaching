@@ -1793,7 +1793,7 @@ Then define the custom beamer template
     rounded=true,shadow=\beamer@themerounded@shadow]{
     \vbox{}
     \vfill
-    \begin{textblock}{8}(7,10)
+    \begin{textblock}{10}(5,10)
       \begin{flushright}
         {%
           \usebeamerfont{title}\usebeamercolor[bg]{title}\insertprefixtitle{\vspace{+0.2em}\LARGE\inserttitle}\par%
@@ -1973,10 +1973,12 @@ such an operation.
   \interfootnotelinepenalty=10000
 #+END_SRC
 ****** =git= status
+
 #+NAME: git-status
 #+BEGIN_SRC sh :results output :tangle no
   url=$(git config --get remote.origin.url | sed -e 's#git@github.com:#https://github.com/#' -e 's#\.git##')
-  log=$(LC_MESSAGES=en git --no-pager log -1 HEAD --date=short --pretty=format:"\ttfamily\orighref{$url/commit/%H}{\color{gray}\faGithubSquare}")
+  log=$(LC_MESSAGES=en git --no-pager log -1 HEAD --date=short --pretty=format:"{\scriptsize\faGithub*} \ttfamily\orighref{$url/commit/%H}{\color{gray}\texttt{%h}} - %ad")
+  # log=$(LC_MESSAGES=en git --no-pager log -1 HEAD --date=short --pretty=format:"\ttfamily\orighref{$url/commit/%H}{\color{gray}\faGit %h}")
   echo "\renewcommand{\insertgitstatus}{\textnormal{\color{gray}${log}}}"
 #+END_SRC
 
