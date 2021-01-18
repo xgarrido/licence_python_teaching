@@ -5,8 +5,8 @@
 #+LATEX_HEADER: \setcounter{chapter}{3}
 
 #+BEGIN_REMARK
-On n'oubliera pas de charger l'environnement virtuel défini lors de la première
-séance à l'aide de la commande =source=.
+On n'oubliera pas de charger l'environnement virtuel défini lors de la première séance à l'aide de
+la commande =source=.
 #+END_REMARK
 
 * Modularité (suite)

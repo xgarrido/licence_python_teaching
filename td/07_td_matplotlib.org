@@ -5,7 +5,6 @@
 #+LATEX_HEADER: \setcounter{chapter}{6}
 
 * Interfaces graphiques
-
 ** Production de\nbsp^{11}C
 Reprendre l'exercice sur la variation du nombre de noyaux de carbone 11 en
 ajoutant à la représentation initiale, trois /sliders/ respectivement $n_i$,
@@ -192,7 +191,7 @@ photons et le comparer à un modèle dans lequel le boson de Higgs n'existe
 pas. Une différence significative entre données et modèle signe alors
 l'existence d'une nouvelle particule.
 
-Les données [[https://owncloud.lal.in2p3.fr/index.php/s/42zx4JmrXmn47MA][=higgs-gg.csv=]] représentent les résultats obtenus par l'expérience
+Les données [[https://owncloud.lal.in2p3.fr/index.php/s/7jbWoS0v93mfn0B][=higgs-gg.csv=]] représentent les résultats obtenus par l'expérience
 ATLAS au cours des années 2011/2012. Dans ce fichier, figure en première colonne
 l'énergie des deux photons exprimée en GeV, le nombre de paire di-photons
 observées en deuxième colonne et l'incertitude sur ce nombre en troisième
@@ -293,7 +292,7 @@ particule.
 
 [[https://owncloud.lal.in2p3.fr/index.php/s/0u7iKiSksnGQrGJ][Télécharger la solution]]
 
-* À la découverte des planètes extrasolaires
+* COMMENT À la découverte des planètes extrasolaires
 
 Le fichier [[https://owncloud.lal.in2p3.fr/index.php/s/VhgDvSljdzftZ2c][=planets.csv=]] contient des informations relatives aux planètes
 extrasolaires depuis la première découverte en 1989. Le document fait notamment

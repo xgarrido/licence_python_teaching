@@ -90,8 +90,6 @@
     print(M)
   #+END_SRC
 
-[[https://owncloud.lal.in2p3.fr/public.php?service=files&t=ca57174417a91df160a81971c2c57db1][Télécharger les solutions]]
-
 * Fonctions universelles
 
 - Créer un tableau à une dimension contenant 1 million de valeurs aléatoires comprises entre 1 et

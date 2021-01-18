@@ -1,0 +1,382 @@
+\begin{tikzpicture}[y=0.80pt, x=0.80pt, yscale=-1.000000, xscale=1.000000, inner sep=0pt, outer sep=0pt]
+  \definecolor{red}{RGB}{221,42,43}
+  \definecolor{green}{RGB}{132,184,24}
+  \definecolor{blue}{RGB}{0,72,112}
+  \definecolor{orange}{RGB}{192,128,64}
+  \definecolor{gray}{RGB}{107,108,110}
+  \definecolor{violet}{HTML}{8B1B59}
+  \colorlet{blue}{violet}
+
+  \draw[fill=white, white] (100, 600) rectangle (775, 400);
+  %% Python
+  \path[draw=white,fill=blue,line join=miter,line cap=butt,miter
+    limit=4.00,line width=4.663pt] (365.3037,537.2679) -- (365.3037,454.3871) --
+    (436.6190,412.9467) -- (507.9343,454.3871) -- (507.9343,537.2679) --
+    (436.6190,578.7083) -- cycle;
+  \begin{scope}[cm={{0.58101,0.0,0.0,0.58477,(268.02538,213.4089)}}]
+    \begin{scope}[cm={{0.93094,0.0,0.0,0.93094,(50.054,93.18509)}},fill=white]
+      \path[color=white,fill=white,nonzero rule,line width=0.800pt]
+        (289.7439,337.9207) .. controls (273.3892,321.5661) and (267.3181,329.6797) ..
+        (267.3181,329.6797) -- (259.9887,337.0456) -- (275.5956,352.6525) --
+        (273.3894,354.8586) -- (251.5835,333.0527) .. controls (251.5835,333.0527) and
+        (242.3050,321.4005) .. (225.8030,337.9025) .. controls (209.3009,354.4046) and
+        (219.0206,362.9538) .. (219.0206,362.9538) -- (224.4720,368.4053) --
+        (232.1296,360.7477) .. controls (232.1296,360.7477) and (240.9702,351.3194) ..
+        (250.2526,360.6018) .. controls (259.5350,369.8842) and (265.7319,376.0811) ..
+        (265.7319,376.0811) .. controls (265.7319,376.0811) and (274.2881,384.9185) ..
+        (282.8338,376.3728) .. controls (291.3795,367.8271) and (296.9639,362.2427) ..
+        (296.9639,362.2427) .. controls (296.9639,362.2427) and (306.8353,355.0122) ..
+        (289.7439,337.9207) -- cycle(276.1972,334.2561) .. controls
+        (277.7500,335.8088) and (277.7500,338.3188) .. (276.1972,339.8716) .. controls
+        (274.6445,341.4244) and (272.1344,341.4244) .. (270.5817,339.8716) .. controls
+        (269.0289,338.3188) and (269.0289,335.8088) .. (270.5817,334.2561) .. controls
+        (272.1344,332.7033) and (274.6445,332.7033) .. (276.1972,334.2561) -- cycle;
+      \path[color=white,fill=white,nonzero rule,line width=0.800pt]
+        (226.1202,402.4733) .. controls (242.4749,418.8281) and (248.5460,410.7144) ..
+        (248.5460,410.7144) -- (255.8755,403.3485) -- (240.2686,387.7416) --
+        (242.4747,385.5355) -- (264.2806,407.3414) .. controls (264.2806,407.3414) and
+        (273.5591,418.9936) .. (290.0611,402.4916) .. controls (306.5632,385.9895) and
+        (296.8436,377.4403) .. (296.8436,377.4403) -- (291.3921,371.9889) --
+        (283.7345,379.6465) .. controls (283.7345,379.6465) and (274.8940,389.0747) ..
+        (265.6115,379.7923) .. controls (256.3291,370.5099) and (250.1323,364.3130) ..
+        (250.1323,364.3130) .. controls (250.1323,364.3130) and (241.5760,355.4756) ..
+        (233.0303,364.0213) .. controls (224.4846,372.5670) and (218.9002,378.1514) ..
+        (218.9002,378.1514) .. controls (218.9002,378.1514) and (209.0289,385.3820) ..
+        (226.1203,402.4734) -- cycle(239.6669,406.1380) .. controls
+        (238.1141,404.5853) and (238.1141,402.0752) .. (239.6669,400.5225) .. controls
+        (241.2196,398.9697) and (243.7297,398.9697) .. (245.2824,400.5225) .. controls
+        (246.8352,402.0752) and (246.8352,404.5853) .. (245.2824,406.1380) .. controls
+        (243.7297,407.6908) and (241.2196,407.6908) .. (239.6669,406.1380) -- cycle;
+    \end{scope}
+    \begin{scope}[xshift=-2cm]
+      \path[white] (289.9004,540.2377) node[above right] (text6352-3-3-9)
+           {\Huge Python};
+    \end{scope}
+  \end{scope}
+
+  %% Matplotlib
+  \begin{scope}[xshift=2cm, yshift=3.5cm]
+  \path[draw=white,fill=gray,line join=miter,line cap=butt,miter
+    limit=4.00,line width=4.663pt] (436.6190,412.9467) -- (436.6190,330.0658) --
+    (507.9343,288.6254) -- (579.2496,330.0658) -- (579.2496,412.9467) --
+    (507.9343,454.3871) -- cycle;
+  \begin{scope}[xshift=-1.8cm]
+    \path[white] (508.9051,402.8219) node[above right] (text6352-9-2-8) {\Huge Matplotlib};
+  \end{scope}
+  \begin{scope}[cm={{0.50301,0.0,0.0,0.50627,(483.11556,127.44849)}}]
+    \path[draw=white,fill=white,even odd rule] (72.1376,443.9349) .. controls
+      (67.9051,438.1317) and (59.4988,435.1198) .. (52.1927,433.7612) .. controls
+      (44.8867,432.4026) and (41.8139,431.4991) .. (37.1119,428.9414) .. controls
+      (33.4436,426.9460) and (30.7996,420.0990) .. (31.6238,414.4311) .. controls
+      (32.9044,405.6506) and (41.0864,399.5302) .. (49.9006,400.7639) .. controls
+      (54.3025,401.3879) and (58.0353,403.7241) .. (60.4965,407.0128) --
+      (70.2561,419.8656) .. controls (75.8345,427.0671) and (82.1064,429.2104) ..
+      (88.9296,425.8098) -- (92.3698,424.3427) .. controls (92.6455,424.2143) and
+      (92.9685,424.2022) .. (93.2821,424.3166) .. controls (93.5388,424.4165) and
+      (93.7477,424.5999) .. (93.8713,424.8167) -- (94.5557,425.8502) .. controls
+      (94.7457,426.1621) and (95.0308,426.4145) .. (95.4016,426.5552) .. controls
+      (96.0287,426.7935) and (96.7036,426.6507) .. (97.1787,426.2409) --
+      (105.1042,418.7487) .. controls (106.4916,417.5579) and (106.0829,416.4649) ..
+      (106.0829,416.4649) -- (104.1727,412.1044) .. controls (104.1727,412.1044) and
+      (103.6501,411.0590) .. (101.8445,411.2995) -- (91.2201,412.2783) .. controls
+      (90.6024,412.3663) and (90.0511,412.7785) .. (89.8137,413.4071) .. controls
+      (89.6712,413.7739) and (89.6618,414.1572) .. (89.7661,414.5050) --
+      (90.1463,415.7314) .. controls (90.2224,415.9862) and (90.2224,416.2720) ..
+      (90.1179,416.5339) .. controls (89.9944,416.8578) and (89.7474,417.0866) ..
+      (89.4528,417.2080) -- (86.4498,418.4822) .. controls (83.3042,420.3277) and
+      (79.7312,419.1489) .. (77.3458,416.2245) -- (74.6185,412.5926) --
+      (66.8545,402.2641) .. controls (63.1674,397.3629) and (57.6080,393.8669) ..
+      (51.0415,392.9478) .. controls (37.8940,391.1023) and (25.6921,400.2281) ..
+      (23.7819,413.3308) .. controls (22.8173,419.9346) and (24.7920,426.1831) ..
+      (28.3957,431.2013) .. controls (31.0138,434.8478) and (35.8122,436.9311) ..
+      (38.4075,437.5817) .. controls (44.8950,439.9016) and (50.5075,440.2254) ..
+      (56.6575,442.4105) .. controls (58.0383,442.9116) and (61.2190,444.0870) ..
+      (63.8038,446.2074) -- (63.8038,446.2074) .. controls (66.8922,449.3547) and
+      (68.5268,453.8510) .. (67.8332,458.5664) .. controls (66.6642,466.6063) and
+      (59.1759,472.2076) .. (51.1079,471.0738) .. controls (47.0668,470.5117) and
+      (43.6550,468.3648) .. (41.3957,465.3582) -- (32.0733,452.9556) .. controls
+      (30.1726,450.4275) and (27.2980,448.6214) .. (23.9006,448.1354) .. controls
+      (20.5081,447.6591) and (17.2248,448.6021) .. (14.6804,450.5130) --
+      (-4.9314,465.1828) .. controls (-10.9818,469.2598) and (-4.7858,474.8667) ..
+      (-0.7079,471.6798) -- (19.3815,456.5852) .. controls (20.3008,455.9565) and
+      (21.4413,455.6707) .. (22.6244,455.8327) .. controls (23.8836,456.0137) and
+      (24.9550,456.6766) .. (25.6583,457.6141) -- (35.5201,470.8989) .. controls
+      (38.9933,475.1705) and (44.0397,478.1958) .. (49.9481,479.0284) .. controls
+      (62.3782,480.7715) and (73.9149,472.1412) .. (75.7205,459.7478) .. controls
+      (76.5564,453.9808) and (75.1500,448.4119) .. (72.1375,443.9348);
+    \path[draw=white,fill=white,line join=miter,line cap=butt,miter
+      limit=4.00,line width=1.848pt] (23.2051,387.6350) -- (23.3607,438.4933);
+    \path[draw=white,fill=white,line join=miter,line cap=butt,miter
+      limit=4.00,line width=1.848pt] (67.5312,392.3787) -- (11.6437,392.5342);
+    \path[draw=white,fill=white,line join=miter,line cap=butt,miter
+      limit=4.00,line width=1.848pt] (93.6602,479.1644) -- (28.6487,479.3200);
+    \path[draw=white,fill=white,line join=miter,line cap=butt,miter
+      limit=4.00,line width=1.848pt] (77.0056,434.0010) -- (76.9505,489.4380);
+    \path[draw=white,fill=white,line join=miter,line cap=butt,miter
+      limit=4.00,line width=1.848pt] (41.2466,447.7474) -- (2.2086,447.9029);
+  \end{scope}
+  \end{scope}
+
+  \begin{scope}[xshift=-2cm, yshift=3.5cm]
+  %% Numpy
+  \path[draw=white,fill=blue,line join=miter,line cap=butt,miter
+    limit=4.00,line width=4.663pt] (293.9884,412.9467) -- (293.9884,330.0658) --
+    (365.3037,288.6254) -- (436.6190,330.0658) -- (436.6190,412.9467) --
+    (365.3037,454.3871) -- cycle;
+  \begin{scope}[xshift=-1.3cm]
+    \path[white] (365.1383,402.8219) node[above right] (text6352-2-9-62) {\Huge Numpy};
+  \end{scope}
+  \begin{scope}[cm={{0.46686,0.0,0.0,0.46988,(369.60147,91.0536)}},draw=white,miter limit=4.00,line width=1.493pt]
+    \begin{scope}[shift={(-73.64625,-7.08662)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+        -- (61.3719,532.6772);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \begin{scope}[shift={(-92.05782,-17.71654)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+        -- (61.3719,532.6772);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+      width=1.493pt] (-24.5488,532.6772) -- (-9.2058,523.8189) -- (6.1372,532.6772);
+    \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+      width=1.493pt] (-24.5488,532.6772) -- (-9.2058,541.5354) -- (6.1372,532.6772)
+      -- (6.1372,550.3937);
+    \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+      width=1.493pt] (-24.5488,532.6772) -- (-24.5488,550.3937) --
+      (-9.2058,559.2520);
+    \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+      width=1.493pt] (-9.2058,541.5354) -- (-9.2058,559.2520) -- (6.1372,550.3937);
+    \begin{scope}[shift={(-58.30328,15.94488)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+          -- (61.3719,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,541.5354);
+      \end{scope}
+    \end{scope}
+    \begin{scope}[shift={(-39.89172,26.5748)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+          -- (61.3719,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,541.5354);
+      \end{scope}
+    \end{scope}
+    \begin{scope}[draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-21.48016,37.20472)},draw=white,miter limit=4.00,line width=1.493pt]
+        \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+            -- (61.3719,546.8504);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087);
+        \end{scope}
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (9.2058,548.6220) -- (24.5488,539.7638);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (9.2058,548.6220) -- (6.1372,546.8504);
+    \end{scope}
+    \begin{scope}[shift={(-39.89172,5.31496)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+          -- (61.3719,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,541.5354);
+      \end{scope}
+    \end{scope}
+    \begin{scope}[shift={(-21.48016,15.94488)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+          -- (61.3719,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,541.5354);
+      \end{scope}
+    \end{scope}
+    \begin{scope}[shift={(18.41156,-10.62992)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-21.48016,37.20472)},draw=white,miter limit=4.00,line width=1.493pt]
+        \begin{scope}[shift={(-15.34297,-44.29134)},draw=white,miter limit=4.00,line width=1.493pt]
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (46.0289,520.2756) -- (61.3719,529.1339);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339)
+            -- (61.3719,546.8504);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (30.6859,529.1339) -- (30.6859,532.6772);
+          \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+            width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087);
+        \end{scope}
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (9.2058,548.6220) -- (24.5488,539.7638);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (9.2058,548.6220) -- (6.1372,546.8504);
+    \end{scope}
+    \begin{scope}[shift={(-92.05782,3.5433)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (49.0975,536.2205);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \begin{scope}[shift={(-73.64625,14.17322)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (49.0975,536.2205);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \begin{scope}[draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+    \begin{scope}[shift={(18.41156,-10.62992)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,536.2205) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,553.9370) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+    \begin{scope}[shift={(36.82313,-21.25984)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,536.2205) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,553.9370) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+    \begin{scope}[shift={(-92.05782,24.80314)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (49.0975,536.2205);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \begin{scope}[shift={(-73.64625,35.43306)},draw=white,miter limit=4.00,line width=1.493pt]
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (49.0975,536.2205);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (49.0975,553.9370);
+    \end{scope}
+    \begin{scope}[shift={(0,21.25984)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (33.7545,527.3622);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (30.6859,529.1339) -- (30.6859,546.8504) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+    \begin{scope}[shift={(18.41156,10.62992)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,536.2205) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,553.9370) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+    \begin{scope}[shift={(36.82313,0)},draw=white,miter limit=4.00,line width=1.493pt]
+      \begin{scope}[shift={(-55.23469,24.80315)},draw=white,miter limit=4.00,line width=1.493pt]
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,536.2205) -- (46.0289,537.9921) -- (61.3719,529.1339);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (42.9603,553.9370) -- (46.0289,555.7087);
+        \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+          width=1.493pt] (46.0289,537.9921) -- (46.0289,555.7087) -- (61.3719,546.8504);
+      \end{scope}
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (6.1372,571.6535);
+      \path[draw=white,line join=round,line cap=round,miter limit=4.00,line
+        width=1.493pt] (6.1372,553.9370) -- (3.0686,552.1653);
+    \end{scope}
+  \end{scope}
+  \end{scope}
+\end{tikzpicture}

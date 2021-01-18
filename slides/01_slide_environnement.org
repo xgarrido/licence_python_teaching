@@ -1,11 +1,11 @@
-#+TITLE:  L'environnement Python
+#+TITLE:  Interpréteurs & environnements de développement
 #+AUTHOR: Xavier Garrido
-#+DATE:   14/01/2017
+#+DATE:   17/01/2021
 #+OPTIONS: toc:nil ^:{} author:nil
 #+STARTUP:     beamer
 #+LATEX_CLASS: python-slide
 
-* Environnements virtuels
+* COMMENT Environnements virtuels
 
 - Un environnement virtuel permet d'avoir des installations de Python
   décorrélées les unes des autres et *isolées du système*
@@ -14,7 +14,7 @@
     =numpy=,...)
   - *permet de nous affranchir des droits administrateurs*
 
-* Environnements virtuels
+* COMMENT Environnements virtuels
 
 - Déclaration d'un environnement virtuel
   #+BEGIN_SRC shell-session
@@ -38,7 +38,7 @@
 La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 #+END_REMARK
 
-* Gestionnaire de modules =pip=
+* COMMENT Gestionnaire de modules =pip=
 
 - =pip= est *un système de gestion de paquets* utilisé pour installer et gérer des
   librairies écrites en Python
@@ -73,7 +73,7 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 
 - Liste des libraries consultables sur le site [[https://pypi.python.org/pypi][/Python Package Index/]] (212 635 paquets)
 
-* Gestionnaire de modules =pip=
+* COMMENT Gestionnaire de modules =pip=
 
 - Installation d'un module
   #+BEGIN_SRC shell-session
@@ -101,7 +101,7 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
     @\prompt@ pip install matplotlib --upgrade
   #+END_SRC
 
-* Gestionnaire de modules =pip=
+* COMMENT Gestionnaire de modules =pip=
 
 - Liste des modules installés
   #+BEGIN_SRC shell-session
@@ -119,11 +119,13 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 
 * Interpréteurs =python=
 
+- Contrairement à d'autres langages (C, fortran, ...), un programme =python= n'a pas à être compilé
+
 - Interpréteur standard @@beamer:\onslide<2->{$\to$ utilisation limitée}@@
   #+BEGIN_SRC python
-    @\prompt@ python
-    Python 3.5.2 (default, Oct 14 2016, 12:54:53)
-    [GCC 6.2.1 20160916 (Red Hat 6.2.1-2)] on linux
+    @\prompt@ python3.7
+    Python 3.7.3 (default, Mar 27 2019, 22:11:17)
+    [GCC 7.3.0] :: Anaconda, Inc. on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> 2*2
     4
@@ -133,35 +135,30 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
 #+BEAMER: \pause\pause
 
 - Interpréteur intéractif =ipython=
-  - *historique des commandes* \to touches \faArrowCircleUp et \faArrowCircleDown
+  - *historique des commandes* \to touches \faArrowCircleUp\xspace et \faArrowCircleDown
   - *auto-complétion* \to touche =<TAB>=
   - édition en ligne du code
   - extraction automatique de *la documentation des fonctions* et objets =python=
   - interaction avec le shell du système d'exploitation
-
+    
 * Interpréteur =ipython=
 
-- Installation /via/ =pip=
-  #+BEGIN_SRC shell-session
-    @\prompt@ pip install ipython
-  #+END_SRC
+# - Installation /via/ =pip=
+#   #+BEGIN_SRC shell-session
+#     @\prompt@ pip install ipython
+#   #+END_SRC
 
 - Utilisation de =ipython=
   #+BEGIN_SRC python
     @\prompt@ ipython
-    Python 3.5.2 (default, Oct 14 2016, 12:54:53)
-    Type "copyright", "credits" or "license" for more information.
-
-    IPython 5.1.0 -- An enhanced Interactive Python.
-    ?         -> Introduction and overview of IPython's features.
-    %quickref -> Quick reference.
-    help      -> Python's own help system.
-    object?   -> Details about 'object', use 'object??' for extra details.
+    Python 3.7.3 (default, Mar 27 2019, 22:11:17)
+    Type 'copyright', 'credits' or 'license' for more information
+    IPython 7.11.1 -- An enhanced Interactive Python. Type '?' for help.
 
     In [1]: 2*2
     Out[1]: 4
   #+END_SRC
-
+  
 * Interpréteur =ipython=
 
 - Premier programme =python= : /"Hello world"/
@@ -228,7 +225,7 @@ Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =
     10000000 loops, best of 3: 13.7 ns per loop
   #+END_SRC
 
-* Interpréteur =ipython=
+* COMMENT Interpréteur =ipython=
 
 Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =%=
 
@@ -244,7 +241,7 @@ Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =
   La commande =%history -g= vous retournera l'ensemble des commandes saisies depuis la toute première
   session =ipython=.
 
-* Interpréteur =ipython=
+* COMMENT Interpréteur =ipython=
 
 =ipython= fournit enfin des alias vers les commandes unix standards
 
@@ -269,3 +266,88 @@ Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =
    ('rm', 'rm'),
    ('rmdir', 'rmdir')]
 #+END_SRC
+
+* Comment et où écrire un programme =python= ?
+
+1) Directement dans l'interpréteur =ipython=
+  - @@beamer:\color{green!75!black}\faThumbsUp@@ :: @@beamer:\color{green!75!black}@@ permet de tester en
+    intéractif le code et sa validité
+  - @@beamer:\color{violet}\faThumbsDown@@ :: @@beamer:\color{violet}@@ rend difficile la
+    réutilisation et la modification du code
+
+#+BEAMER: \pause
+
+2) [@2] Dans un éditeur de texte (=emacs=, =vim=, =notepad++=) puis 
+   #+BEGIN_SRC python
+     @\prompt@ python mon_code.py
+   #+END_SRC
+    
+   ou directement dans l'interpréteur =ipython= en faisant
+   #+BEGIN_SRC python
+     @\prompt@ ipython
+ 
+    In [1]: %run mon_code.py
+   #+END_SRC
+
+* Comment et où écrire un programme =python= ?
+
+3) [@3] Dans un environnement de développement intégré (/IDE/)
+   - [[https://www.jetbrains.com/fr-fr/pycharm/][=pycharm=]], [[https://pyzo.org/][=pyzo=]], [[https://www.spyder-ide.org/][=spyder=]], ...
+   - [[https://atom.io/][=atom=]], [[https://www.sublimetext.com/][=sublime text=]], ...
+
+      # - @@beamer:\color{green}\faThumbsUp@@ :: @@beamer:\color{green}@@ interpréteur intégré,
+      #   vérification de la syntaxe, complétion
+      # - @@beamer:\color{red}\faThumbsDown@@ :: @@beamer:\color{red}@@ cohabitation avec des
+      #   environnements virtuels
+
+#+BEAMER: \pause
+
+4) [@4] Dans un /notebook/ Jupyter \to *solution utilisée pour les TD*
+
+* Jupyter et ses /notebooks/
+
+- Les /notebooks/ Jupyter sont des "cahiers électroniques" qui, dans un même document, peuvent
+  rassembler du *texte, des images, des formules mathématiques et du code informatique
+  exécutable*. Ils sont manipulables interactivement dans *un navigateur web*.
+
+#+BEAMER: \pause
+- Initialement développés pour les langages Julia, Python et R, les /notebooks/ Jupyter, supportent
+  près de 40 langages différents (dont le C++).
+
+#+BEAMER: \pause
+- Outil de plus en plus populaire notamment pour documenter et expliquer le fonctionnement d'un code
+  (tutoriels, cours, rédaction d'articles...)
+
+* Exemple d'un /notebook/
+
+- *La cellule* est l'élément de base d'un notebook Jupyter. Elle peut contenir du texte formaté au
+  format Markdown ou du code informatique qui pourra être exécuté.
+
+[[file:figures/jupyter_example.png]]
+
+* Installation & utilisation des /notebooks/
+
+- Sous Linux, l'installation est relativement simple 
+  #+BEGIN_SRC shell-session
+    @\prompt@ pip install --user jupyterlab
+    @\prompt@ jupyter lab
+  #+END_SRC
+
+- Sous Windows, Mac \to passer sous Linux ou utiliser [[https://docs.anaconda.com/anaconda/navigator/][=Anaconda=]]
+* Installation & utilisation des notebooks
+
+- Vous pouvez vous connecter sur les machines de l'université et initier une session Jupyter
+
+  1) depuis votre ordinateur personnel[fn:382b9b24d416887]
+     #+BEGIN_SRC shell-session
+       @\prompt@ ssh -L 8891:localhost:8891 prenom.nom@tp-ssh1.dep-informatique.u-psud.fr
+     #+END_SRC
+
+  2) une fois la connection =ssh= établie
+     #+BEGIN_SRC shell-session
+       @\prompt@ jupyter lab --port 8891 --ip 127.0.0.1 --no-browser
+     #+END_SRC
+     puis ouvrir le lien dans un navigateur web 
+* Footnotes
+
+[fn:382b9b24d416887] si =tp-ssh1= ne semble pas accessible, vous pouvez essayer =tp-ssh2= ou =tp-ssh3=

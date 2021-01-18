@@ -181,51 +181,6 @@ we execute a hook before parsing file to change =CBOX= into =cbox=.
   (add-to-list 'org-export-filter-final-output-functions 'latex::downcase-end-filter)
 #+END_SRC
 
-**** Lecture template
-#+BEGIN_SRC emacs-lisp :results none
-  (add-to-list 'org-latex-classes
-               '("python-lecture"
-                 "\\documentclass[10pt,a4paper,twoside]{report}
-                  [PACKAGES]
-                  \\usepackage[python_teaching_lectures]{lecture-style}
-                  [NO-DEFAULT-PACKAGES]"
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-  (add-to-list 'org-latex-classes
-               '("python-lecture-book"
-                 "\\documentclass[10pt,a4paper,twoside]{report}
-                  [PACKAGES]
-                  \\usepackage[python_teaching_lectures,book]{lecture-style}
-                  [NO-DEFAULT-PACKAGES]"
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-#+END_SRC
-
-Add a new tag =ignoreheading= to skip headline tagged as such.
-#+BEGIN_SRC emacs-lisp
-  (defun python-ignore-headline (contents backend info)
-    (when (and (org-export-derived-backend-p backend 'latex)
-               (string-match "\\`.*ignoreheading.*\n"
-                             (downcase contents)))
-      (replace-match "" nil nil contents)))
-  (add-to-list 'org-export-filter-headline-functions 'python-ignore-headline)
-#+END_SRC
-
-Interpret figures within table environment as figure side-by-side.
-#+BEGIN_SRC emacs-lisp
-  (defun python-multicolumn-figure (contents backend info)
-    (when (and (org-export-derived-backend-p backend 'latex)
-               (string-match "table" contents)
-               (string-match "includegraphics" contents))
-      (replace-regexp-in-string "table" "figure" contents)))
-  (add-to-list 'org-export-filter-table-functions 'python-multicolumn-figure)
-#+END_SRC
 **** Class template
 #+BEGIN_SRC emacs-lisp :results none
   (add-to-list 'org-latex-classes
@@ -2004,12 +1959,13 @@ up. Practically, everything can be done within this section.
   \definecolor{blue}{RGB}{0,72,112}
   \definecolor{orange}{RGB}{192,128,64}
   \definecolor{gray}{RGB}{107,108,110}
+  \definecolor{violet}{HTML}{8B1B59}
   \definecolor{solarizedbg}{RGB}{253,246,227}
   %% \definecolor{solarizedbg}{HTML}{002b36}
 
   \colorlet{generic0}{green}
   \colorlet{generic1}{green}
-  \colorlet{generic2}{blue}
+  \colorlet{generic2}{violet}
   \colorlet{generic3}{gray}
 #+END_SRC
 ****** Title prefix

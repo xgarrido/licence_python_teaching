@@ -9,13 +9,11 @@
 * Langage Python \faPython
 
 #+BEGIN_QUOTE
-Python est un langage de programmation, dont la première version est sortie en
-*1991*. Créé par *Guido van Rossum*, il a voyagé du Macintosh de son créateur,
-qui travaillait à cette époque au Centrum voor Wiskunde en Informatica aux
-Pays-Bas, jusqu'à se voir associer une organisation à but non lucratif
-particulièrement dévouée, la *[[https://www.python.org/][Python Software Foundation]]*, créée en 2001. Ce
-langage a été baptisé ainsi en hommage à la troupe de comiques les *« Monty
-Python »*.
+Python est un langage de programmation, dont la première version est sortie en *1991*. Créé par *Guido
+van Rossum*, il a voyagé du Macintosh de son créateur, qui travaillait à cette époque au Centrum voor
+Wiskunde en Informatica aux Pays-Bas, jusqu'à se voir associer une organisation à but non lucratif
+particulièrement dévouée, la *[[https://www.python.org/][Python Software Foundation]]*, créée en 2001. Ce langage a été baptisé
+ainsi en hommage à la troupe de comiques les *« Monty Python »*.
 #+END_QUOTE
 
 #+COMMENT: Python v1.0.0 https://groups.google.com/forum/?hl=en#!topic/comp.lang.misc/_QUzdEGFwCo
@@ -29,8 +27,7 @@ Python »*.
 
 * Langage Python : pourquoi ?
 
-Pour tout un tas de raisons que vous découvrirez durant cette option parmi
-lesquelles
+Pour tout un tas de raisons que vous découvrirez durant cette option parmi lesquelles
 
 #+BEAMER: \pause
 
@@ -43,60 +40,56 @@ lesquelles
 #+BEAMER: \pause
 #+ATTR_BEAMER: :overlay +-
 - Détails techniques :
-  - *Type dynamique* : pas besoin de définir le type de variables, les arguments de
-    fonction ou les types de retour.
-  - *Gestion automatique de la mémoire* : pas besoin d'allouer et de désallouer
-    explicitement la mémoire pour les variables et les tableaux de données. Pas
-    de bugs de fuite de mémoire.
-  - *Langage interprété* : Pas besoin de compiler le code. L'interpréteur Python lit et
-    exécute directement le code python.
+  - *Type dynamique* : pas besoin de définir le type de variables, les arguments de fonction ou les
+    types de retour.
+  - *Gestion automatique de la mémoire* : pas besoin d'allouer et de désallouer explicitement la
+    mémoire pour les variables et les tableaux de données. Pas de bugs de fuite de mémoire.
+  - *Langage interprété* : Pas besoin de compiler le code. L'interpréteur Python lit et exécute
+    directement le code python.
 
 * Langage Python : /pros & cons/
 
 - Avantages:
-  - Le principal avantage est la facilité de programmation, minimisant le temps
-    nécessaire pour développer, déboguer et maintenir le code.
-  - *Programmation modulaire et orientée objet*, système performant de /packaging/
-    et de réutilisation du code.
+  - Le principal avantage est la facilité de programmation, minimisant le temps nécessaire pour
+    développer, déboguer et maintenir le code.
+  - *Programmation modulaire et orientée objet*, système performant de /packaging/ et de réutilisation
+    du code.
   - *Documentation* étroitement intégrée au code.
-  - Une vaste bibliothèque standard et *une grande collection de modules
-    complémentaires*, scientifiques et autres (serveur web,...).
-  - *multi-plateformes* : Python est facilement accessible et utilisable que ce
-    soit sur Windows, MacOS X ou *Linux*
+  - Une vaste bibliothèque standard et *une grande collection de modules complémentaires*,
+    scientifiques et autres (serveur web,...).
+  - *multi-plateformes* : Python est facilement accessible et utilisable que ce soit sur Windows,
+    MacOS X ou *Linux*
 
 #+BEAMER: \pause
 
 - Désavantages:
-  - langage de programmation interprété et typé dynamiquement \to *exécution du
-    code python plus lente* par rapport aux langages de programmation
-    compilés statiquement, tels que C et Fortran.
+  - langage de programmation interprété et typé dynamiquement \to *exécution du code python plus
+    lente* par rapport aux langages de programmation compilés statiquement, tels que C et Fortran.
 
 * Option « Programmation en Python »
 
 - À qui s'adresse cette option ?
 
-  - à tout étudiant de niveau académique suffisant (min. L3), *sans pré-requis en
-    programmation et/ou algorithmie*
+  - à tout étudiant de niveau académique suffisant (min. L3), *sans pré-requis en programmation et/ou
+    algorithmie*
   - pas aux /geeks/ férus d'informatique ayant déjà 20 ans de pratique du Python
 
 #+BEAMER: \pause
 
 - Qu'est ce que cette option n'est pas ?
 
-  - pas un cours de *programmation numérique/algorithmie* \to cours de C du L3
-    Physique Fondamentale
+  - pas un cours de *programmation numérique/algorithmie* \to cours de C du L3 Physique Fondamentale
   - pas un cours de *méthodes numériques*
-  - *une simple initiation* à la programmation Python
+  - pas *une simple initiation* à la programmation Python
 # \to option « Méthodes numériques » du L3 de Physique Fondamentale
 
-#+BEAMER: \pause
+#+BEAMER: \pause\vspace{0.5cm}
 
 #+BEGIN_REMARK
 _Python 2 ou Python 3 ?_
 
-En 2008, Python 3 a été officiellement lancé. Quelques (vieilles) librairies
-scientifiques ne fonctionnent pas encore sous Python 3 mais c'est de plus en
-plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
+En 2008, Python 3 a été officiellement lancé. Quelques (vieilles) librairies scientifiques ne
+fonctionnent pas encore sous Python 3 mais c'est de plus en plus l'exception.
 #+END_REMARK
 
 * Option « Programmation en Python »
@@ -104,10 +97,10 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 #+ATTR_LATEX: :options [100][-none][][1.25][3]
 #+BEGIN_CBOX
 - *Bases de la programmation en Python*
-  - environnement Python (=venv=, =pip=, =ipython=)
+  - environnement Python : interpréteurs, IDE, =jupyter notebook=
   - type de données, /containers/, bloc conditionnel, boucles =for=
   - fonctions, scripts & modules, initiation à la programmation orientée objet
-  - gestion & manipulation données numériques (=numpy=)
+  - *gestion & manipulation données numériques (=numpy=)*
 #+END_CBOX
 
 * Option « Programmation en Python »
@@ -115,10 +108,10 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 #+ATTR_LATEX: :options [100][-none][][1.25][3]
 #+BEGIN_CBOX
 - *Bases de la programmation en Python*
-  - environnement Python (=venv=, =pip=, =ipython=)
+  - environnement Python : interpréteurs, IDE, =jupyter notebook=
   - type de données, /containers/, bloc conditionnel, boucles =for=
   - fonctions, scripts & modules, initiation à la programmation orientée objet
-  - gestion & manipulation données numériques (=numpy=)
+  - *gestion & manipulation données numériques (=numpy=)*
 #+END_CBOX
 
 #+ATTR_LATEX: :options [100][-none][][1.25][6.5]
@@ -158,10 +151,10 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 #+ATTR_LATEX: :options [100][-none][][1.25][3]
 #+BEGIN_CBOX
 - *Bases de la programmation en Python*
-  - environnement Python (=venv=, =pip=, =ipython=)
+  - environnement Python : interpréteurs, IDE, =jupyter notebook=
   - type de données, /containers/, bloc conditionnel, boucles =for=
   - fonctions, scripts & modules, initiation à la programmation orientée objet
-  - gestion & manipulation données numériques (=numpy=)
+  - *gestion & manipulation données numériques (=numpy=)*
 #+END_CBOX
 
 #+ATTR_LATEX: :options [100][-none][][1.25][6.5]
@@ -175,10 +168,26 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 #+BEGIN_CBOX
 - *Interface graphique*
   - utilisation des /widgets/ de =matplotlib=
-  - applications directes aux TD Méca. Quan., EM, Phys. Stat.
 #+END_CBOX
 
-* Notes/transparents de cours \faArchive
+* Déroulement cours/TD \faIcon{laptop-code}
+
+- Cours à distance $\lesssim$ 1 heure
+  ([[https://eu.bbcollab.com/guest/1ec2d26f7f2e4e7c9432464a1e5ad765][lien Collaborate]])
+
+- TD à distance ~ 1h : 1 session Collaborate générale + questions/réponses individualisées /via/
+  lien Google Meet ou Zoom
+
+- Examen (2 heures) *sur machine* en présentiel
+  
+* Bibliographie \faIcon{bookmark}
+
+- /Open Classrooms/ : [[https://openclassrooms.com/courses/apprenez-a-programmer-en-python][Apprenez à programmer en Python]]
+- [[https://github.com/jakevdp/PythonDataScienceHandbook][*Python Data Science Handbook*]]
+- [[http://www.scipy-lectures.org/index.html][*Scipy Lectures Notes*]]
+- [[https://github.com/jrjohansson/scientific-python-lectures][*Scientific Python Lectures*]]
+- ...
+* COMMENT Notes/transparents de cours \faArchive
 :PROPERTIES:
 :BEAMER_OPT: fragile
 :END:
@@ -226,10 +235,4 @@ plus l'exception. Au cours de cette option, nous utiliserons _Python 3.5_
 _Ressources disponibles sur dokeos [[http://formation.u-psud.fr][http://formation.u-psud.fr]]_
 #+END_CBOX
 
-* Bibliographie \faBookmark
 
-- /Open Classrooms/ : [[https://openclassrooms.com/courses/apprenez-a-programmer-en-python][Apprenez à programmer en Python]]
-- [[https://github.com/jakevdp/PythonDataScienceHandbook][*Python Data Science Handbook*]]
-- [[http://www.scipy-lectures.org/index.html][*Scipy Lectures Notes*]]
-- [[https://github.com/jrjohansson/scientific-python-lectures][*Scientific Python Lectures*]]
-- ...
