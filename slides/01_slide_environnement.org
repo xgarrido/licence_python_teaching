@@ -348,6 +348,23 @@ Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =
        @\prompt@ jupyter lab --port 8891 --ip 127.0.0.1 --no-browser
      #+END_SRC
      puis ouvrir le lien dans un navigateur web 
+* Installation & utilisation des notebooks
+
+- Vous pouvez également utiliser la plateforme Jupyter de Paris-Saclay
+
+  #+BEGIN_CENTER
+  *https://jupytercloud.lal.in2p3.fr*
+  #+END_CENTER
+
+- Vous pouvez finalement utiliser Google Colaboratory
+  #+BEGIN_SRC latex
+    \href{https://colab.research.google.com/github/xgarrido/binder-sandbox}{\includegraphics[height=0.8em]{./figures/colab-badge.png}}
+  #+END_SRC
+  ou dans le "bac à sable" =mybinder=
+  #+BEGIN_SRC latex
+    \href{https://mybinder.org/v2/gh/xgarrido/binder-sandbox/HEAD?urlpath=lab}{\includegraphics[height=0.8em]{./figures/launch-binder.png}}
+  #+END_SRC
+
 * Footnotes
 
 [fn:382b9b24d416887] si =tp-ssh1= ne semble pas accessible, vous pouvez essayer =tp-ssh2= ou =tp-ssh3=
