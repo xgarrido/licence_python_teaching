@@ -124,7 +124,7 @@ Toute valeur différente de 0 est considérée comme vraie
 http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-1-Introduction-to-Python-Programming.ipynb#Type-casting
 #+END_COMMENT
 
-* Conversion explicite
+* COMMENT Conversion explicite
 
 - Nombre entier \to nombre complexe
   #+BEGIN_SRC python
@@ -225,18 +225,18 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
     Out[4]: False
   #+END_SRC
 
-* Affectation multiples et parallèles
+* Affectation en parallèle
 
-- Python autorise *l'affectation simultanée* d'une même valeur à plusieurs
-  variables
-  #+BEGIN_SRC python
-    In [1]: x = y = 1.0
+# - Python autorise *l'affectation simultanée* d'une même valeur à plusieurs
+#   variables
+#   #+BEGIN_SRC python
+#     In [1]: x = y = 1.0
 
-    In [2]: x, y
-    Out[2]: (1.0, 1.0)
-  #+END_SRC
+#     In [2]: x, y
+#     Out[2]: (1.0, 1.0)
+#   #+END_SRC
 
-  #+BEAMER: \pause
+#   #+BEAMER: \pause
 
 - Python permet également *l'affectation en parallèle* de plusieurs variables
   #+BEGIN_SRC python
@@ -307,21 +307,21 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 [[http://xkcd.com/323/][xkcd comic]]
 
 * Structure conditionnelle
-
 ** =if= python
 :PROPERTIES:
 :BEAMER_COL: 0.5
 :END:
 #+BEGIN_SRC python
-  In [1]: galette = True
-     ...: neige = True
+  In [1]: cholera = False
+     ...: covid = True
+     ...: peste = False
      ...:
-     ...: if neige:
-     ...:     print("Pas de galette !")
-     ...: elif galette:
-     ...:     print("Galette !")
+     ...: if cholera or peste:
+     ...:     print("Pas de TD !")
+     ...: elif covid:
+     ...:     print("TD en distanciel")
      ...: else:
-     ...:     print("Pas de neige, pas de galette")
+     ...:     print("TD en présentiel")
 #+END_SRC
 
 ** Description
@@ -333,7 +333,7 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 - utilisation des mot-clés *=if/elif/else=*
 - la fin de chaque condition est matérialisée par *le caractère =:=*
 - *l'indentation (4 espaces ou une tabulation) délimite le bloc de condition*
-- dans =ipython=, appuyer sur =Entrée= deux fois pour exécuter le bloc
+# - dans =ipython=, appuyer sur =Entrée= deux fois pour exécuter le bloc
 
 * COMMENT Structure conditionnelle
 
