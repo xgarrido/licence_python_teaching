@@ -468,7 +468,7 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 - Pour quitter une boucle =for= en cours d'exécution, on utilisera l'instruction
   *=break=*
   #+BEGIN_SRC python
-    In [1]: for i in range(-4,4,2):
+    In [1]: for i in range(-4, 4, 2):
        ...:     if i == 0:
        ...:         break
        ...:     print(i)
@@ -482,7 +482,7 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 - S'il s'agit de passer outre le bloc d'instruction suivant, on utilisera
   l'instruction *=continue=*
   #+BEGIN_SRC python
-    In [1]: for i in range(-4,4,2):
+    In [1]: for i in range(-4, 4, 2):
        ...:     if i == 0:
        ...:         continue
        ...:     print(i)
@@ -497,7 +497,7 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
 - S'il s'agit de passer outre le bloc d'instruction suivant, on utilisera
   l'instruction *=continue=*
   #+BEGIN_SRC python
-    In [1]: for i in range(-4,4,2):
+    In [1]: for i in range(-4, 4, 2):
        ...:     if i == 0:
        ...:         continue
        ...:     print(i)
