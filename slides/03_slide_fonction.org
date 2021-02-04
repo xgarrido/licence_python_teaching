@@ -76,8 +76,8 @@ intégrées au langage Python
 * Les chaînes de caractères
 #+BEAMER: \framesubtitle{Les méthodes associées}
 
-- Les méthodes ou fonctions membres associées aux objets de type =str= sont
-  accessibles par le biais de *l'opérateur =.=*
+- Les méthodes ou fonctions membres associées aux objets de type =str= sont accessibles par le biais
+  de *l'opérateur =.=*
 
   #+BEAMER:\pause
   #+BEGIN_SRC python
@@ -87,7 +87,8 @@ intégrées au langage Python
     Out[2]: "QU'EST-CE QU'UN CHAT QUI TRAVAILLE À LA SNCF ?"
   #+END_SRC
 
-  #+BEAMER:\pause
+#+BEAMER:\pause
+- Dès lors que les méthodes retournent un objet de type =str=, il est possible de les enchaîner 
   #+BEGIN_SRC python
     In [3]: reponse = "un cheminou"
 
@@ -163,8 +164,8 @@ intégrées au langage Python
 
   #+BEAMER: \pause
   #+BEGIN_REMARK
-  Une chaîne de caractères est _un objet non /mutable/_ : on ne peut modifier
-  l'objet qu'à la condition de créer une nouvelle référence en mémoire !
+  Une chaîne de caractères est _un objet non /mutable/_ : on ne peut modifier l'objet qu'à la
+  condition de créer une nouvelle référence en mémoire !
   #+END_REMARK
 
 * Les chaînes de caractères
@@ -182,15 +183,15 @@ intégrées au langage Python
     Out[4]: 139717714061872
   #+END_SRC
 
-- Pour le remplacement de sous-chaînes, on tirera profit de la méthode =replace=
-  associée aux méthodes =index= et =find=
+- Pour le remplacement de sous-chaînes, on tirera profit de la méthode =replace= ainsi que des
+  méthodes =index= et =find=
   #+BEGIN_SRC python
     In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
     In [2]: citation = citation.replace("Chuck Norris", "Patrick Puzo")
   #+END_SRC
 
 * Les chaînes de caractères
-#+BEAMER: \framesubtitle{Opérations logiques et arithmétiques}
+#+BEAMER: \framesubtitle{Opérations logiques \& arithmétiques}
 
 #+ATTR_BEAMER: :overlay +-
 - Vérification de présence :
@@ -213,7 +214,7 @@ intégrées au langage Python
   #+END_SRC
 
 * Les chaînes de caractères
-#+BEAMER: \framesubtitle{Format et \emph{Formatage}}
+#+BEAMER: \framesubtitle{Format \& \emph{Formatage}}
 
 - Utilisation des formats de données du C[fn:20089b4921487a8]
   #+BEGIN_SRC python
@@ -227,7 +228,7 @@ intégrées au langage Python
   #+END_SRC
 
 * Les chaînes de caractères
-#+BEAMER: \framesubtitle{Format et \emph{Formatage}}
+#+BEAMER: \framesubtitle{Format \& \emph{Formatage}}
 
 - Utilisation de la méthode =format=[fn:14f65e5336818de0]
   #+BEGIN_SRC python
@@ -253,6 +254,16 @@ intégrées au langage Python
     Out[2]: "L'année 2017 s'écrit 11111100001 en binaire et 7e1 en héxadécimal"
   #+END_SRC
 
+* Les chaînes de caractères
+#+BEAMER: \framesubtitle{Format \& \emph{Formatage}}
+
+#+BEGIN_SRC python
+  In [1]: nom, prenom, age = "Van Rossum", "Guido", 64
+  In [2]: print(f"Nom: {nom}, prénom: {prenom}, age: {age}")
+
+  Out[2]: 'Nom: Van Rossum, prénom: Guido, age: 64'
+#+END_SRC
+
 * Les listes
 #+BEAMER: \framesubtitle{Initialisation d'une liste}
 
@@ -262,16 +273,16 @@ intégrées au langage Python
 
 - Initialisation d'une liste
   #+BEGIN_SRC python
-    In [1]: l = []
+    In [1]: bazar = []
 
-    In [2]: l = ["rouge", "vert", "bleu", "noir"]
+    In [2]: bazar = ["rouge", "vert", "bleu", "noir"]
 
-    In [3]: l = [1, 2, 3, 4]
+    In [3]: bazar = [1, 2, 3, 4]
 
-    In [4]: l = [1, 2, "bleu", 3, 4]
+    In [4]: bazar = [1, 2, "bleu", 3, 4]
     Out[4]: [1, 2, 'bleu', 3, 4]
 
-    In [5]: type(l)
+    In [5]: type(bazar)
     Out[5]: list
   #+END_SRC
 
@@ -281,23 +292,23 @@ intégrées au langage Python
 #+ATTR_BEAMER: :overlay +-
 - Conversion en liste
   #+BEGIN_SRC python
-    In [1]: l = list(range(4))
-    In [2]: l
+    In [1]: bazar = list(range(4))
+    In [2]: bazar
     Out[2]: [0, 1, 2, 3]
 
-    In [3]: l = list("abcdef")
-    In [4]: l
+    In [3]: bazar = list("abcdef")
+    In [4]: bazar
     Out[4]: ['a', 'b', 'c', 'd', 'e', 'f']
   #+END_SRC
 
 - Initialisation d'une liste "en compréhension"
   #+BEGIN_SRC python
-    In [1]: l = [x**2 for x in range(4)]
-    In [2]: l
+    In [1]: bazar = [x**2 for x in range(4)]
+    In [2]: bazar
     Out[2]: [0, 1, 4, 9]
 
-    In [3]: l = [x**2 for x in range(1,100) if x % 10 == 3]
-    In [4]: l
+    In [3]: bazar = [x**2 for x in range(1,100) if x % 10 == 3]
+    In [4]: bazar
     Out[4]: [9, 169, 529, 1089, 1849, 2809, 3969, 5329, 6889, 8649]
   #+END_SRC
 
@@ -437,9 +448,11 @@ intégrées au langage Python
   #+BEGIN_SRC python
     In [1]: tel = {"emmanuelle": 5752, "sébastien": 5578}
 
-    In [2]: tel["francis"] = 5915
-    In [3]: tel
-    Out[3]: {'sébastien': 5578, 'francis': 5915, 'emmanuelle': 5752}
+    In [2]: tel
+    Out[2]: {'emmanuelle': 5752, 'sébastien': 5578}
+
+    In [3]: tel["francis"] = 5915
+
     In [4]: tel["sébastien"]
     Out[4]: 5578
 
@@ -630,15 +643,6 @@ Pour plus de détails sur les us et coutumes en matière de documentation /cf./
     In [5]: decomposer(ad(), 2)
     Out[5]: (157.0, 0.0)
   #+END_SRC
-
-* COMMENT Conclusion culturelle
-
-#+BEGIN_QUOTE
-Google, c'est le seul endroit où tu peux taper Chuck Norris...
-#+END_QUOTE
-
-#+BEAMER: \hspace{+8cm}
-/Chuck Norris Facts/
 
 * Footnotes
 
