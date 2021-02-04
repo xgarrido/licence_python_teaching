@@ -439,11 +439,10 @@ intégrées au langage Python
 
 * Les dictionnaires
 
-- Les dictionnaires sont des structures *mutables*, non ordonnées, formées
-  d’enregistrements de type *=clé:valeur=*
+- Les dictionnaires sont des structures *mutables*, ordonnées, formées d’enregistrements de type
+  *=clé:valeur=*
 
-- Le seul moyen d’accéder à une valeur particulière est par l’intermédiaire de
-  sa clé
+- Le seul moyen d’accéder à une valeur particulière est par l’intermédiaire de sa clé
 
   #+BEGIN_SRC python
     In [1]: tel = {"emmanuelle": 5752, "sébastien": 5578}
@@ -574,8 +573,8 @@ Par défaut, la valeur de retour d'une fonction est =None=
        ...:     return entier // diviseur, entier % diviseur
        ...:
 
-    In [2]: partie_entiere, diviseur = decomposer(20,3)
-    In [3]: partie_entiere, diviseur
+    In [2]: partie_entiere, reste = decomposer(20,3)
+    In [3]: partie_entiere, reste
     Out[3]: (6, 2)
   #+END_SRC
 
