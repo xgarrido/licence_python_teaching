@@ -14,13 +14,13 @@
 
 - Notion de programmation orientée objet
 
-- Gestion des exceptions en Python
-
 - Entrées/sorties
+
+- Gestion des exceptions en Python
 
 - Librairie standard : =os=, =sys=, =pickle=
 
-* Scripts/modules
+* COMMENT Scripts/modules
 
 #+ATTR_BEAMER: :overlay +-
 - Jusqu'à présent l'ensemble des commandes ou blocs d'instructions ont été tapé
@@ -39,8 +39,7 @@
 
 - *Un script* est un fichier contenant un ensemble d'instructions =python=
 
-- L'extension du fichier-script sera *=.py=* (indentation, coloration
-  syntaxique...)
+- L'extension du fichier-script sera *=.py=* (indentation, coloration syntaxique...)
 
 - Exemple =citation.py=
  #+BEGIN_SRC python -n
@@ -66,8 +65,8 @@
 
 * Modules =python=
 
-- À la différence d'un script, *un module =python=* est un fichier contenant un
-  *ensemble de fonctions* pouvant être utilisées par différents scripts
+- À la différence d'un script, *un module =python=* est un fichier contenant un *ensemble de fonctions*
+  pouvant être utilisées par différents scripts
 
 - Exemple =jcvd_collection.py=
   #+BEGIN_SRC python -n :tangle /tmp/jcvd_collection.py
@@ -89,8 +88,8 @@
 
 * Modules =python=
 
-- Pour pouvoir utiliser le module et ses fonctions, *il est nécessaire de
-  l'importer* soit dans un script ou soit dans l'interpréteur
+- Pour pouvoir utiliser le module et ses fonctions, *il est nécessaire de l'importer* soit dans un
+  script ou soit dans l'interpréteur
   #+ATTR_BEAMER: :overlay +-
   1) Importation de base
      #+BEGIN_SRC python
@@ -113,11 +112,11 @@
        Quand tu prends confiance en la confiance tu deviens confiant.
      #+END_SRC
 
-* Modules =python=
+* COMMENT Modules =python=
 
 #+BEGIN_REMARK
-Lors de l'importation, le module est mis _en cache_ et il faut donc le recharger
-pour que les modifications soient prises en compte
+Lors de l'importation, le module est mis _en cache_ et il faut donc le recharger pour que les
+modifications soient prises en compte
 #+BEGIN_SRC python
   In [1]: import importlib
   In [2]: importlib.reload(jcvd_collection)
@@ -192,24 +191,21 @@ pour que les modifications soient prises en compte
 
 #+BEAMER: \pause
 #+BEGIN_QUOTE
-La programmation orientée objet (POO), ou programmation par objet, est *un
-paradigme de programmation informatique* élaboré par les Norvégiens Ole-Johan
-Dahl et Kristen Nygaard au début des années 1960 et poursuivi par les travaux
-d'Alan Kay dans les années 1970.
+La programmation orientée objet (POO), ou programmation par objet, est *un paradigme de programmation
+informatique* élaboré par les Norvégiens Ole-Johan Dahl et Kristen Nygaard au début des années 1960
+et poursuivi par les travaux d'Alan Kay dans les années 1970.
 #+BEAMER: \pause
-Il consiste en la définition et l'interaction de briques logicielles appelées
-objets ; *un objet représente un concept, une idée ou toute entité du monde
-physique, comme une voiture, une personne ou encore une page d'un livre*.
+Il consiste en la définition et l'interaction de briques logicielles appelées objets ; *un objet
+représente un concept, une idée ou toute entité du monde physique, comme une voiture, une personne
+ou encore une page d'un livre*.
 #+BEAMER: \pause
-Il possède *une structure interne et un comportement*, et il sait interagir avec
-ses pairs. Il s'agit donc de représenter ces objets et leurs relations ;
-*l'interaction entre les objets via leurs relations* permet de concevoir et
-réaliser les fonctionnalités attendues, de mieux résoudre le ou les
+Il possède *une structure interne et un comportement*, et il sait interagir avec ses pairs. Il s'agit
+donc de représenter ces objets et leurs relations ; *l'interaction entre les objets via leurs
+relations* permet de concevoir et réaliser les fonctionnalités attendues, de mieux résoudre le ou les
 problèmes.
 #+BEAMER: \pause
-Dès lors, l'étape de modélisation revêt une importance majeure et nécessaire
-pour la POO. C'est elle qui permet de transcrire les éléments du réel sous forme
-virtuelle.
+Dès lors, l'étape de modélisation revêt une importance majeure et nécessaire pour la POO. C'est elle
+qui permet de transcrire les éléments du réel sous forme virtuelle.
 #+END_QUOTE
 
 #+BEAMER: \hspace{+9cm}
