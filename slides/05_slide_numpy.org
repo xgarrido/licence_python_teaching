@@ -5,17 +5,21 @@
 #+STARTUP:     beamer
 #+LATEX_CLASS: python-slide
 
-* =numpy= ?
+* =numpy= \faIcon{question-circle}
 
-- Le module =numpy= est l'outil de base utilisé dans tous calculs scientifiques et
-  donc numériques en Python
+- Le module =numpy= est l'outil de base utilisé dans tous calculs numériques et donc scientifiques en
+  Python
 
-- =numpy= fournit en particulier des objets de type *vecteurs, matrices et plus
-  généralement tableaux à $n$ dimensions*
+#+BEAMER: \pause
 
-- =numpy= facilite et *optimise[fn:e0eb780c73d6562]* les opérations de *stockage et
-  de manipulation* des données *numériques* notamment lorsque la taille des
-  tableaux devient importante \to /array oriented computing/
+- =numpy= fournit en particulier des objets de type *vecteurs, matrices en généralisant la notion de
+  tableaux à $n$ dimensions \to =ndarray=*
+
+#+BEAMER: \pause
+
+- =numpy= facilite et *optimise[fn:e0eb780c73d6562]* les opérations de *stockage et de manipulation* des
+  données *numériques* notamment lorsque la taille des tableaux devient importante \to /array oriented
+  computing/
 
 * Installation & importation de =numpy=
 
@@ -87,7 +91,7 @@
       Out[8]: ((4,), (2, 2))
     #+END_SRC
 
-* Pourquoi =numpy= ?
+* Pourquoi =numpy= \faIcon{question-circle}
 
 - Les objets de type =numpy.ndarray= \equiv à une liste Python (ou liste de
   listes)
@@ -95,7 +99,7 @@
 - *Pourquoi ne pas simplement utiliser les listes Python pour les calculs au
   lieu de créer un nouveau type de tableau ?*
 
-* Pourquoi =numpy= ?
+* Pourquoi =numpy= \faIcon{question-circle}
 
 Il existe plusieurs (très bonnes) raisons à cela:
 
@@ -139,19 +143,18 @@ http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
 
 #+END_COMMENT
 
-* Pourquoi =numpy= ?
+* Pourquoi =numpy= \faIcon{question-circle}
 
 - Démonstration
   #+BEGIN_SRC python
     In [1]: %timeit [i**2 for i in range(1000)]
-    1000 loops, best of 3: 403 us per loop
+    183 µs ± 3.19 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
   #+END_SRC
 
   #+BEAMER: \pause
   #+BEGIN_SRC python
-    In [3]: a = np.arange(1000)
-    In [4]: %timeit a**2
-    100000 loops, best of 3: 12.7 us per loop
+    In [2]: %timeit np.arange(1000)**2
+    2.21 µs ± 11.4 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
   #+END_SRC
 
 * Création de tableau (suite)
@@ -178,7 +181,7 @@ http://www.scipy-lectures.org/intro/numpy/array_object.html#numpy-arrays
 
 - ou en forçant le type de données \footnotesize(=float=, =int=, =bool=, 16, 32, 64 bits)
   #+BEGIN_SRC python
-    In [1]: v = np.array([0, 1, 2, 3], dtype=np.float)
+    In [1]: v = np.array([0, 1, 2, 3], dtype=float)
     In [2]: v.dtype
     Out[2]: dtype('float64')
   #+END_SRC
@@ -217,21 +220,21 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 - Vecteurs, matrices avec valeurs par défaut
   #+BEGIN_SRC python
     In [1]: np.zeros(10)
-    Out[1]: array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    Out[1]: array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
 
-    In [2]: np.ones(shape=(3,3))
+    In [2]: np.ones(shape=(3, 3))
     Out[2]:
     array([[ 1.,  1.,  1.],
            [ 1.,  1.,  1.],
            [ 1.,  1.,  1.]])
 
-    In [3]: np.full((3,3), 666, dtype=np.int)
+    In [3]: np.full((3, 3), 666.666, dtype=np.int)
     Out[3]:
     array([[666, 666, 666],
            [666, 666, 666],
            [666, 666, 666]])
 
-    In [4]: np.eye((3,3))
+    In [4]: np.eye(3)
     Out[4]:
     array([[ 1.,  0.,  0.],
            [ 0.,  1.,  0.],
@@ -490,6 +493,39 @@ Le type de données numériques stockées est fixé à la création du tableau
 
 - Autres fonctions : =np.exp(), np.power(), np.log(), np.log10(),...=
 
+* Opérations mathématiques : intermède graphique
+** Python code
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+BEGIN_SRC python
+  In [1]: import numpy as np
+  In [2]: import matplotlib.pyplot as plt
+  In [3]: %matplotlib
+
+  In [4]: x = np.arange(-5, 5, 0.5)
+
+  In [5]: y1 = x**2 + x + 1.0
+  In [6]: y1
+  Out[6]:
+  array([21., 16.75, 13., 9.75, 7., 4.75, 3., 1.75, 1.,
+         0.75, 1., 1.75, 3., 4.75, 7., 9.75, 13., 16.75,
+         21., 25.75])
+
+  In [7]: y2 = 10 * np.cos(x)
+  In [7]: plt.plot(x, y1, "o", x, y2, "o")
+#+END_SRC
+
+** Color map
+:PROPERTIES:
+:BEAMER_COL: 0.5
+:END:
+
+#+ATTR_LATEX: :width 1.2\linewidth
+[[file:figures/fcn.pdf]]
+
 * Opérations statistiques
 
 #+ATTR_BEAMER: :overlay +-
@@ -583,6 +619,9 @@ Le type de données numériques stockées est fixé à la création du tableau
     array([[ 3.,  3.,  3.],
            [ 3.,  3.,  3.],
            [ 3.,  3.,  3.]])
+
+    # Since Python 3.5
+    In [5]: M @ M
   #+END_SRC
 
 * Opérations algébriques

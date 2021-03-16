@@ -39,10 +39,10 @@
     In [2]: import matplotlib.pyplot as plt
 
     In [3]: mpl.__version__
-    Out[3]: '3.1.3'
+    Out[3]: '3.3.4'
   #+END_SRC
 
-** Comment afficher vos figures : =show()= or not =show()=
+** COMMENT Comment afficher vos figures : =show()= or not =show()=
 
 #+BEAMER: \setbeamercovered{invisible}
 
@@ -70,7 +70,7 @@
     \end{tikzpicture}
   #+END_SRC
 
-** Comment afficher vos figures : =show()= or not =show()=
+** COMMENT Comment afficher vos figures : =show()= or not =show()=
 
 #+BEAMER: \setbeamercovered{invisible}
 
@@ -108,21 +108,20 @@
 :END:
 
 #+BEGIN_SRC python
-  In [1]: %matplotlib
-  In [2]: import matplotlib.pyplot as plt
-  In [3]: import numpy as np
+  In [1]: import matplotlib.pyplot as plt
+  In [2]: import numpy as np
 
-  In [4]: x = np.linspace(0, 3*np.pi, 100)
+  In [3]: x = np.linspace(0, 3*np.pi, 100)
 
-  In [5]: plt.plot(x, np.sin(x))
-  In [6]: plt.plot(x, np.cos(x))
+  In [4]: plt.plot(x, np.sin(x))
+  In [5]: plt.plot(x, np.cos(x))
 #+END_SRC
 
 #+BEAMER: \pause
 - Sauvegarder la figure (=eps=, =pdf=, =png=)
 
 #+BEGIN_SRC python
-  In [7]: plt.savefig("/tmp/mpl1.pdf")
+  In [6]: plt.savefig("/tmp/mpl1.pdf")
 #+END_SRC
 
 *** Figure
@@ -206,34 +205,28 @@
 
 #+ATTR_BEAMER: :overlay +-
 - En spécifiant le nom de la couleur
-  #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
     In [8]: plt.plot(x, np.sin(x - 0), color="blue")
   #+END_SRC
 - Nom raccourci (=rgbcmyk=)
-  #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
     In [9]: plt.plot(x, np.sin(x - 1), color="g")
   #+END_SRC
 - Échelle de gris =[0; 1]=
-  #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
     In[10]: plt.plot(x, np.sin(x - 2), color="0.75")
   #+END_SRC
 - Code héxadécimal (=RRGGBB=)
-  #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
     In[11]: plt.plot(x, np.sin(x - 3),
                      color="#FFDD44")
   #+END_SRC
 - RGB /tuple/ =[0; 1]=
-  #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
     In[12]: plt.plot(x, np.sin(x - 4),
                      color=(1.0,0.2,0.3))
   #+END_SRC
 - Couleur du cycle =C0-9=
-  #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
     In[13]: plt.plot(x, np.sin(x - 5), color="C4")
   #+END_SRC
@@ -1112,16 +1105,9 @@ sans échapper les caractères précédés de =\=
 :BEAMER_COL: 0.52
 :END:
 
-#+ATTR_BEAMER: :overlay +-
-- La représentation 3D suppose le chargement de l'outil *=mplot3d=* inclus par
-  défaut dans =matplotlib=
-  #+BEGIN_SRC python
-    In [1]: from mpl_toolkits import mplot3d
-  #+END_SRC
-
 - Une vue 3D est initialisée en spécifiant le type de projection
   #+BEGIN_SRC python
-    In [2]: ax = plt.axes(projection="3d")
+    In [1]: ax = plt.axes(projection="3d")
   #+END_SRC
 
 *** Figure
@@ -1131,7 +1117,7 @@ sans échapper les caractères précédés de =\=
 
 #+BEGIN_SRC latex
   \begin{center}
-    \includegraphics<2>[width=1.1\linewidth]{figures/mpl_3d0.pdf}
+    \includegraphics[width=1.1\linewidth]{figures/mpl_3d0.pdf}
   \end{center}
 #+END_SRC
 
@@ -1158,7 +1144,7 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
   In [4]: zline = np.linspace(0, 15, 1000)
   In [5]: xline = np.sin(zline)
   In [6]: yline = np.cos(zline)
-  In [7]: ax.plot3D(xline, yline, zline, "gray")
+  In [7]: ax.plot(xline, yline, zline, "gray")
 #+END_SRC
 
 #+BEAMER: \pause\vskip-18pt
@@ -1168,7 +1154,7 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
   In [9]: zdata = 15 * np.random.random(100)
   In[10]: xdata = np.sin(zdata) + 0.1*np.random.randn(100)
   In[11]: ydata = np.cos(zdata) + 0.1*np.random.randn(100)
-  In[12]: ax.scatter3D(xdata, ydata, zdata, c=zdata)
+  In[12]: ax.scatter(xdata, ydata, zdata, c=zdata)
 #+END_SRC
 
 *** Figure
@@ -1215,7 +1201,7 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
   #+BEAMER: \pause\vskip-18pt
   #+ATTR_LATEX: :options fontsize=\scriptsize
   #+BEGIN_SRC python
-    In [8]: ax.plot_wireframe(X, Y, Z, linewidth=0.5
+    In [8]: ax.plot_wireframe(X, Y, Z, linewidth=0.5,
                               color="gray")
   #+END_SRC
 

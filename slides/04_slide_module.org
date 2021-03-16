@@ -151,7 +151,7 @@ modifications soient prises en compte
         '/home/garrido/.ipython']
   #+END_SRC
 
-* Script & modules
+* COMMENT Script & modules
 
 - Il est possible de faire cohabiter au sein d'un même fichier un script et un
   module
@@ -174,7 +174,7 @@ modifications soient prises en compte
         quote2()
   #+END_SRC
 
-* Script & modules
+* COMMENT Script & modules
 
 #+BEGIN_SRC python
   In [1]: import jcvd_collection
@@ -195,8 +195,8 @@ La programmation orientée objet (POO), ou programmation par objet, est *un para
 informatique* élaboré par les Norvégiens Ole-Johan Dahl et Kristen Nygaard au début des années 1960
 et poursuivi par les travaux d'Alan Kay dans les années 1970.
 #+BEAMER: \pause
-Il consiste en la définition et l'interaction de briques logicielles appelées objets ; *un objet
-représente un concept, une idée ou toute entité du monde physique, comme une voiture, une personne
+Il consiste en la définition et l'interaction de briques logicielles appelées objets ; *un objet*
+*représente un concept, une idée ou toute entité du monde physique, comme une voiture, une personne
 ou encore une page d'un livre*.
 #+BEAMER: \pause
 Il possède *une structure interne et un comportement*, et il sait interagir avec ses pairs. Il s'agit
@@ -246,12 +246,61 @@ qui permet de transcrire les éléments du réel sous forme virtuelle.
 
 - Création d'un objet de type =Student=
   #+BEGIN_SRC python -n
-    student = Student("Patrick Puzo")
-    student.set_age(50)
-    student.set_mark(0.0)
+    a_student = Student("Patrick Puzo")
+    a_student.set_age(50)
+    a_student.set_mark(0.0)
 
-    print("Résultat de {} : {}/20".format(student.name, student.mark))
+    print(f"Résultat de {a_student.name} : {a_student.mark}/20")
   #+END_SRC
+
+* Entrées/sorties
+
+- La fonction intégrée *=print=* permet d'afficher à l'écran n'importe quelle chaîne
+  de caractères
+  #+BEGIN_SRC python
+    In [1]: print("Qu'est qu'un chat qui voit dans le futur ?")
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- La fonction intégrée *=input=* permet de récupérer une saisie clavier sous la
+  forme d'*une chaîne de caractères*
+  #+BEGIN_SRC python
+    In [2]: reponse = input("Réponse ? ")
+  #+END_SRC
+
+* Entrées/sorties
+
+- L'écriture dans un fichier se fait nécessairement par le biais de *chaîne de caractères*
+  #+BEGIN_SRC python
+    In [1]: f = open("QA.txt", "w")
+    In [2]: f.write("Qu'est qu'un chat qui voit dans le futur ?")
+    In [3]: f.close()
+  #+END_SRC
+
+* Entrées/sorties
+
+- La lecture dans un fichier peut se faire de la façon suivante...
+  #+BEGIN_SRC python
+    In [1]: f = open("QA.txt", "r")
+    In [2]: s = f.read()
+    In [3]: print(s)
+    Qu'est qu'un chat qui voit dans le futur ?
+    In [4]: f.close()
+  #+END_SRC
+
+#+BEAMER: \pause
+
+- ...ou en lisant le fichier ligne par ligne
+  #+BEGIN_SRC python
+    In [1]: with open("QA.txt", "r") as f:
+       ...:     for line in f:
+       ...:         print(line)
+       ...:
+  #+END_SRC
+
+  L'instruction =with= assure que le fichier sera fermé quoiqu'il advienne
+  notamment si une exception est levée
 
 * Gestion des exceptions en Python
 
@@ -324,55 +373,6 @@ qui permet de transcrire les éléments du réel sous forme virtuelle.
     Out[20]: 0.9990234375
   #+END_SRC
 
-* Entrées/sorties
-
-- La fonction intégrée *=print=* permet d'afficher à l'écran n'importe quelle chaîne
-  de caractères
-  #+BEGIN_SRC python
-    In [1]: print("Qu'est qu'un chat qui voit dans le futur ?")
-  #+END_SRC
-
-#+BEAMER: \pause
-
-- La fonction intégrée *=input=* permet de récupérer une saisie clavier sous la
-  forme d'une chaîne de caractères
-  #+BEGIN_SRC python
-    In [2]: reponse = input("Réponse ? ")
-  #+END_SRC
-
-* Entrées/sorties
-
-- L'écriture dans un fichier se fait nécessairement par le biais de chaîne de
-  caractères
-  #+BEGIN_SRC python
-    In [1]: f = open("QA.txt", "w")
-    In [2]: f.write("Qu'est qu'un chat qui voit dans le futur ?")
-    In [3]: f.close()
-  #+END_SRC
-
-* Entrées/sorties
-
-- La lecture dans un fichier peut se faire de la façon suivante...
-  #+BEGIN_SRC python
-    In [1]: f = open("QA.txt", "r")
-    In [2]: s = f.read()
-    In [3]: print(s)
-    Qu'est qu'un chat qui voit dans le futur ?
-    In [4]: f.close()
-  #+END_SRC
-
-#+BEAMER: \pause
-
-- ...ou en lisant le fichier ligne par ligne
-  #+BEGIN_SRC python
-    In [1]: with open("QA.txt", "r") as f:
-       ...:     for line in f:
-       ...:         print(line)
-       ...:
-  #+END_SRC
-
-  L'instruction =with= assure que le fichier sera fermé quoiqu'il advienne
-  notamment si une exception est levée
 
 * Librairie standard
 #+BEAMER: \framesubtitle{Module \texttt{os} : interaction avec le système d'exploitation}
