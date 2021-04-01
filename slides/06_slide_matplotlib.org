@@ -1954,10 +1954,10 @@ avec =axes([x, y, w, h])= et *=x,y,w,h= exprimés en fraction du canevas initial
 
 - Exemples & démo. : http://matplotlib.org/examples/widgets/index.html
 
-- Pour rappel, les exemples proposés à la préparation à l'aggrégation à
-  Montrouge : http://poisson.ens.fr/Ressources/index.php
+- Pour rappel, les exemples proposés à la préparation à l'aggrégation à Montrouge :
+  http://cdrom2016.agregation-physique.org/index.php/programmes-informatiques/programme-python
 
-* COMMENT =matplotlib= et plus si affinités
+* =matplotlib= et plus si affinités
 ** Titre
 :PROPERTIES:
 :BEAMER_ENV: fullframe
@@ -2219,7 +2219,7 @@ Comment accéder à la première sous-figure une fois la seconde affichée ?
      ...:                 width=90000, height=120000, resolution=res)
      ...:     m.drawcoastlines()
      ...:     m.fillcontinents()
-     ...:     plt.set_title("résolution='{0}'".format(res));
+     ...:     plt.set_title(f"résolution='{res}'");
 #+END_SRC
 
 *** Figure
