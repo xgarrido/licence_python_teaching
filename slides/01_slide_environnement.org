@@ -140,7 +140,7 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
   - édition en ligne du code
   - extraction automatique de *la documentation des fonctions* et objets =python=
   - interaction avec le shell du système d'exploitation
-    
+
 * Interpréteur =ipython=
 
 # - Installation /via/ =pip=
@@ -158,7 +158,7 @@ La commande =source= doit être exécutée à chaque nouvelle session\nbsp!
     In [1]: 2*2
     Out[1]: 4
   #+END_SRC
-  
+
 * Interpréteur =ipython=
 
 - Premier programme =python= : /"Hello world"/
@@ -277,15 +277,15 @@ Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =
 
 #+BEAMER: \pause
 
-2) [@2] Dans un éditeur de texte (=emacs=, =vim=, =notepad++=) puis 
+2) [@2] Dans un éditeur de texte (=emacs=, =vim=, =notepad++=) puis
    #+BEGIN_SRC python
      @\prompt@ python mon_code.py
    #+END_SRC
-    
+
    ou directement dans l'interpréteur =ipython= en faisant
    #+BEGIN_SRC python
      @\prompt@ ipython
- 
+
     In [1]: %run mon_code.py
    #+END_SRC
 
@@ -325,9 +325,24 @@ Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =
 
 [[file:figures/jupyter_example.png]]
 
+* Utilisation de /notebook/
+
+- Sur les machines de l'université, ouvrir un terminal puis taper la commande suivante
+  #+BEGIN_SRC shell-session
+    @\prompt@ jupyter lab
+  #+END_SRC
+
+* Annexes
+:PROPERTIES:
+:BEAMER_OPT: plain
+:BEAMER_ENV: fullframe
+:END:
+
+#+BEAMER: \partpage
+
 * Installation & utilisation des /notebooks/
 
-- Sous Linux, l'installation est relativement simple 
+- Sous Linux, l'installation est relativement simple
   #+BEGIN_SRC shell-session
     @\prompt@ pip install --user jupyterlab
     @\prompt@ jupyter lab
@@ -347,7 +362,7 @@ Fonctions internes à =ipython= : ces fonctions sont préfixées du caractère =
      #+BEGIN_SRC shell-session
        @\prompt@ jupyter lab --port 8891 --ip 127.0.0.1 --no-browser
      #+END_SRC
-     puis ouvrir le lien dans un navigateur web 
+     puis ouvrir le lien dans un navigateur web
 * Installation & utilisation des notebooks
 
 - Vous pouvez également utiliser la plateforme Jupyter de Paris-Saclay

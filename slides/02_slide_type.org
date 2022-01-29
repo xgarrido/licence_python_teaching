@@ -71,18 +71,19 @@ Affectation multiples /cf./ cours http://python.developpez.com/cours/apprendre-p
     Out[4]: 0.5
   #+END_SRC
 
-#+BEGIN_REMARK
-On notera que le nombre complexe $i$ est noté =j= ou =J= en Python
+  #+BEGIN_REMARK
+  On notera que le nombre complexe $i$ est noté =j= ou =J= en Python
+  #+END_REMARK
+
   #+BEGIN_SRC python
     In [1]: j = 5
-
+   
     In [2]: 2 + 5*j
     Out[2]: 27
-
+   
     In [3]: 2 + 5j
     Out[3]: (2+5j)
   #+END_SRC
-#+END_REMARK
 
 * Type fondamentaux
 
@@ -162,6 +163,7 @@ http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/m
     Out[5]: 1.0
   #+END_SRC
 
+#+BEGIN_COMMENT
 #+BEAMER: \pause
 #+BEGIN_REMARK
 En Python 2.X, la division entière pouvait se faire à l'aide de l'opérateur =/=
@@ -170,7 +172,6 @@ dès lors que des entiers étaient impliqués.
 Python 3.X a introduit l'opérateur =//= pour lever toutes ambiguïtés.
 #+END_REMARK
 
-#+BEGIN_COMMENT
 /cf./ cours
 http://nbviewer.jupyter.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-1-Introduction-to-Python-Programming.ipynb#Operators-and-comparisons
 
@@ -298,7 +299,7 @@ Contrairement au C/C++, les opérateurs =++= et =--= n'existent pas en Python.
     TypeError: 'int' object is not callable
   #+END_SRC
 
-* Intermède /geek/
+* COMMENT Intermède /geek/
 
 #+ATTR_LATEX: :width 0.65\linewidth
 [[file:figures/ballmer_peak.png]]

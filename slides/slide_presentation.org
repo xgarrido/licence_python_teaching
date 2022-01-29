@@ -104,8 +104,8 @@ L'art de faire interagir l'utilisateur avec les données graphiques
 
 * L'interface graphique
 
-Depuis 2015, dans le cadre de *la préparation à l'aggrégation à Montrouge*, [[http://cdrom2016.agregation-physique.org/index.php/programmes-informatiques/programme-python][des interfaces graphiques]]
-relativement simples sont proposées afin d'illustrer les leçons
+Depuis 2015, dans le cadre de *la préparation à l'aggrégation*, [[http://cdrom2016.agregation-physique.org/index.php/programmes-informatiques/programme-python][des interfaces graphiques]] relativement
+simples sont proposées afin d'illustrer les leçons
 
 - Mécanique Quantique : Effet tunnel
 - Optique : Diffraction par $N$ fentes

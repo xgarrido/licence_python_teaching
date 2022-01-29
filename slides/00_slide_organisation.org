@@ -83,14 +83,14 @@ Pour tout un tas de raisons que vous découvrirez durant cette option parmi lesq
   - pas *une simple initiation* à la programmation Python
 # \to option « Méthodes numériques » du L3 de Physique Fondamentale
 
-#+BEAMER: \pause\vspace{0.5cm}
+# #+BEAMER: \pause\vspace{0.5cm}
 
-#+BEGIN_REMARK
-_Python 2 ou Python 3 ?_
+# #+BEGIN_REMARK
+# _Python 2 ou Python 3 ?_
 
-En 2008, Python 3 a été officiellement lancé. Quelques (vieilles) librairies scientifiques ne
-fonctionnent pas encore sous Python 3 mais c'est de plus en plus l'exception.
-#+END_REMARK
+# En 2008, Python 3 a été officiellement lancé. Quelques (vieilles) librairies scientifiques ne
+# fonctionnent pas encore sous Python 3 mais c'est de plus en plus l'exception.
+# #+END_REMARK
 
 * Option « Programmation en Python »
 
@@ -172,11 +172,7 @@ fonctionnent pas encore sous Python 3 mais c'est de plus en plus l'exception.
 
 * Déroulement cours/TD \faIcon{laptop-code}
 
-- Cours à distance $\lesssim$ 1 heure
-  ([[https://eu.bbcollab.com/guest/1ec2d26f7f2e4e7c9432464a1e5ad765][lien Collaborate]])
-
-- TD à distance ~ 1h : 1 session Collaborate générale + questions/réponses individualisées /via/
-  lien Google Meet ou Zoom
+- Cours $\lesssim$ 1 heure puis TD ~ 1h 
 
 - Examen (2 heures) *sur machine* en présentiel
   

@@ -1,9 +1,160 @@
-#+TITLE:  /Containers/ et autres fonctions
+#+TITLE:  Fonctions & /containers/
 #+AUTHOR: Xavier Garrido
 #+DATE:   22/01/2017
 #+OPTIONS: toc:nil ^:{} author:nil
 #+STARTUP:     beamer
 #+LATEX_CLASS: python-slide
+
+* Les fonctions
+
+- Une fonction est *un bloc d’instructions* qui a reçu *un nom*
+- Une fonction peut :
+  1) dépendre d’un certain nombre de paramètres \to *les arguments*
+  2) renvoyer un résultat au moyen de l’instruction *=return=*
+
+#+BEAMER: \pause
+- Quelques fonctions intégrées au langage Python
+  - =help= : aide sur un nom \to =help(dict)=
+  - =input= : entrée au clavier \to =n = int(input("N ?"))=
+  - =print= : affiche à l'écran \to =print(n)=
+  - =type=, =sum=, =range=, =min/max=, ...
+
+* Les fonctions
+#+BEAMER: \framesubtitle{Déclaration de fonctions}
+
+- Fonction sans argument et sans valeur de retour
+  #+BEGIN_SRC python
+    In [1]: def dummy():
+       ...:     print("Fonction 'dummy'")
+       ...:
+
+    In [2]: dummy()
+    Fonction 'dummy'
+  #+END_SRC
+
+#+BEAMER: \pause
+#+BEGIN_REMARK
+Par défaut, la valeur de retour d'une fonction est =None=
+#+END_REMARK
+
+* Les fonctions
+#+BEAMER: \framesubtitle{Déclaration de fonctions}
+
+- Fonction *avec argument et valeur de retour*
+  #+BEGIN_SRC python
+    In [1]: def aire_disque(rayon):
+       ...:     return 3.14 * rayon**2
+       ...:
+
+    In [2]: aire_disque(1.5)
+    Out[2]: 7.065
+
+    In [3]: aire_disque()
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    <ipython-input-175-daee2592ca2a> in <module>()
+    ----> 1 aire_disque()
+
+    TypeError: aire_disque() missing 1 required positional argument: 'rayon'
+  #+END_SRC
+
+* Les fonctions
+#+BEAMER: \framesubtitle{Déclaration de fonctions}
+
+- Fonction *avec argument par défaut et valeur de retour*
+  #+BEGIN_SRC python
+    In [1]: def aire_disque(rayon=10.0):
+       ...:     return 3.14 * rayon**2
+       ...:
+
+    In [2]: aire_disque(1.5)
+    Out[2]: 7.065
+
+    In [3]: aire_disque()
+    Out[3]: 314.0
+
+    In [4]: aire_disque(rayon=20)
+    Out[4]: 1256.0
+  #+END_SRC
+
+* Les fonctions
+#+BEAMER: \framesubtitle{Déclaration de fonctions}
+
+- Fonction *retournant plusieurs valeurs*
+  #+BEGIN_SRC python
+    In [1]: def decomposer(entier, diviseur):
+       ...:     return entier // diviseur, entier % diviseur
+       ...:
+
+    In [2]: partie_entiere, reste = decomposer(20,3)
+    In [3]: partie_entiere, reste
+    Out[3]: (6, 2)
+  #+END_SRC
+
+* Les fonctions
+#+BEAMER: \framesubtitle{Fonctions $\lambda$}
+
+- Les fonctions \lambda sont des fonctions dites *anonymes* /i.e./ sans nom
+  pouvant être appliquée "à la volée" dans une expression
+
+  #+BEAMER:\pause
+  #+BEGIN_SRC python
+    In [1]: f = lambda x : x**2
+    In [2]: f(2)
+    Out[2]: 4
+
+    In [3]: g = lambda x,y,z: 100*x+10*y+z
+    In [4]: g(1,2,3)
+    Out[4]: 123
+  #+END_SRC
+
+* Les fonctions
+#+BEAMER: \framesubtitle{Documentation}
+
+#+BEGIN_SRC python
+  In [1]: def dummy():
+     ...:     """Cette fonction ne sert strictement à rien.
+     ...:
+     ...:     En plus détaillé, cette fonction ne sert toujours
+     ...:     à rien mais la description est plus longue.
+     ...:     """
+
+  In [2]: help(dummy)
+      1 Help on function dummy in module __main__:
+      2
+      3 dummy()
+      4     Cette fonction ne sert strictement à rien.
+      5
+      6     En plus détaillé, cette fonction ne sert toujours
+      7     à rien mais la description est plus longue.
+#+END_SRC
+
+#+BEGIN_REMARK
+Pour plus de détails sur les us et coutumes en matière de documentation /cf./
+[[https://www.python.org/dev/peps/pep-0257/][/Docstrings conventions/]]
+#+END_REMARK
+
+* COMMENT Les fonctions
+
+- Les fonctions sont des objets ce qui implique qu'elles peuvent être :
+  1) affectées à une variable
+  2) un élément dans une séquence (liste, dictionnaires)
+  3) passées comme argument à une autre fonction
+
+  #+BEAMER:\pause
+  #+BEGIN_SRC python
+    In [1]: ad = aire_disque
+
+    In [2]: ad(2)
+    Out[2]: 12.56
+
+    In [3]: table = {"Calcul de l'aire d'un disque" : ad}
+    In [4]: table["Calcul de l'aire d'un disque"]()
+    Out[4]: 314.0
+
+    In [5]: decomposer(ad(), 2)
+    Out[5]: (157.0, 0.0)
+  #+END_SRC
 
 * Les séquences ou /containers/
 
@@ -484,164 +635,13 @@ intégrées au langage Python
     Clé/Valeur : Francis/5915
   #+END_SRC
 
-* Intermède /geek/
+* COMMENT Intermède /geek/
 
 #+ATTR_LATEX: :width 0.65\linewidth
 [[file:figures/ineffective_sorts.png]]
 
 #+BEAMER:\scriptsize\hfill$^\dagger$
 [[http://xkcd.com/1185/][xkcd comic]]
-
-* Les fonctions
-
-- Une fonction est *un bloc d’instructions* qui a reçu *un nom*
-- Une fonction peut :
-  1) dépendre d’un certain nombre de paramètres \to *les arguments*
-  2) renvoyer un résultat au moyen de l’instruction *=return=*
-
-#+BEAMER: \pause
-- Quelques fonctions intégrées au langage Python
-  - =help= : aide sur un nom \to =help(dict)=
-  - =input= : entrée au clavier \to =n = int(input("N ?"))=
-  - =print= : affiche à l'écran \to =print(n)=
-  - =type=, =sum=, =range=, =min/max=, ...
-
-* Les fonctions
-#+BEAMER: \framesubtitle{Déclaration de fonctions}
-
-- Fonction sans argument et sans valeur de retour
-  #+BEGIN_SRC python
-    In [1]: def dummy():
-       ...:     print("Fonction 'dummy'")
-       ...:
-
-    In [2]: dummy()
-    Fonction 'dummy'
-  #+END_SRC
-
-#+BEAMER: \pause
-#+BEGIN_REMARK
-Par défaut, la valeur de retour d'une fonction est =None=
-#+END_REMARK
-
-* Les fonctions
-#+BEAMER: \framesubtitle{Déclaration de fonctions}
-
-- Fonction *avec argument et valeur de retour*
-  #+BEGIN_SRC python
-    In [1]: def aire_disque(rayon):
-       ...:     return 3.14 * rayon**2
-       ...:
-
-    In [2]: aire_disque(1.5)
-    Out[2]: 7.065
-
-    In [3]: aire_disque()
-    ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-    <ipython-input-175-daee2592ca2a> in <module>()
-    ----> 1 aire_disque()
-
-    TypeError: aire_disque() missing 1 required positional argument: 'rayon'
-  #+END_SRC
-
-* Les fonctions
-#+BEAMER: \framesubtitle{Déclaration de fonctions}
-
-- Fonction *avec argument par défaut et valeur de retour*
-  #+BEGIN_SRC python
-    In [1]: def aire_disque(rayon=10.0):
-       ...:     return 3.14 * rayon**2
-       ...:
-
-    In [2]: aire_disque(1.5)
-    Out[2]: 7.065
-
-    In [3]: aire_disque()
-    Out[3]: 314.0
-
-    In [4]: aire_disque(rayon=20)
-    Out[4]: 1256.0
-  #+END_SRC
-
-* Les fonctions
-#+BEAMER: \framesubtitle{Déclaration de fonctions}
-
-- Fonction *retournant plusieurs valeurs*
-  #+BEGIN_SRC python
-    In [1]: def decomposer(entier, diviseur):
-       ...:     return entier // diviseur, entier % diviseur
-       ...:
-
-    In [2]: partie_entiere, reste = decomposer(20,3)
-    In [3]: partie_entiere, reste
-    Out[3]: (6, 2)
-  #+END_SRC
-
-* Les fonctions
-#+BEAMER: \framesubtitle{Fonctions $\lambda$}
-
-- Les fonctions \lambda sont des fonctions dites *anonymes* /i.e./ sans nom
-  pouvant être appliquée "à la volée" dans une expression
-
-  #+BEAMER:\pause
-  #+BEGIN_SRC python
-    In [1]: f = lambda x : x**2
-    In [2]: f(2)
-    Out[2]: 4
-
-    In [3]: g = lambda x,y,z: 100*x+10*y+z
-    In [4]: g(1,2,3)
-    Out[4]: 123
-  #+END_SRC
-
-* Les fonctions
-#+BEAMER: \framesubtitle{Documentation}
-
-#+BEGIN_SRC python
-  In [1]: def dummy():
-     ...:     """Cette fonction ne sert strictement à rien.
-     ...:
-     ...:     En plus détaillé, cette fonction ne sert toujours
-     ...:     à rien mais la description est plus longue.
-     ...:     """
-
-  In [2]: help(dummy)
-      1 Help on function dummy in module __main__:
-      2
-      3 dummy()
-      4     Cette fonction ne sert strictement à rien.
-      5
-      6     En plus détaillé, cette fonction ne sert toujours
-      7     à rien mais la description est plus longue.
-#+END_SRC
-
-#+BEGIN_REMARK
-Pour plus de détails sur les us et coutumes en matière de documentation /cf./
-[[https://www.python.org/dev/peps/pep-0257/][/Docstrings conventions/]]
-#+END_REMARK
-
-* Les fonctions
-
-- Les fonctions sont des objets ce qui implique qu'elles peuvent être :
-  1) affectées à une variable
-  2) un élément dans une séquence (liste, dictionnaires)
-  3) passées comme argument à une autre fonction
-
-  #+BEAMER:\pause
-  #+BEGIN_SRC python
-    In [1]: ad = aire_disque
-
-    In [2]: ad(2)
-    Out[2]: 12.56
-
-    In [3]: table = {"Calcul de l'aire d'un disque" : ad}
-    In [4]: table["Calcul de l'aire d'un disque"]()
-    Out[4]: 314.0
-
-    In [5]: decomposer(ad(), 2)
-    Out[5]: (157.0, 0.0)
-  #+END_SRC
 
 * Footnotes
 

@@ -463,7 +463,7 @@ up. Practically, everything can be done within this section.
 ****** Minted lexer
 #+BEGIN_SRC latex
   \renewcommand{\theFancyVerbLine}{\ttfamily \textcolor[HTML]{93A1A1}{\scriptsize\oldstylenums{\arabic{FancyVerbLine}}}}
-  \usemintedstyle{solarizedlight}
+  \usemintedstyle{gruvbox-light}
 #+END_SRC
 ****** Fancy headings
 #+BEGIN_SRC latex
@@ -2007,7 +2007,7 @@ up. Practically, everything can be done within this section.
 ****** Minted lexer
 #+BEGIN_SRC latex
   \renewcommand{\theFancyVerbLine}{\ttfamily \textcolor{gray}{\scriptsize\oldstylenums{\arabic{FancyVerbLine}}}}
-  \usemintedstyle{solarizedlight}
+  \usemintedstyle{gruvbox-light}
   \newcommand{\prompt}{\color{orange}{\faTerminal}}
 #+END_SRC
 
