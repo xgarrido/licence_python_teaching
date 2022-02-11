@@ -360,7 +360,7 @@ intégrées au langage Python
     In [1]: citation = "Chuck Norris a déjà compté jusqu'à l'infini. Deux fois."
     In [2]: citation + "Mais seulement " + str(1) + " fois jusqu'à moins l'infini."
 
-    In [3]: citation*2
+    In [3]: citation * 2
     Out[3]: "Chuck Norris a déjà [...].Chuck Norris a déjà [...]"
   #+END_SRC
 
@@ -408,12 +408,13 @@ intégrées au langage Python
 * Les chaînes de caractères
 #+BEAMER: \framesubtitle{Format \& \emph{Formatage}}
 
-#+BEGIN_SRC python
-  In [1]: nom, prenom, age = "Van Rossum", "Guido", 64
-  In [2]: print(f"Nom: {nom}, prénom: {prenom}, age: {age}")
-
-  Out[2]: 'Nom: Van Rossum, prénom: Guido, age: 64'
-#+END_SRC
+- Utilisation des /f-strings/
+  #+BEGIN_SRC python
+    In [1]: nom, prenom, age = "Van Rossum", "Guido", 64
+    In [2]: print(f"Nom: {nom}, prénom: {prenom}, age: {age}")
+   
+    Out[2]: 'Nom: Van Rossum, prénom: Guido, age: 64'
+  #+END_SRC
 
 * Les listes
 #+BEAMER: \framesubtitle{Initialisation d'une liste}
@@ -454,11 +455,11 @@ intégrées au langage Python
 
 - Initialisation d'une liste "en compréhension"
   #+BEGIN_SRC python
-    In [1]: bazar = [x**2 for x in range(4)]
+    In [1]: bazar = [x ** 2 for x in range(4)]
     In [2]: bazar
     Out[2]: [0, 1, 4, 9]
 
-    In [3]: bazar = [x**2 for x in range(1,100) if x % 10 == 3]
+    In [3]: bazar = [x ** 2 for x in range(1, 100) if x % 10 == 3]
     In [4]: bazar
     Out[4]: [9, 169, 529, 1089, 1849, 2809, 3969, 5329, 6889, 8649]
   #+END_SRC
@@ -601,10 +602,10 @@ intégrées au langage Python
     In [2]: tel
     Out[2]: {'emmanuelle': 5752, 'sébastien': 5578}
 
-    In [3]: tel["francis"] = 5915
+    In [3]: tel["sébastien"]
+    Out[3]: 5578
 
-    In [4]: tel["sébastien"]
-    Out[4]: 5578
+    In [4]: tel["francis"] = 5915
 
     In [5]: tel.keys()
     Out[5]: dict_keys(['emmanuelle', 'sébastien', 'francis'])
@@ -628,7 +629,7 @@ intégrées au langage Python
     In [1]: tel = {"emmanuelle": 5752, "sébastien": 5578, 'francis': 5915}
 
     In [2]: for key, value in tel.items():
-       ...:     print("Clé/Valeur : {}/{}".format(key.capitalize(), value))
+       ...:     print(f"Clé/Valeur : {key.capitalize()}/{value}")
 
     Clé/Valeur : Emmanuelle/5752
     Clé/Valeur : Sébastien/5578

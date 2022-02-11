@@ -4,6 +4,7 @@ Module for Euler projects
 This file holds several solution of Euler project
 """
 
+
 def euler001(n=None):
     """Solution for Euler project n°1
 
@@ -13,6 +14,7 @@ def euler001(n=None):
     if n == None:
         n = int(input("Give the n value : "))
     return sum([x for x in range(n) if x % 3 == 0 or x % 5 == 0])
+
 
 def euler002(n=None):
     """Solution for Euler project n°2
@@ -27,8 +29,9 @@ def euler002(n=None):
     while f < n:
         if f % 2 == 0:
             somme += f
-        f, g = g, f+g
+        f, g = g, f + g
     return somme
+
 
 def euler006(n=None):
     """Solution of Euler project n°6
@@ -39,8 +42,9 @@ def euler006(n=None):
     """
     if n == None:
         n = int(input("Give the n value : "))
-    r = range(1, n+1)
-    return sum(r)**2 - sum([x**2 for x in r])
+    r = range(1, n + 1)
+    return sum(r) ** 2 - sum([x ** 2 for x in r])
+
 
 def euler016(n=None):
     """Solution for Euler project n°16
@@ -51,9 +55,10 @@ def euler016(n=None):
     if n == None:
         n = int(input("Give the n value : "))
     somme = 0
-    for i in str(2**n):
+    for i in str(2 ** n):
         somme += int(i)
     return somme
+
 
 def euler025(n=None):
     """Solution for Euler project n°25
@@ -64,11 +69,12 @@ def euler025(n=None):
     if n == None:
         n = int(input("Give the n value : "))
     f, g, i = 1, 1, 0
-    while f < 10**n:
-        f, g, i = g, f+g, i+1
+    while f < 10 ** n:
+        f, g, i = g, f + g, i + 1
     return i
 
-projects = {1 : euler001, 2 : euler002, 6 : euler006, 16 : euler016, 25 : euler025}
+
+projects = {1: euler001, 2: euler002, 6: euler006, 16: euler016, 25: euler025}
 
 if __name__ == "__main__":
     i = 0
