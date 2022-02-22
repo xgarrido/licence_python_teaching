@@ -228,7 +228,7 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
            [ 1.,  1.,  1.],
            [ 1.,  1.,  1.]])
 
-    In [3]: np.full((3, 3), 666.666, dtype=np.int)
+    In [3]: np.full((3, 3), 666.666, dtype=int)
     Out[3]:
     array([[666, 666, 666],
            [666, 666, 666],
@@ -240,6 +240,8 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
            [ 0.,  1.,  0.],
            [ 0.,  0.,  1.]])
   #+END_SRC
+
+  #+RESULTS:
 
 * Création de tableau (suite)
 
@@ -259,10 +261,11 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
   #+BEGIN_REMARK
   Un générateur aléatoire n'est par définition pas aléatoire dans une machine
   déterministe qu'est un ordinateur !
+  #+END_REMARK
+
   #+BEGIN_SRC python
     In [1]: np.random.seed(1234)
   #+END_SRC
-  #+END_REMARK
 
 * Création de tableau : intermède graphique
 ** Python code
@@ -273,12 +276,11 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 #+BEGIN_SRC python
   In [1]: import numpy as np
   In [2]: import matplotlib.pyplot as plt
-  In [3]: %matplotlib
 
-  In [4]: img = np.random.randn(30, 30)
-  In [5]: plt.imshow(img, cmap=plt.cm.hot,
+  In [3]: img = np.random.randn(30, 30)
+  In [4]: plt.imshow(img, cmap=plt.cm.hot,
                      extent=(0,30,0,30))
-  In [6]: plt.colorbar()
+  In [5]: plt.colorbar()
 #+END_SRC
 
 ** Color map
@@ -331,6 +333,8 @@ Dans la pratique, les valeurs d'un tableau sont rarement saisies une par une
 #+BEAMER: \pause
 #+BEGIN_REMARK
 Le type de données numériques stockées est fixé à la création du tableau
+#+END_REMARK
+
 #+BEGIN_SRC python
   In [6]: x[0, 0] = 3.1415
   In [7]: x
@@ -339,7 +343,6 @@ Le type de données numériques stockées est fixé à la création du tableau
          [9, 8, 2, 0],
          [0, 5, 5, 4]])
 #+END_SRC
-#+END_REMARK
 
 * Sélection par indice
 
@@ -356,7 +359,7 @@ Le type de données numériques stockées est fixé à la création du tableau
   - Sélection d'une ligne
     #+BEGIN_SRC python
       In [2]: x[0]
-      Out[2]: array([[3, 3, 6, 4])
+      Out[2]: array([3, 3, 6, 4])
     #+END_SRC
 
   - *Sélection d'une colonne*
@@ -418,12 +421,12 @@ Le type de données numériques stockées est fixé à la création du tableau
 - *Grâce à l'homogénéité des tableaux de =numpy=*, il est possible de réaliser des
   opérations mathématiques \neq listes Python
   #+BEGIN_SRC python
-    In [1]: l = [1, 2, 3, 4]
-    In [2]: l+5
+    In [1]: bazar = [1, 2, 3, 4]
+    In [2]: bazar + 5
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
     <ipython-input-53-1cb32c2d071d> in <module>()
-    ----> 1 l+5
+    ----> 1 bazar + 5
 
     TypeError: can only concatenate list (not "int") to list
   #+END_SRC
@@ -439,16 +442,16 @@ Le type de données numériques stockées est fixé à la création du tableau
     In [2]: x
     Out[2]: array([0, 1, 2, 3])
 
-    In [3]: x+5
+    In [3]: x + 5
     Out[3]: array([5, 6, 7, 8])
 
-    In [4]: x-5
+    In [4]: x - 5
     Out[4]: array([-5, -4, -3, -2])
 
-    In [5]: x*5
+    In [5]: x * 5
     Out[5]: array([ 0,  5, 10, 15])
 
-    In [5]: x/5
+    In [5]: x / 5
     Out[5]: array([ 0. ,  0.2,  0.4,  0.6]))
   #+END_SRC
 
@@ -464,10 +467,10 @@ Le type de données numériques stockées est fixé à la création du tableau
     In [2]: -x
     Out[2]: array([0, -1, -2, -3])
 
-    In [3]: x**2
+    In [3]: x ** 2
     Out[3]: array([0, 1, 4, 9])
 
-    In [4]: x%2
+    In [4]: x % 2
     Out[4]: array([0, 1, 0, 1])
   #+END_SRC
 
@@ -503,19 +506,18 @@ Le type de données numériques stockées est fixé à la création du tableau
 #+BEGIN_SRC python
   In [1]: import numpy as np
   In [2]: import matplotlib.pyplot as plt
-  In [3]: %matplotlib
+ 
+  In [3]: x = np.arange(-5, 5, 0.5)
 
-  In [4]: x = np.arange(-5, 5, 0.5)
-
-  In [5]: y1 = x**2 + x + 1.0
-  In [6]: y1
-  Out[6]:
+  In [4]: y1 = x ** 2 + x + 1.0
+  In [5]: y1
+  Out[5]:
   array([21., 16.75, 13., 9.75, 7., 4.75, 3., 1.75, 1.,
          0.75, 1., 1.75, 3., 4.75, 7., 9.75, 13., 16.75,
          21., 25.75])
 
-  In [7]: y2 = 10 * np.cos(x)
-  In [7]: plt.plot(x, y1, "o", x, y2, "o")
+  In [6]: y2 = 10 * np.cos(x)
+  In [6]: plt.plot(x, y1, "o", x, y2, "o")
 #+END_SRC
 
 ** Color map
@@ -526,7 +528,7 @@ Le type de données numériques stockées est fixé à la création du tableau
 #+ATTR_LATEX: :width 1.2\linewidth
 [[file:figures/fcn.pdf]]
 
-* Opérations statistiques
+* COMMENT Opérations statistiques
 
 #+ATTR_BEAMER: :overlay +-
 - Somme des éléments d'un tableau
@@ -552,7 +554,7 @@ Le type de données numériques stockées est fixé à la création du tableau
     1000 loops, best of 3: 467 µs per loop
   #+END_SRC
 
-* Opérations statistiques
+* COMMENT Opérations statistiques
 
 #+ATTR_BEAMER: :overlay +-
 - Somme des éléments d'un tableau : méthode =sum=
@@ -580,7 +582,7 @@ Le type de données numériques stockées est fixé à la création du tableau
     Out[5]: array([19, 16, 20])
   #+END_SRC
 
-* Opérations statistiques
+* COMMENT Opérations statistiques
 
 |---------------+-------------------------------------------|
 | Fonction      | Description                               |
@@ -597,7 +599,7 @@ Le type de données numériques stockées est fixé à la création du tableau
 | =np.percentile= | Quantiles                                 |
 |---------------+-------------------------------------------|
 
-* Opérations algébriques
+* COMMENT Opérations algébriques
 
 - Multiplication de matrices
   #+BEGIN_SRC python
@@ -624,7 +626,7 @@ Le type de données numériques stockées est fixé à la création du tableau
     In [5]: M @ M
   #+END_SRC
 
-* Opérations algébriques
+* COMMENT Opérations algébriques
 
 - Transposition de matrices
   #+BEGIN_SRC python
@@ -642,7 +644,7 @@ Le type de données numériques stockées est fixé à la création du tableau
            [0, 0, 2]])
   #+END_SRC
 
-* Opérations algébriques
+* COMMENT Opérations algébriques
 
 - Conversion d'un vecteur vers une matrice
   #+BEGIN_SRC python
@@ -665,7 +667,7 @@ Le type de données numériques stockées est fixé à la création du tableau
            [3]])
   #+END_SRC
 
-* Opérations algébriques : intermède graphique
+* COMMENT Opérations algébriques : intermède graphique
 
 #+BEGIN_SRC latex
   \begin{align*}
@@ -691,17 +693,16 @@ Le type de données numériques stockées est fixé à la création du tableau
 #+BEGIN_SRC python
   In [1]: import numpy as np
   In [2]: import matplotlib.pyplot as plt
-  In [3]: %matplotlib
 
-  In [4]: x = np.linspace(0, 5, 500)
-  In [5]: y = np.linspace(0, 5, 500)[:, np.newaxis]
-  In [6]: z = np.sin(x)**10 + np.cos(x*y)*np.cos(x)
-  In [7]: x.shape, y.shape, z.shape
-  Out[7]: ((500,), (500, 1), (500, 500))
+  In [3]: x = np.linspace(0, 5, 500)
+  In [4]: y = np.linspace(0, 5, 500)[:, np.newaxis]
+  In [5]: z = np.sin(x) ** 10 + np.cos(x * y) * np.cos(x)
+  In [6]: x.shape, y.shape, z.shape
+  Out[6]: ((500,), (500, 1), (500, 500))
 
-  In [8]: plt.imshow(z, extent=[0, 5, 0, 5],
+  In [7]: plt.imshow(z, extent=[0, 5, 0, 5],
                      cmap="viridis")
-  In [9]: plt.colorbar();
+  In [8]: plt.colorbar();
 #+END_SRC
 
 ** Color map
@@ -714,7 +715,7 @@ Le type de données numériques stockées est fixé à la création du tableau
 [[file:figures/zxy.pdf]]
 #+BEAMER: }
 
-* Opérations logiques
+* COMMENT Opérations logiques
 
 - En plus des opérateurs et fonctions mathématiques, =numpy= fournit également les
   opérateurs de comparaison opérant sur les éléments d'un tableau
@@ -731,7 +732,7 @@ Le type de données numériques stockées est fixé à la création du tableau
     Out[4]: array([False,  True, False, False, False], dtype=bool)
   #+END_SRC
 
-* Opérations logiques
+* COMMENT Opérations logiques
 
 - =numpy= fournit également les méthodes =any= et =all=
   #+BEGIN_SRC python
@@ -742,7 +743,7 @@ Le type de données numériques stockées est fixé à la création du tableau
     Out[6]: True
   #+END_SRC
 
-* Opérations logiques
+* COMMENT Opérations logiques
 
 - Il est finalement possible de dénombrer le nombre de valeurs d'un tableau
   satisfaisant à une ou des conditions
@@ -754,7 +755,7 @@ Le type de données numériques stockées est fixé à la création du tableau
     Out[8]: 1
   #+END_SRC
 
-* Sélection par masque
+* COMMENT Sélection par masque
 
 - Les opérations de comparaison sur des tableaux retournent un tableau de
   booléens qui peut servir à la sélection d'éléments du tableau
@@ -771,7 +772,7 @@ Le type de données numériques stockées est fixé à la création du tableau
     Out[4]: array([2, 4, 4, 0])
   #+END_SRC
 
-* Sélection par masque : intermède graphique
+* COMMENT Sélection par masque : intermède graphique
 ** Python code
 :PROPERTIES:
 :BEAMER_COL: 0.55
@@ -780,15 +781,14 @@ Le type de données numériques stockées est fixé à la création du tableau
 #+BEGIN_SRC python
   In [1]: import numpy as np
   In [2]: import matplotlib.pyplot as plt
-  In [3]: %matplotlib
 
-  In [4]: x = np.random.rand(1000)
-  In [5]: y = np.random.rand(1000)
-  In [6]: plt.scatter(x, y, alpha=0.3)
-  In [7]: plt.axis("scaled"); plt.axis([0, 1, 0, 1])
+  In [3]: x = np.random.rand(1000)
+  In [4]: y = np.random.rand(1000)
+  In [5]: plt.scatter(x, y, alpha=0.3)
+  In [6]: plt.axis("scaled"); plt.axis([0, 1, 0, 1])
 
-  In [8]: mask = (x*y > 0.5)
-  In [9]: plt.scatter(x[mask], y[mask], alpha=0.6,
+  In [7]: mask = (x * y > 0.5)
+  In [8]: plt.scatter(x[mask], y[mask], alpha=0.6,
                       edgecolors="orange", c="none",
                       s=200)
 #+END_SRC
@@ -801,7 +801,7 @@ Le type de données numériques stockées est fixé à la création du tableau
 #+ATTR_LATEX: :width 1.1\linewidth
 [[file:figures/mask.pdf]]
 
-* Entrées/sorties de =numpy=
+* COMMENT Entrées/sorties de =numpy=
 
 - =numpy= permet de charger un fichier texte dans un objet de type =ndarray=
   #+BEGIN_SRC python
@@ -819,7 +819,7 @@ Le type de données numériques stockées est fixé à la création du tableau
               1.22500000e+01]])
   #+END_SRC
 
-* Entrées/sorties de =numpy=
+* COMMENT Entrées/sorties de =numpy=
 
 #+ATTR_BEAMER: :overlay +-
 - =numpy= permet également de sauvegarder un tableau dans un fichier texte
@@ -830,6 +830,103 @@ Le type de données numériques stockées est fixé à la création du tableau
 - le module [[http://pandas.pydata.org/][=pandas=]] est toutefois bien mieux adapté à la lecture de fichier
   contenant des données numériques
 
+* COMMENT Annexes
+:PROPERTIES:
+:BEAMER_OPT: plain
+:BEAMER_ENV: fullframe
+:END:
+
+#+BEAMER: \partpage
+
+* COMMENT Opérations algébriques : /Broadcasting/[fn:1c1516c060af0c15]
+
+#+ATTR_LATEX: :width 0.7\linewidth
+[[file:figures/broadcast.pdf]]
+* COMMENT Opérations diverses : concaténation
+
+- Concaténation de vecteurs
+  #+BEGIN_SRC python
+    In [1]: x = np.array([1, 2, 3])
+    In [2]: y = np.array([4, 5, 6])
+    In [3]: z = np.array([7, 8, 9])
+    In [4]: np.concatenate([x, y, z])
+    Out[4]: array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+  #+END_SRC
+
+#+BEAMER: \pause
+- Concaténation de matrices
+  #+BEGIN_SRC python
+    In [5]: x = np.array([[1, 2],
+                          [3, 4]])
+    In [6]: np.concatenate([x, x], axis=0)
+    Out[6]:
+    array([[1, 2],
+           [3, 4],
+           [1, 2],
+           [3, 4]])
+
+    In [7]: np.concatenate([x, x], axis=1)
+    Out[7]:
+    array([[1, 2, 1, 2],
+           [3, 4, 3, 4]])
+  #+END_SRC
+
+
+#+COMMENT: https://jakevdp.github.io/PythonDataScienceHandbook/03.06-concat-and-append.html#Recall:-Concatenation-of-NumPy-Arrays
+
+* COMMENT Opérations diverses : concaténation
+
+- Concaténation de vecteurs \to matrice
+  #+BEGIN_SRC python
+    In [1]: x = np.array([1, 2, 3])
+    In [2]: y = np.array([4, 5, 6])
+
+    In [3]: np.concatenate([x, y], axis=0)
+    Out[3]: array([1, 2, 3, 4, 5, 6])
+
+    In [4]: np.concatenate([x, y], axis=1)
+    ---------------------------------------------------------------------------
+    AxisError                                 Traceback (most recent call last)
+    <ipython-input-85-53c8e6a81f9c> in <module>
+    ----> 1 np.concatenate([x, y], axis=1)
+
+    <__array_function__ internals> in concatenate(*args, **kwargs)
+
+    AxisError: axis 1 is out of bounds for array of dimension 1
+ #+END_SRC
+
+* COMMENT Opérations diverses : concaténation
+
+- Concaténation de vecteurs \to matrice
+  #+BEGIN_SRC python
+    In [4]: x[np.newaxis], y[np.newaxis]
+    Out[4]: (array([[1, 2, 3]]), array([[4, 5, 6]]))
+
+    In [6]: np.concatenate([x[np.newaxis], y[np.newaxis]], axis=0)
+    Out[6]:
+    array([[1, 2, 3],
+           [4, 5, 6]])
+  #+END_SRC
+
+  #+BEAMER: \pause
+  #+BEGIN_SRC python
+    In [7]: np.concatenate([x[:, np.newaxis], y[:, np.newaxis]], axis=0)
+    Out[7]:
+    array([[1],
+           [2],
+           [3],
+           [4],
+           [5],
+           [6]])
+    In [8]: np.concatenate([x[:, np.newaxis], y[:, np.newaxis]], axis=1)
+    Out[8]:
+    array([[1, 4],
+           [2, 5],
+           [3, 6]])
+#+END_SRC
+
+#+RESULTS:
+
 * Footnotes
 
 [fn:e0eb780c73d6562] les principales fonctions de =numpy= sont implémentées en C
@@ -839,15 +936,3 @@ et en Fortran
 
 [fn:1c1516c060af0c15] pour plus de détails, /cf./ [[http://nbviewer.jupyter.org/github/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/02.05-Computation-on-arrays-broadcasting.ipynb#Computation-on-Arrays:-Broadcasting][discussion]]
 
-* Annexes
-:PROPERTIES:
-:BEAMER_OPT: plain
-:BEAMER_ENV: fullframe
-:END:
-
-#+BEAMER: \partpage
-
-* Opérations algébriques : /Broadcasting/[fn:1c1516c060af0c15]
-
-#+ATTR_LATEX: :width 0.7\linewidth
-[[file:figures/broadcast.pdf]]
