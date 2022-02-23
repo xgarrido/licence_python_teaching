@@ -1,8 +1,10 @@
 % This file was created by matplotlib2tikz v0.6.2.
 \begin{tikzpicture}
+  \definecolor{violet}{HTML}{8B1B59}
   \definecolor{blue}{RGB}{0,72,112}
   \definecolor{gray}{RGB}{107,108,110}
-  \colorlet{black}{blue}
+  \colorlet{black}{violet}
+  \colorlet{blue}{violet}
   \begin{axis}[
       hide axis,
       xmin=0, xmax=16,
